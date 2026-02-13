@@ -13,12 +13,12 @@ Willkommen zum Kurs **Einführung in R**! Dieser Kurs bietet eine praxisorientie
 
 Der Kurs ist in folgende Teile gegliedert:
 
-1.  **Grundlagen**: Installation, erste Schritte, Best Practices
-2.  **Datenaufbereitung**: Daten importieren, aufbereiten und exportieren
-3.  **Visualisierung**: Grafiken erstellen
-4.  **Statistik in R**: Deskriptive Statistiken und Regressionsmodelle
-5.  **Export von Ergebnissen**: Export von Grafiken und Tabellen
-6.  **Fortgeschrittene Themen**: Loops, Funktionen und KI-Unterstützung
+-  **Grundlagen**: Installation, erste Schritte, Best Practices
+-  **Datenaufbereitung**: Daten importieren, aufbereiten und exportieren
+-  **Visualisierung**: Grafiken erstellen
+-  **Statistik in R**: Deskriptive Statistiken und Regressionsmodelle
+-  **Export von Ergebnissen**: Export von Grafiken und Tabellen
+-  **Fortgeschrittene Themen**: Loops, Funktionen und KI-Unterstützung
 
 ::: callout-note
 ## Wichtig

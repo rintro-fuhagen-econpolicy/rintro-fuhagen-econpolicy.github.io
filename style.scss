@@ -3,6 +3,11 @@
 $primary: #004C97 !default;
 $font-size-root: 18px !default;
 
+$callout-color-note: #6C6C6C;
+$callout-color-tip: #96C0B7;
+$callout-color-warning: #F49D6E;
+$callout-color-important: #c1121f;
+
 /*-- scss:rules --*/
 
 .sidebar-title {
@@ -27,11 +32,32 @@ img.quarto-cover-image {
   margin-bottom: 0.5rem;
 }
 
-h1 { color: #447ab1; font-weight: normal;}
-h2 { margin-top: 2rem; margin-bottom: 1rem; font-size: 1.4rem; font-weight: 600; color: #004C97;}
-h3 { margin-top: 1.5em; font-size: 1.2rem; font-weight: 500; color: #447ab1;}
-h4 { margin-top: 1.5em; font-size: 1.1rem; color: #447ab1;}
-h5 { margin-top: 1.5em; font-size: 1rem;}
+h1 {
+  color: #447ab1;
+  font-weight: normal;
+}
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #004C97;
+}
+h3 {
+  margin-top: 1.5em;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #447ab1;
+}
+h4 {
+  margin-top: 1.5em;
+  font-size: 1.1rem;
+  color: #447ab1;
+}
+h5 {
+  margin-top: 1.5em;
+  font-size: 1rem;
+}
 
 .quarto-section-identifier {
   color: #6C6C6C;
@@ -48,4 +74,3 @@ code a:any-link {
   text-decoration: underline;
   text-decoration-color: #ccc;
 }
-

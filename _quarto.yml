@@ -7,13 +7,13 @@ lang: de
 book:
   title: "Einführung in R"
   subtitle: "Lehrstuhl für VWL, insb. Wirtschaftspolitik, Fernuniversität in Hagen"
-  reader-mode: true
   chapters:
     - index.qmd
     
     - part: "Grundlagen"
       chapters:
         - erste_schritte.qmd
+        - best_practices.qmd
 
   sidebar:
     style: "docked"
@@ -23,7 +23,7 @@ format:
   html:
     theme: 
       - cosmo
-      - style.css
+      - style.scss
     code-link: true
     author-meta: "Andreas Fischeneder"
     callout-appearance: simple
