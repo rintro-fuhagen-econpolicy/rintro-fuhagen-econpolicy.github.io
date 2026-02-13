@@ -8,4 +8,4 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-## R-Scripts und Projects
+## R-Scripts
