@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="r-scripts" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="r-scripts"><span class="header-section-number">2.1</span> R-Scripts</h2>
-<p>Bisher haben wir unseren Code immer direkt in der Konsole geschrieben und dort ausgeführt. Das ist für erste Schritte praktisch, aber der Code geht leicht verloren und lässt sich nur schwer nachvollziehen oder erneut verwenden. Die Verwendung eines <em>R-Scripts</em> erlaubt uns, Code dauerhaft zu speichern, zu dokumentieren und später reproduzierbar erneut auszuführen. Außerdem lassen sich Scripts strukturieren, kommentieren und leichter mit anderen teilen. Dadurch wird die Arbeit nachvollziehbarer, effizienter und weniger fehleranfällig.</p>
+<p>Bisher haben wir unseren Code immer direkt in der Konsole geschrieben und dort ausgeführt. Das ist für erste Schritte praktisch, aber der Code geht leicht verloren und lässt sich nur schwer nachvollziehen oder erneut verwenden. Die Verwendung eines <em>R-Scripts</em> erlaubt uns, Code dauerhaft zu speichern, zu dokumentieren und später reproduzierbar erneut auszuführen. Außerdem lassen sich Skripte strukturieren, kommentieren und leichter mit anderen teilen. Dadurch wird die Arbeit nachvollziehbarer, effizienter und weniger fehleranfällig.</p>
 <p>Um ein R-Script zu öffnen, klicke auf den <em>New File Button</em> oben links in RStudio (rot hervorgehoben in <a href="#fig-rscript-interface" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a>). Dadurch öffnet sich ein zusätzliches Panel im Interface (gelb markiert). Wir können nun unseren Code in diesem Text-Editor schreiben, kommentieren und ausführen. Nachdem wir das R-Script speichern, können wir zu einem späteren Zeitpunkt unseren Code leicht reproduzieren und fortsetzen.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -381,7 +381,7 @@ Abbildung&nbsp;2.1: RStudio Interface mit R-Script.
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================================</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Projekt: Analyse von Studentendaten</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Script: 01_data_cleaning.R</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Skript: 01_data_cleaning.R</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Autor: Dein Name</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Datum: 2025-10-05</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Beschreibung: Lädt und bereinigt die Rohdaten</span></span>
@@ -418,7 +418,7 @@ Abbildung&nbsp;2.1: RStudio Interface mit R-Script.
 <ul>
 <li>Aussagekräftige Kommentare</li>
 <li>Logische Struktur</li>
-<li>Ein Script = Eine Arbeitsaufgabe</li>
+<li>Ein Skript = Eine Arbeitsaufgabe</li>
 <li>Pakete am Anfang laden</li>
 <li>Sektionen mit <code># ----</code></li>
 </ul>
@@ -448,13 +448,13 @@ Abbildung&nbsp;2.1: RStudio Interface mit R-Script.
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"pfad/zu/deinem/projektordner"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warnung</span>Relative Pfade &gt; absolute Pfade
+<span class="screen-reader-only">Tipp</span>Relative Pfade &gt; absolute Pfade
 </div>
 </div>
 <div class="callout-body-container callout-body">
