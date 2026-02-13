@@ -1,21 +1,34 @@
 project:
-  type: website
+  type: book
+  output-dir: docs
 
-website:
-  title: "rintro-fuhagen-econpolicy.github.io"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+lang: de
+
+book:
+  title: "Einführung in R"
+  subtitle: "Lehrstuhl für VWL, insb. Wirtschaftspolitik, Fernuniversität in Hagen"
+  reader-mode: true
+  chapters:
+    - index.qmd
+    
+    - part: "Grundlagen"
+      chapters:
+        - erste_schritte.qmd
+
+  sidebar:
+    style: "docked"
+    search: true
 
 format:
   html:
-    theme:
+    theme: 
       - cosmo
-      - brand
-    css: styles.css
-    toc: true
+      - style.css
+    code-link: true
+    author-meta: "Andreas Fischeneder"
+    callout-appearance: simple
 
-
-
+execute:
+  freeze: auto
+  warning: false
+  message: false

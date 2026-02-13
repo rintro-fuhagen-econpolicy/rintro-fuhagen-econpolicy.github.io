@@ -1,0 +1,157 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Einführung in R",
+    "section": "",
+    "text": "Willkommen\nWillkommen zum Kurs Einführung in R! Dieser Kurs bietet eine praxisorientierte Einführung in die Programmiersprache R mit Fokus auf Datenanalyse und Statistik. Wir werden lernen, wie man:",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#über-diesen-kurs",
+    "href": "index.html#über-diesen-kurs",
+    "title": "Einführung in R",
+    "section": "Über diesen Kurs",
+    "text": "Über diesen Kurs\nDieser Kurs bietet eine praxisorientierte Einführung in die Programmiersprache R mit Fokus auf Datenanalyse und Statistik. Du wirst lernen, wie man:\n\nR installiert und nutzt\nDaten lädt, bereinigt und aufbereitet\nDaten visualisiert und zusammenfasst\nStatistische Analysen durchführt\nEigene Funktionen schreibt und Workflows automatisiert",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#für-wen-ist-dieser-kurs",
+    "href": "index.html#für-wen-ist-dieser-kurs",
+    "title": "Einführung in R",
+    "section": "Für wen ist dieser Kurs?",
+    "text": "Für wen ist dieser Kurs?\nDieser Kurs richtet sich an:\n\nStudierende der Sozial-, Wirtschafts- oder Naturwissenschaften\nAnfänger ohne Programmiererfahrung\nPersonen, die grundlegende Datenanalysefähigkeiten erwerben möchten",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#voraussetzungen",
+    "href": "index.html#voraussetzungen",
+    "title": "Einführung in R",
+    "section": "Voraussetzungen",
+    "text": "Voraussetzungen\n\nKeine Programmierkenntnisse erforderlich\nEin Computer mit Internetzugang\nBereitschaft, durch Übung zu lernen",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#aufbau-des-kurses",
+    "href": "index.html#aufbau-des-kurses",
+    "title": "Einführung in R",
+    "section": "Aufbau des Kurses",
+    "text": "Aufbau des Kurses\nDer Kurs ist in folgende Teile gegliedert:\n\nGrundlagen: Installation, erste Schritte, Best Practices\nDatenaufbereitung: Daten importieren, aufbereiten und exportieren\nVisualisierung: Grafiken erstellen\nStatistik in R: Deskriptive Statistiken und Regressionsmodelle\nExport von Ergebnissen: Export von Grafiken und Tabellen\nFortgeschrittene Themen: Loops, Funktionen und KI-Unterstützung\n\n\n\n\n\n\n\nHinweisWichtig\n\n\n\nDieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#wie-nutzt-man-diesen-kurs",
+    "href": "index.html#wie-nutzt-man-diesen-kurs",
+    "title": "Einführung in R",
+    "section": "Wie nutzt man diesen Kurs?",
+    "text": "Wie nutzt man diesen Kurs?\n\nArbeite die Kapitel der Reihe nach durch\nFühre die Code-Beispiele selbst aus\nBearbeite die Übungsaufgaben am Ende jedes Kapitels\nNutze die Suchfunktion, um bestimmte Themen zu finden\n\n\n\n\n\n\n\nTipTipp\n\n\n\nAm besten lernst du R durch praktisches Üben. Versuche, die Beispiele nicht nur zu kopieren, sondern auch zu modifizieren und zu experimentieren!",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#kontakt-und-feedback",
+    "href": "index.html#kontakt-und-feedback",
+    "title": "Einführung in R",
+    "section": "Kontakt und Feedback",
+    "text": "Kontakt und Feedback\n[Hier könnte dein Kontakt oder Feedback-Link stehen]",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#lizenz",
+    "href": "index.html#lizenz",
+    "title": "Einführung in R",
+    "section": "Lizenz",
+    "text": "Lizenz\nDieses Werk ist lizenziert unter CC BY-NC-SA 4.0.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "index.html#danksagungen",
+    "href": "index.html#danksagungen",
+    "title": "Einführung in R",
+    "section": "Danksagungen",
+    "text": "Danksagungen\nDieser Kurs orientiert sich an den hervorragenden Ressourcen von Hadley Wickham und dem R4DS-Team.",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "1  About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>About</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#weitere-literatur",
+    "href": "index.html#weitere-literatur",
+    "title": "Einführung in R",
+    "section": "Weitere Literatur",
+    "text": "Weitere Literatur\n\nR for Data Science (2e) von Hadley Wickham et al.\nggplot\nStatistik\nCausal Inf",
+    "crumbs": [
+      "Willkommen"
+    ]
+  },
+  {
+    "objectID": "erste_schritte.html",
+    "href": "erste_schritte.html",
+    "title": "1  Erste Schritte in R",
+    "section": "",
+    "text": "1.1 Installation\nFür die Teilnahme an diesem Kurs müssen zwei Programme auf dem Computer installiert sein: R und RStudio. R stellt die eigentliche Programmiersprache bereit, während RStudio als integrierte Entwicklungsumgebung (IDE) dient. Zwar lässt sich R auch ohne RStudio nutzen, die Arbeit in RStudio ist jedoch deutlich komfortabler und übersichtlicher.\nSollte man bereits Erfahrung mit dem Programmieren haben und regelmäßig mit verschiedenen Sprachen arbeiten, könnten alternativ auch andere IDEs interessant sein, die den Wechsel zwischen Sprachen erleichtern. Beispiele hierfür sind Visual Studio Code oder Positron.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Erste Schritte in R</span>"
+    ]
+  },
+  {
+    "objectID": "erste_schritte.html#installation",
+    "href": "erste_schritte.html#installation",
+    "title": "1  Erste Schritte in R",
+    "section": "",
+    "text": "1.1.1 R installieren\n\nRufe die Website https://cran.r-project.org/ auf\nWähle dein Betriebssystem (Windows, Mac, Linux)\nLade die neueste Version herunter\nStarte die Installation und folge den Anweisungen\n\nR wird regelmäßig weiterentwickelt und erhält häufig Updates. Daher sollte die installierte Version gelegentlich aktualisiert werden. Insbesondere größere Versionssprünge können etwas aufwendiger sein, da bereits installierte Packages anschließend erneut installiert werden müssen. Detaillierte Hinweise zum Aktualisieren von R stellt der Helpdesk der FernUniversität Hagen hier zur Verfügung.\n\n1.1.2 RStudio installieren\n\nRufe die Website https://posit.co/download/rstudio-desktop/ auf\nLade RStudio Desktop (kostenlose Version) herunter\nStarte die Installation und folge den Anweisungen\n\nSobald eine neue Version von RStudio verfügbar ist, erscheint beim Start des Programms ein entsprechender Hinweis. Die Aktualisierung kann direkt durchgeführt werden, indem man den angezeigten Schritten folgst.\n\n\n\n\n\n\nWarnungWichtig!\n\n\n\nInstalliere zuerst R und danach RStudio, da RStudio auf eine vorhandene R-Installation angewiesen ist.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Erste Schritte in R</span>"
+    ]
+  },
+  {
+    "objectID": "erste_schritte.html#das-rstudio-interface",
+    "href": "erste_schritte.html#das-rstudio-interface",
+    "title": "1  Erste Schritte in R",
+    "section": "\n1.2 Das RStudio-Interface",
+    "text": "1.2 Das RStudio-Interface\nÖffnen wir nun RStudio. Das Interface besteht dabei aus den folgenden Elementen (siehe Abbildung 1.1):\n\n\nKonsole (A): Hier können wir unseren Code ausführen und der korrespondierende Output wird angezeigt. In diesem Beispiel wurde etwa 1+1 addiert sowie der Vektor x definiert und angezeigt.\n\nEnvironment (B): Zeigt gespeicherte Objekte. Hier findet sich der in der Konsole definierte Vektor x wieder.\n\nFiles/Plot/Help (C): Hier finden wir unter anderem einen Databrowser (Files), deine erstellten Grafiken (Plots) und die Hilfefunktion (Help)\n\nMenüleiste (D)\n\n\n\n\n\n\n\n\nAbbildung 1.1: RStudio Interface.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Erste Schritte in R</span>"
+    ]
+  },
+  {
+    "objectID": "erste_schritte.html#erste-befehle",
+    "href": "erste_schritte.html#erste-befehle",
+    "title": "1  Erste Schritte in R",
+    "section": "\n1.3 Erste Befehle",
+    "text": "1.3 Erste Befehle\n\n1.3.1 R als Taschenrechner\nLass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst die Entertaste, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:\n\n10 + 4\n#&gt; [1] 14\n2^3\n#&gt; [1] 8\nlog(4)\n#&gt; [1] 1.386294\n\n\n\n\n\n\n\nHinweisHinweis\n\n\n\nUm ganze Codeblöcke in diesem Kurs kopieren zu können, wird der Output in den Blöcken auskommentiert und folgt einem #&gt;. In der eigenen Konsole wird der Output ohne #&gt; angezeigt. Die Addition sieht in der Konsole nach der Befehlausführung etwa so aus:\n&gt; 10 + 4\n[1] 14\n\n\n\n1.3.2 Kommentare\nUm später nachvollziehen zu können, was in unserem Code passiert, können wir Kommentare in deinem Code hinterlassen. Kommentare beginnen mit # und werden von R ignoriert:\n\n# Division\n10 / 5  # Kommentare können auch am Ende einer Zeile stehen\n#&gt; [1] 2\n\n\n1.3.3 Objekte erstellen\nUm Daten zu speichern, zu organisieren und wiederzuverwenden können diese in R als Objekt gespeichert werden. In R speichern wir Werte in Objekten mit dem Zuweisungsoperator &lt;-. Die Zuweisungslogik folgt dabei immer der Form objekt_name &lt;- element:\n\nnumber &lt;- 3\n\nMit c() können wir mehrere Elemente zu einem Objekt hinzufügen, wobei die einzelne Elemente mit einem Komma getrennt werden:\n\nnumbers &lt;- c(1, 2, 3, 4, 5)\n\nDie beiden Objekte werden nun im Environment (Panel B in Abbildung 1.1) angeführt. Beim definieren eines Objekts wird dieses nicht automatisch in der Konsole angezeigt. Um uns das Objekt zahlen anzusehen, können wir einfach den Objektnamen in der Konsole eingeben und den Befehl ausführen:\n\nnumbers\n#&gt; [1] 1 2 3 4 5\n\n\n\n\n\n\n\nTippObjektnamen\n\n\n\nObjektnamen müssen mit einem Buchstaben beginnen. Erlaubte Zeichen sind Buchstaben, Ziffern, Unterstriche (_) und Punkte (.). Vermeide Umlaute und andere Sonderzeichen. Objekte sollten aussagekräftig sein und einer gleichbleibenden Namensgebungslogik folgen. Eine weitverbreitete Namensgebungslogik ist snake_case, wobei einzelne Worte in Kleinbuchstaben mit Unterstrichen getrennt werden, z.b. age_students oder income_students. Damit Objektnamen nicht allzu lang werden, verwenden wir Abkürzungen, die auch später nachvollziehbar bleiben, etwa age_std oder inc_std.\n\n\nObjekte können überschrieben werden, in dem ein oder mehrere Elemente demselben Objektnamen überwiesen werden:\n\nnumbers &lt;- c(6, 7, 8, 9, 10)\n\n\n\n\n\n\n\nWarnungFehler bei Objektadressierung\n\n\n\nUm Objekte zu addressieren, muss dieses ohne Fehler aufgerufen werden. Tippfehler oder unvollständige Objektnamen führen zu Error-Meldungen. R ist dabei case-sensitiv:\n\nnumers\n#&gt; Fehler: Objekt 'numers' nicht gefunden\nNumbers\n#&gt; Fehler: Objekt 'Numbers' nicht gefunden",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Erste Schritte in R</span>"
+    ]
+  }
+]

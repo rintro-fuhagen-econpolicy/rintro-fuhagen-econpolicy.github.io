@@ -1,11 +1,38 @@
----
-title: " "
----
+# Willkommen {.unnumbered}
 
-This is a Quarto website.
+Willkommen zum Kurs **Einführung in R**! Dieser Kurs bietet eine praxisorientierte Einführung in die Programmiersprache R mit Fokus auf Datenanalyse und Statistik. Wir werden lernen, wie man:
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+-   R installiert und nutzt
+-   Daten lädt, bereinigt und aufbereitet
+-   Daten visualisiert und zusammenfasst
+-   Statistische Analysen durchführt
+-   Ergebnisse exportiert
+-   Eigene Funktionen schreibt und Workflows automatisiert
 
-```{r}
-1 + 1
-```
+## Aufbau des Kurses {.unlisted}
+
+Der Kurs ist in folgende Teile gegliedert:
+
+1.  **Grundlagen**: Installation, erste Schritte, Best Practices
+2.  **Datenaufbereitung**: Daten importieren, aufbereiten und exportieren
+3.  **Visualisierung**: Grafiken erstellen
+4.  **Statistik in R**: Deskriptive Statistiken und Regressionsmodelle
+5.  **Export von Ergebnissen**: Export von Grafiken und Tabellen
+6.  **Fortgeschrittene Themen**: Loops, Funktionen und KI-Unterstützung
+
+::: callout-note
+## Wichtig
+
+Dieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.
+:::
+
+## Kontakt und Feedback {.unlisted}
+
+\[Hier könnte dein Kontakt oder Feedback-Link stehen\]
+
+## Weitere Literatur {.unlisted}
+
+-   [R for Data Science (2e)](https://r4ds.hadley.nz/) von Hadley Wickham et al.
+-   ggplot
+-   Statistik
+-   Causal Inf
