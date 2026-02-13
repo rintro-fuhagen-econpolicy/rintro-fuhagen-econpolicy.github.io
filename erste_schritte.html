@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andreas Fischeneder">
 
-<title>Einführung in R</title>
+<title>1&nbsp; Erste Schritte in R – Einführung in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./erste_schritte.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Willkommen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./erste_schritte.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./erste_schritte.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -117,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Willkommen</span></a>
   </div>
 </li>
@@ -132,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./erste_schritte.html" class="sidebar-item-text sidebar-link">
+  <a href="./erste_schritte.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span></a>
   </div>
 </li>
@@ -148,17 +183,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#willkommen" id="toc-willkommen" class="nav-link active" data-scroll-target="#willkommen">Willkommen</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a>
+  <ul class="collapse">
+  <li><a href="#r-installieren" id="toc-r-installieren" class="nav-link" data-scroll-target="#r-installieren"><span class="header-section-number">1.1.1</span> R installieren</a></li>
+  <li><a href="#rstudio-installieren" id="toc-rstudio-installieren" class="nav-link" data-scroll-target="#rstudio-installieren"><span class="header-section-number">1.1.2</span> RStudio installieren</a></li>
+  </ul></li>
+  <li><a href="#das-rstudio-interface" id="toc-das-rstudio-interface" class="nav-link" data-scroll-target="#das-rstudio-interface"><span class="header-section-number">1.2</span> Das RStudio-Interface</a></li>
+  <li><a href="#erste-befehle" id="toc-erste-befehle" class="nav-link" data-scroll-target="#erste-befehle"><span class="header-section-number">1.3</span> Erste Befehle</a>
+  <ul class="collapse">
+  <li><a href="#r-als-taschenrechner" id="toc-r-als-taschenrechner" class="nav-link" data-scroll-target="#r-als-taschenrechner"><span class="header-section-number">1.3.1</span> R als Taschenrechner</a></li>
+  <li><a href="#kommentare" id="toc-kommentare" class="nav-link" data-scroll-target="#kommentare"><span class="header-section-number">1.3.2</span> Kommentare</a></li>
+  <li><a href="#objekte-erstellen" id="toc-objekte-erstellen" class="nav-link" data-scroll-target="#objekte-erstellen"><span class="header-section-number">1.3.3</span> Objekte erstellen</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./erste_schritte.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./erste_schritte.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Einführung in R</h1>
-<p class="subtitle lead">Lehrstuhl für VWL, insb. Wirtschaftspolitik, Fernuniversität in Hagen</p>
+<h1 class="title"><span id="sec-erste_schritte" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span></h1>
 </div>
 
 
@@ -175,54 +220,156 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="willkommen" class="level1 unnumbered">
-<h1 class="unnumbered">Willkommen</h1>
-<p>Willkommen zum Kurs <strong>Einführung in R</strong>! Dieser Kurs bietet eine praxisorientierte Einführung in die Programmiersprache R mit Fokus auf Datenanalyse und Statistik. Wir werden lernen, wie man:</p>
-<ul>
-<li>R installiert und nutzt</li>
-<li>Daten lädt, bereinigt und aufbereitet</li>
-<li>Daten visualisiert und zusammenfasst</li>
-<li>Statistische Analysen durchführt</li>
-<li>Ergebnisse exportiert</li>
-<li>Eigene Funktionen schreibt und Workflows automatisiert</li>
-</ul>
-<section id="aufbau-des-kurses" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="aufbau-des-kurses">Aufbau des Kurses</h2>
-<p>Der Kurs ist in folgende Teile gegliedert:</p>
+<section id="installation" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
+<p>Für die Teilnahme an diesem Kurs müssen zwei Programme auf dem Computer installiert sein: R und RStudio. R stellt die eigentliche Programmiersprache bereit, während RStudio als integrierte Entwicklungsumgebung (IDE) dient. Zwar lässt sich R auch ohne RStudio nutzen, die Arbeit in RStudio ist jedoch deutlich komfortabler und übersichtlicher.</p>
+<p>Sollte man bereits Erfahrung mit dem Programmieren haben und regelmäßig mit verschiedenen Sprachen arbeiten, könnten alternativ auch andere IDEs interessant sein, die den Wechsel zwischen Sprachen erleichtern. Beispiele hierfür sind <a href="https://code.visualstudio.com/">Visual Studio Code</a> oder <a href="https://positron.posit.co/">Positron</a>.</p>
+<section id="r-installieren" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="r-installieren"><span class="header-section-number">1.1.1</span> R installieren</h3>
 <ol type="1">
-<li><strong>Grundlagen</strong>: Installation, erste Schritte, Best Practices</li>
-<li><strong>Datenaufbereitung</strong>: Daten importieren, aufbereiten und exportieren</li>
-<li><strong>Visualisierung</strong>: Grafiken erstellen</li>
-<li><strong>Statistik in R</strong>: Deskriptive Statistiken und Regressionsmodelle</li>
-<li><strong>Export von Ergebnissen</strong>: Export von Grafiken und Tabellen</li>
-<li><strong>Fortgeschrittene Themen</strong>: Loops, Funktionen und KI-Unterstützung</li>
+<li>Rufe die Website <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> auf</li>
+<li>Wähle dein Betriebssystem (Windows, Mac, Linux)</li>
+<li>Lade die neueste Version herunter</li>
+<li>Starte die Installation und folge den Anweisungen</li>
 </ol>
+<p>R wird regelmäßig weiterentwickelt und erhält häufig Updates. Daher sollte die installierte Version gelegentlich aktualisiert werden. Insbesondere größere Versionssprünge können etwas aufwendiger sein, da bereits installierte Packages anschließend erneut installiert werden müssen. Detaillierte Hinweise zum Aktualisieren von R stellt der Helpdesk der FernUniversität Hagen <a href="https://wiki.fernuni-hagen.de/helpdesk/Wie_aktualisiere_ich_R%3F">hier</a> zur Verfügung.</p>
+</section>
+<section id="rstudio-installieren" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="rstudio-installieren"><span class="header-section-number">1.1.2</span> RStudio installieren</h3>
+<ol type="1">
+<li>Rufe die Website <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a> auf</li>
+<li>Lade RStudio Desktop (kostenlose Version) herunter</li>
+<li>Starte die Installation und folge den Anweisungen</li>
+</ol>
+<p>Sobald eine neue Version von RStudio verfügbar ist, erscheint beim Start des Programms ein entsprechender Hinweis. Die Aktualisierung kann direkt durchgeführt werden, indem man den angezeigten Schritten folgst.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Wichtig!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Installiere zuerst R und danach RStudio, da RStudio auf eine vorhandene R-Installation angewiesen ist.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="das-rstudio-interface" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="das-rstudio-interface"><span class="header-section-number">1.2</span> Das RStudio-Interface</h2>
+<p>Öffnen wir nun RStudio. Das Interface besteht dabei aus den folgenden Elementen (siehe <a href="#fig-rstudio-interface" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a>):</p>
+<ul>
+<li><em>Konsole</em> (A): Hier können wir unseren Code ausführen und der korrespondierende Output wird angezeigt. In diesem Beispiel wurde etwa 1+1 addiert sowie der Vektor <code>x</code> definiert und angezeigt.</li>
+<li><em>Environment</em> (B): Zeigt gespeicherte Objekte. Hier findet sich der in der Konsole definierte Vektor <code>x</code> wieder.</li>
+<li><em>Files/Plot/Help</em> (C): Hier finden wir unter anderem einen Databrowser (Files), deine erstellten Grafiken (Plots) und die Hilfefunktion (Help)</li>
+<li><em>Menüleiste</em> (D)</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-rstudio-interface" class="quarto-float quarto-figure quarto-figure-center anchored" alt="RStudio Interface mit Highlights auf Konsole, Environment, Files/Plot Panels sowie Menüleiste.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rstudio-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rstudio_interface.png" class="img-fluid figure-img" alt="RStudio Interface mit Highlights auf Konsole, Environment, Files/Plot Panels sowie Menüleiste.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.1: RStudio Interface.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="erste-befehle" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="erste-befehle"><span class="header-section-number">1.3</span> Erste Befehle</h2>
+<section id="r-als-taschenrechner" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="r-als-taschenrechner"><span class="header-section-number">1.3.1</span> R als Taschenrechner</h3>
+<p>Lass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst die Entertaste, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">4</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.386294</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>Wichtig
+<span class="screen-reader-only">Hinweis</span>Hinweis
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Dieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.</p>
+<p>Um ganze Codeblöcke in diesem Kurs kopieren zu können, wird der Output in den Blöcken auskommentiert und folgt einem <code>#&gt;</code>. In der eigenen Konsole wird der Output ohne <code>#&gt;</code> angezeigt. Die Addition sieht in der Konsole nach der Befehlausführung etwa so aus:</p>
+<pre><code>&gt; 10 + 4
+[1] 14</code></pre>
 </div>
 </div>
 </section>
-<section id="kontakt-und-feedback" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="kontakt-und-feedback">Kontakt und Feedback</h2>
-<p>[Hier könnte dein Kontakt oder Feedback-Link stehen]</p>
+<section id="kommentare" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="kommentare"><span class="header-section-number">1.3.2</span> Kommentare</h3>
+<p>Um später nachvollziehen zu können, was in unserem Code passiert, können wir Kommentare in deinem Code hinterlassen. Kommentare beginnen mit <code>#</code> und werden von R ignoriert:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Division</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">5</span>  <span class="co"># Kommentare können auch am Ende einer Zeile stehen</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="weitere-literatur" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="weitere-literatur">Weitere Literatur</h2>
-<ul>
-<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a> von Hadley Wickham et al.</li>
-<li>ggplot</li>
-<li>Statistik</li>
-<li>Causal Inf</li>
-</ul>
+<section id="objekte-erstellen" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="objekte-erstellen"><span class="header-section-number">1.3.3</span> Objekte erstellen</h3>
+<p>Um Daten zu speichern, zu organisieren und wiederzuverwenden können diese in R als Objekt gespeichert werden. In R speichern wir Werte in Objekten mit dem Zuweisungsoperator <code>&lt;-</code>. Die Zuweisungslogik folgt dabei immer der Form <code>objekt_name &lt;- element</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Mit <code>c()</code> können wir mehrere Elemente zu einem Objekt hinzufügen, wobei die einzelne Elemente mit einem Komma getrennt werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die beiden Objekte werden nun im Environment (Panel B in <a href="#fig-rstudio-interface" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a>) angeführt. Beim definieren eines Objekts wird dieses nicht automatisch in der Konsole angezeigt. Um uns das Objekt <code>zahlen</code> anzusehen, können wir einfach den Objektnamen in der Konsole eingeben und den Befehl ausführen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>numbers</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Objektnamen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Objektnamen müssen mit einem Buchstaben beginnen. Erlaubte Zeichen sind Buchstaben, Ziffern, Unterstriche (<code>_</code>) und Punkte (<code>.</code>). Vermeide Umlaute und andere Sonderzeichen. Objekte sollten aussagekräftig sein und einer gleichbleibenden Namensgebungslogik folgen. Eine weitverbreitete Namensgebungslogik ist <em>snake_case</em>, wobei einzelne Worte in Kleinbuchstaben mit Unterstrichen getrennt werden, z.b. <code>age_students</code> oder <code>income_students</code>. Damit Objektnamen nicht allzu lang werden, verwenden wir Abkürzungen, die auch später nachvollziehbar bleiben, etwa <code>age_std</code> oder <code>inc_std</code>.</p>
+</div>
+</div>
+<p>Objekte können überschrieben werden, in dem ein oder mehrere Elemente demselben Objektnamen überwiesen werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Fehler bei Objektadressierung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um Objekte zu addressieren, muss dieses ohne Fehler aufgerufen werden. Tippfehler oder unvollständige Objektnamen führen zu Error-Meldungen. R ist dabei case-sensitiv:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>numers</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fehler: Objekt 'numers' nicht gefunden</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Numbers</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fehler: Objekt 'Numbers' nicht gefunden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -631,11 +778,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Willkommen">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Willkommen</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./erste_schritte.html" class="pagination-link" aria-label="Erste Schritte in R">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
