@@ -44,7 +44,7 @@
     "href": "index.html#aufbau-des-kurses",
     "title": "Einführung in R",
     "section": "Aufbau des Kurses",
-    "text": "Aufbau des Kurses\nDer Kurs ist in folgende Teile gegliedert:\n\nGrundlagen: Installation, erste Schritte, Best Practices\nDatenaufbereitung: Daten importieren, aufbereiten und exportieren\nVisualisierung: Grafiken erstellen\nStatistik in R: Deskriptive Statistiken und Regressionsmodelle\nExport von Ergebnissen: Export von Grafiken und Tabellen\nFortgeschrittene Themen: Loops, Funktionen und KI-Unterstützung\n\n\n\n\n\n\n\nHinweisWichtig\n\n\n\nDieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.",
+    "text": "Aufbau des Kurses\nDer Kurs ist in folgende Teile gegliedert:\n\nGrundlagen: Installation, erste Schritte, Best Practices\nDatenaufbereitung: Daten importieren, aufbereiten und exportieren\nVisualisierung: Grafiken erstellen\nStatistik in R: Deskriptive Statistiken und Regressionsmodelle\nExport von Ergebnissen: Export von Grafiken und Tabellen\nWeitere Themen: Loops, Funktionen und KI-Unterstützung\n\n\n\n\n\n\n\nHinweisWichtig\n\n\n\nDieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.",
     "crumbs": [
       "Willkommen"
     ]
@@ -148,7 +148,7 @@
     "href": "erste_schritte.html#erste-befehle",
     "title": "1  Erste Schritte in R",
     "section": "\n1.3 Erste Befehle",
-    "text": "1.3 Erste Befehle\n\n1.3.1 R als Taschenrechner\nLass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst die Entertaste, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:\n\n10 + 4\n#&gt; [1] 14\n2^3\n#&gt; [1] 8\nlog(4)\n#&gt; [1] 1.386294\n\n\n\n\n\n\n\nHinweisHinweis\n\n\n\nUm ganze Codeblöcke in diesem Kurs kopieren zu können, wird der Output in den Blöcken auskommentiert und folgt einem #&gt;. In der eigenen Konsole wird der Output ohne #&gt; angezeigt. Die Addition sieht in der Konsole nach der Befehlausführung etwa so aus:\n&gt; 10 + 4\n[1] 14\n\n\n\n1.3.2 Kommentare\nUm später nachvollziehen zu können, was in unserem Code passiert, können wir Kommentare in deinem Code hinterlassen. Kommentare beginnen mit # und werden von R ignoriert:\n\n# Division\n10 / 5  # Kommentare können auch am Ende einer Zeile stehen\n#&gt; [1] 2\n\n\n1.3.3 Funktionen verwenden\nFür komplexere Operationen bietet R eine große Sammlung an Funktionen. Die Ausführung einer Funktion folgt immer dem folgenden Aufbau:\n\nfunction_name(argument1 = value1, argument2 = value2, ...)\n\nWeiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (log(4)). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion seq() an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir seq in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und die Enter-Taste drücken.\n\n\n\n\n\nAbbildung 1.2: Auswählen der seq()-Funktion.\n\n\nWir können auch den gesamten Befehl selbst eingeben und die Klammer öffnen: seq().\nUm mehr über die Funktion zu erfahren, können wir einen der folgenden Befehle ausführen:\n\n?seq\nhelp(seq)\n\nAlternativ drücken wir F1 während wir seq() im Pop-Up Menü ausgewählt haben, oder wir gehen gehen direkt zum Help-Fenster und geben seq in die Suchfunktion ein. Im Help-Fenster (Panel C in Abbildung 1.1) erhalten wir dann eine ausführliche Erklärung der Funktion.\nDie R-Dokumentation gibt Aufschluss über die wesentlichen Argumente dieser Funktion. Wir erfahren, dass wir mit from = ... den Startwert und mit to = ... den Endwert der Zahlsequenz spezifizieren. Über das Argument by = ... definieren wir wiederum die Inkremente der Sequenz. Auch können wir die Default-Einstellungen der Funktion ableiten: Diese ist für from, to und by gleich 1.\n\n\n\n\n\n\n\nAbbildung 1.3: Help: R-Dokumentation zu seq().\n\n\n\n\nUm eine Sequenz von 1 bis 10 in Einserschritten zu erstellen, führen wir den folgenden Befehl aus:\n\nseq(from = 1, to = 10)\n#&gt;  [1]  1  2  3  4  5  6  7  8  9 10\n\nDa wir Einserschritte wollen und die Default-Option for by = ... gleich 1 ist, brauchen wir dieses Argument nicht spezifizieren. Ist uns eine Funktion gut bekannt, können wir auch die Bezeichnungen der jeweiligen Argumente ignorieren. R interpretiert den Befehl dann so, als würde jeder Wert für das in dieser Reihenfolge vorgesehene Argument stehen. Um etwa eine Sequenz von 1 bis 10 in Zweierschritten zu erstellen, können wir also auch schreiben:\n\nseq(1, 10, 2)\n#&gt; [1] 1 3 5 7 9",
+    "text": "1.3 Erste Befehle\n\n1.3.1 R als Taschenrechner\nLass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst Enter, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:\n\n10 + 4\n#&gt; [1] 14\n2^3\n#&gt; [1] 8\nlog(4)\n#&gt; [1] 1.386294\n\n\n\n\n\n\n\nHinweisHinweis\n\n\n\nUm ganze Codeblöcke in diesem Kurs kopieren zu können, wird der Output in den Blöcken auskommentiert und folgt einem #&gt;. In der eigenen Konsole wird der Output ohne #&gt; angezeigt. Die Addition sieht in der Konsole nach der Befehlausführung etwa so aus:\n&gt; 10 + 4\n[1] 14\n\n\n\n1.3.2 Kommentare\nUm später nachvollziehen zu können, was in unserem Code passiert, können wir Kommentare in deinem Code hinterlassen. Kommentare beginnen mit # und werden von R ignoriert:\n\n# Division\n10 / 5  # Kommentare können auch am Ende einer Zeile stehen\n#&gt; [1] 2\n\n\n1.3.3 Funktionen verwenden\nFür komplexere Operationen bietet R eine große Sammlung an Funktionen. Die Ausführung einer Funktion folgt immer dem folgenden Aufbau:\n\nfunction_name(argument1 = value1, argument2 = value2, ...)\n\nWeiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (log(4)). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion seq() an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir seq in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und Enter drücken.\n\n\n\n\n\nAbbildung 1.2: Auswählen der seq()-Funktion.\n\n\nWir können auch den gesamten Befehl selbst eingeben und die Klammer öffnen: seq().\nUm mehr über die Funktion zu erfahren, können wir einen der folgenden Befehle ausführen:\n\n?seq\nhelp(seq)\n\nAlternativ drücken wir F1 während wir seq() im Pop-Up Menü ausgewählt haben, oder wir gehen gehen direkt zum Help-Fenster und geben seq in die Suchfunktion ein. Im Help-Fenster (Panel C in Abbildung 1.1) erhalten wir dann eine ausführliche Erklärung der Funktion.\nDie R-Dokumentation gibt Aufschluss über die wesentlichen Argumente dieser Funktion. Wir erfahren, dass wir mit from = ... den Startwert und mit to = ... den Endwert der Zahlsequenz spezifizieren. Über das Argument by = ... definieren wir wiederum die Inkremente der Sequenz. Auch können wir die Default-Einstellungen der Funktion ableiten: Diese ist für from, to und by gleich 1.\n\n\n\n\n\n\n\nAbbildung 1.3: Help: R-Dokumentation zu seq().\n\n\n\n\nUm eine Sequenz von 1 bis 10 in Einserschritten zu erstellen, führen wir den folgenden Befehl aus:\n\nseq(from = 1, to = 10)\n#&gt;  [1]  1  2  3  4  5  6  7  8  9 10\n\nDa wir Einserschritte wollen und die Default-Option for by = ... gleich 1 ist, brauchen wir dieses Argument nicht spezifizieren. Ist uns eine Funktion gut bekannt, können wir auch die Bezeichnungen der jeweiligen Argumente ignorieren. R interpretiert den Befehl dann so, als würde jeder Wert für das in dieser Reihenfolge vorgesehene Argument stehen. Um etwa eine Sequenz von 1 bis 10 in Zweierschritten zu erstellen, können wir also auch schreiben:\n\nseq(1, 10, 2)\n#&gt; [1] 1 3 5 7 9",
     "crumbs": [
       "Grundlagen",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Erste Schritte in R</span>"
@@ -170,10 +170,179 @@
     "href": "erste_schritte.html#packages",
     "title": "1  Erste Schritte in R",
     "section": "\n1.5 Packages",
-    "text": "1.5 Packages\nDie bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben. In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package tidyverse zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenmanipulation, Analyse und Visualisierung bereitstellen.\nDie Installation eines Packages erfolgt über die Funktion install.packages():\n\ninstall.packages(\"tidyverse\")\n\nDie Installation eines Packages ist nur einmal notwendig. Bei jeder Sitzung muss jedoch das gewünschte Package über library() geladen werden, um auf die darin enthaltenen Funktionen zugreifen zu können:\n\nlibrary(tidyverse)\n\nAlternativ können wir auch auf Funktionen aus einem bereits installierten aber nicht geladenen Package zugreifen, in dem wir vor der Funktion auf das Package verweisen:\n\npackage_name::fct_name(argument1 = value1, argument2 = value2, ...)",
+    "text": "1.5 Packages\nDie bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben. In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package tidyverse zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.\nDie Installation eines Packages erfolgt über die Funktion install.packages():\n\ninstall.packages(\"tidyverse\")\n\nDie Installation eines Packages ist nur einmal notwendig. Bei jeder Sitzung muss jedoch das gewünschte Package über library() geladen werden, um auf die darin enthaltenen Funktionen zugreifen zu können:\n\nlibrary(tidyverse)\n#&gt; ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──\n#&gt; ✔ dplyr     1.2.0     ✔ readr     2.1.6\n#&gt; ✔ forcats   1.0.1     ✔ stringr   1.6.0\n#&gt; ✔ ggplot2   4.0.2     ✔ tibble    3.3.1\n#&gt; ✔ lubridate 1.9.5     ✔ tidyr     1.3.2\n#&gt; ✔ purrr     1.2.1     \n#&gt; ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──\n#&gt; ✖ dplyr::filter()     masks stats::filter()\n#&gt; ✖ dplyr::group_rows() masks kableExtra::group_rows()\n#&gt; ✖ dplyr::lag()        masks stats::lag()\n#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nAlternativ können wir auch auf Funktionen aus einem bereits installierten aber nicht geladenen Package zugreifen, in dem wir vor der Funktion auf das Package verweisen:\n\npackage_name::fct_name(argument1 = value1, argument2 = value2, ...)",
     "crumbs": [
       "Grundlagen",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Erste Schritte in R</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html",
+    "href": "best_practices.html",
+    "title": "2  Best Practices",
+    "section": "",
+    "text": "2.1 R-Scripts\nBisher haben wir unseren Code immer direkt in der Konsole geschrieben und dort ausgeführt. Das ist für erste Schritte praktisch, aber der Code geht leicht verloren und lässt sich nur schwer nachvollziehen oder erneut verwenden. Die Verwendung eines R-Scripts erlaubt uns, Code dauerhaft zu speichern, zu dokumentieren und später reproduzierbar erneut auszuführen. Außerdem lassen sich Skripte strukturieren, kommentieren und leichter mit anderen teilen. Dadurch wird die Arbeit nachvollziehbarer, effizienter und weniger fehleranfällig.\nUm ein R-Script zu öffnen, klicke auf den New File Button oben links in RStudio (rot hervorgehoben in Abbildung 2.1). Dadurch öffnet sich ein zusätzliches Panel im Interface (gelb markiert). Wir können nun unseren Code in diesem Text-Editor schreiben, kommentieren und ausführen. Nachdem wir das R-Script speichern, können wir zu einem späteren Zeitpunkt unseren Code leicht reproduzieren und fortsetzen.\nAbbildung 2.1: RStudio Interface mit R-Script.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#scripts",
+    "href": "best_practices.html#scripts",
+    "title": "2  Best Practices",
+    "section": "",
+    "text": "HinweisAusführen von Befehlen im R-Script\n\n\n\nDa ein R-Script ein Text-Editor ist, wird durch Enter nicht mehr der Befehl ausgeführt (wie in der Konsole), sondern eine neue Zeile eingefügt. Um einen Prompt auszuführen, drücken wir stattdessen gleichzeitig Strg + Enter (oder cmd + Enter bei einem Apple-Gerät). R führt immer den vollständigen Prompt aus, unabhängig davon, an welcher Stelle in der Zeile der Maus-Cursor steht. Um mehrere Code-Zeilen gleichzeitig auszuführen, markiere diese und drücke anschließend Strg + Enter.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#working-directories",
+    "href": "best_practices.html#working-directories",
+    "title": "2  Best Practices",
+    "section": "\n2.2 Working Directories",
+    "text": "2.2 Working Directories\nDas Working Directory legt den Ordner fest, in dem R standardmäßig nach Dateien sucht und neue Dateien speichert. In RStudio ist das standardmäßig der Dokumenteordner des Systems. Um dein Working Directory zu überprüfen, verwende getwd():\n\ngetwd()\n#&gt; \"C:/Users/fischeneder/Documents\"\n\nDateien, die man ohne vorheriges Setzen eines Working Directory öffnet oder speichert, werden zunächst in diesem Ordner gesucht bzw. abgelegt. Daher ist es sinnvoll, das Working Directory bewusst auf den gewünschten Projektordner zu setzen, um die Arbeit strukturiert, reproduzierbar und unabhängig vom Standardpfad zu gestalten.\nDas Working Directory setzt du mittels mit setwd():\n\nsetwd(\"pfad/zu/deinem/projektordner\")\n\n\n\n\n\n\n\nTippRelative Pfade &gt; absolute Pfade\n\n\n\nIn R kannst du Daten aus deinem Dateiexplorer importieren und exportieren. Eine Möglichkeit, auf eine Datei zuzugreifen ist es, den gesamten (=absoluten) Dateipfad zu spezifizieren. Möchtest du beispielsweise eine csv-Datei im Datenordner innerhalb deines Projektordners einlesen:\n\ndataset &lt;- read_csv(\"pfad/zu/deinem/projektordner/daten/dataset.csv\")\n\nEin sinnvoll gewähltes Working Directory beinhaltet alle für dein Script notwendigen Ordner und Dateien. Nach dem Setzen des Working Directorys kannst du auf diese zugreifen, ohne den gesamten (absoluten) Pfad zu spezifizieren:\n\nsetwd(\"pfad/zu/deinem/projektordner\")\ndataset &lt;- read_csv(\"daten/dataset.csv\")\n\nR sucht dabei die gewünschte Datei ausgehend von deinem Working Directory. Das hat den Vorteil, dass du den Projektordner verschieben oder teilen kannst, und nur das Working Directory angepasst werden muss, damit dein Code läuft.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#projects",
+    "href": "best_practices.html#projects",
+    "title": "2  Best Practices",
+    "section": "\n2.3 Projects",
+    "text": "2.3 Projects",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#ordnerstruktur-und-namensgebung",
+    "href": "best_practices.html#ordnerstruktur-und-namensgebung",
+    "title": "2  Best Practices",
+    "section": "\n2.4 Ordnerstruktur und Namensgebung",
+    "text": "2.4 Ordnerstruktur und Namensgebung",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#codestyle",
+    "href": "best_practices.html#codestyle",
+    "title": "2  Best Practices",
+    "section": "\n2.5 Codestyle",
+    "text": "2.5 Codestyle",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "referenzen.html",
+    "href": "referenzen.html",
+    "title": "Literatur & Ressourcen",
+    "section": "",
+    "text": "Bücher",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "referenzen.html#bücher",
+    "href": "referenzen.html#bücher",
+    "title": "Literatur & Ressourcen",
+    "section": "",
+    "text": "R for Data Science (2e)\nWickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science (2nd ed.). O’Reilly Media.\nhttps://r4ds.hadley.nz/\nDas Standardwerk für Data Science mit R. Kostenlos online verfügbar.\n\n\nggplot2: Elegant Graphics for Data Analysis\nWickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis (3rd ed.). Springer.\nhttps://ggplot2-book.org/\n\n\nAdvanced R\nWickham, H. (2019). Advanced R (2nd ed.). Chapman and Hall/CRC.\nhttps://adv-r.hadley.nz/",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "referenzen.html#online-kurse",
+    "href": "referenzen.html#online-kurse",
+    "title": "Literatur & Ressourcen",
+    "section": "Online-Kurse",
+    "text": "Online-Kurse\n\nRStudio Education\nhttps://education.rstudio.com/\nKostenlose Tutorials und Kurse von RStudio.\n\n\nDataCamp\nhttps://www.datacamp.com/\nInteraktive R-Kurse (teilweise kostenpflichtig).\n\n\nCoursera: R Programming\nhttps://www.coursera.org/\nVerschiedene R-Kurse von Universitäten.",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "referenzen.html#cheat-sheets",
+    "href": "referenzen.html#cheat-sheets",
+    "title": "Literatur & Ressourcen",
+    "section": "Cheat Sheets",
+    "text": "Cheat Sheets\n\nRStudio Cheat Sheets\n\ndplyr\nggplot2\ntidyr\nR Markdown\nund viele mehr",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "referenzen.html#hilfreiche-websites",
+    "href": "referenzen.html#hilfreiche-websites",
+    "title": "Literatur & Ressourcen",
+    "section": "Hilfreiche Websites",
+    "text": "Hilfreiche Websites\n\nDokumentation\n\nR Documentation\ntidyverse\nggplot2 Reference\n\n\n\nCommunity\n\nR-bloggers\nStack Overflow (R Tag)\nRStudio Community\nReddit: r/rstats\n\n\n\nInspiration\n\nR Graph Gallery\nFrom Data to Viz",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "referenzen.html#deutsche-ressourcen",
+    "href": "referenzen.html#deutsche-ressourcen",
+    "title": "Literatur & Ressourcen",
+    "section": "Deutsche Ressourcen",
+    "text": "Deutsche Ressourcen\n\nStatistik und R\nR-Kurs Material (Uni Münster)\nCrashkurs Statistik",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "referenzen.html#weiterführende-themen",
+    "href": "referenzen.html#weiterführende-themen",
+    "title": "Literatur & Ressourcen",
+    "section": "Weiterführende Themen",
+    "text": "Weiterführende Themen\n\nQuarto\nhttps://quarto.org/\nModerne Alternative zu R Markdown für reproduzierbare Berichte.\n\n\nShiny\nhttps://shiny.rstudio.com/\nInteraktive Web-Apps mit R erstellen.\n\n\nR Package Development\nhttps://r-pkgs.org/\nEigene R-Pakete entwickeln.\n\n\nStatistical Rethinking\nMcElreath, R. (2020). Statistical Rethinking: A Bayesian Course with Examples in R and Stan (2nd ed.).\nBayes’sche Statistik mit R.",
+    "crumbs": [
+      "Literatur & Ressourcen"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#r-scripts",
+    "href": "best_practices.html#r-scripts",
+    "title": "2  Best Practices",
+    "section": "",
+    "text": "2.1.1 Ausführen von Befehlen im R-Script\nDa ein R-Script ein Text-Editor ist, wird durch Enter nicht mehr der Befehl ausgeführt (wie in der Konsole), sondern eine neue Zeile eingefügt. Um einen Prompt auszuführen, drücken wir stattdessen gleichzeitig Strg + Enter (oder cmd + Enter bei einem Apple-Gerät). R führt immer den vollständigen Prompt aus, unabhängig davon, an welcher Stelle in der Zeile der Maus-Cursor steht. Um mehrere Code-Zeilen gleichzeitig auszuführen, markiere diese und drücke anschließend Strg + Enter.\n\n2.1.2 Aufbau eines guten R-Scripts\nDamit wir auch zu einem späteren Zeitpunkt nachvollziehen können, was in einem Script passiert, ist sinnvoll, einer gewissen Struktur zu folgen. Zu Beginn eines R-Scripts fassen wir als Kommentar kurz den wesentlichen Inhalt zusammen. Um unser Script in Abschnitte zu unterteilen, können wir sectioning comments verwenden (Keyboard-Shortcut: Strg + Shift + R):\n\n# load packages ---------------------------------------------------------------\n\nUm zwischen den Abschnitten zu springen, können wir das Navigations-Dropdown-Menü unten links im R-Script-Editor verwenden (blau markiert in Abbildung 2.1). Ein übersichtliches R-Script ist zum Beispiel so aufgebaut:\n\n# ============================================================================\n# Projekt: Analyse von Studentendaten\n# Skript: 01_data_cleaning.R\n# Autor: Dein Name\n# Datum: 2025-10-05\n# Beschreibung: Lädt und bereinigt die Rohdaten\n# ============================================================================\n\n# 1. Pakete laden ----------------------------------------------------------\nlibrary(tidyverse)\nlibrary(readxl)\n\n# 2. Daten einlesen --------------------------------------------------------\nstudents &lt;- read_csv(\"data/raw/students.csv\")\n\n# 3. Daten bereinigen ------------------------------------------------------\nstudents_clean &lt;- students %&gt;%\n  filter(!is.na(age)) %&gt;% # Filtern von Studierenden ohne Altersangabe\n  mutate(grade_numerisch = as.numeric(grade))\n\n# 4. Daten speichern -------------------------------------------------------\nwrite_rds(students_clean, \"data/processed/students_clean.rds\")\n\n\n\n\n\n\n\nTippDo’s und Don’ts für R-Scripts\n\n\n\n\n\nDo’s:\n\nAussagekräftige Kommentare\nLogische Struktur\nEin Skript = Eine Arbeitsaufgabe\nPakete am Anfang laden\nSektionen mit # ----\n\n\n\nDon’ts:\n\nAbsolute Pfade verwenden\nZu lange Scripts\nHartcodierte Werte\nFehlende Kommentare",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#r-projects",
+    "href": "best_practices.html#r-projects",
+    "title": "2  Best Practices",
+    "section": "\n2.3 R-Projects",
+    "text": "2.3 R-Projects\nDas Setzen des Working Directorys verlangt einen absoluten Dateipfad. Dies kann leicht zu Problemen führen, wenn du deinen Projektordner verschiebst oder dein Projekt mit anderen Personen teilst. Die Verwendung eines R-Projects bietet deutliche Vorteile gegenüber dem manuellen Setzen des Working Directorys mit setwd() in einem Script. Ein R-Project legt automatisch das Arbeitsverzeichnis auf den Projektordner fest, wodurch alle Scripts, Daten und Ergebnisse konsistent im gleichen Ordner gesucht und gespeichert werden. Das macht die Arbeit nicht nur übersichtlicher und strukturierter, sondern auch reproduzierbar, da andere Nutzer das Projekt auf ihrem Computer öffnen können, ohne Pfade im Code anpassen zu müssen.\nUm ein R-Project für diesen Einführungskurs zu erstellen, führen wir die Schritte in Abbildung 2.2. Im letzen Schritt geben wir unserem R-Project einen passenden Namen (r_intro) und wählen den Ordner aus, in dem wir das Projekt ablegen wollen. Bei der Erstellung des R-Projects wird dann in diesem Ordner ein neuer Subordner erstellt, der nun automatisch das Working Directory dieses Projects ist. In diesem Ordner legen wir alle für unser Projekt relevanten Dateien ab. Somit ist unser Projekt jederzeit reproduzierbar.\n\n\n\n\n\n\n\nAbbildung 2.2: Erstellung eines neuen R-Projects.",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
+    ]
+  },
+  {
+    "objectID": "best_practices.html#ordnerstruktur-namensgebung-und-code-style",
+    "href": "best_practices.html#ordnerstruktur-namensgebung-und-code-style",
+    "title": "2  Best Practices",
+    "section": "\n2.4 Ordnerstruktur, Namensgebung und Code-Style",
+    "text": "2.4 Ordnerstruktur, Namensgebung und Code-Style\nEine gute Ordnerstruktur ist die Grundlage für organisierte Projekte. Nach der Erstellung deines R-Projects solltest du dich um Unterordner für Daten, Scripts und Output kümmern. Deine finale Ordnerstruktur könnte etwa so aussehen:\nmein-projekt/\n├── data/\n│   ├── raw/           # Originaldaten (nie ändern!)\n│   └── processed/     # Bearbeitete Daten\n├── scripts/\n│   ├── 01_daten_laden.R\n│   ├── 02_daten_bereinigen.R\n│   └── 03_analyse.R\n├── output/\n│   ├── figures/       # Grafiken\n│   └── tables/        # Tabellen\n├── docs/              # Dokumentation\n├── mein-projekt.Rproj\n└── README.txt\nAuch deine Dateinamen sollten einer einheitlichen Struktur folgen. Nummeriere deine R-Scripts, damit sie im Ordner in einer sinnvollen Reihenfolge aufscheinen. Benenne Output-Dateien mit einem konstanten Muster (z.B. figure01.png, figure02.png, …).\n\n\n\n\n\n\nTippCode-Style\n\n\n\nEin guter und kohärenter Code-Style ist wichtig, weil er den Code lesbar, verständlich und leichter wartbar macht. Konsistente Einrückungen, sprechende Variablennamen und klare Struktur helfen nicht nur dir selbst, den Überblick zu behalten, sondern auch anderen, die den Code später lesen oder erweitern müssen. Außerdem reduziert ein sauberer Stil die Wahrscheinlichkeit von Fehlern, erleichtert das Debuggen und sorgt dafür, dass Projekte langfristig reproduzierbar und professionell bleiben.\nArbeite dich durch das Kapitel zu Code-Style in R for Data Science durch, um Best Practices zu erlernen!",
+    "crumbs": [
+      "Grundlagen",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
     ]
   }
 ]

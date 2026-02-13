@@ -18,7 +18,7 @@ Der Kurs ist in folgende Teile gegliedert:
 -  **Visualisierung**: Grafiken erstellen
 -  **Statistik in R**: Deskriptive Statistiken und Regressionsmodelle
 -  **Export von Ergebnissen**: Export von Grafiken und Tabellen
--  **Fortgeschrittene Themen**: Loops, Funktionen und KI-Unterstützung
+-  **Weitere Themen**: Loops, Funktionen und KI-Unterstützung
 
 ::: callout-note
 ## Wichtig

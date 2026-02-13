@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andreas Fischeneder">
 
-<title>Einführung in R</title>
+<title>Literatur &amp; Ressourcen – Einführung in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./erste_schritte.html" rel="next">
+<link href="./ki.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Willkommen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./referenzen.html">Literatur &amp; Ressourcen</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -112,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Willkommen</span></a>
   </div>
 </li>
@@ -268,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./referenzen.html" class="sidebar-item-text sidebar-link">
+  <a href="./referenzen.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literatur &amp; Ressourcen</span></a>
   </div>
 </li>
@@ -282,7 +282,33 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#willkommen" id="toc-willkommen" class="nav-link active" data-scroll-target="#willkommen">Willkommen</a></li>
+  <li><a href="#bücher" id="toc-bücher" class="nav-link active" data-scroll-target="#bücher">Bücher</a>
+  <ul class="collapse">
+  <li><a href="#r-for-data-science-2e" id="toc-r-for-data-science-2e" class="nav-link" data-scroll-target="#r-for-data-science-2e">R for Data Science (2e)</a></li>
+  <li><a href="#ggplot2-elegant-graphics-for-data-analysis" id="toc-ggplot2-elegant-graphics-for-data-analysis" class="nav-link" data-scroll-target="#ggplot2-elegant-graphics-for-data-analysis">ggplot2: Elegant Graphics for Data Analysis</a></li>
+  <li><a href="#advanced-r" id="toc-advanced-r" class="nav-link" data-scroll-target="#advanced-r">Advanced R</a></li>
+  </ul></li>
+  <li><a href="#online-kurse" id="toc-online-kurse" class="nav-link" data-scroll-target="#online-kurse">Online-Kurse</a>
+  <ul class="collapse">
+  <li><a href="#rstudio-education" id="toc-rstudio-education" class="nav-link" data-scroll-target="#rstudio-education">RStudio Education</a></li>
+  <li><a href="#datacamp" id="toc-datacamp" class="nav-link" data-scroll-target="#datacamp">DataCamp</a></li>
+  <li><a href="#coursera-r-programming" id="toc-coursera-r-programming" class="nav-link" data-scroll-target="#coursera-r-programming">Coursera: R Programming</a></li>
+  </ul></li>
+  <li><a href="#cheat-sheets" id="toc-cheat-sheets" class="nav-link" data-scroll-target="#cheat-sheets">Cheat Sheets</a></li>
+  <li><a href="#hilfreiche-websites" id="toc-hilfreiche-websites" class="nav-link" data-scroll-target="#hilfreiche-websites">Hilfreiche Websites</a>
+  <ul class="collapse">
+  <li><a href="#dokumentation" id="toc-dokumentation" class="nav-link" data-scroll-target="#dokumentation">Dokumentation</a></li>
+  <li><a href="#community" id="toc-community" class="nav-link" data-scroll-target="#community">Community</a></li>
+  <li><a href="#inspiration" id="toc-inspiration" class="nav-link" data-scroll-target="#inspiration">Inspiration</a></li>
+  </ul></li>
+  <li><a href="#deutsche-ressourcen" id="toc-deutsche-ressourcen" class="nav-link" data-scroll-target="#deutsche-ressourcen">Deutsche Ressourcen</a></li>
+  <li><a href="#weiterführende-themen" id="toc-weiterführende-themen" class="nav-link" data-scroll-target="#weiterführende-themen">Weiterführende Themen</a>
+  <ul class="collapse">
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny">Shiny</a></li>
+  <li><a href="#r-package-development" id="toc-r-package-development" class="nav-link" data-scroll-target="#r-package-development">R Package Development</a></li>
+  <li><a href="#statistical-rethinking" id="toc-statistical-rethinking" class="nav-link" data-scroll-target="#statistical-rethinking">Statistical Rethinking</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -291,8 +317,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Einführung in R</h1>
-<p class="subtitle lead">Lehrstuhl für VWL, insb. Wirtschaftspolitik, Fernuniversität in Hagen</p>
+<h1 class="title"><span id="sec-references" class="quarto-section-identifier">Literatur &amp; Ressourcen</span></h1>
 </div>
 
 
@@ -309,54 +334,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="willkommen" class="level1 unnumbered">
-<h1 class="unnumbered">Willkommen</h1>
-<p>Willkommen zum Kurs <strong>Einführung in R</strong>! Dieser Kurs bietet eine praxisorientierte Einführung in die Programmiersprache R mit Fokus auf Datenanalyse und Statistik. Wir werden lernen, wie man:</p>
-<ul>
-<li>R installiert und nutzt</li>
-<li>Daten lädt, bereinigt und aufbereitet</li>
-<li>Daten visualisiert und zusammenfasst</li>
-<li>Statistische Analysen durchführt</li>
-<li>Ergebnisse exportiert</li>
-<li>Eigene Funktionen schreibt und Workflows automatisiert</li>
-</ul>
-<section id="aufbau-des-kurses" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="aufbau-des-kurses">Aufbau des Kurses</h2>
-<p>Der Kurs ist in folgende Teile gegliedert:</p>
-<ul>
-<li><strong>Grundlagen</strong>: Installation, erste Schritte, Best Practices</li>
-<li><strong>Datenaufbereitung</strong>: Daten importieren, aufbereiten und exportieren</li>
-<li><strong>Visualisierung</strong>: Grafiken erstellen</li>
-<li><strong>Statistik in R</strong>: Deskriptive Statistiken und Regressionsmodelle</li>
-<li><strong>Export von Ergebnissen</strong>: Export von Grafiken und Tabellen</li>
-<li><strong>Weitere Themen</strong>: Loops, Funktionen und KI-Unterstützung</li>
-</ul>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>Wichtig
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.</p>
-</div>
-</div>
+<section id="bücher" class="level2">
+<h2 class="anchored" data-anchor-id="bücher">Bücher</h2>
+<section id="r-for-data-science-2e" class="level3">
+<h3 class="anchored" data-anchor-id="r-for-data-science-2e">R for Data Science (2e)</h3>
+<p>Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for Data Science</em> (2nd ed.). O’Reilly Media.<br>
+<a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a></p>
+<p>Das Standardwerk für Data Science mit R. Kostenlos online verfügbar.</p>
 </section>
-<section id="kontakt-und-feedback" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="kontakt-und-feedback">Kontakt und Feedback</h2>
-<p>[Hier könnte dein Kontakt oder Feedback-Link stehen]</p>
+<section id="ggplot2-elegant-graphics-for-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="ggplot2-elegant-graphics-for-data-analysis">ggplot2: Elegant Graphics for Data Analysis</h3>
+<p>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em> (3rd ed.). Springer.<br>
+<a href="https://ggplot2-book.org/">https://ggplot2-book.org/</a></p>
 </section>
-<section id="weitere-literatur" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="weitere-literatur">Weitere Literatur</h2>
+<section id="advanced-r" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-r">Advanced R</h3>
+<p>Wickham, H. (2019). <em>Advanced R</em> (2nd ed.). Chapman and Hall/CRC.<br>
+<a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a></p>
+</section>
+</section>
+<section id="online-kurse" class="level2">
+<h2 class="anchored" data-anchor-id="online-kurse">Online-Kurse</h2>
+<section id="rstudio-education" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-education">RStudio Education</h3>
+<p><a href="https://education.rstudio.com/">https://education.rstudio.com/</a></p>
+<p>Kostenlose Tutorials und Kurse von RStudio.</p>
+</section>
+<section id="datacamp" class="level3">
+<h3 class="anchored" data-anchor-id="datacamp">DataCamp</h3>
+<p><a href="https://www.datacamp.com/">https://www.datacamp.com/</a></p>
+<p>Interaktive R-Kurse (teilweise kostenpflichtig).</p>
+</section>
+<section id="coursera-r-programming" class="level3">
+<h3 class="anchored" data-anchor-id="coursera-r-programming">Coursera: R Programming</h3>
+<p><a href="https://www.coursera.org/">https://www.coursera.org/</a></p>
+<p>Verschiedene R-Kurse von Universitäten.</p>
+</section>
+</section>
+<section id="cheat-sheets" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheets">Cheat Sheets</h2>
 <ul>
-<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a> von Hadley Wickham et al.</li>
-<li>ggplot</li>
-<li>Statistik</li>
-<li>Causal Inf</li>
+<li><a href="https://posit.co/resources/cheatsheets/">RStudio Cheat Sheets</a>
+<ul>
+<li>dplyr</li>
+<li>ggplot2</li>
+<li>tidyr</li>
+<li>R Markdown</li>
+<li>und viele mehr</li>
+</ul></li>
 </ul>
+</section>
+<section id="hilfreiche-websites" class="level2">
+<h2 class="anchored" data-anchor-id="hilfreiche-websites">Hilfreiche Websites</h2>
+<section id="dokumentation" class="level3">
+<h3 class="anchored" data-anchor-id="dokumentation">Dokumentation</h3>
+<ul>
+<li><a href="https://www.r-project.org/">R Documentation</a></li>
+<li><a href="https://www.tidyverse.org/">tidyverse</a></li>
+<li><a href="https://ggplot2.tidyverse.org/reference/">ggplot2 Reference</a></li>
+</ul>
+</section>
+<section id="community" class="level3">
+<h3 class="anchored" data-anchor-id="community">Community</h3>
+<ul>
+<li><a href="https://www.r-bloggers.com/">R-bloggers</a></li>
+<li><a href="https://stackoverflow.com/questions/tagged/r">Stack Overflow (R Tag)</a></li>
+<li><a href="https://community.rstudio.com/">RStudio Community</a></li>
+<li><a href="https://www.reddit.com/r/rstats/">Reddit: r/rstats</a></li>
+</ul>
+</section>
+<section id="inspiration" class="level3">
+<h3 class="anchored" data-anchor-id="inspiration">Inspiration</h3>
+<ul>
+<li><a href="https://r-graph-gallery.com/">R Graph Gallery</a></li>
+<li><a href="https://www.data-to-viz.com/">From Data to Viz</a></li>
+</ul>
+</section>
+</section>
+<section id="deutsche-ressourcen" class="level2">
+<h2 class="anchored" data-anchor-id="deutsche-ressourcen">Deutsche Ressourcen</h2>
+<ul>
+<li><a href="https://www.methodenlehre.uni-koeln.de/">Statistik und R</a></li>
+<li><a href="https://www.uni-muenster.de/">R-Kurs Material (Uni Münster)</a></li>
+<li><a href="https://www.crashkurs-statistik.de/">Crashkurs Statistik</a></li>
+</ul>
+</section>
+<section id="weiterführende-themen" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-themen">Weiterführende Themen</h2>
+<section id="quarto" class="level3">
+<h3 class="anchored" data-anchor-id="quarto">Quarto</h3>
+<p><a href="https://quarto.org/">https://quarto.org/</a></p>
+<p>Moderne Alternative zu R Markdown für reproduzierbare Berichte.</p>
+</section>
+<section id="shiny" class="level3">
+<h3 class="anchored" data-anchor-id="shiny">Shiny</h3>
+<p><a href="https://shiny.rstudio.com/">https://shiny.rstudio.com/</a></p>
+<p>Interaktive Web-Apps mit R erstellen.</p>
+</section>
+<section id="r-package-development" class="level3">
+<h3 class="anchored" data-anchor-id="r-package-development">R Package Development</h3>
+<p><a href="https://r-pkgs.org/">https://r-pkgs.org/</a></p>
+<p>Eigene R-Pakete entwickeln.</p>
+</section>
+<section id="statistical-rethinking" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-rethinking">Statistical Rethinking</h3>
+<p>McElreath, R. (2020). <em>Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em> (2nd ed.).</p>
+<p>Bayes’sche Statistik mit R.</p>
 
 
 </section>
@@ -765,11 +848,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./ki.html" class="pagination-link" aria-label="KI-Unterstützung in R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./erste_schritte.html" class="pagination-link" aria-label="Erste Schritte in R">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

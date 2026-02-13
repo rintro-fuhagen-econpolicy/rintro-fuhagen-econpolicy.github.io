@@ -1,0 +1,15 @@
+{
+  "hash": "53371edf3483ccb8c5a2a3c8c9ba15dc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Grafiken in R {#sec-visualisierung}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

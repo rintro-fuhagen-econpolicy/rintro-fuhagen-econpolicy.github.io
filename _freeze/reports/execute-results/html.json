@@ -1,0 +1,15 @@
+{
+  "hash": "fb3b483d2bd5f00bc0d2182af2cffb12",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Berichte in R {#sec-reports}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "9f1dc158f4d5345c39bf0c5147cf42ac",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Loops und eigene Funktionen {#sec-loops-funktionen}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

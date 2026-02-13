@@ -1,0 +1,88 @@
+# Literatur & Ressourcen {#sec-references .unnumbered}
+
+## Bücher
+
+### R for Data Science (2e)
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for Data Science* (2nd ed.). O'Reilly Media.  
+[https://r4ds.hadley.nz/](https://r4ds.hadley.nz/)
+
+Das Standardwerk für Data Science mit R. Kostenlos online verfügbar.
+
+### ggplot2: Elegant Graphics for Data Analysis
+Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis* (3rd ed.). Springer.  
+[https://ggplot2-book.org/](https://ggplot2-book.org/)
+
+### Advanced R
+Wickham, H. (2019). *Advanced R* (2nd ed.). Chapman and Hall/CRC.  
+[https://adv-r.hadley.nz/](https://adv-r.hadley.nz/)
+
+## Online-Kurse
+
+### RStudio Education
+[https://education.rstudio.com/](https://education.rstudio.com/)
+
+Kostenlose Tutorials und Kurse von RStudio.
+
+### DataCamp
+[https://www.datacamp.com/](https://www.datacamp.com/)
+
+Interaktive R-Kurse (teilweise kostenpflichtig).
+
+### Coursera: R Programming
+[https://www.coursera.org/](https://www.coursera.org/)
+
+Verschiedene R-Kurse von Universitäten.
+
+## Cheat Sheets
+
+- [RStudio Cheat Sheets](https://posit.co/resources/cheatsheets/)
+  - dplyr
+  - ggplot2
+  - tidyr
+  - R Markdown
+  - und viele mehr
+
+## Hilfreiche Websites
+
+### Dokumentation
+- [R Documentation](https://www.r-project.org/)
+- [tidyverse](https://www.tidyverse.org/)
+- [ggplot2 Reference](https://ggplot2.tidyverse.org/reference/)
+
+### Community
+- [R-bloggers](https://www.r-bloggers.com/)
+- [Stack Overflow (R Tag)](https://stackoverflow.com/questions/tagged/r)
+- [RStudio Community](https://community.rstudio.com/)
+- [Reddit: r/rstats](https://www.reddit.com/r/rstats/)
+
+### Inspiration
+- [R Graph Gallery](https://r-graph-gallery.com/)
+- [From Data to Viz](https://www.data-to-viz.com/)
+
+## Deutsche Ressourcen
+
+- [Statistik und R](https://www.methodenlehre.uni-koeln.de/)
+- [R-Kurs Material (Uni Münster)](https://www.uni-muenster.de/)
+- [Crashkurs Statistik](https://www.crashkurs-statistik.de/)
+
+## Weiterführende Themen
+
+### Quarto
+[https://quarto.org/](https://quarto.org/)
+
+Moderne Alternative zu R Markdown für reproduzierbare Berichte.
+
+### Shiny
+[https://shiny.rstudio.com/](https://shiny.rstudio.com/)
+
+Interaktive Web-Apps mit R erstellen.
+
+### R Package Development
+[https://r-pkgs.org/](https://r-pkgs.org/)
+
+Eigene R-Pakete entwickeln.
+
+### Statistical Rethinking
+McElreath, R. (2020). *Statistical Rethinking: A Bayesian Course with Examples in R and Stan* (2nd ed.).
+
+Bayes'sche Statistik mit R.

@@ -1,0 +1,9 @@
+# Grafiken exportieren {#sec-fig-export}
+
+```{r}
+#| echo: false
+source("Rsettings.R")
+
+library(tidyverse)
+library(kableExtra)
+```

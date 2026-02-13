@@ -1,0 +1,15 @@
+{
+  "hash": "502440a71eedf594420834bccc0762d4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Kausalinferenz {#sec-kausalinferenz}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

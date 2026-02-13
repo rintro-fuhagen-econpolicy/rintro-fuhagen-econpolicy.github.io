@@ -60,7 +60,7 @@ knitr::include_graphics("images/rstudio_interface.png", dpi = 270)
 
 ### R als Taschenrechner
 
-Lass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst die Entertaste, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:
+Lass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst <kbd>Enter</kbd>, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:
 
 ```{r}
 10 + 4
@@ -96,10 +96,13 @@ Für komplexere Operationen bietet R eine große Sammlung an Funktionen. Die Aus
 function_name(argument1 = value1, argument2 = value2, ...)
 ```
 
-Weiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (`log(4)`). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion `seq()` an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir `seq` in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und die Enter-Taste drücken.
+Weiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (`log(4)`). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion `seq()` an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir `seq` in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und <kbd>Enter</kbd> drücken.
 
 ::: {#fig-seq-fct}
-![](images/seq_function.gif){fig-alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole" width="70%"}
+<img src="images/seq_function.gif" 
+     alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole" 
+     width="70%" 
+     loop="infinite">
 
 Auswählen der seq()-Funktion.
 :::
@@ -115,7 +118,7 @@ help(seq)
 ```
 
 
-Alternativ drücken wir `F1` während wir `seq()` im Pop-Up Menü ausgewählt haben, oder wir gehen gehen direkt zum Help-Fenster und geben *seq* in die Suchfunktion ein. Im Help-Fenster (Panel C in @fig-rstudio-interface) erhalten wir dann eine ausführliche Erklärung der Funktion.
+Alternativ drücken wir <kbd>F1</kbd> während wir `seq()` im Pop-Up Menü ausgewählt haben, oder wir gehen gehen direkt zum Help-Fenster und geben *seq* in die Suchfunktion ein. Im Help-Fenster (Panel C in @fig-rstudio-interface) erhalten wir dann eine ausführliche Erklärung der Funktion.
 
 Die R-Dokumentation gibt Aufschluss über die wesentlichen Argumente dieser Funktion. Wir erfahren, dass wir mit `from = ...` den Startwert und mit `to = ...` den Endwert der Zahlsequenz spezifizieren. Über das Argument `by = ...` definieren wir wiederum die Inkremente der Sequenz. Auch können wir die Default-Einstellungen der Funktion ableiten: Diese ist für `from`, `to` und `by` gleich 1.
 

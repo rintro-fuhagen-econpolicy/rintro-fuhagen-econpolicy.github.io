@@ -1,0 +1,15 @@
+{
+  "hash": "a01710765e849be454fe19041c0747e1",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Daten exportieren {#sec-daten-export}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

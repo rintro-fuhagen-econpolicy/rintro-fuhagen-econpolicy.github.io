@@ -1,0 +1,9 @@
+# Berichte in R {#sec-reports}
+
+```{r}
+#| echo: false
+source("Rsettings.R")
+
+library(tidyverse)
+library(kableExtra)
+```

@@ -1,0 +1,15 @@
+{
+  "hash": "65e360bed925477dc5dcea2f421af2a7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Tabellen exportieren {#sec-tab-export}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

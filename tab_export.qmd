@@ -1,0 +1,9 @@
+# Tabellen exportieren {#sec-tab-export}
+
+```{r}
+#| echo: false
+source("Rsettings.R")
+
+library(tidyverse)
+library(kableExtra)
+```

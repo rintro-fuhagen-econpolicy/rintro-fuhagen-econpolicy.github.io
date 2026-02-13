@@ -1,0 +1,15 @@
+{
+  "hash": "afedb6062d655795a1b365550e2709a3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Daten aufbereiten {#sec-daten-transform}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

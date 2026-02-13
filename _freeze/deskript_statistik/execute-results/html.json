@@ -1,0 +1,15 @@
+{
+  "hash": "92b480dd1f40f6723f98b40987947b19",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Deskriptive Statistiken {#sec-deskript-statistik}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

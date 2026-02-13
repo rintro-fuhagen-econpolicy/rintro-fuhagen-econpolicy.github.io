@@ -1,0 +1,15 @@
+{
+  "hash": "669ecdc2c6c95527ee4570944a50c689",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Regressionen {#sec-regressionen}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

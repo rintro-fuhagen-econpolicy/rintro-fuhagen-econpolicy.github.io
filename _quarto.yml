@@ -14,10 +14,41 @@ book:
       chapters:
         - erste_schritte.qmd
         - best_practices.qmd
+    
+    - part: "Datenaufbereitung"
+      chapters:
+        - daten_import.qmd
+        - daten_transform.qmd
+        - daten_export.qmd
+    
+    - part: "Datenvisualisierung"
+      chapters:
+        - visualisierung.qmd
+    
+    - part: "Statistik in R"
+      chapters:
+        - deskript_statistik.qmd
+        - regressionen.qmd
+        - kausalinferenz.qmd
+    
+    - part: "Export von Ergebnissen"
+      chapters:
+        - tab_export.qmd
+        - fig_export.qmd
+        - reports.qmd
+    
+    - part: "Weitere Themen"
+      chapters:
+        - loops_funktionen.qmd
+        - ki.qmd
+        
+    - referenzen.qmd
 
   sidebar:
     style: "docked"
     search: true
+
+bibliography: rintro_references.bib
 
 format:
   html:

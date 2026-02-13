@@ -9,3 +9,174 @@ library(kableExtra)
 ```
 
 ## R-Scripts
+
+Bisher haben wir unseren Code immer direkt in der Konsole geschrieben und dort ausgeführt. Das ist für erste Schritte praktisch, aber der Code geht leicht verloren und lässt sich nur schwer nachvollziehen oder erneut verwenden. Die Verwendung eines *R-Scripts* erlaubt uns, Code dauerhaft zu speichern, zu dokumentieren und später reproduzierbar erneut auszuführen. Außerdem lassen sich Scripts strukturieren, kommentieren und leichter mit anderen teilen. Dadurch wird die Arbeit nachvollziehbarer, effizienter und weniger fehleranfällig.
+
+Um ein R-Script zu öffnen, klicke auf den *New File Button* oben links in RStudio (rot hervorgehoben in @fig-rscript-interface). Dadurch öffnet sich ein zusätzliches Panel im Interface (gelb markiert). Wir können nun unseren Code in diesem Text-Editor schreiben, kommentieren und ausführen. Nachdem wir das R-Script speichern, können wir zu einem späteren Zeitpunkt unseren Code leicht reproduzieren und fortsetzen.
+
+```{r}
+#| label: fig-rscript-interface
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   RStudio Interface mit R-Script.
+#| fig-alt: |
+#|  RStudio Interface mit Highlights auf New File Button und R-Script Panel.
+knitr::include_graphics("images/rscript_interface.png", dpi = 270)
+```
+
+### Ausführen von Befehlen im R-Script
+
+Da ein R-Script ein Text-Editor ist, wird durch <kbd>Enter</kbd> nicht mehr der Befehl ausgeführt (wie in der Konsole), sondern eine neue Zeile eingefügt. Um einen Prompt auszuführen, drücken wir stattdessen gleichzeitig <kbd>Strg</kbd> + <kbd>Enter</kbd> (oder <kbd>cmd</kbd> + <kbd>Enter</kbd> bei einem Apple-Gerät). R führt immer den vollständigen Prompt aus, unabhängig davon, an welcher Stelle in der Zeile der Maus-Cursor steht. Um mehrere Code-Zeilen gleichzeitig auszuführen, markiere diese und drücke anschließend <kbd>Strg</kbd> + <kbd>Enter</kbd>.
+
+### Aufbau eines guten R-Scripts
+
+Damit wir auch zu einem späteren Zeitpunkt nachvollziehen können, was in einem Script passiert, ist sinnvoll, einer gewissen Struktur zu folgen. Zu Beginn eines R-Scripts fassen wir als Kommentar kurz den wesentlichen Inhalt zusammen. Um unser Script in Abschnitte zu unterteilen, können wir *sectioning comments* verwenden (Keyboard-Shortcut: <kbd>Strg</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>):
+
+```{r}
+#| eval: false
+# load packages ---------------------------------------------------------------
+```
+
+Um zwischen den Abschnitten zu springen, können wir das Navigations-Dropdown-Menü unten links im R-Script-Editor verwenden (blau markiert in @fig-rscript-interface). Ein übersichtliches R-Script ist zum Beispiel so aufgebaut:
+
+```{r}
+#| eval: false
+# ============================================================================
+# Projekt: Analyse von Studentendaten
+# Script: 01_data_cleaning.R
+# Autor: Dein Name
+# Datum: 2025-10-05
+# Beschreibung: Lädt und bereinigt die Rohdaten
+# ============================================================================
+
+# 1. Pakete laden ----------------------------------------------------------
+library(tidyverse)
+library(readxl)
+
+# 2. Daten einlesen --------------------------------------------------------
+students <- read_csv("data/raw/students.csv")
+
+# 3. Daten bereinigen ------------------------------------------------------
+students_clean <- students %>%
+  filter(!is.na(age)) %>% # Filtern von Studierenden ohne Altersangabe
+  mutate(grade_numerisch = as.numeric(grade))
+
+# 4. Daten speichern -------------------------------------------------------
+write_rds(students_clean, "data/processed/students_clean.rds")
+```
+
+:::::: callout-tip
+#### Do's und Don'ts für R-Scripts
+
+::::: columns
+::: {.column width="50%"}
+**Do's:**
+
+-   Aussagekräftige Kommentare
+-   Logische Struktur
+-   Ein Script = Eine Arbeitsaufgabe
+-   Pakete am Anfang laden
+-   Sektionen mit `# ----`
+:::
+
+::: {.column width="50%"}
+**Don'ts:**
+
+-   Absolute Pfade verwenden
+-   Zu lange Scripts
+-   Hartcodierte Werte
+-   Fehlende Kommentare
+:::
+:::::
+::::::
+
+## Working Directories
+
+Das Working Directory legt den Ordner fest, in dem R standardmäßig nach Dateien sucht und neue Dateien speichert. In RStudio ist das standardmäßig der Dokumenteordner des Systems. Um dein Working Directory zu überprüfen, verwende `getwd()`:
+
+```{r}
+#| eval: false
+getwd()
+#> "C:/Users/fischeneder/Documents"
+```
+
+Dateien, die man ohne vorheriges Setzen eines Working Directory öffnet oder speichert, werden zunächst in diesem Ordner gesucht bzw. abgelegt. Daher ist es sinnvoll, das Working Directory bewusst auf den gewünschten Projektordner zu setzen, um die Arbeit strukturiert, reproduzierbar und unabhängig vom Standardpfad zu gestalten.
+
+Das Working Directory setzt du mittels mit `setwd()`:
+
+```{r}
+#| eval: false
+setwd("pfad/zu/deinem/projektordner")
+```
+
+::: callout-warning
+#### Relative Pfade \> absolute Pfade
+
+In R kannst du Daten aus deinem Dateiexplorer importieren und exportieren. Eine Möglichkeit, auf eine Datei zuzugreifen ist es, den gesamten (=absoluten) Dateipfad zu spezifizieren. Möchtest du beispielsweise eine csv-Datei im Datenordner innerhalb deines Projektordners einlesen:
+
+```{r}
+#| eval: false
+dataset <- read_csv("pfad/zu/deinem/projektordner/daten/dataset.csv")
+```
+
+Ein sinnvoll gewähltes Working Directory beinhaltet alle für dein Script notwendigen Ordner und Dateien. Nach dem Setzen des Working Directorys kannst du auf diese zugreifen, ohne den gesamten (absoluten) Pfad zu spezifizieren:
+
+```{r}
+#| eval: false
+setwd("pfad/zu/deinem/projektordner")
+dataset <- read_csv("daten/dataset.csv")
+```
+
+R sucht dabei die gewünschte Datei ausgehend von deinem Working Directory. Das hat den Vorteil, dass du den Projektordner verschieben oder teilen kannst, und nur das Working Directory angepasst werden muss, damit dein Code läuft.
+:::
+
+## R-Projects
+
+Das Setzen des Working Directorys verlangt einen absoluten Dateipfad. Dies kann leicht zu Problemen führen, wenn du deinen Projektordner verschiebst oder dein Projekt mit anderen Personen teilst. Die Verwendung eines *R-Projects* bietet deutliche Vorteile gegenüber dem manuellen Setzen des Working Directorys mit `setwd()` in einem Script. Ein R-Project legt automatisch das Arbeitsverzeichnis auf den Projektordner fest, wodurch alle Scripts, Daten und Ergebnisse konsistent im gleichen Ordner gesucht und gespeichert werden. Das macht die Arbeit nicht nur übersichtlicher und strukturierter, sondern auch reproduzierbar, da andere Nutzer das Projekt auf ihrem Computer öffnen können, ohne Pfade im Code anpassen zu müssen.
+
+Um ein R-Project für diesen Einführungskurs zu erstellen, führen wir die Schritte in @fig-rproject-setup. Im letzen Schritt geben wir unserem R-Project einen passenden Namen (*r_intro*) und wählen den Ordner aus, in dem wir das Projekt ablegen wollen. Bei der Erstellung des R-Projects wird dann in diesem Ordner ein neuer Subordner erstellt, der nun automatisch das Working Directory dieses Projects ist. In diesem Ordner legen wir alle für unser Projekt relevanten Dateien ab. Somit ist unser Projekt jederzeit reproduzierbar.
+
+```{r}
+#| label: fig-rproject-setup
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   Erstellung eines neuen R-Projects.
+#| fig-alt: |
+#|  Schritt-für-Schritt-Erklärung für die Erstellung eines neuen R-Projects. In Schritt 1 ist der Button für einen neues R-Project hervorgehoben. In Schritt 2 wählen wir die Option "New Directory" im Pop-Up-Fenster, in Schritt 3 "New Project". In Schritt 4 wählen wir einen passenden Namen für das Directory sowie den Projektordner und erstellen das R-Project.
+knitr::include_graphics("images/rproject.png", dpi = 270)
+```
+
+## Ordnerstruktur, Namensgebung und Code-Style
+
+Eine gute Ordnerstruktur ist die Grundlage für organisierte Projekte. Nach der Erstellung deines R-Projects solltest du dich um Unterordner für Daten, Scripts und Output kümmern. Deine finale Ordnerstruktur könnte etwa so aussehen:
+
+```
+mein-projekt/
+├── data/
+│   ├── raw/           # Originaldaten (nie ändern!)
+│   └── processed/     # Bearbeitete Daten
+├── scripts/
+│   ├── 01_daten_laden.R
+│   ├── 02_daten_bereinigen.R
+│   └── 03_analyse.R
+├── output/
+│   ├── figures/       # Grafiken
+│   └── tables/        # Tabellen
+├── docs/              # Dokumentation
+├── mein-projekt.Rproj
+└── README.txt
+```
+
+Auch deine Dateinamen sollten einer einheitlichen Struktur folgen. Nummeriere deine R-Scripts, damit sie im Ordner in einer sinnvollen Reihenfolge aufscheinen. Benenne Output-Dateien mit einem konstanten Muster (z.B. *figure01.png*, *figure02.png*, ...).
+
+::: callout-tip
+#### Code-Style
+
+Ein guter und kohärenter Code-Style ist wichtig, weil er den Code lesbar, verständlich und leichter wartbar macht. Konsistente Einrückungen, sprechende Variablennamen und klare Struktur helfen nicht nur dir selbst, den Überblick zu behalten, sondern auch anderen, die den Code später lesen oder erweitern müssen. Außerdem reduziert ein sauberer Stil die Wahrscheinlichkeit von Fehlern, erleichtert das Debuggen und sorgt dafür, dass Projekte langfristig reproduzierbar und professionell bleiben.
+
+Arbeite dich durch das [Kapitel zu Code-Style](https://r4ds.hadley.nz/workflow-style.html) in *R for Data Science* durch, um Best Practices zu erlernen!
+:::
+
+

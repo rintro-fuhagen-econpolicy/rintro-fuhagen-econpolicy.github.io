@@ -1,0 +1,15 @@
+{
+  "hash": "b64030569eb6ff20beae26369fea2ec4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# KI-Unterstützung in R {#sec-ki}\n\n\n::: {.cell}\n\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

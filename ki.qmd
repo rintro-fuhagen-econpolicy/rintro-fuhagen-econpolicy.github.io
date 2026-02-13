@@ -1,0 +1,9 @@
+# KI-Unterstützung in R {#sec-ki}
+
+```{r}
+#| echo: false
+source("Rsettings.R")
+
+library(tidyverse)
+library(kableExtra)
+```
