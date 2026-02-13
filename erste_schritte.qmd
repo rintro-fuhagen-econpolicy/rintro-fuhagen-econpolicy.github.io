@@ -98,14 +98,16 @@ function_name(argument1 = value1, argument2 = value2, ...)
 
 Weiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (`log(4)`). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion `seq()` an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir `seq` in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und <kbd>Enter</kbd> drücken.
 
-::: {#fig-seq-fct}
-<img src="images/seq_function.gif" 
-     alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole" 
-     width="70%" 
-     loop="infinite">
-
-Auswählen der seq()-Funktion.
-:::
+```{r}
+#| label: fig-seq-fct
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   Auswählen der seq()-Funktion.
+#| fig-alt: |
+#|  Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole.
+knitr::include_graphics("images/seq_function.gif", dpi = 270)
+```
 
 Wir können auch den gesamten Befehl selbst eingeben und die Klammer öffnen: `seq()`.
 

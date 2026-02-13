@@ -2339,6 +2339,42 @@
       "NeedsCompilation": "no",
       "Repository": "CRAN"
     },
+    "pkgsearch": {
+      "Package": "pkgsearch",
+      "Version": "3.1.5",
+      "Source": "Repository",
+      "Title": "Search and Query CRAN R Packages",
+      "Authors@R": "c( person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Maëlle\", \"Salmon\", role = \"aut\", comment = c(ORCID = \"0000-0002-2815-0399\")), person(\"R Consortium\", role = \"fnd\") )",
+      "Description": "Search CRAN metadata about packages by keyword, popularity, recent activity, package name and more. Uses the 'R-hub' search server, see <https://r-pkg.org> and the CRAN metadata database, that contains information about CRAN packages. Note that this is _not_ a CRAN project.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://github.com/r-hub/pkgsearch, https://r-hub.github.io/pkgsearch/",
+      "BugReports": "https://github.com/r-hub/pkgsearch/issues",
+      "Imports": [
+        "curl",
+        "jsonlite"
+      ],
+      "Suggests": [
+        "covr",
+        "memoise",
+        "mockery",
+        "pillar",
+        "pingr (>= 2.0.0)",
+        "rstudioapi",
+        "shiny",
+        "shinyjs",
+        "shinyWidgets",
+        "testthat (>= 3.0.0)",
+        "whoami",
+        "withr"
+      ],
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.1.9000",
+      "NeedsCompilation": "no",
+      "Author": "Gábor Csárdi [aut, cre], Maëlle Salmon [aut] (<https://orcid.org/0000-0002-2815-0399>), R Consortium [fnd]",
+      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+      "Repository": "CRAN"
+    },
     "prettyunits": {
       "Package": "prettyunits",
       "Version": "1.2.0",
@@ -2561,6 +2597,40 @@
       "NeedsCompilation": "yes",
       "Author": "Thomas Lin Pedersen [cre, aut] (ORCID: <https://orcid.org/0000-0002-5147-4711>), Maxim Shemanarev [aut, cph] (Author of AGG), Tony Juricic [ctb, cph] (Contributor to AGG), Milan Marusinec [ctb, cph] (Contributor to AGG), Spencer Garrett [ctb] (Contributor to AGG), Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Repository": "CRAN"
+    },
+    "randomNames": {
+      "Package": "randomNames",
+      "Version": "1.6-0.0",
+      "Source": "Repository",
+      "Date": "2024-5-2",
+      "Title": "Generate Random Given and Surnames",
+      "Depends": [
+        "R (>= 4.0)"
+      ],
+      "Suggests": [
+        "knitr",
+        "rmarkdown"
+      ],
+      "Imports": [
+        "crayon",
+        "data.table (>= 1.14.0)",
+        "toOrdinal (>= 1.1)"
+      ],
+      "Authors@R": "c(person(given=c(\"Damian\", \"W.\"), family=\"Betebenner\", email=\"dbetebenner@nciea.org\", role=c(\"aut\", \"cre\")), person(given=\"Lambert\", family=\"Joshua\", role=\"ctb\"))",
+      "Maintainer": "Damian W. Betebenner <dbetebenner@nciea.org>",
+      "Description": "Function for generating random gender and ethnicity correct first and/or last names. Names are chosen proportionally based upon their probability of appearing in a large scale data base of real names.",
+      "URL": "https://centerforassessment.github.io/randomNames/, https://github.com/CenterForAssessment/randomNames/, https://cran.r-project.org/package=randomNames",
+      "BugReports": "https://github.com/CenterForAssessment/randomNames/issues/",
+      "VignetteBuilder": "knitr",
+      "LazyLoad": "Yes",
+      "LazyData": "Yes",
+      "LazyDataCompression": "xz",
+      "ByteCompile": "TRUE",
+      "License": "GPL-3",
+      "NeedsCompilation": "no",
+      "Author": "Damian W. Betebenner [aut, cre], Lambert Joshua [ctb]",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -3650,6 +3720,38 @@
       "Maintainer": "Yihui Xie <xie@yihui.name>",
       "Repository": "CRAN"
     },
+    "toOrdinal": {
+      "Package": "toOrdinal",
+      "Version": "1.4-0.0",
+      "Source": "Repository",
+      "Date": "2026-2-5",
+      "Title": "Cardinal to Ordinal Number & Date Conversion",
+      "Description": "Language specific cardinal to ordinal number conversion.",
+      "Authors@R": "c(person(given=c(\"Damian\", \"W.\"), family=\"Betebenner\", email=\"dbetebenner@nciea.org\", role=c(\"aut\", \"cre\")), person(given=\"Andrew\", family=\"Martin\", role=\"ctb\"), person(given=\"Jeff\", family=\"Erickson\", role=\"ctb\"))",
+      "Maintainer": "Damian W. Betebenner <dbetebenner@nciea.org>",
+      "Depends": [
+        "R (>= 3.3)"
+      ],
+      "Suggests": [
+        "knitr",
+        "rmarkdown",
+        "testthat"
+      ],
+      "Imports": [
+        "crayon",
+        "pkgsearch"
+      ],
+      "URL": "https://centerforassessment.github.io/toOrdinal/, https://github.com/centerforassessment/toOrdinal/, https://cran.r-project.org/package=toOrdinal",
+      "BugReports": "https://github.com/centerforassessment/toOrdinal/issues/",
+      "VignetteBuilder": "knitr",
+      "LazyLoad": "Yes",
+      "ByteCompile": "TRUE",
+      "License": "GPL-3",
+      "NeedsCompilation": "no",
+      "Author": "Damian W. Betebenner [aut, cre], Andrew Martin [ctb], Jeff Erickson [ctb]",
+      "Repository": "CRAN",
+      "Encoding": "UTF-8"
+    },
     "tzdb": {
       "Package": "tzdb",
       "Version": "0.5.0",
@@ -3915,6 +4017,33 @@
       "NeedsCompilation": "no",
       "Author": "Jim Hester [aut], Lionel Henry [aut, cre], Kirill Müller [aut], Kevin Ushey [aut], Hadley Wickham [aut], Winston Chang [aut], Jennifer Bryan [ctb], Richard Cotton [ctb], Posit Software, PBC [cph, fnd]",
       "Maintainer": "Lionel Henry <lionel@posit.co>",
+      "Repository": "CRAN"
+    },
+    "writexl": {
+      "Package": "writexl",
+      "Version": "1.5.4",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Export Data Frames to Excel 'xlsx' Format",
+      "Authors@R": "c( person(\"Jeroen\", \"Ooms\", ,\"jeroenooms@gmail.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-4035-0289\")), person(\"John McNamara\", role = \"cph\", comment = \"Author of libxlsxwriter (see AUTHORS and COPYRIGHT files for details)\"))",
+      "Description": "Zero-dependency data frame to xlsx exporter based on 'libxlsxwriter' <https://libxlsxwriter.github.io>. Fast and no Java or Excel required.",
+      "License": "BSD_2_clause + file LICENSE",
+      "Encoding": "UTF-8",
+      "URL": "https://ropensci.r-universe.dev/writexl https://docs.ropensci.org/writexl/",
+      "BugReports": "https://github.com/ropensci/writexl/issues",
+      "RoxygenNote": "7.0.2",
+      "Suggests": [
+        "spelling",
+        "readxl",
+        "nycflights13",
+        "testthat",
+        "bit64"
+      ],
+      "Language": "en-US",
+      "SystemRequirements": "zlib",
+      "NeedsCompilation": "yes",
+      "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>), John McNamara [cph] (Author of libxlsxwriter (see AUTHORS and COPYRIGHT files for details))",
+      "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
       "Repository": "CRAN"
     },
     "xfun": {
