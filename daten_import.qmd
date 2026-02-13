@@ -18,3 +18,113 @@ r_intro/
 │   └── processed/     # Bearbeitete Daten
 ```
 
+Anschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den `students_data` Ordner, in dem wir entweder alle Dateien in diesem [Github-Ordner](https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/tree/main/data/raw) manuell herunterladen, oder den folgenden Code in R ausführen:
+
+```{r}
+#| eval: false
+repo_url <- "https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/archive/refs/heads/main.zip"
+download.file(repo_url, destfile = "repo.zip")
+unzip("repo.zip")
+file.copy("rintro-fuhagen-econpolicy.github.io-main/data/raw", 
+          "data/raw", 
+          recursive = TRUE)
+unlink("repo.zip")
+unlink("rintro-fuhagen-econpolicy.github.io-main", recursive = TRUE)
+rm(repo_url)
+```
+
+## Datenformate
+
+In der Praxis begegnen dir verschiedene Datenformate, die mit unterschiedlichen Funktionen in R eingelesen werden. @tbl-data-formats gibt einen Überblick über die gebräuchlichsten Formate.
+
+```{r}
+#| label: tbl-data-formats
+#| tbl-cap: "Datensatzformate in der Praxis (Auswahl)"
+#| echo: false
+
+dplyr::tibble(
+  format = c("csv", "rds", "txt", "xlsx", "dta"),
+  typ = c("Allgemein", "R", "Allgemein", "MS Office", "Stata"),
+  pck = c("readr (tidyverse)", "readr (tidyverse)", "readr (tidyverse)", "readxl", "haven"),
+  fun = c("read_csv()", "read_rds()", "read_delim()", "read_excel()", "read_dta()")
+) |>
+  kbl(
+    col.names = c("Dateiformat", "Typisch für", "Package", "Lesefunktion")
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
+
+## Daten einlesen
+
+### CSV-Dateien
+
+Das CSV-Format (Comma-Separated Values) speichert tabellarische Daten als Text, wobei jede Zeile eine Beobachtung und jede Spalte einen Wert enthält, getrennt durch Kommata oder andere Trennzeichen. Beim Import in R müssen wir auf das korrekte Trennzeichen achten, damit die Zahlen korrekt eingelesen werden.
+
+CSV-Dateien können mit der Funktion `read_csv()` aus dem `tidyverse`/`readr` Package eingelesen werden:
+
+```{r}
+students <- read_csv("data/raw/students_data/students.csv")
+students
+```
+
+International werden die einzelnen Spalten mit einem Komma (,) getrennt. Dies ist auch das Default-Trennzeichen bei `read_csv()`. Da in der deutschen Sprache dieses als Zeichen für Dezimalstellen verwendet wird, wird hier das Semikolon/der Strichpunkt (;) als Trennzeichen verwendet. Verwenden wir das falsche Trennzeichen beim Einlesen von CSV-Dateien mit diesem Trennzeichen, werden die Daten falsch eingelesen:
+
+```{r}
+read_csv("data/raw/students_data/students_de.csv")
+```
+
+Stattdessen müssen wir bei einer solchen Encodierung `read_csv2()` verwenden:
+
+```{r}
+read_csv2("data/raw/students_data/students_de.csv")
+```
+
+::: {.callout-warning}
+## Häufige Probleme mit CSV-Dateien
+
+- *Trennzeichen*: `read_csv("datei.csv")` bei `,` als Trennzeichen, `read_csv2("datei.csv")` bei `;`
+- *Encoding*: Bei Problemen mit Sonderzeichen muss das Encoding spezifiziert werden, etwa `read_csv("datei.csv", locale = locale(encoding = "latin1"))`
+- *Dezimaltrennzeichen*: Ebenfalls über das `locale` Argument,`locale = locale(decimal_mark = ",")`
+- *Falsche Spaltentypen*: Mit `col_types` spezifizieren
+:::
+
+### RDS-Dateien
+
+RDS ist ein R-spezifisches Format, das ein einzelnes R-Objekt speichert. RDS speichert Objekte in nativer R-Struktur, inklusive Datentypen, Faktoren, Datum/Zeit und sogar komplexer Objekte wie Modelle, wodurch beim Einlesen keine Umwandlungen nötig sind. RDS-Dateien sind oft kleiner und schneller zu lesen als Textdateien, da keine Konvertierung von und zu Text nötig ist.
+
+Wir können RDS-Dateien mit `read_rds()` einlesen:
+
+```{r}
+students <- read_rds("data/raw/students_data/students.rds")
+```
+
+::: callout-note
+## RData-Format
+
+Ein weiteres R-spezifisches Format ist RData. RData kann mehrere Objekte speichern:
+```{r}
+#| eval: false
+numbers <- 6:10
+names <- c("Anna", "Ben", "Clara")
+save(numbers, names, file = "data/raw/students_data/multidata.RData")
+rm(numbers, names)
+```
+
+Mit `load()` werden alle in dieser Datei abgespeicherten R-Objekte importiert:
+
+```{r}
+#| eval: false
+load("data/raw/students_data/multidata.RData")
+```
+:::
+
+### Text-Dateien
+
+TXT-Dateien speichern Daten als reinen Text und können sowohl einfache Listen als auch tabellarische Daten enthalten, meist zeilenweise getrennt. Beim Importen in R müssen wir vor allem auf das Trennzeichen achten. Der Import erfolgt über `read_delim()`
+
+### Excel-Dateien
+
+### Stata-Dateien

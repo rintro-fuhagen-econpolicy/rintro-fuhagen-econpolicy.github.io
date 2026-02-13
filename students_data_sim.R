@@ -13,14 +13,14 @@ library(tidyverse)
 library(writexl)
 library(haven)
 
-set.seed(1234)
+set.seed(123)
 
 # 2. Simulate Data --------------------------------------------------------
 
 N = 10
 
 students <- tibble(
-  names = randomNames::randomNames(N, which.names = "first"),
+  names = c("Anna", "Ben", "Clara", "Dimitri", "Emilia-Luise", "Fatima", "Gerda Maria", "Hannah", "Ismail", "Johanna"),
   age = sample(19:26, size = N, replace = T),
   grade = sample(c(1.0, 1.3, 1.7,
                    2.0, 2.3, 2.7,
@@ -32,16 +32,18 @@ students <- tibble(
 
 # 3. Save data in various types -------------------------------------------
 
-write_csv(students, "data/raw/students.csv")
-write_csv2(students, "data/raw/students_de.csv")
+file_path = "data/raw/students_data/students"
 
-write_rds(students, "data/raw/students.rds")
+write_csv(students, paste0(file_path, ".csv"))
+write_csv2(students, paste0(file_path, "_de.csv"))
 
-write.table(students, "students_tab.txt",
+write_rds(students, paste0(file_path, ".rds"))
+
+write.table(students, paste0(file_path, "_tab.txt"),
             sep = "\t",      # Tabulator
             row.names = FALSE, # keine Zeilennummern
             quote = FALSE)
-write.table(students, "students_tab.txt",
+write.table(students, paste0(file_path, "_space.txt"),
             sep = " ",      # Leerzeichen
             row.names = FALSE,
             quote = FALSE)
@@ -51,7 +53,7 @@ students %>%
     Names = names,
     "age in years" = age,
   ) %>%
-  write_xlsx(., "students.xlsx")
+  write_xlsx(., paste0(file_path, ".xlsx"))
 
-write_dta(students, "students.dta")
+write_dta(students, paste0(file_path, ".dta"))
 

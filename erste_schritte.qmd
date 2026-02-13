@@ -358,6 +358,26 @@ mean(students$age) # Durchschnittsalter der Studierenden
 nrow(students) # Anzahl der Zeilen im students dataframe
 ```
 
+### Entfernen von Objekten
+
+Objekte, die nicht mehr gebraucht werden, können mit `rm()` (`remove()`) wieder aus dem Environment gelöscht werden:
+
+```{r}
+rm(two_by_two)
+rm(numbers_int, numbers_greater7) # mehrere Objekte können gleichzeitig gelöscht werden
+```
+
+Um sämtliche Objekte auf einmal auf dem Environment zu löschen, können wir folgenden Befehl ausführen:
+
+```{r}
+#| eval: false
+rm(list = ls())
+```
+
+Die Funktion `ls()` gibt dabei die Namen aller im Environment gespeicherter Objekte wieder.
+
+
+
 ## Packages
 
 Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben. In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package `tidyverse` zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.

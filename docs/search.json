@@ -344,5 +344,27 @@
       "Grundlagen",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Best Practices</span>"
     ]
+  },
+  {
+    "objectID": "daten_import.html",
+    "href": "daten_import.html",
+    "title": "3  Daten importieren",
+    "section": "",
+    "text": "3.1 Datenformate\nBisher haben wir Objekte in R selbst erstellt. In diesem Abschnitt lernen wir, wie man Datensätze in R importiert. Dazu erstellen wir zuerst in dem Ordner unseres R-Projects einen Datenordner und folgende Unterordner:\nAnschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den students_data Ordner, in dem wir entweder alle Dateien in diesem Github-Ordner manuell herunterladen, oder den folgenden Code in R ausführen:\nIn der Praxis begegnen dir verschiedene Datenformate, die mit unterschiedlichen Funktionen in R eingelesen werden. Tabelle 3.1 gibt einen Überblick über die gebräuchlichsten Formate.\nTabelle 3.1: Datensatzformate in der Praxis (Auswahl)\n\n\n\n\nDateiformat\nTypisch für\nPackage\nLesefunktion\n\n\n\ncsv\nAllgemein\nreadr (tidyverse)\nread_csv()\n\n\nrds\nR\nreadr (tidyverse)\nread_rds()\n\n\ntxt\nAllgemein\nreadr (tidyverse)\nread_delim()\n\n\nxlsx\nMS Office\nreadxl\nread_excel()\n\n\ndta\nStata\nhaven\nread_dta()",
+    "crumbs": [
+      "Datenaufbereitung",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Daten importieren</span>"
+    ]
+  },
+  {
+    "objectID": "daten_import.html#daten-einlesen",
+    "href": "daten_import.html#daten-einlesen",
+    "title": "3  Daten importieren",
+    "section": "\n3.2 Daten einlesen",
+    "text": "3.2 Daten einlesen\n\n3.2.1 CSV-Dateien\nDas CSV-Format (Comma-Separated Values) speichert tabellarische Daten als Text, wobei jede Zeile eine Beobachtung und jede Spalte einen Wert enthält, getrennt durch Kommata oder andere Trennzeichen. Beim Import in R müssen wir auf das korrekte Trennzeichen achten, damit die Zahlen korrekt eingelesen werden.\nCSV-Dateien können mit der Funktion read_csv() aus dem tidyverse/readr Package eingelesen werden:\n\nstudents &lt;- read_csv(\"data/raw/students_data/students.csv\")\nstudents\n#&gt; # A tibble: 10 × 3\n#&gt;   names     age grade\n#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1 Anna       25   2  \n#&gt; 2 Ben        25   2.7\n#&gt; 3 Clara      21   3.7\n#&gt; 4 Dimitri    24   4  \n#&gt; 5 Emilia     21   5  \n#&gt; 6 Fatima     20   2.3\n#&gt; # ℹ 4 more rows\n\nInternational werden die einzelnen Spalten mit einem Komma (,) getrennt. Dies ist auch das Default-Trennzeichen bei read_csv(). Da in der deutschen Sprache dieses als Zeichen für Dezimalstellen verwendet wird, wird hier das Semikolon/der Strichpunkt (;) als Trennzeichen verwendet. Verwenden wir das falsche Trennzeichen beim Einlesen von CSV-Dateien mit diesem Trennzeichen, werden die Daten falsch eingelesen:\n\nread_csv(\"data/raw/students_data/students_de.csv\")\n#&gt; # A tibble: 10 × 1\n#&gt;   `names;age;grade`\n#&gt;   &lt;chr&gt;            \n#&gt; 1 Anna;25;2,0      \n#&gt; 2 Ben;25;2,7       \n#&gt; 3 Clara;21;3,7     \n#&gt; 4 Dimitri;24;4,0   \n#&gt; 5 Emilia;21;5,0    \n#&gt; 6 Fatima;20;2,3    \n#&gt; # ℹ 4 more rows\n\nStattdessen müssen wir bei einer solchen Encodierung read_csv2() verwenden:\n\nread_csv2(\"data/raw/students_data/students_de.csv\")\n#&gt; # A tibble: 10 × 3\n#&gt;   names     age grade\n#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1 Anna       25   2  \n#&gt; 2 Ben        25   2.7\n#&gt; 3 Clara      21   3.7\n#&gt; 4 Dimitri    24   4  \n#&gt; 5 Emilia     21   5  \n#&gt; 6 Fatima     20   2.3\n#&gt; # ℹ 4 more rows\n\n\n\n\n\n\n\nWarnungHäufige Probleme mit CSV-Dateien\n\n\n\n\n\nTrennzeichen: read_csv(\"datei.csv\") bei , als Trennzeichen, read_csv2(\"datei.csv\") bei ;\n\n\nEncoding: Bei Problemen mit Sonderzeichen muss das Encoding spezifiziert werden, etwa read_csv(\"datei.csv\", locale = locale(encoding = \"latin1\"))\n\n\nDezimaltrennzeichen: Ebenfalls über das locale Argument,locale = locale(decimal_mark = \",\")\n\n\nFalsche Spaltentypen: Mit col_types spezifizieren\n\n\n\n\n3.2.2 RDS-Dateien\nRDS ist ein R-spezifisches Format, das ein einzelnes R-Objekt speichert. RDS speichert Objekte in nativer R-Struktur, inklusive Datentypen, Faktoren, Datum/Zeit und sogar komplexer Objekte wie Modelle, wodurch beim Einlesen keine Umwandlungen nötig sind. RDS-Dateien sind oft kleiner und schneller zu lesen als Textdateien, da keine Konvertierung von und zu Text nötig ist.\nWir können RDS-Dateien mit read_rds() einlesen:\n\nstudents &lt;- read_rds(\"data/raw/students_data/students.rds\")\n\n\n\n\n\n\n\nHinweisRData-Format\n\n\n\nEin weiteres R-spezifisches Format ist RData. RData kann mehrere Objekte speichern:\n\nnumbers &lt;- 6:10\nnames &lt;- c(\"Anna\", \"Ben\", \"Clara\")\nsave(numbers, names, file = \"data/raw/students_data/multidata.RData\")\nrm(numbers, names)\n\nMit load() werden alle in dieser Datei abgespeicherten R-Objekte importiert:\n\nload(\"data/raw/students_data/multidata.RData\")\n\n\n\n\n3.2.3 Text-Dateien\n\n3.2.4 Excel-Dateien\n\n3.2.5 Stata-Dateien",
+    "crumbs": [
+      "Datenaufbereitung",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Daten importieren</span>"
+    ]
   }
 ]

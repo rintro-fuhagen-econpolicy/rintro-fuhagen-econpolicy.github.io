@@ -18,6 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -65,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Abschicken",
     "search-label": "Suchen"
   }
-}</script>
+}</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="nav-sidebar docked quarto-light">
 
@@ -263,8 +298,22 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li><a href="#datenformate" id="toc-datenformate" class="nav-link active" data-scroll-target="#datenformate"><span class="header-section-number">3.1</span> Datenformate</a></li>
+  <li>
+<a href="#daten-einlesen" id="toc-daten-einlesen" class="nav-link" data-scroll-target="#daten-einlesen"><span class="header-section-number">3.2</span> Daten einlesen</a>
+  <ul class="collapse">
+<li><a href="#csv-dateien" id="toc-csv-dateien" class="nav-link" data-scroll-target="#csv-dateien"><span class="header-section-number">3.2.1</span> CSV-Dateien</a></li>
+  <li><a href="#rds-dateien" id="toc-rds-dateien" class="nav-link" data-scroll-target="#rds-dateien"><span class="header-section-number">3.2.2</span> RDS-Dateien</a></li>
+  <li><a href="#text-dateien" id="toc-text-dateien" class="nav-link" data-scroll-target="#text-dateien"><span class="header-section-number">3.2.3</span> Text-Dateien</a></li>
+  <li><a href="#excel-dateien" id="toc-excel-dateien" class="nav-link" data-scroll-target="#excel-dateien"><span class="header-section-number">3.2.4</span> Excel-Dateien</a></li>
+  <li><a href="#stata-dateien" id="toc-stata-dateien" class="nav-link" data-scroll-target="#stata-dateien"><span class="header-section-number">3.2.5</span> Stata-Dateien</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./daten_import.html">Datenaufbereitung</a></li><li class="breadcrumb-item"><a href="./daten_import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></a></li></ol></nav><div class="quarto-title">
@@ -282,10 +331,190 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Bisher haben wir Objekte in R selbst erstellt. In diesem Abschnitt lernen wir, wie man Datensätze in R importiert. Dazu erstellen wir zuerst in dem Ordner unseres R-Projects einen Datenordner und folgende Unterordner:</p>
+<pre><code>r_intro/
+├── data/
+│   ├── raw/           # Originaldaten
+│       └── students_data/     # Ordner für Github-Datensätze
+│   └── processed/     # Bearbeitete Daten</code></pre>
+<p>Anschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den <code>students_data</code> Ordner, in dem wir entweder alle Dateien in diesem <a href="https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/tree/main/data/raw">Github-Ordner</a> manuell herunterladen, oder den folgenden Code in R ausführen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repo_url</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/archive/refs/heads/main.zip"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="va">repo_url</span>, destfile <span class="op">=</span> <span class="st">"repo.zip"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/unzip.html">unzip</a></span><span class="op">(</span><span class="st">"repo.zip"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.copy</a></span><span class="op">(</span><span class="st">"rintro-fuhagen-econpolicy.github.io-main/data/raw"</span>, </span>
+<span>          <span class="st">"data/raw"</span>, </span>
+<span>          recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"repo.zip"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"rintro-fuhagen-econpolicy.github.io-main"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">repo_url</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="datenformate" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="datenformate">
+<span class="header-section-number">3.1</span> Datenformate</h2>
+<p>In der Praxis begegnen dir verschiedene Datenformate, die mit unterschiedlichen Funktionen in R eingelesen werden. <a href="#tbl-data-formats" class="quarto-xref">Tabelle&nbsp;<span>3.1</span></a> gibt einen Überblick über die gebräuchlichsten Formate.</p>
+<div class="cell">
+<div id="tbl-data-formats" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
+</figcaption><div aria-describedby="tbl-data-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped do-not-create-environment cell caption-top table-sm small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dateiformat</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Typisch für</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Package</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Lesefunktion</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">csv</td>
+<td style="text-align: left;">Allgemein</td>
+<td style="text-align: left;">readr (tidyverse)</td>
+<td style="text-align: left;">read_csv()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rds</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">readr (tidyverse)</td>
+<td style="text-align: left;">read_rds()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">txt</td>
+<td style="text-align: left;">Allgemein</td>
+<td style="text-align: left;">readr (tidyverse)</td>
+<td style="text-align: left;">read_delim()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xlsx</td>
+<td style="text-align: left;">MS Office</td>
+<td style="text-align: left;">readxl</td>
+<td style="text-align: left;">read_excel()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dta</td>
+<td style="text-align: left;">Stata</td>
+<td style="text-align: left;">haven</td>
+<td style="text-align: left;">read_dta()</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section><section id="daten-einlesen" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="daten-einlesen">
+<span class="header-section-number">3.2</span> Daten einlesen</h2>
+<section id="csv-dateien" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="csv-dateien">
+<span class="header-section-number">3.2.1</span> CSV-Dateien</h3>
+<p>Das CSV-Format (Comma-Separated Values) speichert tabellarische Daten als Text, wobei jede Zeile eine Beobachtung und jede Spalte einen Wert enthält, getrennt durch Kommata oder andere Trennzeichen. Beim Import in R müssen wir auf das korrekte Trennzeichen achten, damit die Zahlen korrekt eingelesen werden.</p>
+<p>CSV-Dateien können mit der Funktion <code>read_csv()</code> aus dem <code>tidyverse</code>/<code>readr</code> Package eingelesen werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">students</span> <span class="op">&lt;-</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/raw/students_data/students.csv"</span><span class="op">)</span></span>
+<span><span class="va">students</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 3</span></span>
+<span><span class="co">#&gt;   names     age grade</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Anna       25   2  </span></span>
+<span><span class="co">#&gt; 2 Ben        25   2.7</span></span>
+<span><span class="co">#&gt; 3 Clara      21   3.7</span></span>
+<span><span class="co">#&gt; 4 Dimitri    24   4  </span></span>
+<span><span class="co">#&gt; 5 Emilia     21   5  </span></span>
+<span><span class="co">#&gt; 6 Fatima     20   2.3</span></span>
+<span><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>International werden die einzelnen Spalten mit einem Komma (,) getrennt. Dies ist auch das Default-Trennzeichen bei <code>read_csv()</code>. Da in der deutschen Sprache dieses als Zeichen für Dezimalstellen verwendet wird, wird hier das Semikolon/der Strichpunkt (;) als Trennzeichen verwendet. Verwenden wir das falsche Trennzeichen beim Einlesen von CSV-Dateien mit diesem Trennzeichen, werden die Daten falsch eingelesen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv</span><span class="op">(</span><span class="st">"data/raw/students_data/students_de.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 1</span></span>
+<span><span class="co">#&gt;   `names;age;grade`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;            </span></span>
+<span><span class="co">#&gt; 1 Anna;25;2,0      </span></span>
+<span><span class="co">#&gt; 2 Ben;25;2,7       </span></span>
+<span><span class="co">#&gt; 3 Clara;21;3,7     </span></span>
+<span><span class="co">#&gt; 4 Dimitri;24;4,0   </span></span>
+<span><span class="co">#&gt; 5 Emilia;21;5,0    </span></span>
+<span><span class="co">#&gt; 6 Fatima;20;2,3    </span></span>
+<span><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Stattdessen müssen wir bei einer solchen Encodierung <code>read_csv2()</code> verwenden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">read_csv2</span><span class="op">(</span><span class="st">"data/raw/students_data/students_de.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 3</span></span>
+<span><span class="co">#&gt;   names     age grade</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Anna       25   2  </span></span>
+<span><span class="co">#&gt; 2 Ben        25   2.7</span></span>
+<span><span class="co">#&gt; 3 Clara      21   3.7</span></span>
+<span><span class="co">#&gt; 4 Dimitri    24   4  </span></span>
+<span><span class="co">#&gt; 5 Emilia     21   5  </span></span>
+<span><span class="co">#&gt; 6 Fatima     20   2.3</span></span>
+<span><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Häufige Probleme mit CSV-Dateien
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>
+<em>Trennzeichen</em>: <code>read_csv("datei.csv")</code> bei <code>,</code> als Trennzeichen, <code>read_csv2("datei.csv")</code> bei <code>;</code>
+</li>
+<li>
+<em>Encoding</em>: Bei Problemen mit Sonderzeichen muss das Encoding spezifiziert werden, etwa <code>read_csv("datei.csv", locale = locale(encoding = "latin1"))</code>
+</li>
+<li>
+<em>Dezimaltrennzeichen</em>: Ebenfalls über das <code>locale</code> Argument,<code>locale = locale(decimal_mark = ",")</code>
+</li>
+<li>
+<em>Falsche Spaltentypen</em>: Mit <code>col_types</code> spezifizieren</li>
+</ul>
+</div>
+</div>
+</section><section id="rds-dateien" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="rds-dateien">
+<span class="header-section-number">3.2.2</span> RDS-Dateien</h3>
+<p>RDS ist ein R-spezifisches Format, das ein einzelnes R-Objekt speichert. RDS speichert Objekte in nativer R-Struktur, inklusive Datentypen, Faktoren, Datum/Zeit und sogar komplexer Objekte wie Modelle, wodurch beim Einlesen keine Umwandlungen nötig sind. RDS-Dateien sind oft kleiner und schneller zu lesen als Textdateien, da keine Konvertierung von und zu Text nötig ist.</p>
+<p>Wir können RDS-Dateien mit <code>read_rds()</code> einlesen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">students</span> <span class="op">&lt;-</span> <span class="fu">read_rds</span><span class="op">(</span><span class="st">"data/raw/students_data/students.rds"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>RData-Format
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ein weiteres R-spezifisches Format ist RData. RData kann mehrere Objekte speichern:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">numbers</span>, <span class="va">names</span>, file <span class="op">=</span> <span class="st">"data/raw/students_data/multidata.RData"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">numbers</span>, <span class="va">names</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Mit <code><a href="https://rdrr.io/r/base/load.html">load()</a></code> werden alle in dieser Datei abgespeicherten R-Objekte importiert:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/raw/students_data/multidata.RData"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section><section id="text-dateien" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="text-dateien">
+<span class="header-section-number">3.2.3</span> Text-Dateien</h3>
+</section><section id="excel-dateien" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="excel-dateien">
+<span class="header-section-number">3.2.4</span> Excel-Dateien</h3>
+</section><section id="stata-dateien" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="stata-dateien">
+<span class="header-section-number">3.2.5</span> Stata-Dateien</h3>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
