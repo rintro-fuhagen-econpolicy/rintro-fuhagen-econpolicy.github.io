@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andreas Fischeneder">
 
-<title>Einführung in R</title>
+<title>2&nbsp; Best Practices – Einführung in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./erste_schritte.html" rel="next">
+<link href="./erste_schritte.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Willkommen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./erste_schritte.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./best_practices.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Best Practices</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Willkommen</span></a>
   </div>
 </li>
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./best_practices.html" class="sidebar-item-text sidebar-link">
+  <a href="./best_practices.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Best Practices</span></span></a>
   </div>
 </li>
@@ -147,17 +147,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#willkommen" id="toc-willkommen" class="nav-link active" data-scroll-target="#willkommen">Willkommen</a></li>
+  <li><a href="#r-scripts" id="toc-r-scripts" class="nav-link active" data-scroll-target="#r-scripts"><span class="header-section-number">2.1</span> R-Scripts</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./erste_schritte.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./best_practices.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Best Practices</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Einführung in R</h1>
-<p class="subtitle lead">Lehrstuhl für VWL, insb. Wirtschaftspolitik, Fernuniversität in Hagen</p>
+<h1 class="title"><span id="sec-best-practices" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Best Practices</span></span></h1>
 </div>
 
 
@@ -174,57 +173,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="willkommen" class="level1 unnumbered">
-<h1 class="unnumbered">Willkommen</h1>
-<p>Willkommen zum Kurs <strong>Einführung in R</strong>! Dieser Kurs bietet eine praxisorientierte Einführung in die Programmiersprache R mit Fokus auf Datenanalyse und Statistik. Wir werden lernen, wie man:</p>
-<ul>
-<li>R installiert und nutzt</li>
-<li>Daten lädt, bereinigt und aufbereitet</li>
-<li>Daten visualisiert und zusammenfasst</li>
-<li>Statistische Analysen durchführt</li>
-<li>Ergebnisse exportiert</li>
-<li>Eigene Funktionen schreibt und Workflows automatisiert</li>
-</ul>
-<section id="aufbau-des-kurses" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="aufbau-des-kurses">Aufbau des Kurses</h2>
-<p>Der Kurs ist in folgende Teile gegliedert:</p>
-<ul>
-<li><strong>Grundlagen</strong>: Installation, erste Schritte, Best Practices</li>
-<li><strong>Datenaufbereitung</strong>: Daten importieren, aufbereiten und exportieren</li>
-<li><strong>Visualisierung</strong>: Grafiken erstellen</li>
-<li><strong>Statistik in R</strong>: Deskriptive Statistiken und Regressionsmodelle</li>
-<li><strong>Export von Ergebnissen</strong>: Export von Grafiken und Tabellen</li>
-<li><strong>Fortgeschrittene Themen</strong>: Loops, Funktionen und KI-Unterstützung</li>
-</ul>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Hinweis</span>Wichtig
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.</p>
-</div>
-</div>
-</section>
-<section id="kontakt-und-feedback" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="kontakt-und-feedback">Kontakt und Feedback</h2>
-<p>[Hier könnte dein Kontakt oder Feedback-Link stehen]</p>
-</section>
-<section id="weitere-literatur" class="level2 unlisted">
-<h2 class="unlisted anchored" data-anchor-id="weitere-literatur">Weitere Literatur</h2>
-<ul>
-<li><a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a> von Hadley Wickham et al.</li>
-<li>ggplot</li>
-<li>Statistik</li>
-<li>Causal Inf</li>
-</ul>
+<section id="r-scripts" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="r-scripts"><span class="header-section-number">2.1</span> R-Scripts</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -630,11 +582,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./erste_schritte.html" class="pagination-link" aria-label="Erste Schritte in R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./erste_schritte.html" class="pagination-link" aria-label="Erste Schritte in R">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
