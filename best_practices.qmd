@@ -148,6 +148,27 @@ Um ein R-Project für diesen Einführungskurs zu erstellen, führen wir die Schr
 knitr::include_graphics("images/rproject.png", dpi = 270)
 ```
 
+Das aktuell geöffnete R-Project wird oben rechts angezeigt (rosa markiert in @fig-rscript-interface). Um zwischen R-Projects zu wechseln, können wir auf diesen Button klicken und ein anderes Project auswählen.
+
+::: callout-note
+#### Abstellen der automatischen Workspace-Speicherung
+
+In den Default-Einstellungen speichert RStudio beim Beenden automatisch den aktuellen Workspace und lädt ihn beim nächsten Start wieder. Das hat den Vorteil, dass nicht gespeicherte Objekte weiterhin verfügbar sind und man scheinbar nahtlos weiterarbeiten kann.
+Diese Voreinstellung bringt jedoch auch Risiken mit sich. Zum einen besteht die Gefahr, sich auf die automatische Sicherung zu verlassen und Änderungen an Skripten oder Daten nicht bewusst und regelmäßig zu speichern. Zum anderen kann es – insbesondere bei der Arbeit mit mehreren R-Projects – leicht passieren, dass Analysen im falschen Projekt umzusetzen oder Objekte im falschen Umfeld zu speichern, da standardmäßig das zuletzt geöffnete Project erneut gestartet wird.
+Um diese Probleme zu vermeiden, empfiehlt es sich, die automatische Workspace-Speicherung zu deaktivieren. Die entsprechenden Einstellungen findest du in der Menüleiste unter `Tools` &rarr; `Global Options`, wo du die in @fig-rsettings-workspace markierten Optionen anpassen kannst.
+
+```{r}
+#| label: fig-rsettings-workspace
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   Abstellen der automatischen Workspace-Speicherung.
+#| fig-alt: |
+#|  Abstellen der automatischen Workspace-Speicherung in den RStudio-Optionen. Hervorgehoben sind die Workspace-Einstellungen. Der Haken bei der Start-Up Wiederherstellung des Workspace ist entfernt, die Einstellung zum Speichern des Workspace beim Schließen von RStudio auf never gestellt.
+knitr::include_graphics("images/workspace-setting.png", dpi = 270)
+```
+:::
+
 ## Ordnerstruktur, Namensgebung und Code-Style
 
 Eine gute Ordnerstruktur ist die Grundlage für organisierte Projekte. Nach der Erstellung deines R-Projects solltest du dich um Unterordner für Daten, Scripts und Output kümmern. Deine finale Ordnerstruktur könnte etwa so aussehen:
