@@ -323,9 +323,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#csv-dateien" id="toc-csv-dateien" class="nav-link" data-scroll-target="#csv-dateien"><span class="header-section-number">3.2.1</span> CSV-Dateien</a></li>
   <li><a href="#rds-dateien" id="toc-rds-dateien" class="nav-link" data-scroll-target="#rds-dateien"><span class="header-section-number">3.2.2</span> RDS-Dateien</a></li>
-  <li><a href="#text-dateien" id="toc-text-dateien" class="nav-link" data-scroll-target="#text-dateien"><span class="header-section-number">3.2.3</span> Text-Dateien</a></li>
-  <li><a href="#excel-dateien" id="toc-excel-dateien" class="nav-link" data-scroll-target="#excel-dateien"><span class="header-section-number">3.2.4</span> Excel-Dateien</a></li>
-  <li><a href="#stata-dateien" id="toc-stata-dateien" class="nav-link" data-scroll-target="#stata-dateien"><span class="header-section-number">3.2.5</span> Stata-Dateien</a></li>
+  <li><a href="#excel-spreadsheets" id="toc-excel-spreadsheets" class="nav-link" data-scroll-target="#excel-spreadsheets"><span class="header-section-number">3.2.3</span> Excel-Spreadsheets</a></li>
+  <li><a href="#stata-datensätze" id="toc-stata-datensätze" class="nav-link" data-scroll-target="#stata-datensätze"><span class="header-section-number">3.2.4</span> Stata-Datensätze</a></li>
+  <li><a href="#weitere-dateiformate" id="toc-weitere-dateiformate" class="nav-link" data-scroll-target="#weitere-dateiformate"><span class="header-section-number">3.2.5</span> Weitere Dateiformate</a></li>
+  </ul></li>
+  <li><a href="#daten-ansehen" id="toc-daten-ansehen" class="nav-link" data-scroll-target="#daten-ansehen"><span class="header-section-number">3.3</span> Daten ansehen</a></li>
+  <li><a href="#daten-bereinigen" id="toc-daten-bereinigen" class="nav-link" data-scroll-target="#daten-bereinigen"><span class="header-section-number">3.4</span> Daten bereinigen</a>
+  <ul class="collapse">
+  <li><a href="#dateinamen" id="toc-dateinamen" class="nav-link" data-scroll-target="#dateinamen"><span class="header-section-number">3.4.1</span> Dateinamen</a></li>
+  <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen"><span class="header-section-number">3.4.2</span> Datentypen</a></li>
+  <li><a href="#fehlende-werte" id="toc-fehlende-werte" class="nav-link" data-scroll-target="#fehlende-werte"><span class="header-section-number">3.4.3</span> Fehlende Werte</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -352,18 +359,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Bisher haben wir Objekte in R selbst erstellt. In diesem Abschnitt lernen wir, wie man Datensätze in R importiert. Dazu erstellen wir zuerst in dem Ordner unseres R-Projects einen Datenordner und folgende Unterordner:</p>
+<p>Bisher haben wir Objekte in R selbst erstellt oder in R Packages enthaltene Datensätze verwendet. In diesem Abschnitt lernen wir, wie man Datensätze in R importiert. Dazu erstellen wir zuerst in dem Ordner unseres R-Projects einen Datenordner und folgende Unterordner:</p>
 <pre><code>r_intro/
 ├── data/
 │   ├── raw/           # Originaldaten
-│       └── students_data/     # Ordner für Github-Datensätze
 │   └── processed/     # Bearbeitete Daten</code></pre>
-<p>Anschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den <code>students_data</code> Ordner, in dem wir entweder alle Dateien in diesem <a href="https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/tree/main/data/raw">Github-Ordner</a> manuell herunterladen, oder den folgenden Code in R ausführen:</p>
+<p>Anschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den <code>raw</code> Ordner, in dem wir entweder alle Dateien in diesem <a href="https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/tree/main/data/raw/earnings_data">Github-Ordner</a> manuell herunterladen, oder den folgenden Code in R ausführen:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>repo_url <span class="ot">&lt;-</span> <span class="st">"https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/archive/refs/heads/main.zip"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(repo_url, <span class="at">destfile =</span> <span class="st">"repo.zip"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span>(<span class="st">"repo.zip"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="st">"rintro-fuhagen-econpolicy.github.io-main/data/raw"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="st">"rintro-fuhagen-econpolicy.github.io-main/data/raw/earnings_data"</span>, </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">"data/raw"</span>, </span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">"repo.zip"</span>)</span>
@@ -436,45 +442,45 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 <p>Das CSV-Format (Comma-Separated Values) speichert tabellarische Daten als Text, wobei jede Zeile eine Beobachtung und jede Spalte einen Wert enthält, getrennt durch Kommata oder andere Trennzeichen. Beim Import in R müssen wir auf das korrekte Trennzeichen achten, damit die Zahlen korrekt eingelesen werden.</p>
 <p>CSV-Dateien können mit der Funktion <code>read_csv()</code> aus dem <code>tidyverse</code>/<code>readr</code> Package eingelesen werden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/students_data/students.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>students</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   names          age grade</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna            25   2  </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben             25   2.7</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara           21   3.7</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri         24   4  </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise    21   5  </span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima          20   2.3</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/earnings_data/earnings.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>earnings</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>International werden die einzelnen Spalten mit einem Komma (,) getrennt. Dies ist auch das Default-Trennzeichen bei <code>read_csv()</code>. Da in der deutschen Sprache dieses als Zeichen für Dezimalstellen verwendet wird, wird hier das Semikolon/der Strichpunkt (;) als Trennzeichen verwendet. Verwenden wir das falsche Trennzeichen beim Einlesen von CSV-Dateien mit diesem Trennzeichen, werden die Daten falsch eingelesen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/raw/students_data/students_de.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/raw/earnings_data/earnings_de.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `names;age;grade`  </span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;              </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna;25;2,0        </span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben;25;2,7         </span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara;21;3,7       </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri;24;4,0     </span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise;21;5,0</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima;20;2,3      </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `Names;age.in.years;Nationalität;incEur`</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                                   </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria;33;DE;1689                   </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben;NA;N/A;875                          </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara;21;International;2000€            </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri;28;EU;2299                      </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise;29;DE;2522                 </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima;23;DE;1060                       </span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Stattdessen müssen wir bei einer solchen Encodierung <code>read_csv2()</code> verwenden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(<span class="st">"data/raw/students_data/students_de.csv"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   names          age grade</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna            25   2  </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben             25   2.7</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara           21   3.7</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri         24   4  </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise    21   5  </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima          20   2.3</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(<span class="st">"data/raw/earnings_data/earnings_de.csv"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-warning callout-titled">
@@ -501,7 +507,7 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 <p>RDS ist ein R-spezifisches Format, das ein einzelnes R-Objekt speichert. RDS speichert Objekte in nativer R-Struktur, inklusive Datentypen, Faktoren, Datum/Zeit und sogar komplexer Objekte wie Modelle, wodurch beim Einlesen keine Umwandlungen nötig sind. RDS-Dateien sind oft kleiner und schneller zu lesen als Textdateien, da keine Konvertierung von und zu Text nötig ist.</p>
 <p>Wir können RDS-Dateien mit <code>read_rds()</code> einlesen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data/raw/students_data/students.rds"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"data/raw/earnings_data/earnings.rds"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -517,25 +523,149 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(numbers, names, <span class="at">file =</span> <span class="st">"data/raw/students_data/multidata.RData"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(numbers, names, <span class="at">file =</span> <span class="st">"data/raw/earnings_data/multidata.RData"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(numbers, names)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Mit <code>load()</code> werden alle in dieser Datei abgespeicherten R-Objekte importiert:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/raw/students_data/multidata.RData"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/raw/earnings_data/multidata.RData"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </section>
-<section id="text-dateien" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="text-dateien"><span class="header-section-number">3.2.3</span> Text-Dateien</h3>
-<p>TXT-Dateien speichern Daten als reinen Text und können sowohl einfache Listen als auch tabellarische Daten enthalten, meist zeilenweise getrennt. Beim Importen in R müssen wir vor allem auf das Trennzeichen achten. Der Import erfolgt über <code>read_delim()</code></p>
+<section id="excel-spreadsheets" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="excel-spreadsheets"><span class="header-section-number">3.2.3</span> Excel-Spreadsheets</h3>
+<p>Um Excel-Spreadsheets einzulesen benötigt man in R ein zusätzliches Package (<code>readxl</code>). Mit der Funktion <code>read_excel()</code> können sowohl <code>.xlsx</code> als auch <code>.xls</code> Dateien eingeladen werden.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/raw/earnings_data/earnings.xlsx"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Per Default importiert diese Funktion immer den Datensatz aus dem ersten Tabellenblatt. Mit dem Argument <code>sheet = ...</code> können wir das Tabellenblatt wählen. Möglich ist sowohl, die Nummer des Tabellenblatts als Zahl anzugeben, als auch den Namen des Tabellenblatts in Anführungszeichen anzugeben. Mit dem Argument <code>range = ...</code> können wir außerdem den Bereich des Tabellenblatts angeben, den wir einlesen wollen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/raw/earnings_data/earnings.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>, <span class="at">range =</span> <span class="st">"A1:C3"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names      age.in.years Nationalität</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;       </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria           33 DE          </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                  NA N/A</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um einen Überblick über die Tabellenblätter eines Spreadsheets zu bekommen, ist die Funktion <code>excel_sheets()</code> im <code>readxl</code> Package hilfreich:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"data/raw/earnings_data/earnings.xlsx"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Sheet1"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="excel-dateien" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="excel-dateien"><span class="header-section-number">3.2.4</span> Excel-Dateien</h3>
+<section id="stata-datensätze" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="stata-datensätze"><span class="header-section-number">3.2.4</span> Stata-Datensätze</h3>
+<p>Stata ist eine alternative Statistiksoftware, die in den Wirtschaftswissenschaften immer noch häufig verwendet wird. Für das Speichern von Datensätzen verwendet Stata das <code>.dta</code>-Format. Dieses speichert sowohl die Daten als auch Variablen- und Wertelabels, sodass beim Einlesen in R oder Stata die Struktur, Kategorien und Labels erhalten bleiben.</p>
+<p>Für das Einlesen von Stata-Datensätzen verwenden wir das <code>haven</code> Package und die Funktion ``:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_dta</span>(<span class="st">"data/raw/earnings_data/earnings.dta"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   names          age nationality        income</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl+lbl&gt;           &lt;dbl&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria      33  1 [DE]              1689</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben             NA NA                    875</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara           21  3 [International]   2000</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri         28  2 [EU]              2299</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise    29  1 [DE]              2522</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima          23  1 [DE]              1060</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In Stata werden Faktorvariablen wie in diesem Fall <code>nationality</code> numerisch abgespeichert und mit Labels versehen. Um diese in R miteinzulesen, können wir <code>haven::as_factor</code> verwenden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_dta</span>(<span class="st">"data/raw/earnings_data/earnings.dta"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nationality =</span> <span class="fu">as_factor</span>(nationality))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   names          age nationality   income</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria      33 DE              1689</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben             NA &lt;NA&gt;             875</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara           21 International   2000</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri         28 EU              2299</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise    29 DE              2522</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima          23 DE              1060</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Automatisiertes Faktor-Einlesen bei dta
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Damit wir nicht bei jeder Variable im Datensatz überprüfen müssen, ob es sich um eine Label-Variable handelt, können wir auch folgenden Code verwenden, der über alle Variable (<code>across(.)</code>) die Funktion <code>as_factor()</code> anwendet, falls es sich dabei um eine Label-Variable handelt (<code>where(is.labelled)</code>):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_dta</span>(<span class="st">"data/raw/earnings_data/earnings.dta"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.labelled), as_factor))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </section>
-<section id="stata-dateien" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="stata-dateien"><span class="header-section-number">3.2.5</span> Stata-Dateien</h3>
+<section id="weitere-dateiformate" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="weitere-dateiformate"><span class="header-section-number">3.2.5</span> Weitere Dateiformate</h3>
+<p>Die Funktion <code>read_delim()</code> kann in R verwendet werden, um Datensätze mit beliebigem Trennzeichen einzulesen. Sie versucht dabei, das Trennzeichen automatisch zu erkennen. Wir können damit etwa eine Textdatei (.txt) einlesen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="st">"data/raw/earnings_data/earnings_tab.txt"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Bei diesem Text-File wird der Tabulator als Trennzeichen verwendet und von R auch korrekt beim Einlesen erkannt. Wir können das Trennzeichen aber auch explizit über das <code>delim = value</code>-Argument spezifizieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="st">"data/raw/earnings_data/earnings_tab.txt"</span>, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Bei TXT-Dateien oder anderen allgemeinen Datensätzen kann es jedoch immer wieder zu Problemen kommen, wenn das Trennzeichen auch innerhalb einer Variable verwendet wird. Wurde zum Beispiel ein Datensatz als TXT-Datei mit Leerzeichen als Trennzeichen abgespeichert, so führt dies beim Einlesen zu folgendem Problem:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="st">"data/raw/earnings_data/earnings_space.txt"</span>, <span class="at">delim =</span> <span class="st">" "</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;  </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna         Maria        33            DE 1689</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben          &lt;NA&gt;         N/A           875    </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara        21           International 2000€  </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri      28           EU            2299   </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise 29           DE            2522   </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima       23           DE            1060   </span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Da die erste Beobachtung der Namensvariable (<em>Anna Maria</em>) ein Leerzeichen enthält, werden hier die Werte in die nächsten Spalten verschoben. Daher ist es ratsam beim Exportieren von eigenen Datensätzen auf Formate zurückzugreifen, die von R problemlos richtig gelesen werden (etwa RDS oder CSV).</p>
+</section>
+</section>
+<section id="daten-ansehen" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="daten-ansehen"><span class="header-section-number">3.3</span> Daten ansehen</h2>
+</section>
+<section id="daten-bereinigen" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="daten-bereinigen"><span class="header-section-number">3.4</span> Daten bereinigen</h2>
+<section id="dateinamen" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="dateinamen"><span class="header-section-number">3.4.1</span> Dateinamen</h3>
+</section>
+<section id="datentypen" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="datentypen"><span class="header-section-number">3.4.2</span> Datentypen</h3>
+</section>
+<section id="fehlende-werte" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="fehlende-werte"><span class="header-section-number">3.4.3</span> Fehlende Werte</h3>
 
 
 </section>

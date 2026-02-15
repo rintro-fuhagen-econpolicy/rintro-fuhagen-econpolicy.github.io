@@ -355,10 +355,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Um ein R-Script zu öffnen, klicke auf den <em>New File Button</em> oben links in RStudio (rot hervorgehoben in <a href="#fig-rscript-interface" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a>). Dadurch öffnet sich ein zusätzliches Panel im Interface (gelb markiert). Wir können nun unseren Code in diesem Text-Editor schreiben, kommentieren und ausführen. Nachdem wir das R-Script speichern, können wir zu einem späteren Zeitpunkt unseren Code leicht reproduzieren und fortsetzen.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-rscript-interface" class="quarto-float quarto-figure quarto-figure-center anchored" alt="RStudio Interface mit Highlights auf New File Button und R-Script Panel.">
+<div id="fig-rscript-interface" class="quarto-float quarto-figure quarto-figure-center anchored" alt="RStudio Interface mit Highlights auf New File und New Project Button, R-Script Panel, Drop-Down Menü für R-Script Sections und Drop-Down-Menü für aktuelles R-Project.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rscript-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/rscript_interface.png" class="img-fluid figure-img" alt="RStudio Interface mit Highlights auf New File Button und R-Script Panel.">
+<img src="images/rscript_interface.png" class="img-fluid figure-img" alt="RStudio Interface mit Highlights auf New File und New Project Button, R-Script Panel, Drop-Down Menü für R-Script Sections und Drop-Down-Menü für aktuelles R-Project.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rscript-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.1: RStudio Interface mit R-Script.
@@ -489,7 +489,7 @@ Abbildung&nbsp;2.2: Erstellung eines neuen R-Projects.
 </div>
 </div>
 </div>
-<p>Das aktuell geöffnete R-Project wird oben rechts angezeigt (rosa markiert in <a href="#fig-rscript-interface" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a>). Um zwischen R-Projects zu wechseln, können wir auf diesen Button klicken und ein anderes Project auswählen.</p>
+<p>Das aktuell geöffnete R-Project wird im Interface oben rechts über dem Environment-Panel angezeigt (rosa markiert in <a href="#fig-rscript-interface" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a>). Um zwischen R-Projects zu wechseln, können wir auf diesen Button klicken und ein anderes Project auswählen.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -500,7 +500,9 @@ Abbildung&nbsp;2.2: Erstellung eines neuen R-Projects.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In den Default-Einstellungen speichert RStudio beim Beenden automatisch den aktuellen Workspace und lädt ihn beim nächsten Start wieder. Das hat den Vorteil, dass nicht gespeicherte Objekte weiterhin verfügbar sind und man scheinbar nahtlos weiterarbeiten kann. Diese Voreinstellung bringt jedoch auch Risiken mit sich. Zum einen besteht die Gefahr, sich auf die automatische Sicherung zu verlassen und Änderungen an Skripten oder Daten nicht bewusst und regelmäßig zu speichern. Zum anderen kann es – insbesondere bei der Arbeit mit mehreren R-Projects – leicht passieren, dass Analysen im falschen Projekt umzusetzen oder Objekte im falschen Umfeld zu speichern, da standardmäßig das zuletzt geöffnete Project erneut gestartet wird. Um diese Probleme zu vermeiden, empfiehlt es sich, die automatische Workspace-Speicherung zu deaktivieren. Die entsprechenden Einstellungen findest du in der Menüleiste unter <code>Tools</code> → <code>Global Options</code>, wo du die in <a href="#fig-rsettings-workspace" class="quarto-xref">Abbildung&nbsp;<span>2.3</span></a> markierten Optionen anpassen kannst.</p>
+<p>In den Default-Einstellungen speichert RStudio beim Beenden automatisch den aktuellen Workspace und lädt ihn beim nächsten Start wieder. Das hat den Vorteil, dass nicht gespeicherte Objekte weiterhin verfügbar sind und man scheinbar nahtlos weiterarbeiten kann.</p>
+<p>Diese Voreinstellung bringt jedoch auch Risiken mit sich. Zum einen besteht die Gefahr, sich auf die automatische Sicherung zu verlassen und Änderungen an Skripten oder Daten nicht bewusst und regelmäßig zu speichern. Zum anderen kann es – insbesondere bei der Arbeit mit mehreren R-Projects – leicht passieren, dass Analysen im falschen Projekt umzusetzen oder Objekte im falschen Umfeld zu speichern, da standardmäßig das zuletzt geöffnete Project erneut gestartet wird.</p>
+<p>Um diese Probleme zu vermeiden, empfiehlt es sich, die automatische Workspace-Speicherung zu deaktivieren. Die entsprechenden Einstellungen findest du in der Menüleiste unter <code>Tools</code> → <code>Global Options</code>, wo du die in <a href="#fig-rsettings-workspace" class="quarto-xref">Abbildung&nbsp;<span>2.3</span></a> markierten Optionen anpassen kannst.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rsettings-workspace" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Abstellen der automatischen Workspace-Speicherung in den RStudio-Optionen. Hervorgehoben sind die Workspace-Einstellungen. Der Haken bei der Start-Up Wiederherstellung des Workspace ist entfernt, die Einstellung zum Speichern des Workspace beim Schließen von RStudio auf never gestellt.">
