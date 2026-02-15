@@ -8,24 +8,23 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-Bisher haben wir Objekte in R selbst erstellt. In diesem Abschnitt lernen wir, wie man Datensätze in R importiert. Dazu erstellen wir zuerst in dem Ordner unseres R-Projects einen Datenordner und folgende Unterordner:
+Bisher haben wir Objekte in R selbst erstellt oder in R Packages enthaltene Datensätze verwendet. In diesem Abschnitt lernen wir, wie man Datensätze in R importiert. Dazu erstellen wir zuerst in dem Ordner unseres R-Projects einen Datenordner und folgende Unterordner:
 
 ```
 r_intro/
 ├── data/
 │   ├── raw/           # Originaldaten
-│       └── students_data/     # Ordner für Github-Datensätze
 │   └── processed/     # Bearbeitete Daten
 ```
 
-Anschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den `students_data` Ordner, in dem wir entweder alle Dateien in diesem [Github-Ordner](https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/tree/main/data/raw) manuell herunterladen, oder den folgenden Code in R ausführen:
+Anschließend laden wir ein Set an unterschiedlichen Datensatz-Arten aus dem Github-Ordner des Kurses in den `raw` Ordner, in dem wir entweder alle Dateien in diesem [Github-Ordner](https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/tree/main/data/raw/earnings_data) manuell herunterladen, oder den folgenden Code in R ausführen:
 
 ```{r}
 #| eval: false
 repo_url <- "https://github.com/rintro-fuhagen-econpolicy/rintro-fuhagen-econpolicy.github.io/archive/refs/heads/main.zip"
 download.file(repo_url, destfile = "repo.zip")
 unzip("repo.zip")
-file.copy("rintro-fuhagen-econpolicy.github.io-main/data/raw", 
+file.copy("rintro-fuhagen-econpolicy.github.io-main/data/raw/earnings_data", 
           "data/raw", 
           recursive = TRUE)
 unlink("repo.zip")
@@ -66,20 +65,20 @@ Das CSV-Format (Comma-Separated Values) speichert tabellarische Daten als Text, 
 CSV-Dateien können mit der Funktion `read_csv()` aus dem `tidyverse`/`readr` Package eingelesen werden:
 
 ```{r}
-students <- read_csv("data/raw/students_data/students.csv")
-students
+earnings <- read_csv("data/raw/earnings_data/earnings.csv")
+earnings
 ```
 
 International werden die einzelnen Spalten mit einem Komma (,) getrennt. Dies ist auch das Default-Trennzeichen bei `read_csv()`. Da in der deutschen Sprache dieses als Zeichen für Dezimalstellen verwendet wird, wird hier das Semikolon/der Strichpunkt (;) als Trennzeichen verwendet. Verwenden wir das falsche Trennzeichen beim Einlesen von CSV-Dateien mit diesem Trennzeichen, werden die Daten falsch eingelesen:
 
 ```{r}
-read_csv("data/raw/students_data/students_de.csv")
+read_csv("data/raw/earnings_data/earnings_de.csv")
 ```
 
 Stattdessen müssen wir bei einer solchen Encodierung `read_csv2()` verwenden:
 
 ```{r}
-read_csv2("data/raw/students_data/students_de.csv")
+read_csv2("data/raw/earnings_data/earnings_de.csv")
 ```
 
 ::: {.callout-warning}
@@ -98,7 +97,7 @@ RDS ist ein R-spezifisches Format, das ein einzelnes R-Objekt speichert. RDS spe
 Wir können RDS-Dateien mit `read_rds()` einlesen:
 
 ```{r}
-students <- read_rds("data/raw/students_data/students.rds")
+earnings <- read_rds("data/raw/earnings_data/earnings.rds")
 ```
 
 ::: callout-note
@@ -109,7 +108,7 @@ Ein weiteres R-spezifisches Format ist RData. RData kann mehrere Objekte speiche
 #| eval: false
 numbers <- 6:10
 names <- c("Anna", "Ben", "Clara")
-save(numbers, names, file = "data/raw/students_data/multidata.RData")
+save(numbers, names, file = "data/raw/earnings_data/multidata.RData")
 rm(numbers, names)
 ```
 
@@ -117,14 +116,90 @@ Mit `load()` werden alle in dieser Datei abgespeicherten R-Objekte importiert:
 
 ```{r}
 #| eval: false
-load("data/raw/students_data/multidata.RData")
+load("data/raw/earnings_data/multidata.RData")
 ```
 :::
 
-### Text-Dateien
+### Excel-Spreadsheets
 
-TXT-Dateien speichern Daten als reinen Text und können sowohl einfache Listen als auch tabellarische Daten enthalten, meist zeilenweise getrennt. Beim Importen in R müssen wir vor allem auf das Trennzeichen achten. Der Import erfolgt über `read_delim()`
+Um Excel-Spreadsheets einzulesen benötigt man in R ein zusätzliches Package (`readxl`). Mit der Funktion `read_excel()` können sowohl `.xlsx` als auch `.xls` Dateien eingeladen werden.
 
-### Excel-Dateien
+```{r}
+library(readxl)
+read_excel("data/raw/earnings_data/earnings.xlsx")
+```
 
-### Stata-Dateien
+
+Per Default importiert diese Funktion immer den Datensatz aus dem ersten Tabellenblatt. Mit dem Argument `sheet = ...` können wir das Tabellenblatt wählen. Möglich ist sowohl, die Nummer des Tabellenblatts als Zahl anzugeben, als auch den Namen des Tabellenblatts in Anführungszeichen anzugeben. Mit dem Argument `range = ...` können wir außerdem den Bereich des Tabellenblatts angeben, den wir einlesen wollen:
+
+```{r}
+read_excel("data/raw/earnings_data/earnings.xlsx", sheet = 1, range = "A1:C3")
+```
+
+Um einen Überblick über die Tabellenblätter eines Spreadsheets zu bekommen, ist die Funktion `excel_sheets()` im `readxl` Package hilfreich:
+
+```{r}
+excel_sheets("data/raw/earnings_data/earnings.xlsx")
+```
+
+### Stata-Datensätze
+
+Stata ist eine alternative Statistiksoftware, die in den Wirtschaftswissenschaften immer noch häufig verwendet wird. Für das Speichern von Datensätzen verwendet Stata das `.dta`-Format. Dieses speichert sowohl die Daten als auch Variablen- und Wertelabels, sodass beim Einlesen in R oder Stata die Struktur, Kategorien und Labels erhalten bleiben.
+
+Für das Einlesen von Stata-Datensätzen verwenden wir das `haven` Package und die Funktion ``:
+
+```{r}
+library(haven)
+read_dta("data/raw/earnings_data/earnings.dta")
+```
+
+In Stata werden Faktorvariablen wie in diesem Fall `nationality` numerisch abgespeichert und mit Labels versehen. Um diese in R miteinzulesen, können wir `haven::as_factor` verwenden:
+
+```{r}
+read_dta("data/raw/earnings_data/earnings.dta") |>
+  mutate(nationality = as_factor(nationality))
+```
+
+::: callout-tip
+#### Automatisiertes Faktor-Einlesen bei dta
+
+Damit wir nicht bei jeder Variable im Datensatz überprüfen müssen, ob es sich um eine Label-Variable handelt, können wir auch folgenden Code verwenden, der über alle Variable (`across(.)`) die Funktion `as_factor()` anwendet, falls es sich dabei um eine Label-Variable handelt (`where(is.labelled)`):
+```{r}
+#| eval: false
+read_dta("data/raw/earnings_data/earnings.dta") |>
+  mutate(across(where(is.labelled), as_factor))
+```
+:::
+
+### Weitere Dateiformate
+
+Die Funktion `read_delim()` kann in R verwendet werden, um Datensätze mit beliebigem Trennzeichen einzulesen. Sie versucht dabei, das Trennzeichen automatisch zu erkennen. Wir können damit etwa eine Textdatei (.txt) einlesen:
+
+```{r}
+read_delim("data/raw/earnings_data/earnings_tab.txt")
+```
+
+Bei diesem Text-File wird der Tabulator als Trennzeichen verwendet und von R auch korrekt beim Einlesen erkannt. Wir können das Trennzeichen aber auch explizit über das `delim = value`-Argument spezifizieren:
+
+```{r}
+#| eval: false
+read_delim("data/raw/earnings_data/earnings_tab.txt", delim = "\t")
+```
+
+Bei TXT-Dateien oder anderen allgemeinen Datensätzen kann es jedoch immer wieder zu Problemen kommen, wenn das Trennzeichen auch innerhalb einer Variable verwendet wird. Wurde zum Beispiel ein Datensatz als TXT-Datei mit Leerzeichen als Trennzeichen abgespeichert, so führt dies beim Einlesen zu folgendem Problem:
+
+```{r}
+read_delim("data/raw/earnings_data/earnings_space.txt", delim = " ")
+```
+
+Da die erste Beobachtung der Namensvariable (*Anna Maria*) ein Leerzeichen enthält, werden hier die Werte in die nächsten Spalten verschoben. Daher ist es ratsam beim Exportieren von eigenen Datensätzen auf Formate zurückzugreifen, die von R problemlos richtig gelesen werden (etwa RDS oder CSV).
+
+## Daten ansehen
+
+## Daten bereinigen
+
+### Dateinamen
+
+### Datentypen
+
+### Fehlende Werte

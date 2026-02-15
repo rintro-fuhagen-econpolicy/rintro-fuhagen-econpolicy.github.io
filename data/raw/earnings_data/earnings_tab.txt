@@ -1,11 +1,11 @@
-names	age	nationality	income
-Anna	25	DE	2097
-Ben	NA	DE	1015
-Clara	33	International	2000€
-Dimitri	28	EU	2163
-Emilia-Luise	31	DE	1430
-Fatima	25	DE	921
-Gerda Maria	27	DE	1437
-Hannah	27	EU	2448
-Ismail	28	International	990
-Johanna	25	DE	1571
+Names	age.in.years	Nationalität	incEur
+Anna Maria	33	DE	1689
+Ben	NA	N/A	875
+Clara	21	International	2000€
+Dimitri	28	EU	2299
+Emilia-Luise	29	DE	2522
+Fatima	23	DE	1060
+Gerda	32	DE	1781
+Hannah	23	EU	2463
+Ismail	27	International	1442
+Johanna	21	DE	1404
