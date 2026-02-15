@@ -83,7 +83,7 @@ read_csv2("data/raw/students_data/students_de.csv")
 ```
 
 ::: {.callout-warning}
-## Häufige Probleme mit CSV-Dateien
+#### Häufige Probleme mit CSV-Dateien
 
 - *Trennzeichen*: `read_csv("datei.csv")` bei `,` als Trennzeichen, `read_csv2("datei.csv")` bei `;`
 - *Encoding*: Bei Problemen mit Sonderzeichen muss das Encoding spezifiziert werden, etwa `read_csv("datei.csv", locale = locale(encoding = "latin1"))`
@@ -102,7 +102,7 @@ students <- read_rds("data/raw/students_data/students.rds")
 ```
 
 ::: callout-note
-## RData-Format
+#### RData-Format
 
 Ein weiteres R-spezifisches Format ist RData. RData kann mehrere Objekte speichern:
 ```{r}
