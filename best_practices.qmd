@@ -165,7 +165,7 @@ Um diese Probleme zu vermeiden, empfiehlt es sich, die automatische Workspace-Sp
 #|   Abstellen der automatischen Workspace-Speicherung.
 #| fig-alt: |
 #|  Abstellen der automatischen Workspace-Speicherung in den RStudio-Optionen. Hervorgehoben sind die Workspace-Einstellungen. Der Haken bei der Start-Up Wiederherstellung des Workspace ist entfernt, die Einstellung zum Speichern des Workspace beim Schließen von RStudio auf never gestellt.
-knitr::include_graphics("images/workspace-setting.png", dpi = 270)
+knitr::include_graphics("images/workspace_setting.png", dpi = 270)
 ```
 :::
 
