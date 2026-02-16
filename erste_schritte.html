@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Andreas Fischeneder">
-
 <title>1&nbsp; Erste Schritte in R – Einführung in R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,7 +55,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -78,8 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e7b690381a3be0915745ffc2579c22f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-e7b690381a3be0915745ffc2579c22f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -105,19 +100,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Abschicken",
     "search-label": "Suchen"
   }
-}</script>
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
-
+}</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
-
 <body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -128,13 +116,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Einführung in R</a> 
     </div>
@@ -146,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Willkommen</span></a>
@@ -160,8 +144,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./erste_schritte.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span></a>
@@ -174,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
@@ -183,8 +167,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
@@ -203,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -212,15 +196,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visualisierung.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Grafiken in R</span></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
@@ -229,8 +213,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./deskript_statistik.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deskriptive Statistiken</span></span></a>
@@ -249,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
@@ -258,8 +242,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tab_export.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span></a>
@@ -278,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
@@ -287,8 +271,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
@@ -301,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./referenzen.html" class="sidebar-item-text sidebar-link">
@@ -309,45 +293,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a>
+<li>
+<a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">1.1</span> Installation</a>
   <ul class="collapse">
-  <li><a href="#r-installieren" id="toc-r-installieren" class="nav-link" data-scroll-target="#r-installieren"><span class="header-section-number">1.1.1</span> R installieren</a></li>
+<li><a href="#r-installieren" id="toc-r-installieren" class="nav-link" data-scroll-target="#r-installieren"><span class="header-section-number">1.1.1</span> R installieren</a></li>
   <li><a href="#rstudio-installieren" id="toc-rstudio-installieren" class="nav-link" data-scroll-target="#rstudio-installieren"><span class="header-section-number">1.1.2</span> RStudio installieren</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#das-rstudio-interface" id="toc-das-rstudio-interface" class="nav-link" data-scroll-target="#das-rstudio-interface"><span class="header-section-number">1.2</span> Das RStudio-Interface</a></li>
-  <li><a href="#erste-befehle" id="toc-erste-befehle" class="nav-link" data-scroll-target="#erste-befehle"><span class="header-section-number">1.3</span> Erste Befehle</a>
+  <li>
+<a href="#erste-befehle" id="toc-erste-befehle" class="nav-link" data-scroll-target="#erste-befehle"><span class="header-section-number">1.3</span> Erste Befehle</a>
   <ul class="collapse">
-  <li><a href="#r-als-taschenrechner" id="toc-r-als-taschenrechner" class="nav-link" data-scroll-target="#r-als-taschenrechner"><span class="header-section-number">1.3.1</span> R als Taschenrechner</a></li>
+<li><a href="#r-als-taschenrechner" id="toc-r-als-taschenrechner" class="nav-link" data-scroll-target="#r-als-taschenrechner"><span class="header-section-number">1.3.1</span> R als Taschenrechner</a></li>
   <li><a href="#kommentare" id="toc-kommentare" class="nav-link" data-scroll-target="#kommentare"><span class="header-section-number">1.3.2</span> Kommentare</a></li>
   <li><a href="#funktionen-verwenden" id="toc-funktionen-verwenden" class="nav-link" data-scroll-target="#funktionen-verwenden"><span class="header-section-number">1.3.3</span> Funktionen verwenden</a></li>
-  </ul></li>
-  <li><a href="#objekte" id="toc-objekte" class="nav-link" data-scroll-target="#objekte"><span class="header-section-number">1.4</span> Objekte</a>
+  </ul>
+</li>
+  <li>
+<a href="#objekte" id="toc-objekte" class="nav-link" data-scroll-target="#objekte"><span class="header-section-number">1.4</span> Objekte</a>
   <ul class="collapse">
-  <li><a href="#objekte-erstellen" id="toc-objekte-erstellen" class="nav-link" data-scroll-target="#objekte-erstellen"><span class="header-section-number">1.4.1</span> Objekte erstellen</a></li>
+<li><a href="#objekte-erstellen" id="toc-objekte-erstellen" class="nav-link" data-scroll-target="#objekte-erstellen"><span class="header-section-number">1.4.1</span> Objekte erstellen</a></li>
   <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen"><span class="header-section-number">1.4.2</span> Datentypen</a></li>
   <li><a href="#objekttypen" id="toc-objekttypen" class="nav-link" data-scroll-target="#objekttypen"><span class="header-section-number">1.4.3</span> Objekttypen</a></li>
   <li><a href="#indizierung-von-objekten" id="toc-indizierung-von-objekten" class="nav-link" data-scroll-target="#indizierung-von-objekten"><span class="header-section-number">1.4.4</span> Indizierung von Objekten</a></li>
   <li><a href="#arbeiten-mit-objekten" id="toc-arbeiten-mit-objekten" class="nav-link" data-scroll-target="#arbeiten-mit-objekten"><span class="header-section-number">1.4.5</span> Arbeiten mit Objekten</a></li>
   <li><a href="#entfernen-von-objekten" id="toc-entfernen-von-objekten" class="nav-link" data-scroll-target="#entfernen-von-objekten"><span class="header-section-number">1.4.6</span> Entfernen von Objekten</a></li>
-  </ul></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">1.5</span> Packages</a></li>
   </ul>
-</nav>
+</li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">1.5</span> Packages</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./erste_schritte.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./erste_schritte.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></a></li></ol></nav>
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./erste_schritte.html">Grundlagen</a></li><li class="breadcrumb-item"><a href="./erste_schritte.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-erste_schritte" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Erste Schritte in R</span></span></h1>
 </div>
 
@@ -362,15 +346,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header>
-
-
-<section id="installation" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
+</header><section id="installation" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="installation">
+<span class="header-section-number">1.1</span> Installation</h2>
 <p>Für die Teilnahme an diesem Kurs müssen zwei Programme auf dem Computer installiert sein: R und RStudio. R stellt die eigentliche Programmiersprache bereit, während RStudio als integrierte Entwicklungsumgebung (IDE) dient. Zwar lässt sich R auch ohne RStudio nutzen, die Arbeit in RStudio ist jedoch deutlich komfortabler und übersichtlicher.</p>
 <p>Sollte man bereits Erfahrung mit dem Programmieren haben und regelmäßig mit verschiedenen Sprachen arbeiten, könnten alternativ auch andere IDEs interessant sein, die den Wechsel zwischen Sprachen erleichtern. Beispiele hierfür sind <a href="https://code.visualstudio.com/">Visual Studio Code</a> oder <a href="https://positron.posit.co/">Positron</a>.</p>
-<section id="r-installieren" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="r-installieren"><span class="header-section-number">1.1.1</span> R installieren</h3>
+<section id="r-installieren" class="level3" data-number="1.1.1"><h3 data-number="1.1.1" class="anchored" data-anchor-id="r-installieren">
+<span class="header-section-number">1.1.1</span> R installieren</h3>
 <ol type="1">
 <li>Rufe die Website <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> auf</li>
 <li>Wähle dein Betriebssystem (Windows, Mac, Linux)</li>
@@ -378,9 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Starte die Installation und folge den Anweisungen</li>
 </ol>
 <p>R wird regelmäßig weiterentwickelt und erhält häufig Updates. Daher sollte die installierte Version gelegentlich aktualisiert werden. Insbesondere größere Versionssprünge können etwas aufwendiger sein, da bereits installierte Packages anschließend erneut installiert werden müssen. Detaillierte Hinweise zum Aktualisieren von R stellt der Helpdesk der FernUniversität Hagen <a href="https://wiki.fernuni-hagen.de/helpdesk/Wie_aktualisiere_ich_R%3F">hier</a> zur Verfügung.</p>
-</section>
-<section id="rstudio-installieren" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="rstudio-installieren"><span class="header-section-number">1.1.2</span> RStudio installieren</h3>
+</section><section id="rstudio-installieren" class="level3" data-number="1.1.2"><h3 data-number="1.1.2" class="anchored" data-anchor-id="rstudio-installieren">
+<span class="header-section-number">1.1.2</span> RStudio installieren</h3>
 <ol type="1">
 <li>Rufe die Website <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a> auf</li>
 <li>Lade RStudio Desktop (kostenlose Version) herunter</li>
@@ -400,44 +380,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Installiere zuerst R und danach RStudio, da RStudio auf eine vorhandene R-Installation angewiesen ist.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="das-rstudio-interface" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="das-rstudio-interface"><span class="header-section-number">1.2</span> Das RStudio-Interface</h2>
+</section></section><section id="das-rstudio-interface" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="das-rstudio-interface">
+<span class="header-section-number">1.2</span> Das RStudio-Interface</h2>
 <p>Öffnen wir nun RStudio. Das Interface besteht dabei aus den folgenden Elementen (siehe <a href="#fig-rstudio-interface" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a>):</p>
 <ul>
-<li><em>Konsole</em> (A): Hier können wir unseren Code ausführen und der korrespondierende Output wird angezeigt. In diesem Beispiel wurde etwa 1+1 addiert sowie der Vektor <code>x</code> definiert und angezeigt.</li>
-<li><em>Environment</em> (B): Zeigt gespeicherte Objekte. Hier findet sich der in der Konsole definierte Vektor <code>x</code> wieder.</li>
-<li><em>Files/Plot/Help</em> (C): Hier finden wir unter anderem einen Databrowser (Files), deine erstellten Grafiken (Plots) und die Hilfefunktion (Help)</li>
-<li><em>Menüleiste</em> (D)</li>
+<li>
+<em>Konsole</em> (A): Hier können wir unseren Code ausführen und der korrespondierende Output wird angezeigt. In diesem Beispiel wurde etwa 1+1 addiert sowie der Vektor <code>x</code> definiert und angezeigt.</li>
+<li>
+<em>Environment</em> (B): Zeigt gespeicherte Objekte. Hier findet sich der in der Konsole definierte Vektor <code>x</code> wieder.</li>
+<li>
+<em>Files/Plot/Help</em> (C): Hier finden wir unter anderem einen Databrowser (Files), deine erstellten Grafiken (Plots) und die Hilfefunktion (Help)</li>
+<li>
+<em>Menüleiste</em> (D)</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-rstudio-interface" class="quarto-float quarto-figure quarto-figure-center anchored" alt="RStudio Interface mit Highlights auf Konsole, Environment, Files/Plot Panels sowie Menüleiste.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rstudio-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-rstudio-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rstudio_interface.png" class="img-fluid figure-img" alt="RStudio Interface mit Highlights auf Konsole, Environment, Files/Plot Panels sowie Menüleiste.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rstudio-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.1: RStudio Interface.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-<section id="erste-befehle" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="erste-befehle"><span class="header-section-number">1.3</span> Erste Befehle</h2>
-<section id="r-als-taschenrechner" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="r-als-taschenrechner"><span class="header-section-number">1.3.1</span> R als Taschenrechner</h3>
+</section><section id="erste-befehle" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="erste-befehle">
+<span class="header-section-number">1.3</span> Erste Befehle</h2>
+<section id="r-als-taschenrechner" class="level3" data-number="1.3.1"><h3 data-number="1.3.1" class="anchored" data-anchor-id="r-als-taschenrechner">
+<span class="header-section-number">1.3.1</span> R als Taschenrechner</h3>
 <p>Lass uns als erstes R als Taschenrechner verwenden, um die Handhabung der Konsole kennenzulernen. Um R als Taschenrechner zu nutzen, geben wir einfach die gewünschte Operation ein und drückst <kbd>Enter</kbd>, um den Code auszuführen. Der Befehl (auch Prompt genannt) wird in der Konsole angeführt. Das Ergebnis der Operation wird in der nächsten Zeile angeführt. Beispielsweise kann man in R Zahlen addieren, potenzieren oder logarithmieren:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">4</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">4</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.386294</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op">+</span> <span class="fl">4</span></span>
+<span><span class="co">#&gt; [1] 14</span></span>
+<span><span class="fl">2</span><span class="op">^</span><span class="fl">3</span></span>
+<span><span class="co">#&gt; [1] 8</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1.386294</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -454,87 +433,79 @@ Abbildung&nbsp;1.1: RStudio Interface.
 [1] 14</code></pre>
 </div>
 </div>
-</section>
-<section id="kommentare" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="kommentare"><span class="header-section-number">1.3.2</span> Kommentare</h3>
+</section><section id="kommentare" class="level3" data-number="1.3.2"><h3 data-number="1.3.2" class="anchored" data-anchor-id="kommentare">
+<span class="header-section-number">1.3.2</span> Kommentare</h3>
 <p>Um später nachvollziehen zu können, was in unserem Code passiert, können wir Kommentare in deinem Code hinterlassen. Kommentare beginnen mit <code>#</code> und werden von R ignoriert:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Division</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">5</span>  <span class="co"># Kommentare können auch am Ende einer Zeile stehen</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Division</span></span>
+<span><span class="fl">10</span> <span class="op">/</span> <span class="fl">5</span>  <span class="co"># Kommentare können auch am Ende einer Zeile stehen</span></span>
+<span><span class="co">#&gt; [1] 2</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="funktionen-verwenden" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="funktionen-verwenden"><span class="header-section-number">1.3.3</span> Funktionen verwenden</h3>
+</section><section id="funktionen-verwenden" class="level3" data-number="1.3.3"><h3 data-number="1.3.3" class="anchored" data-anchor-id="funktionen-verwenden">
+<span class="header-section-number">1.3.3</span> Funktionen verwenden</h3>
 <p>Für komplexere Operationen bietet R eine große Sammlung an Funktionen. Die Ausführung einer Funktion folgt immer dem folgenden Aufbau:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(<span class="at">argument1 =</span> value1, <span class="at">argument2 =</span> value2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">function_name</span><span class="op">(</span>argument1 <span class="op">=</span> <span class="va">value1</span>, argument2 <span class="op">=</span> <span class="va">value2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Weiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (<code>log(4)</code>). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion <code>seq()</code> an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir <code>seq</code> in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und <kbd>Enter</kbd> drücken.</p>
+<p>Weiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (<code>log(4)</code>). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir <code>seq</code> in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und <kbd>Enter</kbd> drücken.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-seq-fct" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seq-fct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-seq-fct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/seq_function.gif" class="img-fluid figure-img" alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seq-fct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.2: Auswählen der seq()-Funktion.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p>Wir können auch den gesamten Befehl selbst eingeben und die Klammer öffnen: <code>seq()</code>.</p>
+<p>Wir können auch den gesamten Befehl selbst eingeben und die Klammer öffnen: <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code>.</p>
 <p>Um mehr über die Funktion zu erfahren, können wir einen der folgenden Befehle ausführen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>?seq</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(seq)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">?</span><span class="va">seq</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">seq</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Alternativ drücken wir <kbd>F1</kbd> während wir <code>seq()</code> im Pop-Up Menü ausgewählt haben, oder wir gehen gehen direkt zum Help-Fenster und geben <em>seq</em> in die Suchfunktion ein. Im Help-Fenster (Panel C in <a href="#fig-rstudio-interface" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a>) erhalten wir dann eine ausführliche Erklärung der Funktion.</p>
+<p>Alternativ drücken wir <kbd>F1</kbd> während wir <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> im Pop-Up Menü ausgewählt haben, oder wir gehen gehen direkt zum Help-Fenster und geben <em>seq</em> in die Suchfunktion ein. Im Help-Fenster (Panel C in <a href="#fig-rstudio-interface" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a>) erhalten wir dann eine ausführliche Erklärung der Funktion.</p>
 <p>Die R-Dokumentation gibt Aufschluss über die wesentlichen Argumente dieser Funktion. Wir erfahren, dass wir mit <code>from = ...</code> den Startwert und mit <code>to = ...</code> den Endwert der Zahlsequenz spezifizieren. Über das Argument <code>by = ...</code> definieren wir wiederum die Inkremente der Sequenz. Auch können wir die Default-Einstellungen der Funktion ableiten: Diese ist für <code>from</code>, <code>to</code> und <code>by</code> gleich 1.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-seq-help" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Help-Fenster der R-Dokumentation zu seq() mit Fokus auf die Helpauswahl, das Suchfenster, sowie die Argumente from, to, und by.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-seq-help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-seq-help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/seq_help.png" class="img-fluid figure-img" alt="Help-Fenster der R-Dokumentation zu seq() mit Fokus auf die Helpauswahl, das Suchfenster, sowie die Argumente from, to, und by.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seq-help-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.3: Help: R-Dokumentation zu seq().
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Um eine Sequenz von 1 bis 10 in Einserschritten zu erstellen, führen wir den folgenden Befehl aus:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">1</span>, to <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Da wir Einserschritte wollen und die Default-Option for <code>by = ...</code> gleich 1 ist, brauchen wir dieses Argument nicht spezifizieren. Ist uns eine Funktion gut bekannt, können wir auch die Bezeichnungen der jeweiligen Argumente ignorieren. R interpretiert den Befehl dann so, als würde jeder Wert für das in dieser Reihenfolge vorgesehene Argument stehen. Um etwa eine Sequenz von 1 bis 10 in Zweierschritten zu erstellen, können wir also auch schreiben:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-</section>
-<section id="objekte" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="objekte"><span class="header-section-number">1.4</span> Objekte</h2>
-<section id="objekte-erstellen" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="objekte-erstellen"><span class="header-section-number">1.4.1</span> Objekte erstellen</h3>
+</section></section><section id="objekte" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="objekte">
+<span class="header-section-number">1.4</span> Objekte</h2>
+<section id="objekte-erstellen" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="objekte-erstellen">
+<span class="header-section-number">1.4.1</span> Objekte erstellen</h3>
 <p>Um Daten zu speichern, zu organisieren und wiederzuverwenden können diese in R als Objekt gespeichert werden. In R speichern wir Werte in Objekten mit dem Zuweisungsoperator <code>&lt;-</code>. Die Zuweisungslogik folgt dabei immer der Form <code>objekt_name &lt;- element</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>number <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">number</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Mit <code>c()</code> können wir mehrere Elemente zu einem Objekt hinzufügen, wobei die einzelne Elemente mit einem Komma getrennt werden:</p>
+<p>Mit <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> können wir mehrere Elemente zu einem Objekt hinzufügen, wobei die einzelne Elemente mit einem Komma getrennt werden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die beiden Objekte werden nun im Environment (Panel B in <a href="#fig-rstudio-interface" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a>) angeführt. Beim definieren eines Objekts wird dieses nicht automatisch in der Konsole angezeigt. Um uns das Objekt <code>zahlen</code> anzusehen, können wir einfach den Objektnamen in der Konsole eingeben und den Befehl ausführen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>numbers</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span></span>
+<span><span class="co">#&gt; [1] 1 2 3 4 5</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -551,7 +522,7 @@ Abbildung&nbsp;1.3: Help: R-Dokumentation zu seq().
 </div>
 <p>Objekte können überschrieben werden, in dem ein oder mehrere Elemente demselben Objektnamen überwiesen werden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.5</span>, <span class="dv">7</span>, <span class="fl">8.3</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">6.5</span>, <span class="fl">7</span>, <span class="fl">8.3</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -565,73 +536,67 @@ Abbildung&nbsp;1.3: Help: R-Dokumentation zu seq().
 <div class="callout-body-container callout-body">
 <p>Um Objekte zu addressieren, muss dieses ohne Fehler aufgerufen werden. Tippfehler oder unvollständige Objektnamen führen zu Error-Meldungen. R ist dabei case-sensitiv:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>numers</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fehler: Objekt 'numers' nicht gefunden</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Numbers</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fehler: Objekt 'Numbers' nicht gefunden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numers</span></span>
+<span><span class="co">#&gt; Fehler: Objekt 'numers' nicht gefunden</span></span>
+<span><span class="va">Numbers</span></span>
+<span><span class="co">#&gt; Fehler: Objekt 'Numbers' nicht gefunden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-</section>
-<section id="datentypen" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="datentypen"><span class="header-section-number">1.4.2</span> Datentypen</h3>
-<p>In R gibt es verschiedene grundlegende Datentypen, die sogenannten atomic types, die die Bausteine für alle anderen Objekte bilden. Der Typ <em>numeric</em> wird für Zahlen verwendet. Unsere oben definierten Objekte <code>number</code> und <code>numbers</code> haben diesen Typ. Ein Sonderfall ist hierbei der Typ <em>integer</em>, welcher nur Zahlen aus dem Set der ganzen Zahlen (also keine Dezimalstellen) speichert. Möchten wir explizit Zahlen explizit als <em>integer</em> Objekt abspeichern, muss entweder ein <em>L</em> an jede Zahl angehängt werden oder die Funktion <code>as.integer()</code> verwendet werden:</p>
+</section><section id="datentypen" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="datentypen">
+<span class="header-section-number">1.4.2</span> Datentypen</h3>
+<p>In R gibt es verschiedene grundlegende Datentypen, die sogenannten atomic types, die die Bausteine für alle anderen Objekte bilden. Der Typ <em>numeric</em> wird für Zahlen verwendet. Unsere oben definierten Objekte <code>number</code> und <code>numbers</code> haben diesen Typ. Ein Sonderfall ist hierbei der Typ <em>integer</em>, welcher nur Zahlen aus dem Set der ganzen Zahlen (also keine Dezimalstellen) speichert. Möchten wir explizit Zahlen explizit als <em>integer</em> Objekt abspeichern, muss entweder ein <em>L</em> an jede Zahl angehängt werden oder die Funktion <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code> verwendet werden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>numbers_int <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">3</span>L)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>numbers_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)) <span class="co"># identer Befehl</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>numbers_int</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="fl">3L</span><span class="op">)</span></span>
+<span><span class="va">numbers_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="co"># identer Befehl</span></span>
+<span><span class="va">numbers_int</span></span>
+<span><span class="co">#&gt; [1] 2 3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In den allermeisten Fällen ist eine Definition als <em>integer</em> Typ nicht notwendig und somit der Typ <em>numeric</em> präferierbar.</p>
 <p>Der Typ logical speichert Wahrheitswerte, also <code>TRUE</code> oder <code>FALSE</code>, und wird häufig für Bedingungen, Filter oder logische Vergleiche eingesetzt. Wenn wir zum Beispiel prüfen wollen, ob die jeweiligen Elemente in <code>numbers</code> größer als 7 sind, entsteht ein <em>logical</em>-Objekt:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>numbers_greater7 <span class="ot">&lt;-</span> numbers <span class="sc">&gt;</span> <span class="dv">7</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>numbers_greater7</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE  TRUE</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers_greater7</span> <span class="op">&lt;-</span> <span class="va">numbers</span> <span class="op">&gt;</span> <span class="fl">7</span></span>
+<span><span class="va">numbers_greater7</span></span>
+<span><span class="co">#&gt; [1] FALSE FALSE  TRUE  TRUE  TRUE</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><em>Character</em>-Objekte enthalten Text:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>names</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Anna"  "Ben"   "Clara"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span><span class="op">)</span></span>
+<span><span class="va">names</span></span>
+<span><span class="co">#&gt; [1] "Anna"  "Ben"   "Clara"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Um R mitzuteilen, dass es sich um Text handelt, verwenden wir Anfühungszeichen, da sonst nach einem Objekt mit diesem Namen gesucht wird:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">&lt;-</span> <span class="fu">c</span>(Anna, Ben, Clara)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fehler: Objekt 'Anna' nicht gefunden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Anna</span>, <span class="va">Ben</span>, <span class="va">Clara</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Fehler: Objekt 'Anna' nicht gefunden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Weitere häufig verwendete Datentypen in R sind der <code>factor</code>-Typ für kategoriale Variablen oder der <code>date</code>-Typ für Datum- und Zeitangaben.</p>
-<p>Um zu sehen, welchen Typ ein bestimmtes Objekt hat, verwenden wir <code>class()</code>:</p>
+<p>Um zu sehen, welchen Typ ein bestimmtes Objekt hat, verwenden wir <code><a href="https://rdrr.io/r/base/class.html">class()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "numeric"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers_int)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "integer"</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(numbers_greater7)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "logical"</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(names)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "character"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "numeric"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">numbers_int</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "integer"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">numbers_greater7</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "logical"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">names</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "character"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="objekttypen" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="objekttypen"><span class="header-section-number">1.4.3</span> Objekttypen</h3>
+</section><section id="objekttypen" class="level3" data-number="1.4.3"><h3 data-number="1.4.3" class="anchored" data-anchor-id="objekttypen">
+<span class="header-section-number">1.4.3</span> Objekttypen</h3>
 <p>Elemente mit einem bestimmten Datentyp bilden die Bausteine für komplexere Objekte. Diese lassen sich je nach Inhalt wieder in unterschiedliche Typen unterteilen. <a href="#tbl-obj-types" class="quarto-xref">Tabelle&nbsp;<span>1.1</span></a> gibt eine Übersicht über die wichtigsten Objekttypen in R.</p>
 <div class="cell">
 <div id="tbl-obj-types" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-obj-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-obj-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
-</figcaption>
-<div aria-describedby="tbl-obj-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption><div aria-describedby="tbl-obj-types-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="table table-striped do-not-create-environment cell caption-top table-sm small">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Objekttyp</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Beschreibung</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Datentyp-Regel</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Vektor</td>
@@ -668,169 +633,161 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
 <p>Den Objekttyp <em>Vektor</em> haben wir bereits kennengelernt. Ein Vektor ist eine eindimensionale Sammlung an Elementen desselben Datentyps. Das Objekt <code>numbers</code> ist etwa ein Vektor bestehend aus numerischen Elementen.</p>
 <p>Eine <em>Matrix</em> ist wiederum ein zweidimensionales Objekt aus Elementen desselben Datentyps:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>two_by_two <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>),</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>two_by_two</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    1    3</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]    2    4</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>three_by_two <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>three_by_two</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">two_by_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span>,</span>
+<span>                        nrow <span class="op">=</span> <span class="fl">2</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">two_by_two</span></span>
+<span><span class="co">#&gt;      [,1] [,2]</span></span>
+<span><span class="co">#&gt; [1,]    1    3</span></span>
+<span><span class="co">#&gt; [2,]    2    4</span></span>
+<span><span class="va">three_by_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>,</span>
+<span>                       nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">three_by_two</span></span>
+<span><span class="co">#&gt;      [,1] [,2]</span></span>
+<span><span class="co">#&gt; [1,]    1    4</span></span>
+<span><span class="co">#&gt; [2,]    2    5</span></span>
+<span><span class="co">#&gt; [3,]    3    6</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Die Beschränkung auf den gleichen Datentyp bei Matrizen ist häufig zu restriktiv für einen mehrdimensionalen Datensatz. Datensätze werden daher in R meistens als <em>Dataframe</em> gespeichert. Ein Dataframe ist ebenfalls zweidimensional, erlaubt aber, dass die jeweiligen Spalten einen unterschiedlichen Datentyp haben. So können wir uns beispielsweise einen Datensatz mit der Funktion <code>data.frame()</code> erstellen, der als Variablen in seinen Spalten Namen als <code>character</code>, Alter als <code>integer</code>, und Noten als <code>numeric</code> abspeichert:</p>
+<p>Die Beschränkung auf den gleichen Datentyp bei Matrizen ist häufig zu restriktiv für einen mehrdimensionalen Datensatz. Datensätze werden daher in R meistens als <em>Dataframe</em> gespeichert. Ein Dataframe ist ebenfalls zweidimensional, erlaubt aber, dass die jeweiligen Spalten einen unterschiedlichen Datentyp haben. So können wir uns beispielsweise einen Datensatz mit der Funktion <code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code> erstellen, der als Variablen in seinen Spalten Namen als <code>character</code>, Alter als <code>integer</code>, und Noten als <code>numeric</code> abspeichert:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span>),</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">22</span>L, <span class="dv">25</span>, <span class="dv">23</span>L),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">c</span>(<span class="fl">1.7</span>, <span class="fl">2.3</span>, <span class="fl">4.0</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>students</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name age grade</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  Anna  22   1.7</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   Ben  25   2.3</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara  23   4.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">students</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span><span class="op">)</span>,</span>
+<span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22L</span>, <span class="fl">25</span>, <span class="fl">23L</span><span class="op">)</span>,</span>
+<span>  grade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.7</span>, <span class="fl">2.3</span>, <span class="fl">4.0</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">students</span></span>
+<span><span class="co">#&gt;    name age grade</span></span>
+<span><span class="co">#&gt; 1  Anna  22   1.7</span></span>
+<span><span class="co">#&gt; 2   Ben  25   2.3</span></span>
+<span><span class="co">#&gt; 3 Clara  23   4.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Dataframes eignen sich daher gut für Datenanalysen. Eine modernere (aber in den meisten Eigenschaften idente) Version des Dataframes ist ein <em>Tibble</em>.</p>
 <p>Eine Liste ist die flexibelste Struktur und kann verschiedene Objekte, also Vektoren, Matrizen, Dataframes oder sogar andere Listen, zusammenfassen. Wir können damit zum Beispiel sowohl den Vektor <code>numbers</code>, die Matrix <code>three_by_two</code> und den Dataframe <code>students</code> in einem Objekt abspeichern:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>list_all <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  numbers,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  three_by_two,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  students</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>list_all</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  6.5  7.0  8.3  9.0 10.0</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]    1    4</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]    2    5</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,]    3    6</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name age grade</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  Anna  22   1.7</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   Ben  25   2.3</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara  23   4.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">list_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  <span class="va">numbers</span>,</span>
+<span>  <span class="va">three_by_two</span>,</span>
+<span>  <span class="va">students</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">list_all</span></span>
+<span><span class="co">#&gt; [[1]]</span></span>
+<span><span class="co">#&gt; [1]  6.5  7.0  8.3  9.0 10.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt;      [,1] [,2]</span></span>
+<span><span class="co">#&gt; [1,]    1    4</span></span>
+<span><span class="co">#&gt; [2,]    2    5</span></span>
+<span><span class="co">#&gt; [3,]    3    6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
+<span><span class="co">#&gt;    name age grade</span></span>
+<span><span class="co">#&gt; 1  Anna  22   1.7</span></span>
+<span><span class="co">#&gt; 2   Ben  25   2.3</span></span>
+<span><span class="co">#&gt; 3 Clara  23   4.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="indizierung-von-objekten" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="indizierung-von-objekten"><span class="header-section-number">1.4.4</span> Indizierung von Objekten</h3>
+</section><section id="indizierung-von-objekten" class="level3" data-number="1.4.4"><h3 data-number="1.4.4" class="anchored" data-anchor-id="indizierung-von-objekten">
+<span class="header-section-number">1.4.4</span> Indizierung von Objekten</h3>
 <p>Über Indizierung können wir uns einzelne Elemente von Objekten anzeigen lassen und in weitere Folge auch mit diesen Arbeiten. Die Position eines oder mehrere Elemente wird dabei in eckigen Klammern <code>objekt[]</code> angegeben. Bei Vektoren ist die Indizierung aufgrund der Eindimensionalität des Objekts einfach:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>numbers</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  6.5  7.0  8.3  9.0 10.0</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>numbers[<span class="dv">2</span>] <span class="co"># zweites Element im Vektor numbers</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>numbers[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)] <span class="co"># erstes und viertes Element</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6.5 9.0</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>numbers[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] <span class="co"># zweites bis viertes Element</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7.0 8.3 9.0</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>numbers[<span class="sc">-</span><span class="dv">3</span>] <span class="co"># numbers Vektor ohne drittes Element</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  6.5  7.0  9.0 10.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span></span>
+<span><span class="co">#&gt; [1]  6.5  7.0  8.3  9.0 10.0</span></span>
+<span><span class="va">numbers</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="co"># zweites Element im Vektor numbers</span></span>
+<span><span class="co">#&gt; [1] 7</span></span>
+<span><span class="va">numbers</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span> <span class="co"># erstes und viertes Element</span></span>
+<span><span class="co">#&gt; [1] 6.5 9.0</span></span>
+<span><span class="va">numbers</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="co"># zweites bis viertes Element</span></span>
+<span><span class="co">#&gt; [1] 7.0 8.3 9.0</span></span>
+<span><span class="va">numbers</span><span class="op">[</span><span class="op">-</span><span class="fl">3</span><span class="op">]</span> <span class="co"># numbers Vektor ohne drittes Element</span></span>
+<span><span class="co">#&gt; [1]  6.5  7.0  9.0 10.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Bei zweidimensionalen Objekten (Matrizen und Dataframes) erfolgt die Indizierung nach dem Prinzip <code>objekt[zeile, spalte]</code> angegeben. Wollen wir z.B. nur auf die Spalte indizieren, aber alle Zeilen behalten, lassen wir die erste Index-Option frei (<code>objekt[,spalte]</code>):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>three_by_two[<span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># Element in Zeile 2, Spalte 2</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>three_by_two[<span class="dv">1</span>,] <span class="co"># alle Elemente der ersten Zeile</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 4</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>three_by_two[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="dv">2</span>] <span class="co"># erste und dritte Zeile in der zweiten Spalte</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4 6</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">three_by_two</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">]</span> <span class="co"># Element in Zeile 2, Spalte 2</span></span>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="va">three_by_two</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span> <span class="co"># alle Elemente der ersten Zeile</span></span>
+<span><span class="co">#&gt; [1] 1 4</span></span>
+<span><span class="va">three_by_two</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, <span class="fl">2</span><span class="op">]</span> <span class="co"># erste und dritte Zeile in der zweiten Spalte</span></span>
+<span><span class="co">#&gt; [1] 4 6</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Bei Dataframes können wir auf Spalten auch mit dem <code>$</code>-Operator indizieren: <code>dataframe$varname</code> ist also ident zu <code>dataframe[,spalte]</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>students<span class="sc">$</span>name</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Anna"  "Ben"   "Clara"</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>students[,<span class="dv">1</span>]</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Anna"  "Ben"   "Clara"</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>students<span class="sc">$</span>age[<span class="dv">2</span>]</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 25</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>students[<span class="dv">2</span>,<span class="dv">2</span>]</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 25</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">students</span><span class="op">$</span><span class="va">name</span></span>
+<span><span class="co">#&gt; [1] "Anna"  "Ben"   "Clara"</span></span>
+<span><span class="va">students</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] "Anna"  "Ben"   "Clara"</span></span>
+<span><span class="va">students</span><span class="op">$</span><span class="va">age</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] 25</span></span>
+<span><span class="va">students</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] 25</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In einer Liste abgespeicherte Objekte werden mit <code>liste[[index]]</code> aufgerufen. Das erste Objekt in <code>liste_alles</code> finden wir somit über:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>list_all[[<span class="dv">1</span>]]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  6.5  7.0  8.3  9.0 10.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">list_all</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1]  6.5  7.0  8.3  9.0 10.0</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="arbeiten-mit-objekten" class="level3" data-number="1.4.5">
-<h3 data-number="1.4.5" class="anchored" data-anchor-id="arbeiten-mit-objekten"><span class="header-section-number">1.4.5</span> Arbeiten mit Objekten</h3>
+</section><section id="arbeiten-mit-objekten" class="level3" data-number="1.4.5"><h3 data-number="1.4.5" class="anchored" data-anchor-id="arbeiten-mit-objekten">
+<span class="header-section-number">1.4.5</span> Arbeiten mit Objekten</h3>
 <p>Wir können Operationen auch mit ganzen Objekte oder indizierten Subsets ausführen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>numbers<span class="sc">*</span><span class="dv">2</span> <span class="co"># Mulipliziert alle Elemente</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 13.0 14.0 16.6 18.0 20.0</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(numbers) <span class="co"># Maximum im Vektor numbers</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(students<span class="sc">$</span>age) <span class="co"># Durchschnittsalter der Studierenden</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 23.33333</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(students) <span class="co"># Anzahl der Zeilen im students dataframe</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span><span class="op">*</span><span class="fl">2</span> <span class="co"># Mulipliziert alle Elemente</span></span>
+<span><span class="co">#&gt; [1] 13.0 14.0 16.6 18.0 20.0</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span> <span class="co"># Maximum im Vektor numbers</span></span>
+<span><span class="co">#&gt; [1] 10</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">students</span><span class="op">$</span><span class="va">age</span><span class="op">)</span> <span class="co"># Durchschnittsalter der Studierenden</span></span>
+<span><span class="co">#&gt; [1] 23.33333</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">students</span><span class="op">)</span> <span class="co"># Anzahl der Zeilen im students dataframe</span></span>
+<span><span class="co">#&gt; [1] 3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="entfernen-von-objekten" class="level3" data-number="1.4.6">
-<h3 data-number="1.4.6" class="anchored" data-anchor-id="entfernen-von-objekten"><span class="header-section-number">1.4.6</span> Entfernen von Objekten</h3>
-<p>Objekte, die nicht mehr gebraucht werden, können mit <code>rm()</code> (<code>remove()</code>) wieder aus dem Environment gelöscht werden:</p>
+</section><section id="entfernen-von-objekten" class="level3" data-number="1.4.6"><h3 data-number="1.4.6" class="anchored" data-anchor-id="entfernen-von-objekten">
+<span class="header-section-number">1.4.6</span> Entfernen von Objekten</h3>
+<p>Objekte, die nicht mehr gebraucht werden, können mit <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> (<code><a href="https://rdrr.io/r/base/rm.html">remove()</a></code>) wieder aus dem Environment gelöscht werden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(two_by_two)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(numbers_int, numbers_greater7) <span class="co"># mehrere Objekte können gleichzeitig gelöscht werden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">two_by_two</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">numbers_int</span>, <span class="va">numbers_greater7</span><span class="op">)</span> <span class="co"># mehrere Objekte können gleichzeitig gelöscht werden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Um sämtliche Objekte auf einmal auf dem Environment zu löschen, können wir folgenden Befehl ausführen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Die Funktion <code>ls()</code> gibt dabei die Namen aller im Environment gespeicherter Objekte wieder.</p>
-</section>
-</section>
-<section id="packages" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.5</span> Packages</h2>
+<p>Die Funktion <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> gibt dabei die Namen aller im Environment gespeicherter Objekte wieder.</p>
+</section></section><section id="packages" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="packages">
+<span class="header-section-number">1.5</span> Packages</h2>
 <p>Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben (Base R). In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package <code>tidyverse</code> zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.</p>
-<p>Die Installation eines Packages erfolgt über die Funktion <code>install.packages()</code>:</p>
+<p>Die Installation eines Packages erfolgt über die Funktion <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Die Installation eines Packages ist nur einmal notwendig. Bei jeder Sitzung muss jedoch das gewünschte Package über <code>library()</code> geladen werden, um auf die darin enthaltenen Funktionen zugreifen zu können:</p>
+<p>Die Installation eines Packages ist nur einmal notwendig. Bei jeder Sitzung muss jedoch das gewünschte Package über <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> geladen werden, um auf die darin enthaltenen Funktionen zugreifen zu können:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ dplyr     1.2.0     ✔ readr     2.1.6</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ forcats   1.0.1     ✔ stringr   1.6.0</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ ggplot2   4.0.2     ✔ tibble    3.3.1</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ lubridate 1.9.5     ✔ tidyr     1.3.2</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ purrr     1.2.1     </span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::filter()     masks stats::filter()</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::group_rows() masks kableExtra::group_rows()</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::lag()        masks stats::lag()</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──</span></span>
+<span><span class="co">#&gt; ✔ dplyr     1.2.0     ✔ readr     2.1.6</span></span>
+<span><span class="co">#&gt; ✔ forcats   1.0.1     ✔ stringr   1.6.0</span></span>
+<span><span class="co">#&gt; ✔ ggplot2   4.0.2     ✔ tibble    3.3.1</span></span>
+<span><span class="co">#&gt; ✔ lubridate 1.9.5     ✔ tidyr     1.3.2</span></span>
+<span><span class="co">#&gt; ✔ purrr     1.2.1     </span></span>
+<span><span class="co">#&gt; ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span><span class="co">#&gt; ✖ dplyr::filter()     masks stats::filter()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::group_rows() masks kableExtra::group_rows()</span></span>
+<span><span class="co">#&gt; ✖ dplyr::lag()        masks stats::lag()</span></span>
+<span><span class="co">#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Alternativ können wir auch auf Funktionen aus einem bereits installierten aber nicht geladenen Package zugreifen, in dem wir vor der Funktion auf das Package verweisen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>package_name<span class="sc">::</span><span class="fu">fct_name</span>(<span class="at">argument1 =</span> value1, <span class="at">argument2 =</span> value2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">package_name</span><span class="fu">::</span><span class="fu">fct_name</span><span class="op">(</span>argument1 <span class="op">=</span> <span class="va">value1</span>, argument2 <span class="op">=</span> <span class="va">value2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die folgenden Pakete werden wir im Laufe des Kurses ebenfalls verwenden und können daher gleich jetzt installiert werden:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"readxl"</span>, <span class="st">"writexl"</span>, <span class="co"># Import/Export von Excel-Spreadsheets</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"haven"</span>, <span class="st">"labelled"</span>, <span class="co"># Import/Export von dta-Dateien</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"janitor"</span> <span class="co"># Data Cleaning</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"readxl"</span>, <span class="st">"writexl"</span>, <span class="co"># Import/Export von Excel-Spreadsheets</span></span>
+<span>    <span class="st">"haven"</span>, <span class="st">"labelled"</span>, <span class="co"># Import/Export von dta-Dateien</span></span>
+<span>    <span class="st">"janitor"</span> <span class="co"># Data Cleaning</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -1229,9 +1186,7 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link" aria-label="Willkommen">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Willkommen</span>
       </a>          
@@ -1243,7 +1198,6 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
