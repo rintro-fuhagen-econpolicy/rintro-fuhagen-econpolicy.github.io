@@ -153,7 +153,7 @@ library(haven)
 read_dta("data/raw/earnings_data/earnings.dta")
 ```
 
-In Stata werden Faktorvariablen wie in diesem Fall `nationality` numerisch abgespeichert und mit Labels versehen. Um diese in R miteinzulesen, können wir `haven::as_factor` verwenden:
+In Stata werden Faktorvariablen wie in diesem Fall `nationality` numerisch abgespeichert und mit Labels versehen. Um diese in R miteinzulesen, können wir `haven::as_factor()` verwenden:
 
 ```{r}
 read_dta("data/raw/earnings_data/earnings.dta") |>
@@ -186,20 +186,125 @@ Bei diesem Text-File wird der Tabulator als Trennzeichen verwendet und von R auc
 read_delim("data/raw/earnings_data/earnings_tab.txt", delim = "\t")
 ```
 
+
+::: callout-warning
+#### Probleme mit Trennzeichen
+
 Bei TXT-Dateien oder anderen allgemeinen Datensätzen kann es jedoch immer wieder zu Problemen kommen, wenn das Trennzeichen auch innerhalb einer Variable verwendet wird. Wurde zum Beispiel ein Datensatz als TXT-Datei mit Leerzeichen als Trennzeichen abgespeichert, so führt dies beim Einlesen zu folgendem Problem:
 
 ```{r}
 read_delim("data/raw/earnings_data/earnings_space.txt", delim = " ")
 ```
 
-Da die erste Beobachtung der Namensvariable (*Anna Maria*) ein Leerzeichen enthält, werden hier die Werte in die nächsten Spalten verschoben. Daher ist es ratsam beim Exportieren von eigenen Datensätzen auf Formate zurückzugreifen, die von R problemlos richtig gelesen werden (etwa RDS oder CSV).
+Da die erste Beobachtung der Namensvariable (*Anna Maria*) und die Variablenbezeichnung `inc in Eur` Leerzeichen enthalten, werden hier die Werte in die nächsten Spalten verschoben. Daher ist es ratsam beim Exportieren von eigenen Datensätzen auf Formate zurückzugreifen, die von R problemlos richtig gelesen werden (etwa RDS oder CSV).
+:::
 
 ## Daten ansehen
 
+Nach dem Import von Daten sollte man sich den Datensatz immer zunächst genau ansehen, um Struktur, Datentypen und mögliche Probleme frühzeitig zu erkennen. Bisher haben wir uns den Datensatz durch Eingabe des Objektnamens anzeigen lassen. Sollte ein Datensatz als *Dataframe* und nicht als *Tibble* geladen sein, hat dies den Nachteil, dass hier der gesamte Datensatz in der Konsole ausgegeben wird. Bei kleinen Datensätzen macht das kaum einen Unterschied, aber bei größeren Daten kann die vollständige Ausgabe sehr unübersichtlich werden und die Konsole „überfluten“.
+
+Es ist daher besser, sich in der Konsole nur Teile eines Datensatzes anzeigen zu lassen. In Base R bieten sich dafür Funktionen wie head() und tail() (Anzeigen der ersten bzw. letzten Zeilen):
+
+```{r}
+head(earnings, n = 5)
+```
+
+Im `tidyverse` Package bietet die Funktion `glimpse()` eine kompakte Übersicht:
+
+```{r}
+glimpse(earnings)
+```
+
+Neben den ersten Werten in jeder Variable sehen wir auch, dass unser Datensatz aus 10 Zeilen und 4 Spalten besteht, sowie den Datentyp der jeweiligen Variablen (z.b. `character` bei `earnings$Names`).
+
+Um uns den ganzen Datensatz anzusehen, können wir uns den Datensatz in einem separaten Fenster öffnen. Dies geschieht entweder durch Doppelklick auf den Datensatz im Environment-Fenster oder durch die Funktionen `View()` (Base R) bzw. `view()` (`tidyverse`):
+
+```{r}
+#| eval: false
+view(earnings)
+```
+
+Dadurch öffnet sich im R-Script-Panel ein neues Fenster mit dem Datensatz (@fig-view-data). Um uns den Datensatz genauer anzusehen, haben wir auch die Möglichkeit, Daten zu filtern (grüne Markierung), zu suchen (rote Markierung) oder den Datensatz anhand einer bestimmten Variable zu sortieren (blaue Markierung).
+
+```{r}
+#| label: fig-view-data
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   Separates Datensatz-Fenster in R.
+#| fig-alt: |
+#|  Datensatz-Fenster in R mit Herhorhebungen der Filter-, Sortier- und Suchfunktion.
+knitr::include_graphics("images/view-data.png", dpi = 270)
+```
+
 ## Daten bereinigen
 
-### Dateinamen
+Nachdem wir einen Datensatz importiert haben müssen wir diesen häufig bereinigen, bevor wir mit der Analyse oder Weiterverarbeitung starten. Wesentliche Punkte sind dabei die Vereinheitlichung der Variablennamen, eine Korrektur falscher Datentypen und die Identifizierung fehlender Werte.
+
+Durch einen ersten Blick auf die Daten bekommen wir schnell einen Überblick, welche Probleme im Datensatz bestehen:
+
+```{r}
+#| echo: false
+earnings <- read_csv("data/raw/earnings_data/earnings.csv")
+withr::local_options(list(tibble.print_max = 20))
+earnings
+```
+
+Der `earnings`-Datensatz zeigt dabei mehrere typische Probleme:
+- *Fehlende Werte*: In der Variable `Nationalität` wurde ein fehlender Wert nicht als `NA` erkannt, sondern als Text eingelesen (*N/A*).
+- *Variablennamen*: Die Namen sind uneinheitlich und enthalten Großbuchstaben, Sonderzeichen, Leerzeichen oder Punkte – sie widersprechen damit den Best Practices zur Namensgebung.
+- *Datentypen*: Die Variable *incEur* wurde als `character` eingelesen, sollte aber eigentlich numerisch sein.
+
+Diese Probleme können wir mit den in @sec-daten-transform vorgestellten Operationen lösen. Es ist jedoch sinnvoll, den Einleseprozess so anzupassen, dass die Daten direkt korrekt eingelesen werden.
+
+### Fehlende Werte
+
+R interpretiert beim CSV-Import standardmäßig nur leere Felder oder den String *NA* als fehlende Werte (`NA`). In unserem Datensatz fehlt jedoch auch die zweite Beobachtung in `Nationalität`, die als *N/A* codiert wurde. Mit `read_csv()` können wir über das Argument `na = ...` festlegen, welche Werte als `NA` eingelesen werden sollen:
+
+```{r}
+earnings <- read_csv("data/raw/earnings_data/earnings.csv", na = c("", "NA", "N/A"))
+earnings
+```
+
+
+### Variablennamen
+
+Variablen sollten – wie alle R-Objekte – aussagekräftig und einheitlich benannt werden. In diesem Kurs orientieren wir uns dabei an der snake_case-Konvention. Die ursprünglichen Variablennamen widersprechen dieser Logik, da sie Großbuchstaben, Sonderzeichen, Leerzeichen oder Punkte als Trennzeichen enthalten. Außerdem transportieren manche Namen zu viele Informationen: Dass das Alter in Jahren oder das Einkommen in Euro gemessen wird, ist in der Regel aus dem Kontext des Datensatzes klar und somit redundant.
+
+Um Variablennamen gezielt zu ändern, können wir `rename(new_name = old_name)` verwenden. Enthält ein Variablenname Leerzeichen, muss er in Backticks (`` ` ``) gesetzt werden:
+
+```{r}
+earnings <- earnings |>
+  rename(
+    name = Names,
+    age = age.in.years,
+    nationality = Nationalität,
+    income = `inc in Eur`
+  )
+earnings
+```
+
+Bei Datensätzen mit vielen Variablen ist eine einzelne Umbenennung mühsam. Hier kann die Funktion `janitor::clean_names()` (aus dem gleichnamigen Paket) helfen, alle Variablennamen automatisch in snake_case zu übersetzen. Einzelne Anpassungen lassen sich anschließend bei Bedarf noch vornehmen:
+
+```{r}
+read_csv("data/raw/earnings_data/earnings.csv", na = c("", "NA", "N/A")) |>
+  janitor::clean_names(case = "snake")
+```
 
 ### Datentypen
 
-### Fehlende Werte
+Wenn Variablen im Originaldatensatz nicht sauber codiert sind, kann R sie im falschen Typ einlesen. In unserem Beispiel wurde das Einkommen bei der dritten Beobachtung mit einem Euro-Zeichen versehen, sodass R die Variable als `character` interpretiert. Eine direkte Umwandlung mit `as.numeric()` würde diese Beobachtung in `NA` recodieren, da sie keinen reinen Zahlenwert enthält:
+
+```{r}
+#| warning: true
+earnings |>
+  mutate(income = as.numeric(income))
+```
+
+Um dies zu vermeiden, nutzen wir die `tidyverse`-Funktion `parse_number()`, die alle nicht-numerischen Zeichen entfernt und die Zahlen extrahiert:
+
+```{r}
+earnings <- earnings |>
+  mutate(income = parse_number(income))
+earnings
+```

@@ -380,7 +380,7 @@ Die Funktion `ls()` gibt dabei die Namen aller im Environment gespeicherter Obje
 
 ## Packages
 
-Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben. In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package `tidyverse` zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.
+Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben (Base R). In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package `tidyverse` zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.
 
 Die Installation eines Packages erfolgt über die Funktion `install.packages()`:
 
@@ -402,6 +402,19 @@ Alternativ können wir auch auf Funktionen aus einem bereits installierten aber 
 #| eval: false
 package_name::fct_name(argument1 = value1, argument2 = value2, ...)
 ```
+
+Die folgenden Pakete werden wir im Laufe des Kurses ebenfalls verwenden und können daher gleich jetzt installiert werden:
+
+```{r}
+#| eval: false
+install.packages(
+  c("readxl", "writexl", # Import/Export von Excel-Spreadsheets
+    "haven", "labelled", # Import/Export von dta-Dateien
+    "janitor" # Data Cleaning
+    )
+)
+```
+
 
 
 

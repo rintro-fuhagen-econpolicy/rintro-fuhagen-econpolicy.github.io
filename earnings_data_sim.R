@@ -29,7 +29,7 @@ earnings <- tibble(
 earnings$age[2] <- NA
 earnings$nationality[2] <- "N/A"
 earnings$income[3] <- "2000€"
-names(earnings) <- c("Names", "age.in.years", "Nationalität", "incEur")
+names(earnings) <- c("Names", "age.in.years", "Nationalität", "inc in Eur")
 
 
 # 3. Save data in various types -------------------------------------------
@@ -56,7 +56,7 @@ earnings |>
   rename("names" = "Names",
          "age" = "age.in.years",
          "nationality" = "Nationalität",
-         "income" = "incEur") |>
+         "income" = "inc in Eur") |>
   mutate(income = as.numeric(ifelse(income == "2000€", "2000", income)),
          nationality = case_when(nationality == "DE" ~ 1,
                                  nationality == "EU" ~ 2,

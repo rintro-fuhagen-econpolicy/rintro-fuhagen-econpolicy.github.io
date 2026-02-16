@@ -17,8 +17,8 @@ book:
     
     - part: "Datenaufbereitung"
       chapters:
-        - daten_import.qmd
         - daten_transform.qmd
+        - daten_import.qmd
         - daten_export.qmd
     
     - part: "Datenvisualisierung"
