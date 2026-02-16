@@ -3,8 +3,6 @@
 ```{r}
 #| echo: false
 source("Rsettings.R")
-
-library(tidyverse)
 library(kableExtra)
 ```
 
@@ -53,7 +51,12 @@ dplyr::tibble(
 
 ## Dplyr
 
-Zur Datenmanipulation verwenden wir das `dplyr` Package, das Teil von `tidyverse` ist. In diesem Kapitel lernen wir die wichtigsten `dplyr`-Funktionen kennen. Für eine ausführliche Einführung siehe Kapitel 3, 5 und 12–19 in [R for Data Science](https://r4ds.hadley.nz). Alle `dplyr`-Funktionen nehmen einen Datensatz (Data Frame oder Tibble) als erstes Argument, führen die gewünschte Operation aus und geben einen neuen Datensatz zurück. Solltest du das `tidyverse` noch nicht geladen haben, lade es mit `library(tidyverse)`.
+Zur Datenmanipulation verwenden wir das `dplyr` Package, das Teil von `tidyverse` ist. In diesem Kapitel lernen wir die wichtigsten `dplyr`-Funktionen kennen. Für eine ausführliche Einführung siehe Kapitel 3, 5 und 12–19 in [R for Data Science](https://r4ds.hadley.nz). Alle `dplyr`-Funktionen nehmen einen Datensatz (Data Frame oder Tibble) als erstes Argument, führen die gewünschte Operation aus und geben einen neuen Datensatz zurück. Solltest du das `tidyverse` noch nicht geladen haben, lade es mit:
+
+```{r}
+library(tidyverse)
+```
+
 
 :::callout-tip
 #### Pipes

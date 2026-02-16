@@ -3,8 +3,6 @@
 ```{r}
 #| echo: false
 source("Rsettings.R")
-
-library(tidyverse)
 library(kableExtra)
 ```
 
@@ -57,6 +55,13 @@ dplyr::tibble(
 ```
 
 ## Daten einlesen
+
+Wir werden zum Datenimport auf Funktionen aus dem `readr` Package zurückgreifen, welches Teil von `tidyverse` ist. Solltest du `tidyverse` noch nicht geladen haben, lade es mit:
+
+```{r}
+library(tidyverse)
+```
+
 
 ### CSV-Dateien
 
