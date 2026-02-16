@@ -10,7 +10,7 @@ Datensätze liegen häufig nicht in der Form vor, die für Analyse oder Visualis
 
 ```{r}
 penguins <- palmerpenguins::penguins |>
-  rename(
+  dplyr::rename(
     bill_len = bill_length_mm,
     bill_dep = bill_depth_mm,
     flipper_len = flipper_length_mm,
