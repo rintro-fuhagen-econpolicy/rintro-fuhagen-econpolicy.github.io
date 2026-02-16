@@ -408,7 +408,8 @@ Die folgenden Pakete werden wir im Laufe des Kurses ebenfalls verwenden und kön
 ```{r}
 #| eval: false
 install.packages(
-  c("readxl", "writexl", # Import/Export von Excel-Spreadsheets
+  c(
+    "readxl", "writexl", # Import/Export von Excel-Spreadsheets
     "haven", "labelled", # Import/Export von dta-Dateien
     "janitor" # Data Cleaning
     )

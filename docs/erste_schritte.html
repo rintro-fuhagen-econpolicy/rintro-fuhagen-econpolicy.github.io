@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-833d5d9e7a146a1f17f6f84842f4e59d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-0c57a5a96bb3d43983d34e8ac53ef0b2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -172,14 +172,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./daten_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></a>
+  <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
+  <a href="./daten_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,6 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#objekttypen" id="toc-objekttypen" class="nav-link" data-scroll-target="#objekttypen"><span class="header-section-number">1.4.3</span> Objekttypen</a></li>
   <li><a href="#indizierung-von-objekten" id="toc-indizierung-von-objekten" class="nav-link" data-scroll-target="#indizierung-von-objekten"><span class="header-section-number">1.4.4</span> Indizierung von Objekten</a></li>
   <li><a href="#arbeiten-mit-objekten" id="toc-arbeiten-mit-objekten" class="nav-link" data-scroll-target="#arbeiten-mit-objekten"><span class="header-section-number">1.4.5</span> Arbeiten mit Objekten</a></li>
+  <li><a href="#entfernen-von-objekten" id="toc-entfernen-von-objekten" class="nav-link" data-scroll-target="#entfernen-von-objekten"><span class="header-section-number">1.4.6</span> Entfernen von Objekten</a></li>
   </ul>
 </li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">1.5</span> Packages</a></li>
@@ -449,13 +450,17 @@ Abbildung&nbsp;1.1: RStudio Interface.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">function_name</span><span class="op">(</span>argument1 <span class="op">=</span> <span class="va">value1</span>, argument2 <span class="op">=</span> <span class="va">value2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Weiter oben haben wir bereits unsere erste Funktion ausgeführt, um den natürlichen Logarithmus von 4 zu berechen (<code>log(4)</code>). Um das Ausführen von Funktionen besser kennen zu lernen, sehen wir uns die Funktion <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> an, mit welcher wir Sequenzen von Zahlen erstellen können. Um die Funktion aufzurufen, tippen wir <code>seq</code> in die Konsole ein. Ab dem dritten Buchstaben öffnet sich in R ein Pop-Up-Fenster mit möglichen Optionen. Hier kann man entweder mit den Pfeiltasten rauf- oder runtergehen, die gewünschte Funktion wählen und <kbd>Enter</kbd> drücken.</p>
-<div id="fig-seq-fct" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-seq-fct" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-seq-fct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<p><img src="images/seq_function.gif" alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole" width="70%" loop="infinite" class="figure-img"></p>
+<img src="images/seq_function.gif" class="img-fluid figure-img" alt="Auswählen der seq()-Funktion über das Pop-Up-Menü in der Konsole.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-seq-fct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.2: Auswählen der seq()-Funktion.
 </figcaption></figure>
+</div>
+</div>
 </div>
 <p>Wir können auch den gesamten Befehl selbst eingeben und die Klammer öffnen: <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code>.</p>
 <p>Um mehr über die Funktion zu erfahren, können wir einen der folgenden Befehle ausführen:</p>
@@ -734,16 +739,28 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">students</span><span class="op">)</span> <span class="co"># Anzahl der Zeilen im students dataframe</span></span>
 <span><span class="co">#&gt; [1] 3</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section><section id="entfernen-von-objekten" class="level3" data-number="1.4.6"><h3 data-number="1.4.6" class="anchored" data-anchor-id="entfernen-von-objekten">
+<span class="header-section-number">1.4.6</span> Entfernen von Objekten</h3>
+<p>Objekte, die nicht mehr gebraucht werden, können mit <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code> (<code><a href="https://rdrr.io/r/base/rm.html">remove()</a></code>) wieder aus dem Environment gelöscht werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">two_by_two</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">numbers_int</span>, <span class="va">numbers_greater7</span><span class="op">)</span> <span class="co"># mehrere Objekte können gleichzeitig gelöscht werden</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um sämtliche Objekte auf einmal auf dem Environment zu löschen, können wir folgenden Befehl ausführen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Funktion <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> gibt dabei die Namen aller im Environment gespeicherter Objekte wieder.</p>
 </section></section><section id="packages" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="packages">
 <span class="header-section-number">1.5</span> Packages</h2>
-<p>Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben. In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package <code>tidyverse</code> zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.</p>
+<p>Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben (Base R). In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package <code>tidyverse</code> zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.</p>
 <p>Die Installation eines Packages erfolgt über die Funktion <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die Installation eines Packages ist nur einmal notwendig. Bei jeder Sitzung muss jedoch das gewünschte Package über <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> geladen werden, um auf die darin enthaltenen Funktionen zugreifen zu können:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; ✔ dplyr     1.2.0     ✔ readr     2.1.6</span></span>
 <span><span class="co">#&gt; ✔ forcats   1.0.1     ✔ stringr   1.6.0</span></span>
@@ -758,7 +775,17 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
 </div>
 <p>Alternativ können wir auch auf Funktionen aus einem bereits installierten aber nicht geladenen Package zugreifen, in dem wir vor der Funktion auf das Package verweisen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">package_name</span><span class="fu">::</span><span class="fu">fct_name</span><span class="op">(</span>argument1 <span class="op">=</span> <span class="va">value1</span>, argument2 <span class="op">=</span> <span class="va">value2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">package_name</span><span class="fu">::</span><span class="fu">fct_name</span><span class="op">(</span>argument1 <span class="op">=</span> <span class="va">value1</span>, argument2 <span class="op">=</span> <span class="va">value2</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die folgenden Pakete werden wir im Laufe des Kurses ebenfalls verwenden und können daher gleich jetzt installiert werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"readxl"</span>, <span class="st">"writexl"</span>, <span class="co"># Import/Export von Excel-Spreadsheets</span></span>
+<span>    <span class="st">"haven"</span>, <span class="st">"labelled"</span>, <span class="co"># Import/Export von dta-Dateien</span></span>
+<span>    <span class="st">"janitor"</span> <span class="co"># Data Cleaning</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
