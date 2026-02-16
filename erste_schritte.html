@@ -186,14 +186,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./daten_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></a>
+  <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
+  <a href="./daten_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -791,7 +791,7 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
 </section>
 <section id="packages" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.5</span> Packages</h2>
-<p>Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben. In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package <code>tidyverse</code> zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.</p>
+<p>Die bisher verwendeten Funktionen sind allesamt in der Core-Version von R enthalten, welche wir zu Beginn installiert haben (Base R). In R werden zusätzliche Funktionen und Datensätze über Packages bereitgestellt, die die Grundfunktionen der Sprache erweitern. Jedes Package bündelt thematisch verwandte Werkzeuge, wie zum Beispiel Statistikfunktionen, Visualisierungen oder Datenmanipulation. Für diesen Kurs werden wir vor allem auf das Package <code>tidyverse</code> zurückgreifen, eine Sammlung von R-Packages, die gemeinsam eine konsistente und leicht verständliche Syntax für Datenaufbereitung und Visualisierung bereitstellen.</p>
 <p>Die Installation eines Packages erfolgt über die Funktion <code>install.packages()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -814,6 +814,15 @@ Tabelle&nbsp;1.1: Objekttypen in R (Auswahl)
 <p>Alternativ können wir auch auf Funktionen aus einem bereits installierten aber nicht geladenen Package zugreifen, in dem wir vor der Funktion auf das Package verweisen:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>package_name<span class="sc">::</span><span class="fu">fct_name</span>(<span class="at">argument1 =</span> value1, <span class="at">argument2 =</span> value2, ...)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die folgenden Pakete werden wir im Laufe des Kurses ebenfalls verwenden und können daher gleich jetzt installiert werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"readxl"</span>, <span class="st">"writexl"</span>, <span class="co"># Import/Export von Excel-Spreadsheets</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"haven"</span>, <span class="st">"labelled"</span>, <span class="co"># Import/Export von dta-Dateien</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"janitor"</span> <span class="co"># Data Cleaning</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

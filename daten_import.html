@@ -8,7 +8,7 @@
 
 <meta name="author" content="Andreas Fischeneder">
 
-<title>3&nbsp; Daten importieren – Einführung in R</title>
+<title>4&nbsp; Daten importieren – Einführung in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./daten_transform.html" rel="next">
-<link href="./best_practices.html" rel="prev">
+<link href="./daten_export.html" rel="next">
+<link href="./daten_transform.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./daten_import.html">Datenaufbereitung</a></li><li class="breadcrumb-item"><a href="./daten_import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./daten_transform.html">Datenaufbereitung</a></li><li class="breadcrumb-item"><a href="./daten_import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten importieren</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -186,14 +186,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./daten_import.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></a>
+  <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./daten_transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span></a>
+  <a href="./daten_import.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -318,21 +318,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#datenformate" id="toc-datenformate" class="nav-link active" data-scroll-target="#datenformate"><span class="header-section-number">3.1</span> Datenformate</a></li>
-  <li><a href="#daten-einlesen" id="toc-daten-einlesen" class="nav-link" data-scroll-target="#daten-einlesen"><span class="header-section-number">3.2</span> Daten einlesen</a>
+  <li><a href="#datenformate" id="toc-datenformate" class="nav-link active" data-scroll-target="#datenformate"><span class="header-section-number">4.1</span> Datenformate</a></li>
+  <li><a href="#daten-einlesen" id="toc-daten-einlesen" class="nav-link" data-scroll-target="#daten-einlesen"><span class="header-section-number">4.2</span> Daten einlesen</a>
   <ul class="collapse">
-  <li><a href="#csv-dateien" id="toc-csv-dateien" class="nav-link" data-scroll-target="#csv-dateien"><span class="header-section-number">3.2.1</span> CSV-Dateien</a></li>
-  <li><a href="#rds-dateien" id="toc-rds-dateien" class="nav-link" data-scroll-target="#rds-dateien"><span class="header-section-number">3.2.2</span> RDS-Dateien</a></li>
-  <li><a href="#excel-spreadsheets" id="toc-excel-spreadsheets" class="nav-link" data-scroll-target="#excel-spreadsheets"><span class="header-section-number">3.2.3</span> Excel-Spreadsheets</a></li>
-  <li><a href="#stata-datensätze" id="toc-stata-datensätze" class="nav-link" data-scroll-target="#stata-datensätze"><span class="header-section-number">3.2.4</span> Stata-Datensätze</a></li>
-  <li><a href="#weitere-dateiformate" id="toc-weitere-dateiformate" class="nav-link" data-scroll-target="#weitere-dateiformate"><span class="header-section-number">3.2.5</span> Weitere Dateiformate</a></li>
+  <li><a href="#csv-dateien" id="toc-csv-dateien" class="nav-link" data-scroll-target="#csv-dateien"><span class="header-section-number">4.2.1</span> CSV-Dateien</a></li>
+  <li><a href="#rds-dateien" id="toc-rds-dateien" class="nav-link" data-scroll-target="#rds-dateien"><span class="header-section-number">4.2.2</span> RDS-Dateien</a></li>
+  <li><a href="#excel-spreadsheets" id="toc-excel-spreadsheets" class="nav-link" data-scroll-target="#excel-spreadsheets"><span class="header-section-number">4.2.3</span> Excel-Spreadsheets</a></li>
+  <li><a href="#stata-datensätze" id="toc-stata-datensätze" class="nav-link" data-scroll-target="#stata-datensätze"><span class="header-section-number">4.2.4</span> Stata-Datensätze</a></li>
+  <li><a href="#weitere-dateiformate" id="toc-weitere-dateiformate" class="nav-link" data-scroll-target="#weitere-dateiformate"><span class="header-section-number">4.2.5</span> Weitere Dateiformate</a></li>
   </ul></li>
-  <li><a href="#daten-ansehen" id="toc-daten-ansehen" class="nav-link" data-scroll-target="#daten-ansehen"><span class="header-section-number">3.3</span> Daten ansehen</a></li>
-  <li><a href="#daten-bereinigen" id="toc-daten-bereinigen" class="nav-link" data-scroll-target="#daten-bereinigen"><span class="header-section-number">3.4</span> Daten bereinigen</a>
+  <li><a href="#daten-ansehen" id="toc-daten-ansehen" class="nav-link" data-scroll-target="#daten-ansehen"><span class="header-section-number">4.3</span> Daten ansehen</a></li>
+  <li><a href="#daten-bereinigen" id="toc-daten-bereinigen" class="nav-link" data-scroll-target="#daten-bereinigen"><span class="header-section-number">4.4</span> Daten bereinigen</a>
   <ul class="collapse">
-  <li><a href="#dateinamen" id="toc-dateinamen" class="nav-link" data-scroll-target="#dateinamen"><span class="header-section-number">3.4.1</span> Dateinamen</a></li>
-  <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen"><span class="header-section-number">3.4.2</span> Datentypen</a></li>
-  <li><a href="#fehlende-werte" id="toc-fehlende-werte" class="nav-link" data-scroll-target="#fehlende-werte"><span class="header-section-number">3.4.3</span> Fehlende Werte</a></li>
+  <li><a href="#fehlende-werte" id="toc-fehlende-werte" class="nav-link" data-scroll-target="#fehlende-werte"><span class="header-section-number">4.4.1</span> Fehlende Werte</a></li>
+  <li><a href="#variablennamen" id="toc-variablennamen" class="nav-link" data-scroll-target="#variablennamen"><span class="header-section-number">4.4.2</span> Variablennamen</a></li>
+  <li><a href="#datentypen" id="toc-datentypen" class="nav-link" data-scroll-target="#datentypen"><span class="header-section-number">4.4.3</span> Datentypen</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -340,9 +340,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./daten_import.html">Datenaufbereitung</a></li><li class="breadcrumb-item"><a href="./daten_import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./daten_transform.html">Datenaufbereitung</a></li><li class="breadcrumb-item"><a href="./daten_import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten importieren</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-daten-import" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></h1>
+<h1 class="title"><span id="sec-daten-import" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten importieren</span></span></h1>
 </div>
 
 
@@ -376,14 +376,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">"rintro-fuhagen-econpolicy.github.io-main"</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(repo_url)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="datenformate" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="datenformate"><span class="header-section-number">3.1</span> Datenformate</h2>
-<p>In der Praxis begegnen dir verschiedene Datenformate, die mit unterschiedlichen Funktionen in R eingelesen werden. <a href="#tbl-data-formats" class="quarto-xref">Tabelle&nbsp;<span>3.1</span></a> gibt einen Überblick über die gebräuchlichsten Formate.</p>
+<section id="datenformate" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="datenformate"><span class="header-section-number">4.1</span> Datenformate</h2>
+<p>In der Praxis begegnen dir verschiedene Datenformate, die mit unterschiedlichen Funktionen in R eingelesen werden. <a href="#tbl-data-formats" class="quarto-xref">Tabelle&nbsp;<span>4.1</span></a> gibt einen Überblick über die gebräuchlichsten Formate.</p>
 <div class="cell">
 <div id="tbl-data-formats" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
+Tabelle&nbsp;4.1: Datensatzformate in der Praxis (Auswahl)
 </figcaption>
 <div aria-describedby="tbl-data-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -435,52 +435,52 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 </div>
 </div>
 </section>
-<section id="daten-einlesen" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="daten-einlesen"><span class="header-section-number">3.2</span> Daten einlesen</h2>
-<section id="csv-dateien" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="csv-dateien"><span class="header-section-number">3.2.1</span> CSV-Dateien</h3>
+<section id="daten-einlesen" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="daten-einlesen"><span class="header-section-number">4.2</span> Daten einlesen</h2>
+<section id="csv-dateien" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="csv-dateien"><span class="header-section-number">4.2.1</span> CSV-Dateien</h3>
 <p>Das CSV-Format (Comma-Separated Values) speichert tabellarische Daten als Text, wobei jede Zeile eine Beobachtung und jede Spalte einen Wert enthält, getrennt durch Kommata oder andere Trennzeichen. Beim Import in R müssen wir auf das korrekte Trennzeichen achten, damit die Zahlen korrekt eingelesen werden.</p>
 <p>CSV-Dateien können mit der Funktion <code>read_csv()</code> aus dem <code>tidyverse</code>/<code>readr</code> Package eingelesen werden:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/earnings_data/earnings.csv"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>earnings</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  `inc in Eur`</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689        </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875         </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€       </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299        </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522        </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060        </span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>International werden die einzelnen Spalten mit einem Komma (,) getrennt. Dies ist auch das Default-Trennzeichen bei <code>read_csv()</code>. Da in der deutschen Sprache dieses als Zeichen für Dezimalstellen verwendet wird, wird hier das Semikolon/der Strichpunkt (;) als Trennzeichen verwendet. Verwenden wir das falsche Trennzeichen beim Einlesen von CSV-Dateien mit diesem Trennzeichen, werden die Daten falsch eingelesen:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/raw/earnings_data/earnings_de.csv"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `Names;age.in.years;Nationalität;incEur`</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                                   </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria;33;DE;1689                   </span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben;NA;N/A;875                          </span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara;21;International;2000€            </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri;28;EU;2299                      </span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise;29;DE;2522                 </span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima;23;DE;1060                       </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   `Names;age.in.years;Nationalität;inc in Eur`</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                                       </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria;33;DE;1689                       </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben;NA;N/A;875                              </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara;21;International;2000€                </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri;28;EU;2299                          </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise;29;DE;2522                     </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima;23;DE;1060                           </span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Stattdessen müssen wir bei einer solchen Encodierung <code>read_csv2()</code> verwenden:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(<span class="st">"data/raw/earnings_data/earnings_de.csv"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  `inc in Eur`</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689        </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875         </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€       </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299        </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522        </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060        </span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-warning callout-titled">
@@ -502,8 +502,8 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 </div>
 </div>
 </section>
-<section id="rds-dateien" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="rds-dateien"><span class="header-section-number">3.2.2</span> RDS-Dateien</h3>
+<section id="rds-dateien" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="rds-dateien"><span class="header-section-number">4.2.2</span> RDS-Dateien</h3>
 <p>RDS ist ein R-spezifisches Format, das ein einzelnes R-Objekt speichert. RDS speichert Objekte in nativer R-Struktur, inklusive Datentypen, Faktoren, Datum/Zeit und sogar komplexer Objekte wie Modelle, wodurch beim Einlesen keine Umwandlungen nötig sind. RDS-Dateien sind oft kleiner und schneller zu lesen als Textdateien, da keine Konvertierung von und zu Text nötig ist.</p>
 <p>Wir können RDS-Dateien mit <code>read_rds()</code> einlesen:</p>
 <div class="cell">
@@ -533,21 +533,21 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 </div>
 </div>
 </section>
-<section id="excel-spreadsheets" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="excel-spreadsheets"><span class="header-section-number">3.2.3</span> Excel-Spreadsheets</h3>
+<section id="excel-spreadsheets" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="excel-spreadsheets"><span class="header-section-number">4.2.3</span> Excel-Spreadsheets</h3>
 <p>Um Excel-Spreadsheets einzulesen benötigt man in R ein zusätzliches Package (<code>readxl</code>). Mit der Funktion <code>read_excel()</code> können sowohl <code>.xlsx</code> als auch <code>.xls</code> Dateien eingeladen werden.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/raw/earnings_data/earnings.xlsx"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  `inc in Eur`</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689        </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875         </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€       </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299        </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522        </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060        </span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Per Default importiert diese Funktion immer den Datensatz aus dem ersten Tabellenblatt. Mit dem Argument <code>sheet = ...</code> können wir das Tabellenblatt wählen. Möglich ist sowohl, die Nummer des Tabellenblatts als Zahl anzugeben, als auch den Namen des Tabellenblatts in Anführungszeichen anzugeben. Mit dem Argument <code>range = ...</code> können wir außerdem den Bereich des Tabellenblatts angeben, den wir einlesen wollen:</p>
@@ -565,8 +565,8 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Sheet1"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="stata-datensätze" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="stata-datensätze"><span class="header-section-number">3.2.4</span> Stata-Datensätze</h3>
+<section id="stata-datensätze" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="stata-datensätze"><span class="header-section-number">4.2.4</span> Stata-Datensätze</h3>
 <p>Stata ist eine alternative Statistiksoftware, die in den Wirtschaftswissenschaften immer noch häufig verwendet wird. Für das Speichern von Datensätzen verwendet Stata das <code>.dta</code>-Format. Dieses speichert sowohl die Daten als auch Variablen- und Wertelabels, sodass beim Einlesen in R oder Stata die Struktur, Kategorien und Labels erhalten bleiben.</p>
 <p>Für das Einlesen von Stata-Datensätzen verwenden wir das <code>haven</code> Package und die Funktion ``:</p>
 <div class="cell">
@@ -583,7 +583,7 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima          23  1 [DE]              1060</span></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In Stata werden Faktorvariablen wie in diesem Fall <code>nationality</code> numerisch abgespeichert und mit Labels versehen. Um diese in R miteinzulesen, können wir <code>haven::as_factor</code> verwenden:</p>
+<p>In Stata werden Faktorvariablen wie in diesem Fall <code>nationality</code> numerisch abgespeichert und mit Labels versehen. Um diese in R miteinzulesen, können wir <code>haven::as_factor()</code> verwenden:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_dta</span>(<span class="st">"data/raw/earnings_data/earnings.dta"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nationality =</span> <span class="fu">as_factor</span>(nationality))</span>
@@ -616,56 +616,232 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
 </div>
 </div>
 </section>
-<section id="weitere-dateiformate" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="weitere-dateiformate"><span class="header-section-number">3.2.5</span> Weitere Dateiformate</h3>
+<section id="weitere-dateiformate" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="weitere-dateiformate"><span class="header-section-number">4.2.5</span> Weitere Dateiformate</h3>
 <p>Die Funktion <code>read_delim()</code> kann in R verwendet werden, um Datensätze mit beliebigem Trennzeichen einzulesen. Sie versucht dabei, das Trennzeichen automatisch zu erkennen. Wir können damit etwa eine Textdatei (.txt) einlesen:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="st">"data/raw/earnings_data/earnings_tab.txt"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689  </span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875   </span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€ </span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299  </span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522  </span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060  </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  `inc in Eur`</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689        </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875         </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€       </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299        </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522        </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima                 23 DE            1060        </span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Bei diesem Text-File wird der Tabulator als Trennzeichen verwendet und von R auch korrekt beim Einlesen erkannt. Wir können das Trennzeichen aber auch explizit über das <code>delim = value</code>-Argument spezifizieren:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="st">"data/raw/earnings_data/earnings_tab.txt"</span>, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Probleme mit Trennzeichen
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Bei TXT-Dateien oder anderen allgemeinen Datensätzen kann es jedoch immer wieder zu Problemen kommen, wenn das Trennzeichen auch innerhalb einer Variable verwendet wird. Wurde zum Beispiel ein Datensatz als TXT-Datei mit Leerzeichen als Trennzeichen abgespeichert, so führt dies beim Einlesen zu folgendem Problem:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_delim</span>(<span class="st">"data/raw/earnings_data/earnings_space.txt"</span>, <span class="at">delim =</span> <span class="st">" "</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  incEur </span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;  </span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna         Maria        33            DE 1689</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben          &lt;NA&gt;         N/A           875    </span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara        21           International 2000€  </span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri      28           EU            2299   </span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise 29           DE            2522   </span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima       23           DE            1060   </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 6</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  inc    `in` Eur  </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt; &lt;dbl&gt; &lt;lgl&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna         Maria        33            DE     1689 NA   </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben          &lt;NA&gt;         N/A           875      NA NA   </span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara        21           International 2000€    NA NA   </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri      28           EU            2299     NA NA   </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise 29           DE            2522     NA NA   </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Fatima       23           DE            1060     NA NA   </span></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Da die erste Beobachtung der Namensvariable (<em>Anna Maria</em>) ein Leerzeichen enthält, werden hier die Werte in die nächsten Spalten verschoben. Daher ist es ratsam beim Exportieren von eigenen Datensätzen auf Formate zurückzugreifen, die von R problemlos richtig gelesen werden (etwa RDS oder CSV).</p>
+<p>Da die erste Beobachtung der Namensvariable (<em>Anna Maria</em>) und die Variablenbezeichnung <code>inc in Eur</code> Leerzeichen enthalten, werden hier die Werte in die nächsten Spalten verschoben. Daher ist es ratsam beim Exportieren von eigenen Datensätzen auf Formate zurückzugreifen, die von R problemlos richtig gelesen werden (etwa RDS oder CSV).</p>
+</div>
+</div>
 </section>
 </section>
-<section id="daten-ansehen" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="daten-ansehen"><span class="header-section-number">3.3</span> Daten ansehen</h2>
+<section id="daten-ansehen" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="daten-ansehen"><span class="header-section-number">4.3</span> Daten ansehen</h2>
+<p>Nach dem Import von Daten sollte man sich den Datensatz immer zunächst genau ansehen, um Struktur, Datentypen und mögliche Probleme frühzeitig zu erkennen. Bisher haben wir uns den Datensatz durch Eingabe des Objektnamens anzeigen lassen. Sollte ein Datensatz als <em>Dataframe</em> und nicht als <em>Tibble</em> geladen sein, hat dies den Nachteil, dass hier der gesamte Datensatz in der Konsole ausgegeben wird. Bei kleinen Datensätzen macht das kaum einen Unterschied, aber bei größeren Daten kann die vollständige Ausgabe sehr unübersichtlich werden und die Konsole „überfluten“.</p>
+<p>Es ist daher besser, sich in der Konsole nur Teile eines Datensatzes anzeigen zu lassen. In Base R bieten sich dafür Funktionen wie head() und tail() (Anzeigen der ersten bzw. letzten Zeilen):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(earnings, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Names        age.in.years Nationalität  `inc in Eur`</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anna Maria             33 DE            1689        </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ben                    NA N/A           875         </span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Clara                  21 International 2000€       </span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Dimitri                28 EU            2299        </span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Emilia-Luise           29 DE            2522</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Im <code>tidyverse</code> Package bietet die Funktion <code>glimpse()</code> eine kompakte Übersicht:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(earnings)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 10</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 4</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ Names        &lt;chr&gt; "Anna Maria", "Ben", "Clara", "Dimitri", "Emilia-Luise…</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ age.in.years &lt;int&gt; 33, NA, 21, 28, 29, 23, 32, 23, 27, 21</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ Nationalität &lt;chr&gt; "DE", "N/A", "International", "EU", "DE", "DE", "DE", …</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ `inc in Eur` &lt;chr&gt; "1689", "875", "2000€", "2299", "2522", "1060", "1781"…</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Neben den ersten Werten in jeder Variable sehen wir auch, dass unser Datensatz aus 10 Zeilen und 4 Spalten besteht, sowie den Datentyp der jeweiligen Variablen (z.b. <code>character</code> bei <code>earnings$Names</code>).</p>
+<p>Um uns den ganzen Datensatz anzusehen, können wir uns den Datensatz in einem separaten Fenster öffnen. Dies geschieht entweder durch Doppelklick auf den Datensatz im Environment-Fenster oder durch die Funktionen <code>View()</code> (Base R) bzw. <code>view()</code> (<code>tidyverse</code>):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(earnings)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Dadurch öffnet sich im R-Script-Panel ein neues Fenster mit dem Datensatz (<a href="#fig-view-data" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a>). Um uns den Datensatz genauer anzusehen, haben wir auch die Möglichkeit, Daten zu filtern (grüne Markierung), zu suchen (rote Markierung) oder den Datensatz anhand einer bestimmten Variable zu sortieren (blaue Markierung).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-view-data" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Datensatz-Fenster in R mit Herhorhebungen der Filter-, Sortier- und Suchfunktion.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-view-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/view_data.png" class="img-fluid figure-img" alt="Datensatz-Fenster in R mit Herhorhebungen der Filter-, Sortier- und Suchfunktion.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-view-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.1: Separates Datensatz-Fenster in R.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="daten-bereinigen" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="daten-bereinigen"><span class="header-section-number">3.4</span> Daten bereinigen</h2>
-<section id="dateinamen" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="dateinamen"><span class="header-section-number">3.4.1</span> Dateinamen</h3>
+<section id="daten-bereinigen" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="daten-bereinigen"><span class="header-section-number">4.4</span> Daten bereinigen</h2>
+<p>Nachdem wir einen Datensatz importiert haben müssen wir diesen häufig bereinigen, bevor wir mit der Analyse oder Weiterverarbeitung starten. Wesentliche Punkte sind dabei die Vereinheitlichung der Variablennamen, eine Korrektur falscher Datentypen und die Identifizierung fehlender Werte.</p>
+<p>Durch einen ersten Blick auf die Daten bekommen wir schnell einen Überblick, welche Probleme im Datensatz bestehen:</p>
+<div class="cell">
+<pre><code>#&gt; # A tibble: 10 × 4
+#&gt;    Names        age.in.years Nationalität  `inc in Eur`
+#&gt;    &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       
+#&gt;  1 Anna Maria             33 DE            1689        
+#&gt;  2 Ben                    NA N/A           875         
+#&gt;  3 Clara                  21 International 2000€       
+#&gt;  4 Dimitri                28 EU            2299        
+#&gt;  5 Emilia-Luise           29 DE            2522        
+#&gt;  6 Fatima                 23 DE            1060        
+#&gt;  7 Gerda                  32 DE            1781        
+#&gt;  8 Hannah                 23 EU            2463        
+#&gt;  9 Ismail                 27 International 1442        
+#&gt; 10 Johanna                21 DE            1404</code></pre>
+</div>
+<p>Der <code>earnings</code>-Datensatz zeigt dabei mehrere typische Probleme: - <em>Fehlende Werte</em>: In der Variable <code>Nationalität</code> wurde ein fehlender Wert nicht als <code>NA</code> erkannt, sondern als Text eingelesen (<em>N/A</em>). - <em>Variablennamen</em>: Die Namen sind uneinheitlich und enthalten Großbuchstaben, Sonderzeichen, Leerzeichen oder Punkte – sie widersprechen damit den Best Practices zur Namensgebung. - <em>Datentypen</em>: Die Variable <em>incEur</em> wurde als <code>character</code> eingelesen, sollte aber eigentlich numerisch sein.</p>
+<p>Diese Probleme können wir mit den in <a href="daten_transform.html" class="quarto-xref"><span>Kapitel 3</span></a> vorgestellten Operationen lösen. Es ist jedoch sinnvoll, den Einleseprozess so anzupassen, dass die Daten direkt korrekt eingelesen werden.</p>
+<section id="fehlende-werte" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="fehlende-werte"><span class="header-section-number">4.4.1</span> Fehlende Werte</h3>
+<p>R interpretiert beim CSV-Import standardmäßig nur leere Felder oder den String <em>NA</em> als fehlende Werte (<code>NA</code>). In unserem Datensatz fehlt jedoch auch die zweite Beobachtung in <code>Nationalität</code>, die als <em>N/A</em> codiert wurde. Mit <code>read_csv()</code> können wir über das Argument <code>na = ...</code> festlegen, welche Werte als <code>NA</code> eingelesen werden sollen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/raw/earnings_data/earnings.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"N/A"</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>earnings</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Names        age.in.years Nationalität  `inc in Eur`</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Anna Maria             33 DE            1689        </span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Ben                    NA &lt;NA&gt;          875         </span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Clara                  21 International 2000€       </span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dimitri                28 EU            2299        </span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Emilia-Luise           29 DE            2522        </span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Fatima                 23 DE            1060        </span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Gerda                  32 DE            1781        </span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Hannah                 23 EU            2463        </span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Ismail                 27 International 1442        </span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Johanna                21 DE            1404</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="datentypen" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="datentypen"><span class="header-section-number">3.4.2</span> Datentypen</h3>
+<section id="variablennamen" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="variablennamen"><span class="header-section-number">4.4.2</span> Variablennamen</h3>
+<p>Variablen sollten – wie alle R-Objekte – aussagekräftig und einheitlich benannt werden. In diesem Kurs orientieren wir uns dabei an der snake_case-Konvention. Die ursprünglichen Variablennamen widersprechen dieser Logik, da sie Großbuchstaben, Sonderzeichen, Leerzeichen oder Punkte als Trennzeichen enthalten. Außerdem transportieren manche Namen zu viele Informationen: Dass das Alter in Jahren oder das Einkommen in Euro gemessen wird, ist in der Regel aus dem Kontext des Datensatzes klar und somit redundant.</p>
+<p>Um Variablennamen gezielt zu ändern, können wir <code>rename(new_name = old_name)</code> verwenden. Enthält ein Variablenname Leerzeichen, muss er in Backticks (<code>`</code>) gesetzt werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="ot">&lt;-</span> earnings <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> Names,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> age.in.years,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nationality =</span> Nationalität,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">income =</span> <span class="st">`</span><span class="at">inc in Eur</span><span class="st">`</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>earnings</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name           age nationality   income</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt; </span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Anna Maria      33 DE            1689  </span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Ben             NA &lt;NA&gt;          875   </span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Clara           21 International 2000€ </span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dimitri         28 EU            2299  </span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Emilia-Luise    29 DE            2522  </span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Fatima          23 DE            1060  </span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Gerda           32 DE            1781  </span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Hannah          23 EU            2463  </span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Ismail          27 International 1442  </span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Johanna         21 DE            1404</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Bei Datensätzen mit vielen Variablen ist eine einzelne Umbenennung mühsam. Hier kann die Funktion <code>janitor::clean_names()</code> (aus dem gleichnamigen Paket) helfen, alle Variablennamen automatisch in snake_case zu übersetzen. Einzelne Anpassungen lassen sich anschließend bei Bedarf noch vornehmen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"data/raw/earnings_data/earnings.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"N/A"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>(<span class="at">case =</span> <span class="st">"snake"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    names        age_in_years nationalitat  inc_in_eur</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;     </span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Anna Maria             33 DE            1689      </span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Ben                    NA &lt;NA&gt;          875       </span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Clara                  21 International 2000€     </span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dimitri                28 EU            2299      </span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Emilia-Luise           29 DE            2522      </span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Fatima                 23 DE            1060      </span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Gerda                  32 DE            1781      </span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Hannah                 23 EU            2463      </span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Ismail                 27 International 1442      </span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Johanna                21 DE            1404</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="fehlende-werte" class="level3" data-number="3.4.3">
-<h3 data-number="3.4.3" class="anchored" data-anchor-id="fehlende-werte"><span class="header-section-number">3.4.3</span> Fehlende Werte</h3>
+<section id="datentypen" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="datentypen"><span class="header-section-number">4.4.3</span> Datentypen</h3>
+<p>Wenn Variablen im Originaldatensatz nicht sauber codiert sind, kann R sie im falschen Typ einlesen. In unserem Beispiel wurde das Einkommen bei der dritten Beobachtung mit einem Euro-Zeichen versehen, sodass R die Variable als <code>character</code> interpretiert. Eine direkte Umwandlung mit <code>as.numeric()</code> würde diese Beobachtung in <code>NA</code> recodieren, da sie keinen reinen Zahlenwert enthält:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">as.numeric</span>(income))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: There was 1 warning in `mutate()`.</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ In argument: `income = as.numeric(income)`.</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Caused by warning:</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! NAs introduced by coercion</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name           age nationality   income</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Anna Maria      33 DE              1689</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Ben             NA &lt;NA&gt;             875</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Clara           21 International     NA</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dimitri         28 EU              2299</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Emilia-Luise    29 DE              2522</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Fatima          23 DE              1060</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Gerda           32 DE              1781</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Hannah          23 EU              2463</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Ismail          27 International   1442</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Johanna         21 DE              1404</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um dies zu vermeiden, nutzen wir die <code>tidyverse</code>-Funktion <code>parse_number()</code>, die alle nicht-numerischen Zeichen entfernt und die Zahlen extrahiert:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>earnings <span class="ot">&lt;-</span> earnings <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">parse_number</span>(income))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>earnings</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name           age nationality   income</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Anna Maria      33 DE              1689</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Ben             NA &lt;NA&gt;             875</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Clara           21 International   2000</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dimitri         28 EU              2299</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Emilia-Luise    29 DE              2522</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Fatima          23 DE              1060</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Gerda           32 DE              1781</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Hannah          23 EU              2463</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Ismail          27 International   1442</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Johanna         21 DE              1404</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>
@@ -1074,13 +1250,13 @@ Tabelle&nbsp;3.1: Datensatzformate in der Praxis (Auswahl)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./best_practices.html" class="pagination-link" aria-label="Best Practices">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Best Practices</span></span>
+      <a href="./daten_transform.html" class="pagination-link" aria-label="Daten aufbereiten">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./daten_transform.html" class="pagination-link" aria-label="Daten aufbereiten">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Daten aufbereiten</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./daten_export.html" class="pagination-link" aria-label="Daten exportieren">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Daten exportieren</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
