@@ -5,6 +5,7 @@
 source("Rsettings.R")
 
 library(kableExtra)
+library(downlit)
 ```
 
 ## Installation

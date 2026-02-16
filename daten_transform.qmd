@@ -8,12 +8,11 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-Datensätze liegen häufig nicht in der Form vor, die für Analyse oder Visualisierung benötigt wird. Daher müssen wir sie meist zunächst aufbereiten. Dazu gehört, relevante Variablen auszuwählen, Beobachtungen zu filtern, Datentypen zu korrigieren, neue Kennzahlen zu berechnen oder Informationen sinnvoll zusammenzufassen. Um diese Schritte zu illustrieren, verwenden wir den Palmer Penguins-Datensatz, der über das in Base R enthaltene Package `datasets` frei verfügbar ist:
+Datensätze liegen häufig nicht in der Form vor, die für Analyse oder Visualisierung benötigt wird. Daher müssen wir sie meist zunächst aufbereiten. Dazu gehört, relevante Variablen auszuwählen, Beobachtungen zu filtern, Datentypen zu korrigieren, neue Kennzahlen zu berechnen oder Informationen sinnvoll zusammenzufassen. Um diese Schritte zu illustrieren, verwenden wir den Palmer Penguins-Datensatz, der über das Package `palmerpenguins` frei verfügbar ist:
 
 ```{r}
-penguins <- datasets::penguins |>
-  as_tibble()
-glimpse(penguins)
+penguins <- palmerpenguins::penguins
+penguins
 ```
 
 Der `penguins` Datensatz enthält Informationen zu 344 Pinguinen mit den folgenden acht Variablen:
