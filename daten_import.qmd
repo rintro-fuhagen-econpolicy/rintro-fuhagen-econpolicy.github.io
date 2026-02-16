@@ -234,7 +234,7 @@ Dadurch öffnet sich im R-Script-Panel ein neues Fenster mit dem Datensatz (@fig
 #|   Separates Datensatz-Fenster in R.
 #| fig-alt: |
 #|  Datensatz-Fenster in R mit Herhorhebungen der Filter-, Sortier- und Suchfunktion.
-knitr::include_graphics("images/view-data.png", dpi = 270)
+knitr::include_graphics("images/view_data.png", dpi = 270)
 ```
 
 ## Daten bereinigen
