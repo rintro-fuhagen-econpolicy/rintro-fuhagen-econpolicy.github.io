@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>Datensätze liegen häufig nicht in der Form vor, die für Analyse oder Visualisierung benötigt wird. Daher müssen wir sie meist zunächst aufbereiten. Dazu gehört, relevante Variablen auszuwählen, Beobachtungen zu filtern, Datentypen zu korrigieren, neue Kennzahlen zu berechnen oder Informationen sinnvoll zusammenzufassen. Um diese Schritte zu illustrieren, verwenden wir den Palmer Penguins-Datensatz, der über das Package <code>palmerpenguins</code> frei verfügbar ist:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">rename</span><span class="op">(</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span></span>
 <span>    bill_len <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
 <span>    bill_dep <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
 <span>    flipper_len <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
@@ -444,7 +444,10 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 </div>
 <section id="dplyr" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="dplyr">
 <span class="header-section-number">3.1</span> Dplyr</h2>
-<p>Zur Datenmanipulation verwenden wir das <code>dplyr</code> Package, das Teil von <code>tidyverse</code> ist. In diesem Kapitel lernen wir die wichtigsten <code>dplyr</code>-Funktionen kennen. Für eine ausführliche Einführung siehe Kapitel 3, 5 und 12–19 in <a href="https://r4ds.hadley.nz">R for Data Science</a>. Alle <code>dplyr</code>-Funktionen nehmen einen Datensatz (Data Frame oder Tibble) als erstes Argument, führen die gewünschte Operation aus und geben einen neuen Datensatz zurück. Solltest du das <code>tidyverse</code> noch nicht geladen haben, lade es mit <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>.</p>
+<p>Zur Datenmanipulation verwenden wir das <code>dplyr</code> Package, das Teil von <code>tidyverse</code> ist. In diesem Kapitel lernen wir die wichtigsten <code>dplyr</code>-Funktionen kennen. Für eine ausführliche Einführung siehe Kapitel 3, 5 und 12–19 in <a href="https://r4ds.hadley.nz">R for Data Science</a>. Alle <code>dplyr</code>-Funktionen nehmen einen Datensatz (Data Frame oder Tibble) als erstes Argument, führen die gewünschte Operation aus und geben einen neuen Datensatz zurück. Solltest du das <code>tidyverse</code> noch nicht geladen haben, lade es mit:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -457,9 +460,9 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <div class="callout-body-container callout-body">
 <p>Komplexe Transformationen erfordern oft, mehrere <code>dplyr</code>-Funktionen zu kombinieren. Beispiel: Wir wollen einen Datensatz erstellen, der nur Pinguine der Insel Biscoe enthält und pro Spezies die durchschnittliche Schnabellänge berechnet:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span></span>
-<span><span class="va">penguins_final</span> <span class="op">&lt;-</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">penguins_final</span>, <span class="va">species</span><span class="op">)</span></span>
-<span><span class="va">penguins_final</span> <span class="op">&lt;-</span> <span class="fu">summarise</span><span class="op">(</span><span class="va">penguins_final</span>, bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span></span>
+<span><span class="va">penguins_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">penguins_final</span>, <span class="va">species</span><span class="op">)</span></span>
+<span><span class="va">penguins_final</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="va">penguins_final</span>, bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">penguins_final</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
 <span><span class="co">#&gt;   species bill_len</span></span>
@@ -470,10 +473,10 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <p>Für eine besser lesbare Verkettung von Funktionen werden wir in Zukunft Pipes (<code>|&gt;</code>) verwenden. Pipes ermöglichen, dass das Ergebnis eines Ausdrucks direkt an die nächste Funktion übergeben wird, ohne dass man verschachtelte Klammern schreiben muss oder Objekte mehrfach definieren muss.</p>
 <p>Eine Pipe übergibt das Ergebnis des linken Ausdrucks automatisch als erstes Argument an die Funktion rechts: <code>x |&gt; f(y)</code> ↔︎ <code>f(x, y)</code> und <code>x |&gt; f(y) |&gt; g(z)</code> ↔︎ <code>g(f(x, y), z)</code>. Somit können wir den Code besser lesbar schreiben als:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">summarize</span><span class="op">(</span>bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
 <span><span class="co">#&gt;   species bill_len</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;      &lt;dbl&gt;</span></span>
@@ -489,13 +492,13 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <p>In unserem Übungsdatensatz <code>penguins</code> ist jede Zeile ein einzelner Pinguin und in den Spalten erhalten wir Informationen zu bestimmten Variablen (z.B. Spezies oder Geschlecht) für jede dieser Pinguin-Beobachtungen.</p>
 </section><section id="daten-auswählen-und-sortieren" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="daten-auswählen-und-sortieren">
 <span class="header-section-number">3.3</span> Daten auswählen und sortieren</h2>
-<p>Bevor wir mit Analysen beginnen, müssen wir häufig relevanten Daten auswählen und sortieren, um den Datensatz übersichtlich zu halten. Mit <code>dplyr</code> erledigen wir dies z.B. mit <code>select()</code> zum Auswählen von Variablen, <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> oder <code>slice()</code> zum Filtern von Zeilen, <code>distinct()</code> und <code>drop_na()</code> zum Bereinigen von Duplikaten und fehlenden Werten sowie <code>arrange()</code> zum Sortieren. So können wir gezielt nur die Informationen betrachten, die für die Analyse wichtig sind.</p>
+<p>Bevor wir mit Analysen beginnen, müssen wir häufig relevanten Daten auswählen und sortieren, um den Datensatz übersichtlich zu halten. Mit <code>dplyr</code> erledigen wir dies z.B. mit <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> zum Auswählen von Variablen, <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> oder <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> zum Filtern von Zeilen, <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> und <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> zum Bereinigen von Duplikaten und fehlenden Werten sowie <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> zum Sortieren. So können wir gezielt nur die Informationen betrachten, die für die Analyse wichtig sind.</p>
 <section id="select" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="select">
 <span class="header-section-number">3.3.1</span> select()</h3>
-<p><code>select()</code> ermöglicht es uns, nur die gewünschten Spalten eines Datensatzes zu behalten. Benötigen wir etwa nur Informationen zur Spezies, Insel und der Flügellänge können wir diese Variablen auswählen mit:</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> ermöglicht es uns, nur die gewünschten Spalten eines Datensatzes zu behalten. Benötigen wir etwa nur Informationen zur Spezies, Insel und der Flügellänge können wir diese Variablen auswählen mit:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, <span class="va">flipper_len</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, <span class="va">flipper_len</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 3</span></span>
 <span><span class="co">#&gt;   species island    flipper_len</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;</span></span>
@@ -509,8 +512,8 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 </div>
 <p>Um eine Variable zu entfernen, setzen wir ein Minuszeichen davor:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">island</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">island</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 7</span></span>
 <span><span class="co">#&gt;   species bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;      &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -534,8 +537,8 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <div class="callout-body-container callout-body">
 <p>Damit der <code>penguins</code> Datensatz nicht immer wieder neu geladen werden muss, speichern wir Transformationen in diesem Kapitel nicht ab. In der eigenen Datenaufbereitung solltest du Änderungen einem Objekt zuweisen, damit diese erhalten bleiben:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">island</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">island</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -543,8 +546,8 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <span class="header-section-number">3.3.2</span> filter()</h3>
 <p>Mit filter() können wir bestimmte Zeilen eines Datensatzes auswählen, die bestimmte Bedingungen erfüllen. So lassen sich gezielt Beobachtungen extrahieren, etwa alle Pinguine der Art Adelie oder alle Pinguine mit einer Schnabellänge von mindestens 40 Milimetern:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 152 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -556,7 +559,7 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 male    2007</span></span>
 <span><span class="co">#&gt; # ℹ 146 more rows</span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 242 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -653,8 +656,8 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Wollen wir auf mehrere Konditionen gleichzeitig filtern, können wir diese in der Filter-Option angeben. Wir extrahieren weibliche Pinguine auf der Insel Biscoe mit:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span> <span class="op">&amp;</span> <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span> <span class="op">&amp;</span> <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 80 × 8</span></span>
 <span><span class="co">#&gt;   species island bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -668,8 +671,8 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Das Subset an Pinguinen, die eine Schnabellänge von mindestens 45mm oder eine Schnabellänge von höchstens 35mm haben filtern wir mit dem Oder-Operator <code>|</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">45</span> <span class="op">|</span> <span class="va">bill_len</span> <span class="op">&lt;=</span> <span class="fl">35</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">45</span> <span class="op">|</span> <span class="va">bill_len</span> <span class="op">&lt;=</span> <span class="fl">35</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 177 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -681,10 +684,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 6 Adelie  Biscoe        34.5     18.1         187      2900 female  2008</span></span>
 <span><span class="co">#&gt; # ℹ 171 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Äquivalent zu den Base R Operatoren <code>&amp;</code> und <code>|</code> sind die <code>dplyr</code>-Funktionen <code>when_all()</code> und <code>when_any()</code>:</p>
+<p>Äquivalent zu den Base R Operatoren <code>&amp;</code> und <code>|</code> sind die <code>dplyr</code>-Funktionen <code><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_all()</a></code> und <code><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_any()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">when_all</span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span>, <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_all</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span>, <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 80 × 8</span></span>
 <span><span class="co">#&gt;   species island bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -696,7 +699,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 6 Adelie  Biscoe     39.6     17.7         186      3500 female  2008</span></span>
 <span><span class="co">#&gt; # ℹ 74 more rows</span></span>
 <span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">when_any</span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span>, <span class="va">body_mass</span> <span class="op">&gt;=</span> <span class="fl">4000</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_any</a></span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span>, <span class="va">body_mass</span> <span class="op">&gt;=</span> <span class="fl">4000</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 253 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -719,10 +722,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <div class="callout-body-container callout-body">
 <p>Logische Bedingungen können bei fehlenden Werten ( (<code>NA</code>) Probleme verursachen. Wollen wir etwa alle weiblichen Pinguine aus dem Datensatz entfernen führt <code>penguins |&gt; filter(sex != "female")</code> dazu, dass sowohl weibliche Pinguine als auch jene mit fehlender Geschlechtsinformation ausgeschlossen werden.</p>
-<p>Mit <code>filter_out()</code> schließen wir nur Beobachtungen aus, auf welche die Kondition zutrifft:</p>
+<p>Mit <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter_out()</a></code> schließen wir nur Beobachtungen aus, auf welche die Kondition zutrifft:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">filter_out</span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter_out</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 179 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex    year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt; &lt;int&gt;</span></span>
@@ -739,10 +742,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 </section><section id="slice" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="slice">
 <span class="header-section-number">3.3.3</span> slice()</h3>
-<p>Manchmal möchten wir nur einen Teil des Datensatzes auswählen, ohne explizit nach bestimmten Werten zu filtern. Das ist besonders praktisch bei großen Datensätzen, wenn wir zunächst nur mit einem Sample arbeiten wollen, um Rechenressourcen zu schonen. Dafür nutzen wir <code>slice()</code>, zum Beispiel um die Zeilen 1, 3 und 6–8 aus dem <code>penguins</code>-Datensatz auszuwählen:</p>
+<p>Manchmal möchten wir nur einen Teil des Datensatzes auswählen, ohne explizit nach bestimmten Werten zu filtern. Das ist besonders praktisch bei großen Datensätzen, wenn wir zunächst nur mit einem Sample arbeiten wollen, um Rechenressourcen zu schonen. Dafür nutzen wir <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>, zum Beispiel um die Zeilen 1, 3 und 6–8 aus dem <code>penguins</code>-Datensatz auszuwählen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -752,7 +755,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 4 Adelie  Torgersen     38.9     17.8         181      3625 female  2007</span></span>
 <span><span class="co">#&gt; 5 Adelie  Torgersen     39.2     19.6         195      4675 male    2007</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Für <code>slice()</code> steht eine Reihe hilfreicher Varianten zur Verfügung: - <code>slice_head()</code>/<code>slice_tail()</code>: Nimmt die ersten/letzen N Beobachtungen eines Datensatzes (<code>penguins |&gt; slice_head(n = 10)</code>) - <code>slice_min()</code>/<code>slice_max()</code>: Nimmt die N Beobachtungen mit den niedrigsten/höchsten Werten einer Variable (<code>penguins |&gt; slice_min(bill_len, n = 5)</code>) - <code>slice_sample()</code>: Zieht zufällig N Beobachtungen aus dem gesamten Datensatz (<code>penguins |&gt; slice_sample(n = 5)</code>). Für Reproduzierbarkeit sollte zuerst mit <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> ein Seed gesetzt werden.</p>
+<p>Für <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> steht eine Reihe hilfreicher Varianten zur Verfügung: - <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head()</a></code>/<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail()</a></code>: Nimmt die ersten/letzen N Beobachtungen eines Datensatzes (<code>penguins |&gt; slice_head(n = 10)</code>) - <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>/<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>: Nimmt die N Beobachtungen mit den niedrigsten/höchsten Werten einer Variable (<code>penguins |&gt; slice_min(bill_len, n = 5)</code>) - <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code>: Zieht zufällig N Beobachtungen aus dem gesamten Datensatz (<code>penguins |&gt; slice_sample(n = 5)</code>). Für Reproduzierbarkeit sollte zuerst mit <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> ein Seed gesetzt werden.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -763,11 +766,11 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Haben wir den Datensatz mit <code>group_by()</code> in Gruppen klassifiziert, so wird die jeweilige slice-Operation auf jede Gruppe separat angewandt:</p>
+<p>Haben wir den Datensatz mit <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> in Gruppen klassifiziert, so wird die jeweilige slice-Operation auf jede Gruppe separat angewandt:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">slice_max</span><span class="op">(</span><span class="va">bill_len</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">bill_len</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 8</span></span>
 <span><span class="co">#&gt; # Groups:   island [3]</span></span>
 <span><span class="co">#&gt;   species   island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -783,10 +786,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 </section><section id="distinct" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="distinct">
 <span class="header-section-number">3.3.4</span> distinct()</h3>
-<p>Oft enthält ein Datensatz doppelte Zeilen, die für die Analyse nicht relevant sind. Mit <code>distinct()</code> können wir gezielt nur die einzigartigen Beobachtungen behalten und so Redundanzen entfernen. Zum Beispiel lassen sich im penguins-Datensatz alle verschiedenen Kombinationen aus Spezies und Insel extrahieren:</p>
+<p>Oft enthält ein Datensatz doppelte Zeilen, die für die Analyse nicht relevant sind. Mit <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> können wir gezielt nur die einzigartigen Beobachtungen behalten und so Redundanzen entfernen. Zum Beispiel lassen sich im penguins-Datensatz alle verschiedenen Kombinationen aus Spezies und Insel extrahieren:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">distinct</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
 <span><span class="co">#&gt;   species   island   </span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;    </span></span>
@@ -796,10 +799,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 4 Gentoo    Biscoe   </span></span>
 <span><span class="co">#&gt; 5 Chinstrap Dream</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Spezifizieren wir keine Variablen innerhalb von <code>distinct()</code>, so droppen wir alle Duplikate aus dem Datensatz (im <code>penguins</code> Datensatz gibt aber es keine zwei identen Beobachtungen). Mit der Option <code>.keep_all = TRUE</code> behalten wir die Informationen in allen weiteren Variablen für die erste distinkte Beobachtung:</p>
+<p>Spezifizieren wir keine Variablen innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code>, so droppen wir alle Duplikate aus dem Datensatz (im <code>penguins</code> Datensatz gibt aber es keine zwei identen Beobachtungen). Mit der Option <code>.keep_all = TRUE</code> behalten wir die Informationen in allen weiteren Variablen für die erste distinkte Beobachtung:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">distinct</span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 8</span></span>
 <span><span class="co">#&gt;   species   island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -811,10 +814,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 </section><section id="drop_na" class="level3" data-number="3.3.5"><h3 data-number="3.3.5" class="anchored" data-anchor-id="drop_na">
 <span class="header-section-number">3.3.5</span> drop_na()</h3>
-<p>Oft enthalten Datensätze fehlende Werte (<code>NA</code>), die bestimmte Analysen oder Berechnungen stören können. Mit <code>drop_na()</code> können wir gezielt alle Zeilen entfernen, die in ausgewählten Variablen fehlende Werte enthalten, und so einen sauberen Datensatz erhalten. Zum Beispiel lässt sich im <code>penguins</code>-Datensatz nur jene Beobachtungen behalten, bei denen die Schnabeltiefe nicht fehlt:</p>
+<p>Oft enthalten Datensätze fehlende Werte (<code>NA</code>), die bestimmte Analysen oder Berechnungen stören können. Mit <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> können wir gezielt alle Zeilen entfernen, die in ausgewählten Variablen fehlende Werte enthalten, und so einen sauberen Datensatz erhalten. Zum Beispiel lässt sich im <code>penguins</code>-Datensatz nur jene Beobachtungen behalten, bei denen die Schnabeltiefe nicht fehlt:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">drop_na</span><span class="op">(</span><span class="va">bill_dep</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">bill_dep</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 342 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -826,7 +829,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 6 Adelie  Torgersen     38.9     17.8         181      3625 female  2007</span></span>
 <span><span class="co">#&gt; # ℹ 336 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Spezifizieren wir keine Variable innerhalb von <code>drop_na()</code>, so werden sämtliche Beobachtungen mit zumindest einem fehlenden Wert in einer der Variablen ausgeschlossen (<code>penguins |&gt; drop_na()</code>).</p>
+<p>Spezifizieren wir keine Variable innerhalb von <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code>, so werden sämtliche Beobachtungen mit zumindest einem fehlenden Wert in einer der Variablen ausgeschlossen (<code>penguins |&gt; drop_na()</code>).</p>
 <div class="callout callout-style-simple callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -837,15 +840,15 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Man sollte mit <code>drop_na()</code> vorsichtig sein, weil beim Entfernen von Zeilen mit fehlenden Werten unter Umständen wichtige Daten verloren gehen. Gerade wenn viele Variablen NA-Werte enthalten, kann das zu einer stark verkleinerten Stichprobe führen und die Analyse verzerren. Deshalb sollte man vorher prüfen, wie viele Werte betroffen sind und überlegen, ob alternative Strategien wie Imputation oder gezieltes Entfernen nur einzelner Spalten sinnvoller sind.</p>
+<p>Man sollte mit <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> vorsichtig sein, weil beim Entfernen von Zeilen mit fehlenden Werten unter Umständen wichtige Daten verloren gehen. Gerade wenn viele Variablen NA-Werte enthalten, kann das zu einer stark verkleinerten Stichprobe führen und die Analyse verzerren. Deshalb sollte man vorher prüfen, wie viele Werte betroffen sind und überlegen, ob alternative Strategien wie Imputation oder gezieltes Entfernen nur einzelner Spalten sinnvoller sind.</p>
 </div>
 </div>
 </section><section id="arrange" class="level3" data-number="3.3.6"><h3 data-number="3.3.6" class="anchored" data-anchor-id="arrange">
 <span class="header-section-number">3.3.6</span> arrange()</h3>
-<p>Mit <code>arrange()</code> können wir die Zeilen eines Datensatzes nach einer oder mehreren Variablen sortieren. So lassen sich Daten übersichtlicher darstellen, Extremwerte leicht erkennen oder vorbereitend für weitere Analysen ordnen, ohne den Datensatz inhaltlich zu verändern.</p>
+<p>Mit <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> können wir die Zeilen eines Datensatzes nach einer oder mehreren Variablen sortieren. So lassen sich Daten übersichtlicher darstellen, Extremwerte leicht erkennen oder vorbereitend für weitere Analysen ordnen, ohne den Datensatz inhaltlich zu verändern.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">bill_len</span>, <span class="va">bill_dep</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">bill_len</span>, <span class="va">bill_dep</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -857,10 +860,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 6 Adelie  Torgersen     34.4     18.4         184      3325 female  2007</span></span>
 <span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Wenn mehr als eine Variable angeführt ist, ordnet <code>arrange()</code> zuerst nach der erstgenannten und nur bei Gleichstand nach den weiteren Variablen. Fehlende Werte werden immer als letztes angeordnet. Per Default ordnet <code>arrange()</code> von unten nach oben. Wollen wir vom Maximum aus sortieren, verwenden wir <code>desc()</code> innerhalb von <code>arrange()</code>:</p>
+<p>Wenn mehr als eine Variable angeführt ist, ordnet <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> zuerst nach der erstgenannten und nur bei Gleichstand nach den weiteren Variablen. Fehlende Werte werden immer als letztes angeordnet. Per Default ordnet <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> von unten nach oben. Wollen wir vom Maximum aus sortieren, verwenden wir <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">bill_len</span><span class="op">)</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species   island bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
