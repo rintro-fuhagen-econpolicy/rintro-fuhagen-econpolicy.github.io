@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </li>
   <li>
-<a href="#datens%C3%A4tzen-verbinden" id="toc-datensätzen-verbinden" class="nav-link" data-scroll-target="#datens%C3%A4tzen-verbinden"><span class="header-section-number">3.6</span> Datensätzen verbinden</a>
+<a href="#datens%C3%A4tze-zusammenf%C3%BChren" id="toc-datensätze-zusammenführen" class="nav-link" data-scroll-target="#datens%C3%A4tze-zusammenf%C3%BChren"><span class="header-section-number">3.6</span> Datensätze zusammenführen</a>
   <ul class="collapse">
 <li><a href="#bind_rows-bind_cols" id="toc-bind_rows-bind_cols" class="nav-link" data-scroll-target="#bind_rows-bind_cols"><span class="header-section-number">3.6.1</span> bind_rows() &amp; bind_cols()</a></li>
   <li><a href="#inner_join-left_join-full_join" id="toc-inner_join-left_join-full_join" class="nav-link" data-scroll-target="#inner_join-left_join-full_join"><span class="header-section-number">3.6.2</span> inner_join(), left_join(), full_join()</a></li>
@@ -476,7 +476,9 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 2</span></span>
 <span><span class="co">#&gt;   species bill_len</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;      &lt;dbl&gt;</span></span>
@@ -809,7 +811,15 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span><span class="co">#&gt; 4 Adelie  Torgersen     38.9     17.8         181      3625 female  2007</span></span>
 <span><span class="co">#&gt; 5 Adelie  Torgersen     39.2     19.6         195      4675 male    2007</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Für <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> steht eine Reihe hilfreicher Varianten zur Verfügung: - <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head()</a></code>/<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail()</a></code>: Nimmt die ersten/letzen N Beobachtungen eines Datensatzes (<code>penguins |&gt; slice_head(n = 10)</code>) - <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>/<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>: Nimmt die N Beobachtungen mit den niedrigsten/höchsten Werten einer Variable (<code>penguins |&gt; slice_min(bill_len, n = 5)</code>) - <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code>: Zieht zufällig N Beobachtungen aus dem gesamten Datensatz (<code>penguins |&gt; slice_sample(n = 5)</code>). Für Reproduzierbarkeit sollte zuerst mit <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> ein Seed gesetzt werden.</p>
+<p>Für <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code> steht eine Reihe hilfreicher Varianten zur Verfügung:</p>
+<ul>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head()</a></code>/<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail()</a></code>: Nimmt die ersten/letzen N Beobachtungen eines Datensatzes (<code>penguins |&gt; slice_head(n = 10)</code>)</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_min()</a></code>/<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max()</a></code>: Nimmt die N Beobachtungen mit den niedrigsten/höchsten Werten einer Variable (<code>penguins |&gt; slice_min(bill_len, n = 5)</code>)</li>
+<li>
+<code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample()</a></code>: Zieht zufällig N Beobachtungen aus dem gesamten Datensatz (<code>penguins |&gt; slice_sample(n = 5)</code>). Für Reproduzierbarkeit sollte zuerst mit <code><a href="https://rdrr.io/r/base/Random.html">set.seed()</a></code> ein Seed gesetzt werden.</li>
+</ul>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -937,7 +947,9 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <p>Mit <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> erstellen wir neue Spalten (Variablen), häufig auf Basis bereits existierender Spalten. Wir können damit etwa jeder Beobachtung in <code>penguins</code> eine Beobachtungs-ID hinzufügen:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 9</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -954,8 +966,10 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <p>Besonders hilfreich ist <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> um neue Variablen auf Basis der Werte in bereits bestehenden zu definieren. Wollen wir etwa uns das Verhältnis von Schnabellänge und Schnabeltiefe (auf zwei Dezimalstellen gerundet) angeben, und diese neue Variable im Datensatz nach <code>bill_dep</code> angeordnet haben:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">/</span><span class="va">bill_dep</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
-<span>         .after <span class="op">=</span> <span class="va">bill_dep</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">/</span><span class="va">bill_dep</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    .after <span class="op">=</span> <span class="va">bill_dep</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 9</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep bill_ratio flipper_len body_mass sex   </span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt; </span></span>
@@ -1067,8 +1081,10 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Oft wollen wir eine Variable basierend auf Konditionen transformieren. Für konditionelle Transformationen greifen wir auf <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> zurück. Diese Funktion folgt immer dem Schema <code>if_else(condition, output_true, output_false)</code>. Um Schnabellängen in große Schnäbel (&gt;=40mm) und kleine Schnäbel (&lt;40mm) zu unterteilen:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">40</span>, <span class="st">"large"</span>, <span class="st">"small"</span><span class="op">)</span>,</span>
-<span>         .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">40</span>, <span class="st">"large"</span>, <span class="st">"small"</span><span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
 <span><span class="co">#&gt;   bill_len bill_size</span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
@@ -1096,8 +1112,10 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Wir können durch Nesting von <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> für mehrere Konditionen Transformationen definieren:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">40</span>, <span class="st">"large"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">37</span>, <span class="st">"medium"</span>, <span class="st">"small"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>         .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">40</span>, <span class="st">"large"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">37</span>, <span class="st">"medium"</span>, <span class="st">"small"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
 <span><span class="co">#&gt;   bill_len bill_size</span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
@@ -1112,12 +1130,14 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Nesting führt jedoch dazu, dass der Code immer schlechter lesbar wird. Stattdessen verwenden wir in solchen Fällen besser <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code>. Hier definieren wird für jede Kondition einen Output, nach dem Syntax <code>condition ~ output</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
 <span><span class="co">#&gt;   bill_len bill_size</span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
@@ -1132,13 +1152,15 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Mit dem Argument <code>.default = output</code> können wir außerdem den Output kontrollieren, wenn keine der Konditionen zutrifft:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span>,</span>
-<span>    .default <span class="op">=</span> <span class="st">"no bill length"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span>,</span>
+<span>      .default <span class="op">=</span> <span class="st">"no bill length"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
 <span><span class="co">#&gt;   bill_len bill_size     </span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;         </span></span>
@@ -1163,13 +1185,15 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Beim konditionellen Transformieren mit <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> sind zwei Punkte zu beachten. Erstens werden die Konditionen der Reihe nach durchgegangen und spätere Konditionen nur dann evaluiert, wenn für den jeweiligen Wert die vorherigen Konditionen alle nicht zutreffen. Fehler bei der Reihenfolge führen also zu Fehlern in der Transformation:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span>,</span>
-<span>    .default <span class="op">=</span> <span class="st">"no bill length"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span>,</span>
+<span>      .default <span class="op">=</span> <span class="st">"no bill length"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
 <span><span class="co">#&gt;   bill_len bill_size     </span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;         </span></span>
@@ -1184,12 +1208,14 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Zweitens sollten immer alle möglichen Konditionen definiert sein. Spezifizieren wir beispielsweise nicht die Kondition für <code>bill_size == "small"</code> sondern setzen wir diese nur als Default, wird dieser Output auch auf fehlende Werte angewendet:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
-<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
-<span>    .default <span class="op">=</span> <span class="st">"small"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>      <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>      .default <span class="op">=</span> <span class="st">"small"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
 <span><span class="co">#&gt;   bill_len bill_size</span></span>
 <span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
@@ -1208,8 +1234,10 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">body_mass</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span> <span class="op">&amp;</span> <span class="va">bill_dep</span> <span class="op">&gt;</span> <span class="fl">18</span> <span class="op">~</span> <span class="st">"male"</span><span class="op">)</span>,</span>
-<span>         .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span> <span class="op">&amp;</span> <span class="va">bill_dep</span> <span class="op">&gt;</span> <span class="fl">18</span> <span class="op">~</span> <span class="st">"male"</span><span class="op">)</span>,</span>
+<span>    .keep <span class="op">=</span> <span class="st">"used"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 11 × 3</span></span>
 <span><span class="co">#&gt;   species bill_dep sex  </span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;      &lt;dbl&gt; &lt;fct&gt;</span></span>
@@ -1227,12 +1255,14 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Mit <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> und <code>recode_when()</code> haben wir Variablen auf Basis konditioneller Logik transformiert. Wollen wir die alten Werte von <code>sex</code> in neue Werte übersetzen, können wir <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values()</a></code> verwenden:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values</a></span><span class="op">(</span></span>
-<span>    <span class="va">sex</span>,</span>
-<span>    <span class="st">"male"</span> <span class="op">~</span> <span class="st">"M"</span>,</span>
-<span>    <span class="st">"female"</span> <span class="op">~</span> <span class="st">"F"</span>,</span>
-<span>    default <span class="op">=</span> <span class="cn">NA</span></span>
-<span>  <span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values</a></span><span class="op">(</span></span>
+<span>      <span class="va">sex</span>,</span>
+<span>      <span class="st">"male"</span> <span class="op">~</span> <span class="st">"M"</span>,</span>
+<span>      <span class="st">"female"</span> <span class="op">~</span> <span class="st">"F"</span>,</span>
+<span>      default <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex    year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt; &lt;int&gt;</span></span>
@@ -1247,12 +1277,14 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Wie bei <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> können wir also Transformationen mit der Logik <code>old_value ~ new_value</code> vornehmen und eine Default-Option spezifizieren. Der Vorteil von <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values()</a></code> besteht aber, wenn eine Vielzahl von Werten umcodiert wird. Diese müssen wir hier nicht als einzelne Konditionen definieren, sondern können die alten und neuen Werte gesammelt als Vektoren (in der selben Reihenfolge) über die Argumente <code>from = old_values</code> und <code>to = new_values</code> definieren:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values</a></span><span class="op">(</span></span>
-<span>    <span class="va">sex</span>,</span>
-<span>    from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>,</span>
-<span>    to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>,</span>
-<span>    default <span class="op">=</span> <span class="cn">NA</span></span>
-<span>  <span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values</a></span><span class="op">(</span></span>
+<span>      <span class="va">sex</span>,</span>
+<span>      from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>,</span>
+<span>      to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>,</span>
+<span>      default <span class="op">=</span> <span class="cn">NA</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex    year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt; &lt;int&gt;</span></span>
@@ -1267,7 +1299,9 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <p>Für das Umcodieren einzelner Werte einer bestehenden Variable gibt es mit <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values()</a></code> eine äquivalente Funktion zu <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when()</a></code>. Auch hier werden als Default wieder automatisch die existierenden Werte verwendet:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, <span class="cn">NA</span> <span class="op">~</span> <span class="st">"sex unknown"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, <span class="cn">NA</span> <span class="op">~</span> <span class="st">"sex unknown"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex          year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt;       &lt;int&gt;</span></span>
@@ -1292,7 +1326,7 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 <div class="cell">
 <div id="tbl-logic-transf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-logic-transf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;3.4: Überscht: if_else(), case_when(), replace_when(), recode_values(), replace_values()
+Tabelle&nbsp;3.4: Übersicht: if_else(), case_when(), replace_when(), recode_values(), replace_values()
 </figcaption><div aria-describedby="tbl-logic-transf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="table table-striped do-not-create-environment cell caption-top table-sm small">
@@ -1332,32 +1366,556 @@ Tabelle&nbsp;3.4: Überscht: if_else(), case_when(), replace_when(), recode_valu
 </div>
 </section></section><section id="gruppieren-und-zusammenfassen" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="gruppieren-und-zusammenfassen">
 <span class="header-section-number">3.5</span> Gruppieren und Zusammenfassen</h2>
+<p>Die Stärken von <code>dplyr</code> liegen vor allem in der Datenaufbereitung innerhalb bestimmter Subgruppen. Häufig wollen wir unsere Daten in Gruppen strukturieren und uns Kennzahlen innerhalb dieser Gruppen berechnen. In <code>dpylr</code> nutzen wir dafür insbesondere <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>, um Beobachtungen nach bestimmten Kategorien zu gruppieren, und <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> oder <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>, um Mittelwerte, Summen, Häufigkeiten oder andere aggregierte Werte pro Gruppe zu berechnen. Auf diese Weise lassen sich Daten auf einer höheren Ebene zusammenfassen, vergleichen und in eine Form bringen, die übersichtliche Analysen und Visualisierungen ermöglicht.</p>
 <section id="group_by" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="group_by">
 <span class="header-section-number">3.5.1</span> group_by()</h3>
+<p>Um einen Datensatz in einzelne Gruppen zu unterteilen, nutzen wir <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code>. Damit können wir den <code>penguins</code>-Datensatz zum Beispiel nach Geschlecht unterteilen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
+<span><span class="co">#&gt; # Groups:   sex [3]</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 male    2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 female  2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 female  2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;    2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 female  2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 male    2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Der Datensatz ist jetzt ein gruppierter Tibble. Der Output sagt uns, dass wir drei Gruppen in der <code>sex</code> Variable gebildet haben. Während die Daten an sich unverändert bleiben, werden jetzt alle weiteren Operationen innerhalb dieser Gruppen durchgeführt. So können wir nun etwa eine neue Variable hinzufügen, die uns das durchschnittliche Gewicht pro Gruppe gibt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">body_mass</span>, <span class="va">bill_len</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    avg_body_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    .after <span class="op">=</span> <span class="va">body_mass</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 4</span></span>
+<span><span class="co">#&gt; # Groups:   sex [3]</span></span>
+<span><span class="co">#&gt;   sex    body_mass avg_body_mass bill_len</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;         &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 male        3750          4546     39.1</span></span>
+<span><span class="co">#&gt; 2 female      3800          3862     39.5</span></span>
+<span><span class="co">#&gt; 3 female      3250          3862     40.3</span></span>
+<span><span class="co">#&gt; 4 &lt;NA&gt;          NA          4006     NA  </span></span>
+<span><span class="co">#&gt; 5 female      3450          3862     36.7</span></span>
+<span><span class="co">#&gt; 6 male        3650          4546     39.3</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um anschließend wieder mit ungruppierten Daten weiterzuarbeiten, verwenden wir <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">body_mass</span>, <span class="va">bill_len</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    avg_body_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    .after <span class="op">=</span> <span class="va">body_mass</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    avg_bill_len <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">bill_len</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 5</span></span>
+<span><span class="co">#&gt;   sex    body_mass avg_body_mass bill_len avg_bill_len</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;         &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 male        3750          4546     39.1         43.9</span></span>
+<span><span class="co">#&gt; 2 female      3800          3862     39.5         43.9</span></span>
+<span><span class="co">#&gt; 3 female      3250          3862     40.3         43.9</span></span>
+<span><span class="co">#&gt; 4 &lt;NA&gt;          NA          4006     NA           43.9</span></span>
+<span><span class="co">#&gt; 5 female      3450          3862     36.7         43.9</span></span>
+<span><span class="co">#&gt; 6 male        3650          4546     39.3         43.9</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>.by
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Möchten wir die Gruppenstruktur nur für eine einzelne Operation verwenden, entsteht durch <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> und <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup()</a></code> zusätzliche Codezeilen, welche den Code unübersichtlicher machen. Anstelle dessen können wir innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> (und später auch <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>) das Argument <code>.by = ...</code> verwenden. Dadurch wird die Gruppierung nur innerhalb der Funktion angewandt, der resultierende Datensatz bleibt jedoch ungruppiert:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">body_mass</span>, <span class="va">bill_len</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    avg_body_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    .by <span class="op">=</span> <span class="va">sex</span>,</span>
+<span>    .after <span class="op">=</span> <span class="va">body_mass</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 4</span></span>
+<span><span class="co">#&gt;   sex    body_mass avg_body_mass bill_len</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;         &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 male        3750          4546     39.1</span></span>
+<span><span class="co">#&gt; 2 female      3800          3862     39.5</span></span>
+<span><span class="co">#&gt; 3 female      3250          3862     40.3</span></span>
+<span><span class="co">#&gt; 4 &lt;NA&gt;          NA          4006     NA  </span></span>
+<span><span class="co">#&gt; 5 female      3450          3862     36.7</span></span>
+<span><span class="co">#&gt; 6 male        3650          4546     39.3</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Wir können Gruppen auch auf Basis von mehreren Variablen bilden. Wir können den <code>penguin</code> Datensatz beispielsweise nach <code>species</code> und <code>island</code> gruppieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
+<span><span class="co">#&gt; # Groups:   species, island [5]</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 male    2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 female  2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 female  2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;    2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 female  2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 male    2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Gruppen werden nur für jene Kombinationen gebildet, für die Beobachtungen vorhanden sind. Obwohl es drei Inseln und drei Arten im Datensatz gibt, werden nicht neun sondern nur fünf Gruppen gebildet. Dies liegt daran, dass es nur die Spezies <em>Adelie</em> auf allen drei Inseln gibt, während die beiden anderen Arten nur auf jeweils einer Insel beobachtet wurden.</p>
 </section><section id="summarize" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="summarize">
 <span class="header-section-number">3.5.2</span> summarize()</h3>
+<p>Mit <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> haben wir bisher Werte zeilenweise berechnet. Wollen wir Daten auf einer höheren Ebene zusammenfassen, verwenden wir die <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>. Diese führt eine bestimmte Funktion auf Gruppenebene durch. Um für jede Insel die Anzahl der beobachteten Pinguine und das durchschnittliche Gewicht zu berechnen, schreiben wir:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    n_penguins <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    avg_body_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span><span class="co">#&gt;   island    n_penguins avg_body_mass</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;          &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Biscoe           168          4716</span></span>
+<span><span class="co">#&gt; 2 Dream            124          3713</span></span>
+<span><span class="co">#&gt; 3 Torgersen         52          3706</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Der resultierende Datensatz enthält nun die beiden neu definierten Variablen (<code>n_penguins</code>, <code>avg_body_mass</code>) auf Ebene der einzelnen Gruppen (<code>island</code>).</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>summarize() und summarise()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Aufgrund von Unterschieden in der britischen und amerikanischen Rechtschreibung bietet <code>dplyr()</code> auch die Funktion <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> an, welche ident zu <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> ist.</p>
+</div>
+</div>
+<p>Ohne Gruppierung behandelt <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> den gesamten Datensatz als gemeinsame Gruppe:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    n_penguins <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    avg_body_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span><span class="co">#&gt;   n_penguins avg_body_mass</span></span>
+<span><span class="co">#&gt;        &lt;int&gt;         &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1        344          4202</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Relevante Funktionen für summarize()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="#tbl-summarize-functions" class="quarto-xref">Tabelle&nbsp;<span>3.5</span></a> zeigt wichtige Funktionen, die wir oft mit summarize() verwenden, um aggregierte Kennzahlen zu erstellen:</p>
+<div class="cell">
+<div id="tbl-summarize-functions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summarize-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.5: Übersicht: Relevante Funktionen für summarize()
+</figcaption><div aria-describedby="tbl-summarize-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped do-not-create-environment cell caption-top table-sm small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Funktion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Bedeutung</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Beispiel</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">n()</td>
+<td style="text-align: left;">Anzahl Beobachtungen</td>
+<td style="text-align: left;">n = n()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">n_distinct()</td>
+<td style="text-align: left;">Anzahl unterschiedlicher Werte</td>
+<td style="text-align: left;">unique_species = n_distinct(species)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean()</td>
+<td style="text-align: left;">Arithmetisches Mittel</td>
+<td style="text-align: left;">avg_mass = mean(body_mass_g, na.rm = TRUE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median(), quantile()</td>
+<td style="text-align: left;">Median oder beliebiges Quantil berechnen</td>
+<td style="text-align: left;">med_mass = median(body_mass_g, na.rm = TRUE)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sd(), var()</td>
+<td style="text-align: left;">Standardabweichung oder Varianz</td>
+<td style="text-align: left;">sd_mass = sd(body_mass_g, na.rm = TRUE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">min(), max()</td>
+<td style="text-align: left;">Minimum oder Maximum</td>
+<td style="text-align: left;">min_mass = min(body_mass_g, na.rm = TRUE)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sum()</td>
+<td style="text-align: left;">Summe</td>
+<td style="text-align: left;">total_mass = sum(body_mass_g, na.rm = TRUE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">first(), last(), nth()</td>
+<td style="text-align: left;">Erster, letzter oder n-ter Wert einer Gruppe</td>
+<td style="text-align: left;">first_mass = first(body_mass_g)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">any()</td>
+<td style="text-align: left;">Mindestens einmal erfüllt</td>
+<td style="text-align: left;">any_na_sex = any(is.na(sex))</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">all()</td>
+<td style="text-align: left;">Immer erfüllt</td>
+<td style="text-align: left;">all_na_sex = all(is.na(sex))</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><em>Hinweis</em>: Bei manchen Funktionen müssen wir auf den Umgang mit <code>NA</code> Werten achten! Wenn du bei diesen <code>na.rm = TRUE</code> angibst, ignoriert die Funktion alle fehlenden Werte und berechnet das Ergebnis nur mit den vorhandenen, gültigen Werten.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Verwendung von across()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Möchten wir die selbe Kennzahl für mehrere Variablen berechnen, stellt uns <code>tidyverse</code> die Funktion <code>across(.cols = c(var1, var2), ~ function(.x))</code> zur Verfügung, wobei <code>.x</code> der Placeholder für die jeweiligen Variablen ist. Wollen wir uns etwa den Mittelwert von Schnabellänge, Schnabeltiefe, Flügellänge und Körpergewicht pro Insel berechenen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="va">bill_len</span><span class="op">:</span><span class="va">body_mass</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.x</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span><span class="co">#&gt;   island    bill_len bill_dep flipper_len body_mass</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Biscoe        45.3     15.9        210.     4716 </span></span>
+<span><span class="co">#&gt; 2 Dream         44.2     18.3        193.     3713.</span></span>
+<span><span class="co">#&gt; 3 Torgersen     39       18.4        191.     3706.</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </section><section id="count" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="count">
 <span class="header-section-number">3.5.3</span> count()</h3>
-</section></section><section id="datensätzen-verbinden" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="datensätzen-verbinden">
-<span class="header-section-number">3.6</span> Datensätzen verbinden</h2>
+<p>Um Häufigkeiten von Variablenausprägungen zu zählen, ohne vorher <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> und <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> verwenden zu müssen, nutzen wir die Funktion <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code>. Sie ist besonders praktisch, wenn wir schnell überblicken wollen, wie viele Beobachtungen jede Kategorie enthält, z.B. wie viele Pinguine jeder Art auf jeder Insel vertreten sind:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span><span class="co">#&gt;   species   island        n</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie    Biscoe       44</span></span>
+<span><span class="co">#&gt; 2 Adelie    Dream        56</span></span>
+<span><span class="co">#&gt; 3 Adelie    Torgersen    52</span></span>
+<span><span class="co">#&gt; 4 Chinstrap Dream        68</span></span>
+<span><span class="co">#&gt; 5 Gentoo    Biscoe      124</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Dies ist ident zu einer Kombination aus <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> und <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section><section id="datensätze-zusammenführen" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="datensätze-zusammenführen">
+<span class="header-section-number">3.6</span> Datensätze zusammenführen</h2>
+<p>Oft liegen Daten nicht in einer einzigen Tabelle vor, sondern in mehreren Datensätzen, die unterschiedliche Informationen über dieselben Beobachtungen oder unterschiedliche Zeitpunkte enthalten. In R möchten wir diese Datensätze verbinden, um alle relevanten Informationen zusammenzuführen und so eine vollständige Grundlage für Analyse, Visualisierung oder Modellierung zu schaffen.</p>
+<p>Um die dafür in <code>dpylr</code> vorhandenen Funktionen kennenzulernen, erstellen wir vier neue Datensätze::</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">students1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna Maria"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span>, <span class="st">"Dimitri"</span>, <span class="st">"Emilia-Luise"</span><span class="op">)</span>,</span>
+<span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">33</span>, <span class="fl">32</span>, <span class="fl">21</span>, <span class="fl">28</span>, <span class="fl">29</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">students2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span>,</span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Fatima"</span>, <span class="st">"Gerda"</span>, <span class="st">"Hannah"</span>, <span class="st">"Ismail"</span>, <span class="st">"Johanna"</span><span class="op">)</span>,</span>
+<span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">33</span>, <span class="fl">32</span>, <span class="fl">21</span>, <span class="fl">28</span>, <span class="fl">29</span><span class="op">)</span>,</span>
+<span>  nationality <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DE"</span>, <span class="st">"DE"</span>, <span class="st">"EU"</span>, <span class="st">"International"</span>, <span class="st">"DE"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">exams1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span>,</span>
+<span>  score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">88</span>, <span class="fl">78</span>, <span class="fl">48</span>, <span class="fl">90</span>, <span class="fl">65</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">exams2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">9</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span>,</span>
+<span>  score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">68</span>, <span class="fl">34</span>, <span class="fl">95</span>, <span class="fl">83</span>, <span class="fl">79</span>, <span class="fl">23</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Datensätze <code>students1</code> und <code>students2</code> beinhalten Daten zu Namen und Alter der Studierenden, in <code>students2</code> haben wir zusätzlich noch die Nationalität. <code>exams1</code> und <code>exams2</code> beinhalten die Prüfungsergebnisse der Studierenden, welche über ihre ID identifiziert werden.</p>
 <section id="bind_rows-bind_cols" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="bind_rows-bind_cols">
 <span class="header-section-number">3.6.1</span> bind_rows() &amp; bind_cols()</h3>
+<p>Möchten wir zwei Datensätze zusammenführen, welche die gleichen Informationen (Variablen) für unterschiedliche Beobachtungen beinhalten, verwenden wir <code><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows()</a></code>. Damit werden die Zeilen der Datensätze untereinander zusammengefügt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">students1</span>, <span class="va">students2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 4</span></span>
+<span><span class="co">#&gt;      id name           age nationality</span></span>
+<span><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      </span></span>
+<span><span class="co">#&gt; 1     1 Anna Maria      33 &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt; 2     2 Ben             32 &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt; 3     3 Clara           21 &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt; 4     4 Dimitri         28 &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt; 5     5 Emilia-Luise    29 &lt;NA&gt;       </span></span>
+<span><span class="co">#&gt; 6     6 Fatima          33 DE         </span></span>
+<span><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Variable <code>nationality</code> ist nur in <code>students2</code> enthalten. Daher wird diese Variable für Beobachtungen aus <code>students1</code> mit <code>NA</code> befüllt.</p>
+<p>Mit <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> werden die Datensätze an den Spalten zusammen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">students1</span>, <span class="va">exams1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 5</span></span>
+<span><span class="co">#&gt;   id...1 name           age id...4 score</span></span>
+<span><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1      1 Anna Maria      33      1    88</span></span>
+<span><span class="co">#&gt; 2      2 Ben             32      2    78</span></span>
+<span><span class="co">#&gt; 3      3 Clara           21      3    48</span></span>
+<span><span class="co">#&gt; 4      4 Dimitri         28      6    90</span></span>
+<span><span class="co">#&gt; 5      5 Emilia-Luise    29      7    65</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Da die Variable <code>id</code> in beiden Datensätzen enthalten ist, definiert <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> zwei neue Variablen. Die Funktion ist selten sinnvoll, da keine Rücksicht darauf genommen wird, dass die Beobachtungen übereinstimmen. So haben wir hier für Dimitri etwa das Testergebnis einer anderen Person mit <code>id=6</code> hinzugefügt.</p>
+<p>Zusätzlich erlaubt <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> nur das Verbinden von Datensätzen mit der selben Zeilenanzahl:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">students2</span>, <span class="va">exams2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `bind_cols()`:</span></span>
+<span><span class="co">#&gt; ! Can't recycle `..1` (size 5) to match `..2` (size 6).</span></span>
+<span><span class="co">#&gt; Run `rlang::last_trace()` to see where the error occurred.</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section><section id="inner_join-left_join-full_join" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="inner_join-left_join-full_join">
 <span class="header-section-number">3.6.2</span> inner_join(), left_join(), full_join()</h3>
+<p>Im Gegensatz zu <code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols()</a></code> ermöglichen die <code>join</code>-Funktionen in <code>dplyr</code>, unterschiedlich gereihte Beobachtungen in zwei Datensätzen korrekt über eine Identifikationsvariable zu verbinden. Diese Funktionen folgen alle dem Syntax <code>..._join(data1, data2, by = "id_var")</code>. Die wichtigsten <code>join</code>- Typen sind <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code>.</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join()</a></code> behält wir nur Beobachtungen, die in beiden Datensätzen vorkommen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">students1</span>, <span class="va">exams1</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span><span class="co">#&gt;      id name         age score</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1 Anna Maria    33    88</span></span>
+<span><span class="co">#&gt; 2     2 Ben           32    78</span></span>
+<span><span class="co">#&gt; 3     3 Clara         21    48</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join()</a></code> behält alle Beobachtungen im ersten Datensatz, und ergänzt Informationen aus dem zweiten Datensatz wo verfügbar. Fehlende Werte werden mit <code>NA</code> befüllt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">students1</span>, <span class="va">exams1</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span><span class="co">#&gt;      id name           age score</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1 Anna Maria      33    88</span></span>
+<span><span class="co">#&gt; 2     2 Ben             32    78</span></span>
+<span><span class="co">#&gt; 3     3 Clara           21    48</span></span>
+<span><span class="co">#&gt; 4     4 Dimitri         28    NA</span></span>
+<span><span class="co">#&gt; 5     5 Emilia-Luise    29    NA</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join()</a></code> wiederum behält alle Beobachtungen aus beiden Datensätzen. Fehlende Werte werden ebenfalls mit <code>NA</code> befüllt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">students1</span>, <span class="va">exams1</span>, by <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 4</span></span>
+<span><span class="co">#&gt;      id name           age score</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1 Anna Maria      33    88</span></span>
+<span><span class="co">#&gt; 2     2 Ben             32    78</span></span>
+<span><span class="co">#&gt; 3     3 Clara           21    48</span></span>
+<span><span class="co">#&gt; 4     4 Dimitri         28    NA</span></span>
+<span><span class="co">#&gt; 5     5 Emilia-Luise    29    NA</span></span>
+<span><span class="co">#&gt; 6     6 &lt;NA&gt;            NA    90</span></span>
+<span><span class="co">#&gt; # ℹ 1 more row</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Wir können die unterschiedlichen Funktionen zum Zusammenführen von Datensätzen auch miteinander verbinden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">students1</span>, <span class="va">students2</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="va">exams1</span>, <span class="va">exams2</span><span class="op">)</span>,</span>
+<span>  by <span class="op">=</span> <span class="st">"id"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 5</span></span>
+<span><span class="co">#&gt;      id name           age nationality score</span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1 Anna Maria      33 &lt;NA&gt;           88</span></span>
+<span><span class="co">#&gt; 2     2 Ben             32 &lt;NA&gt;           78</span></span>
+<span><span class="co">#&gt; 3     3 Clara           21 &lt;NA&gt;           48</span></span>
+<span><span class="co">#&gt; 4     4 Dimitri         28 &lt;NA&gt;           68</span></span>
+<span><span class="co">#&gt; 5     5 Emilia-Luise    29 &lt;NA&gt;           34</span></span>
+<span><span class="co">#&gt; 6     6 Fatima          33 DE             90</span></span>
+<span><span class="co">#&gt; # ℹ 4 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section></section><section id="datensatz-umformen" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="datensatz-umformen">
 <span class="header-section-number">3.7</span> Datensatz umformen</h2>
+<p>Zu Beginn von <a href="#sec-daten-transform" class="quarto-xref"><span>Kapitel 3</span></a> haben wir die Prinzipien von <em>Tidy Data Sets</em> aufgeführt: Jede Zeile ist eine Beobachtung, jede Spalte eine Variable, und jeder Wert in einer eigenen Zelle. In der Praxis sind Datensätze jedoch häufig nicht im <em>Tidy Data</em>-Format. Der Datensatz <code>educ_wide</code> zeigt den Zeitverlauf der durchschnittlichen PISA-Ergebnisse (Lesen) für acht europäische Länder, basierend auf <a href="https://databank.worldbank.org/">Daten der Weltbank</a>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">educ_wide</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AUT"</span>,<span class="st">"DEU"</span>,<span class="st">"ITA"</span>,<span class="st">"NLD"</span>,<span class="st">"NOR"</span>,<span class="st">"POL"</span>,<span class="st">"ROU"</span>,<span class="st">"GBR"</span><span class="op">)</span>,</span>
+<span>  `2009` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">470.3</span>, <span class="fl">497.3</span>, <span class="fl">486.1</span>, <span class="fl">508.4</span>, <span class="fl">503.2</span>, <span class="fl">500.5</span>, <span class="fl">424.5</span>, <span class="fl">494.2</span><span class="op">)</span>,</span>
+<span>  `2012` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">489.6</span>, <span class="fl">507.7</span>, <span class="fl">489.8</span>, <span class="fl">511.2</span>, <span class="fl">503.9</span>, <span class="fl">518.2</span>, <span class="fl">437.6</span>, <span class="fl">499.3</span><span class="op">)</span>,</span>
+<span>  `2015` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">484.9</span>, <span class="fl">509.1</span>, <span class="fl">484.8</span>, <span class="fl">503.0</span>, <span class="fl">513.2</span>, <span class="fl">505.7</span>, <span class="fl">433.6</span>, <span class="fl">498.0</span><span class="op">)</span>,</span>
+<span>  `2018` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">484.4</span>, <span class="fl">498.3</span>, <span class="fl">476.3</span>, <span class="fl">484.8</span>, <span class="fl">499.5</span>, <span class="fl">511.9</span>, <span class="fl">427.7</span>, <span class="fl">503.9</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">educ_wide</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 5</span></span>
+<span><span class="co">#&gt;   country `2009` `2012` `2015` `2018`</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AUT       470.   490.   485.   484.</span></span>
+<span><span class="co">#&gt; 2 DEU       497.   508.   509.   498.</span></span>
+<span><span class="co">#&gt; 3 ITA       486.   490.   485.   476.</span></span>
+<span><span class="co">#&gt; 4 NLD       508.   511.   503    485.</span></span>
+<span><span class="co">#&gt; 5 NOR       503.   504.   513.   500.</span></span>
+<span><span class="co">#&gt; 6 POL       500.   518.   506.   512.</span></span>
+<span><span class="co">#&gt; # ℹ 2 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Daten sind im <em>wide-Format</em>: Jede Zeile beinhaltet mehrere Beobachtungen. In unserem Beispiel haben wir in jeder Zeile für ein bestimmtes Land die Lese-Ergebnisse für die PISA-Tests von 2009 bis 2018.</p>
+<p>Ebenfalls gebräuchlich bei öffentlichen Statistiken ist das <em>long-Format</em>: Hier beinhalten Spalten Informationen zu mehr als einer Variable. Der Datensatz <code>educ_long</code> beinhaltet Daten aus dem Jahr 2018 für die selben europäischen Länder, mit den durchschnittlichen PISA-Scores in Lesen (<code>pisa_reading</code>), Mathematik (<code>pisa_math</code>) und Naturwissenschaft (<code>pisa_science</code>), wieder basierend auf <a href="https://databank.worldbank.org/">Daten der Weltbank</a>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">educ_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"AUT"</span>,<span class="st">"DEU"</span>,<span class="st">"ITA"</span>,<span class="st">"NLD"</span>,<span class="st">"NOR"</span>,<span class="st">"POL"</span>,<span class="st">"ROU"</span>,<span class="st">"GBR"</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  year <span class="op">=</span> <span class="fl">2018</span>,</span>
+<span>  indicator <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pisa_reading"</span>,<span class="st">"pisa_math"</span>,<span class="st">"pisa_science"</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
+<span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="fl">484.4</span>, <span class="fl">498.9</span>, <span class="fl">489.8</span>,  <span class="co"># AUT</span></span>
+<span>    <span class="fl">498.3</span>, <span class="fl">500.0</span>, <span class="fl">503.0</span>,  <span class="co"># DEU</span></span>
+<span>    <span class="fl">476.3</span>, <span class="fl">486.6</span>, <span class="fl">468.0</span>,  <span class="co"># ITA</span></span>
+<span>    <span class="fl">484.8</span>, <span class="fl">519.2</span>, <span class="fl">503.4</span>,  <span class="co"># NLD</span></span>
+<span>    <span class="fl">499.5</span>, <span class="fl">501.0</span>, <span class="fl">490.4</span>,  <span class="co"># NOR</span></span>
+<span>    <span class="fl">511.9</span>, <span class="fl">515.6</span>, <span class="fl">511.0</span>,  <span class="co"># POL</span></span>
+<span>    <span class="fl">427.7</span>, <span class="fl">429.9</span>, <span class="fl">425.8</span>,  <span class="co"># ROU</span></span>
+<span>    <span class="fl">503.9</span>, <span class="fl">501.8</span>, <span class="fl">504.7</span>   <span class="co"># GBR</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">educ_long</span></span>
+<span><span class="co">#&gt; # A tibble: 24 × 4</span></span>
+<span><span class="co">#&gt;   country  year indicator    value</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AUT      2018 pisa_reading  484.</span></span>
+<span><span class="co">#&gt; 2 AUT      2018 pisa_math     499.</span></span>
+<span><span class="co">#&gt; 3 AUT      2018 pisa_science  490.</span></span>
+<span><span class="co">#&gt; 4 DEU      2018 pisa_reading  498.</span></span>
+<span><span class="co">#&gt; 5 DEU      2018 pisa_math     500 </span></span>
+<span><span class="co">#&gt; 6 DEU      2018 pisa_science  503 </span></span>
+<span><span class="co">#&gt; # ℹ 18 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In diesem Fall gibt uns die Variable <code>indicator</code> die Information, auf welche Kennzahl sich die Zahl in der Variable <code>value</code> bezieht.</p>
+<p>Anhand dieser beiden Datensätze werden wir nun die <code>dplyr</code> Funktionen <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> und <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> kennenlernen. Das Umformen von Datensätzen kann etwas knifflig sein, hier werden wir nur die Basics besprechen. Für mehr Details, siehe <a href="https://r4ds.hadley.nz/data-tidy.html">Kapitel 5 in R for Data Science</a>.</p>
 <section id="pivot_longer" class="level3" data-number="3.7.1"><h3 data-number="3.7.1" class="anchored" data-anchor-id="pivot_longer">
 <span class="header-section-number">3.7.1</span> pivot_longer()</h3>
+<p>Um einen Datensatz vom <em>wide-Format</em> ins <em>tidy-Format</em> zu bekommen (oder auch um einen <em>tidy</em> Datensatz in <em>long-Format</em> umzuwandeln), verwenden wir <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. Dieser Befehl folgt dem Syntax <code>dataset |&gt; pivot_longer(cols = ..., names_to = ..., values_to = ...)</code>.</p>
+<p><a href="#fig-pivot-longer" class="quarto-xref">Abbildung&nbsp;<span>3.1</span></a> skizziert die Idee von <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> am Beispiel des <code>educ_wide</code> Datensatzes. Die Länder-Spalte, welche auch im <em>long-Format</em> übernommen werden soll, muss einmal pro pivotierter Spalte wiederholt werden (grün markiert). Die orange markierten Spalten werden pivotiert, diese müssen als <code>col = ...</code> spezifiziert werden. Diese finden sich im <em>long-Format</em> in der Spalte <code>year</code> wieder, deren Namen wir mit der Option <code>names_to = ...</code> definieren. Die jeweiligen Werte in den zu pivotierenden Spalten (türkis markiert) werden in die zweite neue Spalte <code>pisa_reading</code> pivotiert, deren Namen wir mit der Option <code>values_to = ...</code> definieren.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pivot-longer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Skizzierung der Grundidee von pivot_longer().">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pivot_longer.png" class="img-fluid figure-img" alt="Skizzierung der Grundidee von pivot_longer().">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pivot-longer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.1: Grundidee von pivot_longer().
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Um also den Datensatz <code>educ_wide</code> ins <em>tidy</em>-Format zu bringen, schreiben wir:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">educ_wide</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="va">`2009`</span><span class="op">:</span><span class="va">`2018`</span>, <span class="co"># alternativ: cols = !country</span></span>
+<span>    names_to <span class="op">=</span> <span class="st">"year"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"pisa_reading"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 32 × 3</span></span>
+<span><span class="co">#&gt;   country year  pisa_reading</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AUT     2009          470.</span></span>
+<span><span class="co">#&gt; 2 AUT     2012          490.</span></span>
+<span><span class="co">#&gt; 3 AUT     2015          485.</span></span>
+<span><span class="co">#&gt; 4 AUT     2018          484.</span></span>
+<span><span class="co">#&gt; 5 DEU     2009          497.</span></span>
+<span><span class="co">#&gt; 6 DEU     2012          508.</span></span>
+<span><span class="co">#&gt; # ℹ 26 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Nun haben einen Datensatz, bei dem jede Reihe mit einer Beobachtung (Land-Jahr-Kombination) korrespondiert. Der Datensatz ist somit im <em>tidy-Format</em>.</p>
 </section><section id="pivot_wider" class="level3" data-number="3.7.2"><h3 data-number="3.7.2" class="anchored" data-anchor-id="pivot_wider">
 <span class="header-section-number">3.7.2</span> pivot_wider()</h3>
+<p>Um einen Datensatz vom <em>long-Format</em> ins <em>tidy-Format</em> zu bekommen (oder auch um einen <em>tidy</em> Datensatz in <em>wide-Format</em> umzuwandeln), verwenden wir <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>. Dieser Befehl folgt dem Syntax <code>dataset |&gt; pivot_wider(id_cols = ..., names_from = ..., values_from = ...)</code>.</p>
+<p><a href="#fig-pivot-wider" class="quarto-xref">Abbildung&nbsp;<span>3.2</span></a> skizziert die Idee von <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code> am Beispiel des <code>educ_wide</code> Datensatzes. Die Länder- und Jahres-Spalten, welche auch im <em>wide-Format</em> übernommen werden sollen, identifizieren nun die einzelnen Beobachtungen (grün markiert). Die Variablennamen der neuen Spalten <code>pisa_reading</code> und <code>pisa_math</code> werden der Spalte <code>indicator</code> entnommen, welche wir mit <code>names_from = ...</code> definieren. Die Werte in diesen beiden Spalten stammen aus der Spalte <code>value</code> im Original-Datensatz, diese definieren wir mit <code>values_from = ...</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pivot-wider" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Skizzierung der Grundidee von pivot_wider().">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pivot-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pivot_wider.png" class="img-fluid figure-img" alt="Skizzierung der Grundidee von pivot_wider().">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pivot-wider-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.2: Grundidee von pivot_wider().
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Um also den Datensatz <code>educ_long</code> ins <em>tidy</em>-Format zu bringen, schreiben wir:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">educ_long</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span></span>
+<span>    id_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">country</span>, <span class="va">year</span><span class="op">)</span>,</span>
+<span>    names_from <span class="op">=</span> <span class="va">indicator</span>,</span>
+<span>    values_from <span class="op">=</span> <span class="va">value</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 5</span></span>
+<span><span class="co">#&gt;   country  year pisa_reading pisa_math pisa_science</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AUT      2018         484.      499.         490.</span></span>
+<span><span class="co">#&gt; 2 DEU      2018         498.      500          503 </span></span>
+<span><span class="co">#&gt; 3 ITA      2018         476.      487.         468 </span></span>
+<span><span class="co">#&gt; 4 NLD      2018         485.      519.         503.</span></span>
+<span><span class="co">#&gt; 5 NOR      2018         500.      501          490.</span></span>
+<span><span class="co">#&gt; 6 POL      2018         512.      516.         511 </span></span>
+<span><span class="co">#&gt; # ℹ 2 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section></section><section id="weitere-themen" class="level2" data-number="3.8"><h2 data-number="3.8" class="anchored" data-anchor-id="weitere-themen">
 <span class="header-section-number">3.8</span> Weitere Themen</h2>
 <section id="strings-und-regular-expressions" class="level3" data-number="3.8.1"><h3 data-number="3.8.1" class="anchored" data-anchor-id="strings-und-regular-expressions">
 <span class="header-section-number">3.8.1</span> Strings und Regular Expressions</h3>
+<p>Beim Arbeiten mit Daten in R begegnen uns oft Text- oder Zeichenkettenvariablen, die wir bereinigen, filtern oder transformieren möchten. Mit <code>dplyr</code> in Kombination mit Funktionen aus <code>stringr</code> können wir Strings gezielt manipulieren, Muster erkennen und ersetzen oder neue Variablen auf Basis von Textinhalten erstellen. Besonders mächtig werden solche Operationen durch Regular Expressions, mit denen komplexe Such- und Ersetzungsregeln präzise umgesetzt werden können.</p>
+<p>Das Arbeiten mit Strings und Regular Expressions wird in diesem Kurs jedoch nicht thematisiert. Für mehr Informationen zu diesen Themen, siehe <a href="https://r4ds.hadley.nz/strings.html">Kapitel 14</a> und <a href="https://r4ds.hadley.nz/regexps.html">Kapitel 15</a> in R for Data Science.</p>
 </section><section id="datum-und-zeit" class="level3" data-number="3.8.2"><h3 data-number="3.8.2" class="anchored" data-anchor-id="datum-und-zeit">
 <span class="header-section-number">3.8.2</span> Datum und Zeit</h3>
+<p>Im wirtschaftswissenschaftlichen Kontext enthalten Datensätze häufig Zeitinformationen, etwa Beobachtungszeitpunkte, Monats- oder Jahreswerte von Finanz- oder Konjunkturindikatoren. In R lassen sich diese mit Packages wie <code>lubridate</code> und <code>dplyr</code> gezielt verarbeiten, um Datums- und Zeitangaben zu extrahieren, zu transformieren oder für Analysen zu aggregieren. Komplexere Operationen wie Zeitreihenanalysen oder Kalenderberechnungen sind besonders nützlich, um Trends, saisonale Muster oder zeitabhängige Zusammenhänge zu erkennen.</p>
+<p>Das Arbeiten mit Datum und Zeit wird in diesem Kurs jedoch nicht vertieft. Für weiterführende Informationen siehe <a href="https://r4ds.hadley.nz/datetimes.html">Kapitel 17 in R for Data Science</a>.</p>
 </section><section id="fehlende-werte" class="level3" data-number="3.8.3"><h3 data-number="3.8.3" class="anchored" data-anchor-id="fehlende-werte">
 <span class="header-section-number">3.8.3</span> Fehlende Werte</h3>
+<p>Fehlende Werte (<code>NA</code>) sind in wirtschaftswissenschaftlichen Datensätzen häufig anzufinden, z.B. bei unvollständigen Befragungen, unregelmäßigen Meldungen oder Ausreißern, die nicht berichtet wurden. In R lassen sich diese gezielt identifizieren, ersetzen oder imputieren, um analysenfreundliche Datensätze zu erstellen, ohne die Aussagekraft zu verlieren. Solche Techniken sind besonders wichtig, um Verzerrungen zu vermeiden und robuste statistische Ergebnisse zu erzielen.</p>
+<p>Bisher haben wir uns nur damit befasst, wie wir fehlende Werte mittels <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> ausschließen. Für andere Möglichkeiten im Umgang mit fehlenden Werten, siehe <a href="https://r4ds.hadley.nz/missing-values.html">Kapitel 18 in R for Data Science</a>.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
