@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <a href="#variablen-ver%C3%A4ndern-und-erstellen" id="toc-variablen-verändern-und-erstellen" class="nav-link" data-scroll-target="#variablen-ver%C3%A4ndern-und-erstellen"><span class="header-section-number">3.4</span> Variablen verändern und erstellen</a>
   <ul class="collapse">
 <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">3.4.1</span> mutate()</a></li>
-  <li><a href="#case_when-replace_when" id="toc-case_when-replace_when" class="nav-link" data-scroll-target="#case_when-replace_when"><span class="header-section-number">3.4.2</span> case_when() &amp; replace_when()</a></li>
+  <li><a href="#if_else-case_when-replace_when" id="toc-if_else-case_when-replace_when" class="nav-link" data-scroll-target="#if_else-case_when-replace_when"><span class="header-section-number">3.4.2</span> if_else(), case_when() &amp; replace_when()</a></li>
   <li><a href="#recode_values-replace_values" id="toc-recode_values-replace_values" class="nav-link" data-scroll-target="#recode_values-replace_values"><span class="header-section-number">3.4.3</span> recode_values() &amp; replace_values()</a></li>
   </ul>
 </li>
@@ -510,10 +510,10 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <span><span class="co">#&gt; 6 Adelie  Torgersen         190</span></span>
 <span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Um eine Variable zu entfernen, setzen wir ein Minuszeichen davor:</p>
+<p>Um eine Variable zu entfernen, setzen wir ein Ausrufezeichen (<code>!</code>) davor (alternativ kann auch ein Minus verwendet werden):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">island</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="va">island</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 7</span></span>
 <span><span class="co">#&gt;   species bill_len bill_dep flipper_len body_mass sex     year</span></span>
 <span><span class="co">#&gt;   &lt;fct&gt;      &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
@@ -523,6 +523,60 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <span><span class="co">#&gt; 4 Adelie      NA       NA            NA        NA &lt;NA&gt;    2007</span></span>
 <span><span class="co">#&gt; 5 Adelie      36.7     19.3         193      3450 female  2007</span></span>
 <span><span class="co">#&gt; 6 Adelie      39.3     20.6         190      3650 male    2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um mehrere aufeinanderfolgende Variablen auszuwählen, können wir diese mit <code>firstvar:lastvar</code> zusammenfassen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">:</span><span class="va">body_mass</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 4</span></span>
+<span><span class="co">#&gt;   bill_len bill_dep flipper_len body_mass</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1     39.1     18.7         181      3750</span></span>
+<span><span class="co">#&gt; 2     39.5     17.4         186      3800</span></span>
+<span><span class="co">#&gt; 3     40.3     18           195      3250</span></span>
+<span><span class="co">#&gt; 4     NA       NA            NA        NA</span></span>
+<span><span class="co">#&gt; 5     36.7     19.3         193      3450</span></span>
+<span><span class="co">#&gt; 6     39.3     20.6         190      3650</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Eine Reihe von zusätzlichen <code>dplyr</code>-Funktionen sind im Zusammenhang ebenfalls hilfreich: <code>starts_with("text")</code>, <code>ends_with("text")</code> und <code>contains("text")</code> innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> wählen all jene Variablen aus, deren Namen mit <code>"text"</code> beginnen, enden bzw. <code>"text"</code> beinhalten. Mit <code><a href="https://tidyselect.r-lib.org/reference/where.html">where()</a></code> werden alle Variablen ausgewählt, auf die eine bestimmte Kondition zutrifft. <code><a href="https://tidyselect.r-lib.org/reference/everything.html">everything()</a></code> wählt alle Variablen aus, <code><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col()</a></code> die letzte Spalte:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"bill"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_dep</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     39.1     18.7</span></span>
+<span><span class="co">#&gt; 2     39.5     17.4</span></span>
+<span><span class="co">#&gt; 3     40.3     18  </span></span>
+<span><span class="co">#&gt; 4     NA       NA  </span></span>
+<span><span class="co">#&gt; 5     36.7     19.3</span></span>
+<span><span class="co">#&gt; 6     39.3     20.6</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.factor</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 3</span></span>
+<span><span class="co">#&gt;   species island    sex   </span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; </span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen male  </span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen female</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen female</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen &lt;NA&gt;  </span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen female</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen male  </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span>
+<span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 1</span></span>
+<span><span class="co">#&gt;    year</span></span>
+<span><span class="co">#&gt;   &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1  2007</span></span>
+<span><span class="co">#&gt; 2  2007</span></span>
+<span><span class="co">#&gt; 3  2007</span></span>
+<span><span class="co">#&gt; 4  2007</span></span>
+<span><span class="co">#&gt; 5  2007</span></span>
+<span><span class="co">#&gt; 6  2007</span></span>
 <span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -537,8 +591,8 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <div class="callout-body-container callout-body">
 <p>Damit der <code>penguins</code> Datensatz nicht immer wieder neu geladen werden muss, speichern wir Transformationen in diesem Kapitel nicht ab. In der eigenen Datenaufbereitung solltest du Änderungen einem Objekt zuweisen, damit diese erhalten bleiben:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">island</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="va">island</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -546,7 +600,7 @@ Tabelle&nbsp;3.1: Variablen im penguins-Datensatz
 <span class="header-section-number">3.3.2</span> filter()</h3>
 <p>Mit filter() können wir bestimmte Zeilen eines Datensatzes auswählen, die bestimmte Bedingungen erfüllen. So lassen sich gezielt Beobachtungen extrahieren, etwa alle Pinguine der Art Adelie oder alle Pinguine mit einer Schnabellänge von mindestens 40 Milimetern:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 152 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -656,7 +710,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Wollen wir auf mehrere Konditionen gleichzeitig filtern, können wir diese in der Filter-Option angeben. Wir extrahieren weibliche Pinguine auf der Insel Biscoe mit:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span> <span class="op">&amp;</span> <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 80 × 8</span></span>
 <span><span class="co">#&gt;   species island bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -671,7 +725,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Das Subset an Pinguinen, die eine Schnabellänge von mindestens 45mm oder eine Schnabellänge von höchstens 35mm haben filtern wir mit dem Oder-Operator <code>|</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">45</span> <span class="op">|</span> <span class="va">bill_len</span> <span class="op">&lt;=</span> <span class="fl">35</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 177 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -686,7 +740,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Äquivalent zu den Base R Operatoren <code>&amp;</code> und <code>|</code> sind die <code>dplyr</code>-Funktionen <code><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_all()</a></code> und <code><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_any()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/when-any-all.html">when_all</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span>, <span class="va">island</span> <span class="op">==</span> <span class="st">"Biscoe"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 80 × 8</span></span>
 <span><span class="co">#&gt;   species island bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -724,7 +778,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <p>Logische Bedingungen können bei fehlenden Werten ( (<code>NA</code>) Probleme verursachen. Wollen wir etwa alle weiblichen Pinguine aus dem Datensatz entfernen führt <code>penguins |&gt; filter(sex != "female")</code> dazu, dass sowohl weibliche Pinguine als auch jene mit fehlender Geschlechtsinformation ausgeschlossen werden.</p>
 <p>Mit <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter_out()</a></code> schließen wir nur Beobachtungen aus, auf welche die Kondition zutrifft:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter_out</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"female"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 179 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex    year</span></span>
@@ -744,7 +798,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span class="header-section-number">3.3.3</span> slice()</h3>
 <p>Manchmal möchten wir nur einen Teil des Datensatzes auswählen, ohne explizit nach bestimmten Werten zu filtern. Das ist besonders praktisch bei großen Datensätzen, wenn wir zunächst nur mit einem Sample arbeiten wollen, um Rechenressourcen zu schonen. Dafür nutzen wir <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice()</a></code>, zum Beispiel um die Zeilen 1, 3 und 6–8 aus dem <code>penguins</code>-Datensatz auszuwählen:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -768,7 +822,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <div class="callout-body-container callout-body">
 <p>Haben wir den Datensatz mit <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> in Gruppen klassifiziert, so wird die jeweilige slice-Operation auf jede Gruppe separat angewandt:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">island</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span><span class="va">bill_len</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 8</span></span>
@@ -788,7 +842,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span class="header-section-number">3.3.4</span> distinct()</h3>
 <p>Oft enthält ein Datensatz doppelte Zeilen, die für die Analyse nicht relevant sind. Mit <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code> können wir gezielt nur die einzigartigen Beobachtungen behalten und so Redundanzen entfernen. Zum Beispiel lassen sich im penguins-Datensatz alle verschiedenen Kombinationen aus Spezies und Insel extrahieren:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 2</span></span>
 <span><span class="co">#&gt;   species   island   </span></span>
@@ -801,7 +855,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Spezifizieren wir keine Variablen innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct()</a></code>, so droppen wir alle Duplikate aus dem Datensatz (im <code>penguins</code> Datensatz gibt aber es keine zwei identen Beobachtungen). Mit der Option <code>.keep_all = TRUE</code> behalten wir die Informationen in allen weiteren Variablen für die erste distinkte Beobachtung:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">species</span>, <span class="va">island</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 5 × 8</span></span>
 <span><span class="co">#&gt;   species   island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -816,7 +870,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span class="header-section-number">3.3.5</span> drop_na()</h3>
 <p>Oft enthalten Datensätze fehlende Werte (<code>NA</code>), die bestimmte Analysen oder Berechnungen stören können. Mit <code><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na()</a></code> können wir gezielt alle Zeilen entfernen, die in ausgewählten Variablen fehlende Werte enthalten, und so einen sauberen Datensatz erhalten. Zum Beispiel lässt sich im <code>penguins</code>-Datensatz nur jene Beobachtungen behalten, bei denen die Schnabeltiefe nicht fehlt:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">bill_dep</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 342 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -847,7 +901,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 <span class="header-section-number">3.3.6</span> arrange()</h3>
 <p>Mit <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> können wir die Zeilen eines Datensatzes nach einer oder mehreren Variablen sortieren. So lassen sich Daten übersichtlicher darstellen, Extremwerte leicht erkennen oder vorbereitend für weitere Analysen ordnen, ohne den Datensatz inhaltlich zu verändern.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">bill_len</span>, <span class="va">bill_dep</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -862,7 +916,7 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 <p>Wenn mehr als eine Variable angeführt ist, ordnet <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> zuerst nach der erstgenannten und nur bei Gleichstand nach den weiteren Variablen. Fehlende Werte werden immer als letztes angeordnet. Per Default ordnet <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> von unten nach oben. Wollen wir vom Maximum aus sortieren, verwenden wir <code><a href="https://dplyr.tidyverse.org/reference/desc.html">desc()</a></code> innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
 <span><span class="co">#&gt;   species   island bill_len bill_dep flipper_len body_mass sex     year</span></span>
@@ -877,12 +931,405 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </div>
 </section></section><section id="variablen-verändern-und-erstellen" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="variablen-verändern-und-erstellen">
 <span class="header-section-number">3.4</span> Variablen verändern und erstellen</h2>
+<p>Neben dem Auswählen und Sortieren ist es für viele Analysen notwendig, Variablen zu verändern oder neue zu erstellen. Mit <code>dplyr</code> nutzen wir dafür insbesondere <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> zur Berechnung oder Transformation von Variablen. Außerdem lernen wir in diesem Abschnitt, wie wir diese Umwandlungen auf Basis bedingter Fallunterscheidungen treffen (<code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when()</a></code>) und wie wir einzelne Ausprägungen von Variabeln gezielt umcodieren (<code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values()</a></code>). Auf diese Weise lassen sich Variablen anpassen, neu strukturieren und in eine Form bringen, die für statistische Auswertungen geeignet ist.</p>
 <section id="mutate" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="mutate">
 <span class="header-section-number">3.4.1</span> mutate()</h3>
-</section><section id="case_when-replace_when" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="case_when-replace_when">
-<span class="header-section-number">3.4.2</span> case_when() &amp; replace_when()</h3>
+<p>Mit <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> erstellen wir neue Spalten (Variablen), häufig auf Basis bereits existierender Spalten. Wir können damit etwa jeder Beobachtung in <code>penguins</code> eine Beobachtungs-ID hinzufügen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 9</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 male    2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 female  2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 female  2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;    2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 female  2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 male    2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: id &lt;int&gt;</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Per Default wir diese Variable an das Ende des Datensatzes hinzugefügt. Wir können die Position der Variable jedoch mit dem Argument <code>.before = ...</code> bzw. <code>.after = ...</code> spezifizieren, wobei hier sowohl numerische Werte für die Spaltenzahl sowie Variablennamen akzeptiert werden.</p>
+<p>Besonders hilfreich ist <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> um neue Variablen auf Basis der Werte in bereits bestehenden zu definieren. Wollen wir etwa uns das Verhältnis von Schnabellänge und Schnabeltiefe (auf zwei Dezimalstellen gerundet) angeben, und diese neue Variable im Datensatz nach <code>bill_dep</code> angeordnet haben:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">/</span><span class="va">bill_dep</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>         .after <span class="op">=</span> <span class="va">bill_dep</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 9</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep bill_ratio flipper_len body_mass sex   </span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt; </span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7       2.09         181      3750 male  </span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4       2.27         186      3800 female</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18         2.24         195      3250 female</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA        NA             NA        NA &lt;NA&gt;  </span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3       1.9          193      3450 female</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6       1.91         190      3650 male  </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: year &lt;int&gt;</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Innerhalb von <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> können wir auch mehrere Variablen gleichzeitig definieren, indem wir die jeweiligen Operationen mit einem Komma trennen. Wenn wir keine neue Variable kreieren, sondern eine bestehende adaptieren wollen, verwenden wir einfach den jeweiligen Variablennamen auf der linken Seite. Wollen wir etwa eine Beobachtungs-ID hinzufügen, das Schnabel-Ratio erstellen und das Gewicht in Kilogramm anstelle von Gramm angegeben haben:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    bill_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">/</span><span class="va">bill_dep</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    body_mass <span class="op">=</span> <span class="va">body_mass</span><span class="op">/</span><span class="fl">1000</span>,</span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">bill_len</span>, <span class="va">bill_dep</span>, <span class="va">bill_ratio</span>, <span class="va">body_mass</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 5</span></span>
+<span><span class="co">#&gt;      id bill_len bill_dep bill_ratio body_mass</span></span>
+<span><span class="co">#&gt;   &lt;int&gt;    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1     1     39.1     18.7       2.09      3.75</span></span>
+<span><span class="co">#&gt; 2     2     39.5     17.4       2.27      3.8 </span></span>
+<span><span class="co">#&gt; 3     3     40.3     18         2.24      3.25</span></span>
+<span><span class="co">#&gt; 4     4     NA       NA        NA        NA   </span></span>
+<span><span class="co">#&gt; 5     5     36.7     19.3       1.9       3.45</span></span>
+<span><span class="co">#&gt; 6     6     39.3     20.6       1.91      3.65</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Relevante Funktionen für mutate()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="#tbl-mutate-functions" class="quarto-xref">Tabelle&nbsp;<span>3.3</span></a> zeigt wichtige Funktionen, die wir oft mit mutate() verwenden, um neue Variablen zu erstellen oder bestehende zu verändern:</p>
+<div class="cell">
+<div id="tbl-mutate-functions" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mutate-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
+</figcaption><div aria-describedby="tbl-mutate-functions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped do-not-create-environment cell caption-top table-sm small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Funktion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Bedeutung</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Beispiel</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">row_number()</td>
+<td style="text-align: left;">Laufende Zeilennummer (ggf. innerhalb von Gruppen)</td>
+<td style="text-align: left;">id = row_number()</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lag(), lead()</td>
+<td style="text-align: left;">Vorheriger/nächster Wert (zeilenweise Verschiebung)</td>
+<td style="text-align: left;">prev_mass = lag(body_mass)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cumsum()</td>
+<td style="text-align: left;">Kumulierte Summe</td>
+<td style="text-align: left;">cum_mass = cumsum(body_mass, na.rm = T)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pmin(), pmax()</td>
+<td style="text-align: left;">Elementweises (Zeilenweises) Minimum/Maximum mehrerer Vektoren</td>
+<td style="text-align: left;">max_bill = pmax(bill_len, bill_depth)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abs()</td>
+<td style="text-align: left;">Absolutwert</td>
+<td style="text-align: left;">abs_diff = abs(bill_len - bill_depth)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">round()</td>
+<td style="text-align: left;">Rundet auf bestimmte Dezimalstellen</td>
+<td style="text-align: left;">body_mass = round(body_mass/1000, digits = 2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">floor(), ceiling()</td>
+<td style="text-align: left;">Rundet ab/auf</td>
+<td style="text-align: left;">body_mass = floor(body_mass/1000)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cut()</td>
+<td style="text-align: left;">Fasst numerische Variablen in Kategorien zusammen</td>
+<td style="text-align: left;">bill_len_group = cut(bill_len, breaks = 3))</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><em>Hinweis</em>: Bei manchen Funktionen müssen wir auf den Umgang mit <code>NA</code> Werten achten! Wenn du bei diesen <code>na.rm = TRUE</code> angibst, ignoriert die Funktion alle fehlenden Werte und berechnet das Ergebnis nur mit den vorhandenen, gültigen Werten.</p>
+</div>
+</div>
+</section><section id="if_else-case_when-replace_when" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="if_else-case_when-replace_when">
+<span class="header-section-number">3.4.2</span> if_else(), case_when() &amp; replace_when()</h3>
+<p>Oft wollen wir eine Variable basierend auf Konditionen transformieren. Für konditionelle Transformationen greifen wir auf <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> zurück. Diese Funktion folgt immer dem Schema <code>if_else(condition, output_true, output_false)</code>. Um Schnabellängen in große Schnäbel (&gt;=40mm) und kleine Schnäbel (&lt;40mm) zu unterteilen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">40</span>, <span class="st">"large"</span>, <span class="st">"small"</span><span class="op">)</span>,</span>
+<span>         .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_size</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1     39.1 small    </span></span>
+<span><span class="co">#&gt; 2     39.5 small    </span></span>
+<span><span class="co">#&gt; 3     40.3 large    </span></span>
+<span><span class="co">#&gt; 4     NA   &lt;NA&gt;     </span></span>
+<span><span class="co">#&gt; 5     36.7 small    </span></span>
+<span><span class="co">#&gt; 6     39.3 small    </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die <code>dplyr</code>-Funktion <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> ist in den meisten Fällen ident zur Base R Version <code><a href="https://rdrr.io/r/base/ifelse.html">ifelse()</a></code>. Die Vorteile von <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> liegen im Umgang mit fehlenden Werten und inkompatiblen Datentypen.</p>
+</div>
+</div>
+<p>Wir können durch Nesting von <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code> für mehrere Konditionen Transformationen definieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">40</span>, <span class="st">"large"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">bill_len</span><span class="op">&gt;=</span><span class="fl">37</span>, <span class="st">"medium"</span>, <span class="st">"small"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_size</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1     39.1 medium   </span></span>
+<span><span class="co">#&gt; 2     39.5 medium   </span></span>
+<span><span class="co">#&gt; 3     40.3 large    </span></span>
+<span><span class="co">#&gt; 4     NA   &lt;NA&gt;     </span></span>
+<span><span class="co">#&gt; 5     36.7 small    </span></span>
+<span><span class="co">#&gt; 6     39.3 medium   </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Nesting führt jedoch dazu, dass der Code immer schlechter lesbar wird. Stattdessen verwenden wir in solchen Fällen besser <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code>. Hier definieren wird für jede Kondition einen Output, nach dem Syntax <code>condition ~ output</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_size</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1     39.1 medium   </span></span>
+<span><span class="co">#&gt; 2     39.5 medium   </span></span>
+<span><span class="co">#&gt; 3     40.3 large    </span></span>
+<span><span class="co">#&gt; 4     NA   &lt;NA&gt;     </span></span>
+<span><span class="co">#&gt; 5     36.7 small    </span></span>
+<span><span class="co">#&gt; 6     39.3 medium   </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Mit dem Argument <code>.default = output</code> können wir außerdem den Output kontrollieren, wenn keine der Konditionen zutrifft:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span>,</span>
+<span>    .default <span class="op">=</span> <span class="st">"no bill length"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_size     </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;         </span></span>
+<span><span class="co">#&gt; 1     39.1 medium        </span></span>
+<span><span class="co">#&gt; 2     39.5 medium        </span></span>
+<span><span class="co">#&gt; 3     40.3 large         </span></span>
+<span><span class="co">#&gt; 4     NA   no bill length</span></span>
+<span><span class="co">#&gt; 5     36.7 small         </span></span>
+<span><span class="co">#&gt; 6     39.3 medium        </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Fehlerquellen bei case_when()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Beim konditionellen Transformieren mit <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> sind zwei Punkte zu beachten. Erstens werden die Konditionen der Reihe nach durchgegangen und spätere Konditionen nur dann evaluiert, wenn für den jeweiligen Wert die vorherigen Konditionen alle nicht zutreffen. Fehler bei der Reihenfolge führen also zu Fehlern in der Transformation:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&lt;</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"small"</span>,</span>
+<span>    .default <span class="op">=</span> <span class="st">"no bill length"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_size     </span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;         </span></span>
+<span><span class="co">#&gt; 1     39.1 medium        </span></span>
+<span><span class="co">#&gt; 2     39.5 medium        </span></span>
+<span><span class="co">#&gt; 3     40.3 medium        </span></span>
+<span><span class="co">#&gt; 4     NA   no bill length</span></span>
+<span><span class="co">#&gt; 5     36.7 small         </span></span>
+<span><span class="co">#&gt; 6     39.3 medium        </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Zweitens sollten immer alle möglichen Konditionen definiert sein. Spezifizieren wir beispielsweise nicht die Kondition für <code>bill_size == "small"</code> sondern setzen wir diese nur als Default, wird dieser Output auch auf fehlende Werte angewendet:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bill_size <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span></span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">40</span> <span class="op">~</span> <span class="st">"large"</span>,</span>
+<span>    <span class="va">bill_len</span> <span class="op">&gt;=</span> <span class="fl">37</span> <span class="op">~</span> <span class="st">"medium"</span>,</span>
+<span>    .default <span class="op">=</span> <span class="st">"small"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 2</span></span>
+<span><span class="co">#&gt;   bill_len bill_size</span></span>
+<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1     39.1 medium   </span></span>
+<span><span class="co">#&gt; 2     39.5 medium   </span></span>
+<span><span class="co">#&gt; 3     40.3 large    </span></span>
+<span><span class="co">#&gt; 4     NA   small    </span></span>
+<span><span class="co">#&gt; 5     36.7 small    </span></span>
+<span><span class="co">#&gt; 6     39.3 medium   </span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Möchten wir nur einzelne Werte einer existierenden Variable in Abhängigkeit von anderen Variablen verändern, ist die Funktion <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when()</a></code> hilfreich. Diese folgt dem Syntax <code>replace_when(variable, condition ~ output)</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">body_mass</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when</a></span><span class="op">(</span><span class="va">sex</span>, <span class="va">species</span> <span class="op">==</span> <span class="st">"Adelie"</span> <span class="op">&amp;</span> <span class="va">bill_dep</span> <span class="op">&gt;</span> <span class="fl">18</span> <span class="op">~</span> <span class="st">"male"</span><span class="op">)</span>,</span>
+<span>         .keep <span class="op">=</span> <span class="st">"used"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 11 × 3</span></span>
+<span><span class="co">#&gt;   species bill_dep sex  </span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;      &lt;dbl&gt; &lt;fct&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie      18.9 male </span></span>
+<span><span class="co">#&gt; 2 Adelie      17.1 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 3 Adelie      18.1 male </span></span>
+<span><span class="co">#&gt; 4 Adelie      17.3 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 5 Gentoo      14.3 &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 6 Adelie      20.2 male </span></span>
+<span><span class="co">#&gt; # ℹ 5 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Im Vergleich zu <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> hat diese Funktion den Vorteil, dass die ursprünglichen Werte von <code>variable</code> bei Nicht-Zutreffen der Kondition übernommen werden, und nicht als <code>.default = variable</code> spezifiziert werden müssen. Außerdem erhält <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when()</a></code> den ursprünglichen Datentyp der Ausgangsvariable.</p>
 </section><section id="recode_values-replace_values" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="recode_values-replace_values">
 <span class="header-section-number">3.4.3</span> recode_values() &amp; replace_values()</h3>
+<p>Mit <code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> und <code>recode_when()</code> haben wir Variablen auf Basis konditioneller Logik transformiert. Wollen wir die alten Werte von <code>sex</code> in neue Werte übersetzen, können wir <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values()</a></code> verwenden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values</a></span><span class="op">(</span></span>
+<span>    <span class="va">sex</span>,</span>
+<span>    <span class="st">"male"</span> <span class="op">~</span> <span class="st">"M"</span>,</span>
+<span>    <span class="st">"female"</span> <span class="op">~</span> <span class="st">"F"</span>,</span>
+<span>    default <span class="op">=</span> <span class="cn">NA</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex    year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 M      2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 F      2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 F      2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;   2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 F      2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 M      2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Wie bei <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code> können wir also Transformationen mit der Logik <code>old_value ~ new_value</code> vornehmen und eine Default-Option spezifizieren. Der Vorteil von <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values()</a></code> besteht aber, wenn eine Vielzahl von Werten umcodiert wird. Diese müssen wir hier nicht als einzelne Konditionen definieren, sondern können die alten und neuen Werte gesammelt als Vektoren (in der selben Reihenfolge) über die Argumente <code>from = old_values</code> und <code>to = new_values</code> definieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values</a></span><span class="op">(</span></span>
+<span>    <span class="va">sex</span>,</span>
+<span>    from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span>,</span>
+<span>    to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span><span class="op">)</span>,</span>
+<span>    default <span class="op">=</span> <span class="cn">NA</span></span>
+<span>  <span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex    year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 M      2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 F      2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 F      2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;   2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 F      2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 M      2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Für das Umcodieren einzelner Werte einer bestehenden Variable gibt es mit <code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values()</a></code> eine äquivalente Funktion zu <code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when()</a></code>. Auch hier werden als Default wieder automatisch die existierenden Werte verwendet:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>sex <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span>, <span class="cn">NA</span> <span class="op">~</span> <span class="st">"sex unknown"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex          year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;chr&gt;       &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 male         2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 female       2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 female       2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA sex unknown  2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 female       2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 male         2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Use Cases
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div id="tbl-logic-transf" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-logic-transf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.4: Überscht: if_else(), case_when(), replace_when(), recode_values(), replace_values()
+</figcaption><div aria-describedby="tbl-logic-transf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped do-not-create-environment cell caption-top table-sm small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Funktion</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Use Case</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">if_else()</td>
+<td style="text-align: left;">Erstellen einer neuen Variable basierend auf konditioneller Logik (eine Kondition)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">case_when()</td>
+<td style="text-align: left;">Erstellen einer neuen Variable basierend auf konditioneller Logik (mehrere Konditionen)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">replace_when()</td>
+<td style="text-align: left;">Updaten einer existierenden Variable basierend auf konditioneller Logik</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">recode_values()</td>
+<td style="text-align: left;">Mapping von allen alten Werten zu neuen Werten</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">replace_values()</td>
+<td style="text-align: left;">Mapping bestimmter alter Werte zu neuen Werten</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section></section><section id="gruppieren-und-zusammenfassen" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="gruppieren-und-zusammenfassen">
 <span class="header-section-number">3.5</span> Gruppieren und Zusammenfassen</h2>
 <section id="group_by" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="group_by">
