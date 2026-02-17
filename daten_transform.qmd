@@ -106,12 +106,31 @@ penguins |>
   select(species, island, flipper_len)
 ```
 
-Um eine Variable zu entfernen, setzen wir ein Minuszeichen davor:
+Um eine Variable zu entfernen, setzen wir ein Ausrufezeichen (`!`) davor (alternativ kann auch ein Minus verwendet werden):
 
 ```{r}
 penguins |>
-  select(-island)
+  select(!island)
 ```
+
+Um mehrere aufeinanderfolgende Variablen auszuwählen, können wir diese mit `firstvar:lastvar` zusammenfassen:
+
+```{r}
+penguins |>
+  select(bill_len:body_mass)
+```
+
+Eine Reihe von zusätzlichen `dplyr`-Funktionen sind im Zusammenhang ebenfalls hilfreich: `starts_with("text")`, `ends_with("text")` und `contains("text")` innerhalb von `select()` wählen all jene Variablen aus, deren Namen mit `"text"` beginnen, enden bzw. `"text"` beinhalten. Mit `where()` werden alle Variablen ausgewählt, auf die eine bestimmte Kondition zutrifft. `everything()` wählt alle Variablen aus, `last_col()` die letzte Spalte:
+
+```{r}
+penguins |>
+  select(starts_with("bill"))
+penguins |>
+  select(where(is.factor))
+penguins |>
+  select(last_col())
+```
+
 
 :::callout-note
 #### Hinweis
@@ -121,7 +140,7 @@ Damit der `penguins` Datensatz nicht immer wieder neu geladen werden muss, speic
 ```{r}
 #| eval: false
 penguins <- penguins |>
-  select(-island)
+  select(!island)
 ```
 :::
 
@@ -298,11 +317,250 @@ penguins |>
 
 ## Variablen verändern und erstellen
 
+Neben dem Auswählen und Sortieren ist es für viele Analysen notwendig, Variablen zu verändern oder neue zu erstellen. Mit `dplyr` nutzen wir dafür insbesondere `mutate()` zur Berechnung oder Transformation von Variablen. Außerdem lernen wir in diesem Abschnitt, wie wir diese Umwandlungen auf Basis bedingter Fallunterscheidungen treffen (`if_else()`, `case_when()`, `replace_when()`) und wie wir einzelne Ausprägungen von Variabeln gezielt umcodieren (`recode_values()`, `replace_values()`). Auf diese Weise lassen sich Variablen anpassen, neu strukturieren und in eine Form bringen, die für statistische Auswertungen geeignet ist.
+
 ### mutate()
 
-### case_when() & replace_when()
+Mit `mutate()` erstellen wir neue Spalten (Variablen), häufig auf Basis bereits existierender Spalten. Wir können damit etwa jeder Beobachtung in `penguins` eine Beobachtungs-ID hinzufügen:
+
+```{r}
+penguins |>
+  mutate(id = row_number())
+```
+
+Per Default wir diese Variable an das Ende des Datensatzes hinzugefügt. Wir können die Position der Variable jedoch mit dem Argument `.before = ...` bzw. `.after = ...` spezifizieren, wobei hier sowohl numerische Werte für die Spaltenzahl sowie Variablennamen akzeptiert werden.
+
+Besonders hilfreich ist `mutate()` um neue Variablen auf Basis der Werte in bereits bestehenden zu definieren. Wollen wir etwa uns das Verhältnis von Schnabellänge und Schnabeltiefe (auf zwei Dezimalstellen gerundet) angeben, und diese neue Variable im Datensatz nach `bill_dep` angeordnet haben:
+
+```{r}
+penguins |>
+  mutate(bill_ratio = round(bill_len/bill_dep, digits = 2),
+         .after = bill_dep)
+```
+
+Innerhalb von `mutate()` können wir auch mehrere Variablen gleichzeitig definieren, indem wir die jeweiligen Operationen mit einem Komma trennen. Wenn wir keine neue Variable kreieren, sondern eine bestehende adaptieren wollen, verwenden wir einfach den jeweiligen Variablennamen auf der linken Seite. Wollen wir etwa eine Beobachtungs-ID hinzufügen, das Schnabel-Ratio erstellen und das Gewicht in Kilogramm anstelle von Gramm angegeben haben:
+
+```{r}
+penguins |>
+  mutate(
+    id = row_number(),
+    bill_ratio = round(bill_len/bill_dep, digits = 2),
+    body_mass = body_mass/1000,
+  ) |>
+  select(id, bill_len, bill_dep, bill_ratio, body_mass)
+```
+
+:::callout-note
+#### Relevante Funktionen für mutate()
+
+@tbl-mutate-functions zeigt wichtige Funktionen, die wir oft mit mutate() verwenden, um neue Variablen zu erstellen oder bestehende zu verändern:
+
+```{r}
+#| label: tbl-mutate-functions
+#| tbl-cap: "Übersicht: Relevante Funktionen für mutate()"
+#| echo: false
+
+dplyr::tibble(
+  fun = c(
+    "row_number()",
+    "lag(), lead()",
+    "cumsum()",
+    "pmin(), pmax()",
+    "abs()",
+    "round()",
+    "floor(), ceiling()",
+    "cut()"
+  ),
+  descr = c(
+    "Laufende Zeilennummer (ggf. innerhalb von Gruppen)",
+    "Vorheriger/nächster Wert (zeilenweise Verschiebung)",
+    "Kumulierte Summe",
+    "Elementweises (Zeilenweises) Minimum/Maximum mehrerer Vektoren",
+    "Absolutwert",
+    "Rundet auf bestimmte Dezimalstellen",
+    "Rundet ab/auf",
+    "Fasst numerische Variablen in Kategorien zusammen"
+  ),
+  exp = c(
+    "id = row_number()",
+    "prev_mass = lag(body_mass)",
+    "cum_mass = cumsum(body_mass, na.rm = T)",
+    "max_bill = pmax(bill_len, bill_depth)",
+    "abs_diff = abs(bill_len - bill_depth)",
+    "body_mass = round(body_mass/1000, digits = 2)",
+    "body_mass = floor(body_mass/1000)",
+    "bill_len_group = cut(bill_len, breaks = 3))"
+  )
+) |>
+  kbl(
+    col.names = c("Funktion", "Bedeutung", "Beispiel")
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
+
+*Hinweis*: Bei manchen Funktionen müssen wir auf den Umgang mit `NA` Werten achten! Wenn du bei diesen `na.rm = TRUE` angibst, ignoriert die Funktion alle fehlenden Werte und berechnet das Ergebnis nur mit den vorhandenen, gültigen Werten.
+:::
+
+### if_else(), case_when() & replace_when()
+
+Oft wollen wir eine Variable basierend auf Konditionen transformieren. Für konditionelle Transformationen greifen wir auf `if_else()` zurück. Diese Funktion folgt immer dem Schema `if_else(condition, output_true, output_false)`. Um Schnabellängen in große Schnäbel (>=40mm) und kleine Schnäbel (<40mm) zu unterteilen:
+
+```{r}
+penguins |>
+  mutate(bill_size = if_else(bill_len>=40, "large", "small"),
+         .keep = "used")
+```
+
+:::callout-note
+#### Hinweis
+
+Die `dplyr`-Funktion `if_else()` ist in den meisten Fällen ident zur Base R Version `ifelse()`. Die Vorteile von `if_else()` liegen im Umgang mit fehlenden Werten und inkompatiblen Datentypen.
+:::
+
+Wir können durch Nesting von `if_else()` für mehrere Konditionen Transformationen definieren:
+
+```{r}
+penguins |>
+  mutate(bill_size = if_else(bill_len>=40, "large", if_else(bill_len>=37, "medium", "small")),
+         .keep = "used")
+```
+
+Nesting führt jedoch dazu, dass der Code immer schlechter lesbar wird. Stattdessen verwenden wir in solchen Fällen besser `case_when()`. Hier definieren wird für jede Kondition einen Output, nach dem Syntax `condition ~ output`:
+
+```{r}
+penguins |>
+  mutate(bill_size = case_when(
+    bill_len >= 40 ~ "large",
+    bill_len >= 37 ~ "medium",
+    bill_len < 37 ~ "small"
+  ),
+  .keep = "used")
+```
+
+Mit dem Argument `.default = output` können wir außerdem den Output kontrollieren, wenn keine der Konditionen zutrifft:
+
+```{r}
+penguins |>
+  mutate(bill_size = case_when(
+    bill_len >= 40 ~ "large",
+    bill_len >= 37 ~ "medium",
+    bill_len < 37 ~ "small",
+    .default = "no bill length"
+  ),
+  .keep = "used")
+```
+
+
+:::callout-warning
+#### Fehlerquellen bei case_when()
+
+Beim konditionellen Transformieren mit `case_when()` sind zwei Punkte zu beachten. Erstens werden die Konditionen der Reihe nach durchgegangen und spätere Konditionen nur dann evaluiert, wenn für den jeweiligen Wert die vorherigen Konditionen alle nicht zutreffen. Fehler bei der Reihenfolge führen also zu Fehlern in der Transformation:
+
+```{r}
+penguins |>
+  mutate(bill_size = case_when(
+    bill_len >= 37 ~ "medium",
+    bill_len >= 40 ~ "large",
+    bill_len < 37 ~ "small",
+    .default = "no bill length"
+  ),
+  .keep = "used")
+```
+
+Zweitens sollten immer alle möglichen Konditionen definiert sein. Spezifizieren wir beispielsweise nicht die Kondition für `bill_size == "small"` sondern setzen wir diese nur als Default, wird dieser Output auch auf fehlende Werte angewendet:
+
+```{r}
+penguins |>
+  mutate(bill_size = case_when(
+    bill_len >= 40 ~ "large",
+    bill_len >= 37 ~ "medium",
+    .default = "small"
+  ),
+  .keep = "used")
+```
+:::
+
+Möchten wir nur einzelne Werte einer existierenden Variable in Abhängigkeit von anderen Variablen verändern, ist die Funktion `replace_when()` hilfreich. Diese folgt dem Syntax `replace_when(variable, condition ~ output)`.
+
+```{r}
+penguins |>
+  filter(is.na(sex)) |>
+  arrange(body_mass) |>
+  mutate(sex = replace_when(sex, species == "Adelie" & bill_dep > 18 ~ "male"),
+         .keep = "used")
+```
+
+Im Vergleich zu `case_when()` hat diese Funktion den Vorteil, dass die ursprünglichen Werte von `variable` bei Nicht-Zutreffen der Kondition übernommen werden, und nicht als `.default = variable` spezifiziert werden müssen. Außerdem erhält `replace_when()` den ursprünglichen Datentyp der Ausgangsvariable.
 
 ### recode_values() & replace_values()
+
+Mit `if_else()`, `case_when()` und `recode_when()` haben wir Variablen auf Basis konditioneller Logik transformiert. Wollen wir die alten Werte von `sex` in neue Werte übersetzen, können wir `recode_values()` verwenden:
+
+```{r}
+penguins |>
+  mutate(sex = recode_values(
+    sex,
+    "male" ~ "M",
+    "female" ~ "F",
+    default = NA
+  ))
+```
+
+Wie bei `case_when()` können wir also Transformationen mit der Logik `old_value ~ new_value` vornehmen und eine Default-Option spezifizieren. Der Vorteil von `recode_values()` besteht aber, wenn eine Vielzahl von Werten umcodiert wird. Diese müssen wir hier nicht als einzelne Konditionen definieren, sondern können die alten und neuen Werte gesammelt als Vektoren (in der selben Reihenfolge) über die Argumente `from = old_values` und `to = new_values` definieren:
+
+```{r}
+penguins |>
+  mutate(sex = recode_values(
+    sex,
+    from = c("male", "female"),
+    to = c("M", "F"),
+    default = NA
+  ))
+```
+
+Für das Umcodieren einzelner Werte einer bestehenden Variable gibt es mit `replace_values()` eine äquivalente Funktion zu `replace_when()`. Auch hier werden als Default wieder automatisch die existierenden Werte verwendet:
+
+```{r}
+penguins |>
+  mutate(sex = replace_values(as.character(sex), NA ~ "sex unknown"))
+```
+
+:::callout-tip
+#### Use Cases
+
+```{r}
+#| label: tbl-logic-transf
+#| tbl-cap: "Überscht: if_else(), case_when(), replace_when(), recode_values(), replace_values()"
+#| echo: false
+
+dplyr::tibble(
+  fun = c(
+    "if_else()",
+    "case_when()",
+    "replace_when()",
+    "recode_values()",
+    "replace_values()"
+  ),
+  use = c(
+    "Erstellen einer neuen Variable basierend auf konditioneller Logik (eine Kondition)",
+    "Erstellen einer neuen Variable basierend auf konditioneller Logik (mehrere Konditionen)",
+    "Updaten einer existierenden Variable basierend auf konditioneller Logik",
+    "Mapping von allen alten Werten zu neuen Werten",
+    "Mapping bestimmter alter Werte zu neuen Werten"
+  )
+) |>
+  kbl(
+    col.names = c("Funktion", "Use Case")
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
+:::
 
 ## Gruppieren und Zusammenfassen
 
