@@ -2,11 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Andreas Fischeneder">
 <title>6&nbsp; Grafiken in R – Einführung in R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -17,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -31,15 +69,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./daten_export.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e7b690381a3be0915745ffc2579c22f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-d15ad9bf924aa68bd7a4b2fe52bfdd29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -261,8 +298,39 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li><a href="#ggplot2" id="toc-ggplot2" class="nav-link active" data-scroll-target="#ggplot2"><span class="header-section-number">6.1</span> ggplot2</a></li>
+  <li><a href="#grundlagen-ggplot-grammatik" id="toc-grundlagen-ggplot-grammatik" class="nav-link" data-scroll-target="#grundlagen-ggplot-grammatik"><span class="header-section-number">6.2</span> Grundlagen: ggplot-Grammatik</a></li>
+  <li><a href="#sec-data-layer" id="toc-sec-data-layer" class="nav-link" data-scroll-target="#sec-data-layer"><span class="header-section-number">6.3</span> Data-Layer</a></li>
+  <li><a href="#sec-mapping-layer" id="toc-sec-mapping-layer" class="nav-link" data-scroll-target="#sec-mapping-layer"><span class="header-section-number">6.4</span> Mapping-Layer</a></li>
+  <li>
+<a href="#sec-geom-layer" id="toc-sec-geom-layer" class="nav-link" data-scroll-target="#sec-geom-layer"><span class="header-section-number">6.5</span> Geometries-Layer</a>
+  <ul class="collapse">
+<li><a href="#streudiagramme-geom_point" id="toc-streudiagramme-geom_point" class="nav-link" data-scroll-target="#streudiagramme-geom_point"><span class="header-section-number">6.5.1</span> Streudiagramme: geom_point</a></li>
+  <li><a href="#liniendiagramme-und-trends-geom_line-geom_smooth" id="toc-liniendiagramme-und-trends-geom_line-geom_smooth" class="nav-link" data-scroll-target="#liniendiagramme-und-trends-geom_line-geom_smooth"><span class="header-section-number">6.5.2</span> Liniendiagramme und Trends: geom_line, geom_smooth</a></li>
+  <li><a href="#balkendiagramme-geom_bar-geom_col" id="toc-balkendiagramme-geom_bar-geom_col" class="nav-link" data-scroll-target="#balkendiagramme-geom_bar-geom_col"><span class="header-section-number">6.5.3</span> Balkendiagramme: geom_bar, geom_col</a></li>
+  <li><a href="#verteilungen-geom_histogram-geom_density-geom_boxplot" id="toc-verteilungen-geom_histogram-geom_density-geom_boxplot" class="nav-link" data-scroll-target="#verteilungen-geom_histogram-geom_density-geom_boxplot"><span class="header-section-number">6.5.4</span> Verteilungen: geom_histogram, geom_density, geom_boxplot</a></li>
+  <li><a href="#kombination-mehrerer-geoms" id="toc-kombination-mehrerer-geoms" class="nav-link" data-scroll-target="#kombination-mehrerer-geoms"><span class="header-section-number">6.5.5</span> Kombination mehrerer Geoms</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-stat-layer" id="toc-sec-stat-layer" class="nav-link" data-scroll-target="#sec-stat-layer"><span class="header-section-number">6.6</span> Statistics-Layer</a></li>
+  <li><a href="#sec-scales-layer" id="toc-sec-scales-layer" class="nav-link" data-scroll-target="#sec-scales-layer"><span class="header-section-number">6.7</span> Scales-Layer</a></li>
+  <li><a href="#sec-coord-layer" id="toc-sec-coord-layer" class="nav-link" data-scroll-target="#sec-coord-layer"><span class="header-section-number">6.8</span> Coordinates-Layer</a></li>
+  <li><a href="#sec-facet-layer" id="toc-sec-facet-layer" class="nav-link" data-scroll-target="#sec-facet-layer"><span class="header-section-number">6.9</span> Facets-Layer</a></li>
+  <li><a href="#sec-theme-layer" id="toc-sec-theme-layer" class="nav-link" data-scroll-target="#sec-theme-layer"><span class="header-section-number">6.10</span> Theme-Layer</a></li>
+  <li>
+<a href="#weitere-themen" id="toc-weitere-themen" class="nav-link" data-scroll-target="#weitere-themen"><span class="header-section-number">6.11</span> Weitere Themen</a>
+  <ul class="collapse">
+<li><a href="#ggplot-mit-esquisse" id="toc-ggplot-mit-esquisse" class="nav-link" data-scroll-target="#ggplot-mit-esquisse"><span class="header-section-number">6.11.1</span> ggplot mit <code>esquisse</code></a></li>
+  <li><a href="#karten-in-ggplot" id="toc-karten-in-ggplot" class="nav-link" data-scroll-target="#karten-in-ggplot"><span class="header-section-number">6.11.2</span> Karten in ggplot</a></li>
+  <li><a href="#annotationen-in-ggplot" id="toc-annotationen-in-ggplot" class="nav-link" data-scroll-target="#annotationen-in-ggplot"><span class="header-section-number">6.11.3</span> Annotationen in ggplot</a></li>
+  <li><a href="#interaktive-grafiken" id="toc-interaktive-grafiken" class="nav-link" data-scroll-target="#interaktive-grafiken"><span class="header-section-number">6.11.4</span> Interaktive Grafiken</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visualisierung.html">Datenvisualisierung</a></li><li class="breadcrumb-item"><a href="./visualisierung.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Grafiken in R</span></a></li></ol></nav><div class="quarto-title">
@@ -280,10 +348,500 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Die Datenvisualisierung ist ein zentraler Bestandteil der Datenanalyse, da sie es ermöglicht, Muster, Zusammenhänge und Ausreißer in Daten schnell und intuitiv zu erkennen. Eine gute Visualisierung hilft somit dabei, einen ersten Eindruck über die Daten zu bekommen. Außerdem können wir mit Grafiken die Ergebnisse fortgeschrittener Analysen (etwa Effekte in unterschiedlichen Regressionsmodellen) zusammenfassen und besser kommunizieren.</p>
+<p>In diesem Kapitel werden wir ausschließlich mit der Visualisierung von Datensätzen auseinandersetzen. Wie in <a href="daten_transform.html" class="quarto-xref"><span>Kapitel 3</span></a> nutzen wir dafür den Palmer Penguins-Datensatz, der über das Package <code>palmerpenguins</code> frei verfügbar ist:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">&lt;-</span> <span class="fu">palmerpenguins</span><span class="fu">::</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/reference/penguins.html">penguins</a></span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span></span>
+<span>    bill_len <span class="op">=</span> <span class="va">bill_length_mm</span>,</span>
+<span>    bill_dep <span class="op">=</span> <span class="va">bill_depth_mm</span>,</span>
+<span>    flipper_len <span class="op">=</span> <span class="va">flipper_length_mm</span>,</span>
+<span>    body_mass <span class="op">=</span> <span class="va">body_mass_g</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="va">penguins</span></span>
+<span><span class="co">#&gt; # A tibble: 344 × 8</span></span>
+<span><span class="co">#&gt;   species island    bill_len bill_dep flipper_len body_mass sex     year</span></span>
+<span><span class="co">#&gt;   &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;     &lt;int&gt; &lt;fct&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Adelie  Torgersen     39.1     18.7         181      3750 male    2007</span></span>
+<span><span class="co">#&gt; 2 Adelie  Torgersen     39.5     17.4         186      3800 female  2007</span></span>
+<span><span class="co">#&gt; 3 Adelie  Torgersen     40.3     18           195      3250 female  2007</span></span>
+<span><span class="co">#&gt; 4 Adelie  Torgersen     NA       NA            NA        NA &lt;NA&gt;    2007</span></span>
+<span><span class="co">#&gt; 5 Adelie  Torgersen     36.7     19.3         193      3450 female  2007</span></span>
+<span><span class="co">#&gt; 6 Adelie  Torgersen     39.3     20.6         190      3650 male    2007</span></span>
+<span><span class="co">#&gt; # ℹ 338 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="ggplot2" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="ggplot2">
+<span class="header-section-number">6.1</span> ggplot2</h2>
+<p>Zur Datenvisualisierung verwenden wir das <code>ggplot2</code> Package, das Teil von <code>tidyverse</code> ist. In diesem Kapitel lernen wir den <code>ggplot</code>-Grammatik sowie wichtigsten Funktionen kennen. Für eine ausführliche Einführung siehe <a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a>. Solltest du das <code>tidyverse</code> noch nicht geladen haben, lade es mit:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="grundlagen-ggplot-grammatik" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="grundlagen-ggplot-grammatik">
+<span class="header-section-number">6.2</span> Grundlagen: ggplot-Grammatik</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ggplot-grammar" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Visualisierung des Grammatik-Fundaments von ggplot2 mit den folgenden Layers (von unten nach oben): Data, Mapping, Geometries, Statistics, Scales, Coordinates, Facets, Theme. Hervorgehoben sind die essenziellen Layers Data, Mapping und Geometries.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-grammar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ggplot_grammar.png" class="img-fluid figure-img" alt="Visualisierung des Grammatik-Fundaments von ggplot2 mit den folgenden Layers (von unten nach oben): Data, Mapping, Geometries, Statistics, Scales, Coordinates, Facets, Theme. Hervorgehoben sind die essenziellen Layers Data, Mapping und Geometries.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-grammar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.1: Grammatik-Fundament von ggplot2.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-ggplot-grammar" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a> fasst das Fundament der Grammatik in ggplot2 zusammen. Die wichtigsten Layers sind dabei die drei untersten:</p>
+<ul>
+<li>
+<em>Data</em>: Legt den Datensatz fest, der für die Visualisierung verwendet wird (<code>data = ...</code>).</li>
+<li>
+<em>Mapping</em>: Bestimmt, wie die Daten in ästhetische Charakteristiken übersetzt werden. Hier werden etwa x- und y-Achse definiert, aber wenn gewünscht auch Farbe, Größe, etc. (<code>mapping = aes(...)</code>).</li>
+<li>
+<em>Geometries</em>: Definieren die geometrischen Objekte (z. B. Punkte, Linien, Balken), mit denen die Daten dargestellt werden (<code>geom_*(...)</code>).</li>
+</ul>
+<p>Abhängig von der gewünschten Visualisierung kann man folgende Aspekte über die weiteren Layers definieren:</p>
+<ul>
+<li>
+<strong>Statistics</strong>: Führen statistische Transformationen durch, z. B. das Berechnen von Mittelwerten oder Dichten, bevor die Daten geplottet werden (<code>stat_*()</code>). Oft werden die zugrundeliegenden Transformationen aber bereits indirekt im <strong>Geometries</strong>-Element durchgeführt.</li>
+<li>
+<strong>Scales</strong>: Steuern, wie Datenwerte visuell umgesetzt werden, etwa durch Achsenskalierung, Farben oder Legenden (<code>scale_*()</code>).</li>
+<li>
+<strong>Coordinates</strong>: Bestimmen das Koordinatensystem des Plots, z. B. kartesisch oder polar (<code>coord_*()</code>).</li>
+<li>
+<strong>Facets</strong>: Teilen den Datensatz in Teilmengen auf und erstellen für jede davon einen eigenen Plot innerhalb einer Grafik (<code>facet_*()</code>).</li>
+<li>
+<strong>Theme</strong>: Kontrolliert das Aussehen der Grafik, etwa Schriftarten, Hintergrund, Gitterlinien und Layout (<code><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme()</a></code>).</li>
+</ul></section><section id="sec-data-layer" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="sec-data-layer">
+<span class="header-section-number">6.3</span> Data-Layer</h2>
+<p>Um eine ggplot-Grafik (Plot) zu erstellen, verwenden wir die Funktion <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>. Mit dem Argument <code>data = ...</code> spezifizieren wir den Datensatz, den wir verwenden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">penguins</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Da <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> nur durch die Nennung des Datensatzes nicht weiß, welche Variablen aus dem <code>penguins</code>-Dataset wie visualisiert werden, resultiert dies in einem leeren Plot.</p>
+</section><section id="sec-mapping-layer" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="sec-mapping-layer">
+<span class="header-section-number">6.4</span> Mapping-Layer</h2>
+<p>Ebenfalls innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> geben wir über das Argument <code>mapping = aes(...)</code> an, wie die Daten in ästhetische Charakteristiken übersetzt werden. Vor allem können wir hier festlegen, welche Daten auf die x- oder y-Achse gemappt werden. Wollen wir uns etwa den Zusammenhang von Schnabellänge (<code>bill_len</code>) und Flügellänge (<code>flipper_len</code>) ansehen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sollten andere ästhetische Merkmale ebenfalls von einer bestimmten Variable abhängen, können wir dies ebenfalls in <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> spezifizieren. Diese werden dann vor allem auf den im nächsten Punkt behandelten Geometries-Layer (Geom) übertragen. Wesentliche Optionen sind hierbei:</p>
+<ul>
+<li>
+<strong>Farbe</strong>: Wollen wir etwa die abgebildeten Daten in Abhängigkeit einer Variable einfärben, verwenden wir die Argumente <code>color = ...</code> (für Punkte/Linien) und/oder <code>fill = ...</code> (für Flächen).</li>
+<li>
+<strong>Größe</strong>: Um die Größe des Geoms (etwa eines Punkts in einem Scatterplot) relativ zu einer bestimmten Variable zu machen, verwenden wir <code>size = ...</code>.</li>
+<li>
+<strong>Form</strong>: Die Form des Geoms kann über das Argument <code>shape = ...</code> (für Punkte) oder <code>linetype = ...</code> (für Linien) relativ zu einer bestimmten Variable dargestellt werden.</li>
+<li>
+<strong>Gruppierung</strong>: Bestimmte Geoms können mittels <code>group = ...</code> in Abhängigkeit einer Variable separat dargestellt werden, ohne die Geoms gesondert einzufärben oder mit einer anderen Form zu versehen. So können wir etwa Zeitreihen von Wirtschaftskennzahlen für unterschiedliche Länder mit separaten Trendlinien abbilden.</li>
+</ul>
+<p>Möchten wir also den Zusammenhang von Schnabel- und Flügellänge von Penguinen so darstellen, dass die Geoms in Abhängigkeit der Spezies (<code>species</code>) des Pinguins eine andere Farbe haben:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Da wir noch nicht spezifiziert haben, wie wir die Beobachtungen darstellen wollen, ändern sich hier nur die jeweiligen Achsen des Plots.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span><code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> und Variablentypen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bei der Verwendung von weiteren Ästhetik-Argumenten innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> müssen wir beachten, dass der Variablentyp zur Ästhetik passt. Für Form und Gruppierung sollten nur kategoriale Variablen verwendet werden. Machen wir die Größe von einer Variable abhängig, eigenen sich nur metrische Variablen dafür, da kategoriale Variablen hier eine Ordnung unterstellen. Die Farbe wiederum kann relativ zu kategorialen und metrischen Variablen gesetzt werden. Bei kategorialen Variablen wählt <code>ggplot</code> eine diskrete Farbpalette, während bei metrischen Variablen ein Farbverlauf verwendet wird.</p>
+</div>
+</div>
+</section><section id="sec-geom-layer" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="sec-geom-layer">
+<span class="header-section-number">6.5</span> Geometries-Layer</h2>
+<p>Über den Geometries-Layer spezifizieren wir schlussendlich, wie wir unsere Beobachtungen darstellen möchten. Dafür stehen uns in <code>ggplot</code> unterschiedliche Geoms zur Verfügung. Die wesentlichsten Optionen sind:</p>
+<ul>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> wird für Streudiagramme verwendet und eignet sich besonders, um Zusammenhänge zwischen zwei metrischen Variablen sichtbar zu machen.</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> verbindet Datenpunkte zu Liniendiagrammen und wird häufig für Zeitreihen oder geordnete Daten genutzt. <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> erstellt geglättete Trendlinien, etwa über Regressions- oder LOESS-Schätzungen.</li>
+<li>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code> und <code>geom_col</code> erstellen Balkendiagramme.</li>
+<li>Verteilungen können außerdem als Histrogramme (<code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>), Verteilungskurven (<code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density()</a></code>), Boxplots (<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>) dargestellt werden.</li>
+</ul>
+<p>Im Gegensatz zum Data- und Mapping-Layer definieren wir das Geom nicht mehr innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, sondern als neue Funktion in Verbindung mit <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>. Die Verbindung folgt über das <code>+</code>-Zeichen (<code>ggplot(...) + geom_*(...)</code>).</p>
+<section id="streudiagramme-geom_point" class="level3" data-number="6.5.1"><h3 data-number="6.5.1" class="anchored" data-anchor-id="streudiagramme-geom_point">
+<span class="header-section-number">6.5.1</span> Streudiagramme: geom_point</h3>
+<p>Streudiagramme werden verwendet, um den Zusammenhang zwischen zwei metrischen Variablen sichtbar zu machen. Sie eignen sich besonders gut, um Muster, Korrelationen oder Ausreißer in den Daten zu erkennen.</p>
+<p>Möchten wir den Zusammenhang von Schnabel- und Flügellänge als Streudiagramm darstellen, und dabei die einzelnen Punkte abhängig der Pinguin-Spezies einfärben, so kombinieren wir unseren <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>-Befehl aus <a href="#sec-mapping-layer" class="quarto-xref"><span>Kapitel 6.4</span></a> mit <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wir haben nun unsere erste aussagekräftige Grafik dargestellt. Diese zeigt einen positiven Zusammenhang von Schnabel- und Flügellänge bei Pinguinen, wobei deutliche Unterschiede zwischen den Spezien bestehen.</p>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Ästhetische Argumente inner- und außerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Einfärbung der Punkte haben wir im Streudiagramm nach Geschlecht vorgenommen. Möchten wir die Punkte einfach nur z.B. blau einfärben, können wir dies ebenfalls über das Argument <code>color = ...</code> definieren. Diese definieren wir dann aber nicht innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>, da dies zu folgendem Problem führt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Da <code>ggplot</code> alles innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> als eine Abbildung von Daten auf Ästhetiken interpretiert, liest die Funktion unseren Code als Kategorie mit dem Namen „blue“. Dadurch wird automatisch eine Standard-Farbpalette verwendet, und die Punkte werden (je nach Palette) z. B. rot eingefärbt.</p>
+<p>Korrekt spezifizieren wir die Farboption stattdessen außerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> und innerhalb des Geoms:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="liniendiagramme-und-trends-geom_line-geom_smooth" class="level3" data-number="6.5.2"><h3 data-number="6.5.2" class="anchored" data-anchor-id="liniendiagramme-und-trends-geom_line-geom_smooth">
+<span class="header-section-number">6.5.2</span> Liniendiagramme und Trends: geom_line, geom_smooth</h3>
+<p>Liniendiagramme werden verwendet, um Verläufe und Entwicklungen über eine geordnete Dimension hinweg darzustellen, beispielsweise über Zeit. Sie eignen sich besonders gut, um Trends und Veränderungen in metrischen Variablen sichtbar zu machen und mehrere Beobachtungen miteinander zu verbinden.</p>
+<p>Um das durchschnittliche Körpergewicht (<code>body_mass</code>) im Zeitverlauf <code>year</code> darzustellen, abhängig von der Spezies der Pinguine, können wir folgenden Code versuchen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y <span class="op">=</span> <span class="va">body_mass</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Dies führt jedoch nicht zum gewünschten Resultat, da <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code> alle Beobachtungspunkte im Datensatz verbindet. Wir müssen also die Daten zuerst so aufbereiten, dass wir die Durschnitte bereits in <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> einlesen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>body_mass <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">body_mass</span>, na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">body_mass</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternativ können wir die Daten über den Statistics-Layer auch innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> zusammenfassen. Dies lernen wir in <a href="#sec-stat-layer" class="quarto-xref"><span>Kapitel 6.6</span></a> näher kennen. Auch sind die Labels der x-Achse nicht ideal, da hier eigentlich nur die Zeitpunkte mit Beobachtungen (ganze Jahre) angeführt werden sollten. Dies können wir im Scales-Layer anpassen (siehe <a href="#sec-scales-layer" class="quarto-xref"><span>Kapitel 6.7</span></a>).</p>
+<p>Um Trendlinien durch Beobachtungspunkte zulegen, verwenden wir <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code>. Da diese Funktion die Daten bereits selbst transformiert, müssen wir diese hier nicht vorher aufbereiten. Zusätzlich zur Trendlinie wird per Default auch ein Konfidenzintervall angezeigt. In den Optionen von <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> können wir diese mit <code>se = FALSE</code> ausblenden. Außerdem mit `<code>method = ...</code> können wir aus diversen Methoden zur Trendberechnung (Smoothing) auswählen (siehe Help-Dokumentation der Funktion für mehr Informationen).</p>
+<p>Möchten wir etwa die Trends auf Basis eines OLS-Modells berechnen und Konfidenzintervalle inkludieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y <span class="op">=</span> <span class="va">body_mass</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="balkendiagramme-geom_bar-geom_col" class="level3" data-number="6.5.3"><h3 data-number="6.5.3" class="anchored" data-anchor-id="balkendiagramme-geom_bar-geom_col">
+<span class="header-section-number">6.5.3</span> Balkendiagramme: geom_bar, geom_col</h3>
+<p>Balkendiagramme werden verwendet, um kategoriale Daten zu vergleichen, indem Häufigkeiten oder aggregierte Werte für verschiedene Gruppen dargestellt werden. Sie eignen sich besonders, um Unterschiede zwischen Kategorien übersichtlich sichtbar zu machen.</p>
+<p>Um auf Basis unserer Individualdaten die Anzahl der Pinguine pro Spezies in einem Balkendiagramm darzustellen, verwenden wir <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Um die Balken horizontal auszurichten, müssen wir im Mapping-Layer die Spezies als Variable für die y-Achse anstelle der x-Achse definieren (<code>y = species</code> anstatt <code>x = species</code>).</p>
+<p>Manchmal sind unsere zugrunde liegenden Daten bereits aggregiert. Um Balkendiagramme auf Basis von aggregierten Daten zu erstellen, verwenden wir <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">penguins</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span><code>position</code>-Argument in Balkendiagrammen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In einem Balkendiagramm können wir die Balken weiter unterteilen, um mehr Informationen abzubilden. So können wir etwa die Anzahl der Pinguine pro Spezies zusätzlich nach Geschlecht unterteilen, indem wir über das <code>fill = ...</code> Argument in <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> die Balken nach Geschlecht einfärben.</p>
+<p>Das Argument <code>position = ...</code> in geom_bar() bestimmt, wie Balken bei gruppierten Daten angeordnet werden, etwa gestapelt (<code>stack</code>, Default), nebeneinander (<code>dodge</code>) oder normiert um prozentuale Anteile darzustellen (<code>fill</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Links</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"stack"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Mitte</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Rechts</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">species</span>, fill <span class="op">=</span> <span class="va">sex</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="576"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="576"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-15-3.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="verteilungen-geom_histogram-geom_density-geom_boxplot" class="level3" data-number="6.5.4"><h3 data-number="6.5.4" class="anchored" data-anchor-id="verteilungen-geom_histogram-geom_density-geom_boxplot">
+<span class="header-section-number">6.5.4</span> Verteilungen: geom_histogram, geom_density, geom_boxplot</h3>
+<p>Während Balkendiagramme sich gut dazu eigenen, um die Verteilung einer kategorialen Variable darzustellen, bietet <code>ggplot</code> eine Vielzahl an weiteren Geoms zur Visualierung der Verteilung metrischer Variablen, etwa Histogramme, Density-Plots oder Boxplots.</p>
+<p>Möchten wir die Verteilung der Flügellänge im <code>penguins</code>-Datensatz als Histogramm darstellen, verwenden wir <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Die Intervallgröße (Bin-Größe) wird von <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> automatisch gewählt. Diese kann jedoch über Argumente spezifisch gesetzt werden. Über <code>bins = ...</code> können wir eine bestimmte Anzahl an Bins festsetzen, während über <code>binwidth = ...</code> die Größe spezifiziert wird:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Links</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>bins <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Rechts</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="576"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</div>
+<p>Um Verteilungen zu glätten beziehungsweise keine willkürlichen Entscheidungen bei der Bin-Größe treffen zu müssen, können wir mit <code><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density()</a></code> Verteilungskurven darstellen. Dieses Geom eignet sich außerdem dazu, Verteilungsunterschiede zwischen Gruppen darzustellen (etwa Flügellänge nach Spezies):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Links</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_len</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">240</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Rechts</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">flipper_len</span>, color <span class="op">=</span> <span class="va">species</span>, fill <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fl">160</span>, <span class="fl">240</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="576"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="visualisierung_files/figure-html/unnamed-chunk-18-2.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+</div>
+<p>Damit bei den Verteilungen nach Spezies die einzelnen Kurven gut sichtbar sind, erhöhen wir die Transparenz der Füllfarbe mit dem Argument <code>alpha = ...</code>. Dieses Argument akzepiert Werte zwischen 0 (volle Transparenz) und 1 (keine Transparenz). Um die Density-Kurven über die ganze Verteilung anzuzeigen, setzen wir außerdem mit <code><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim()</a></code> die Begrenzungen der x-Achse manuell. Dies greift bereits vor auf das Scales-Layer (siehe <a href="#sec-scales-layer" class="quarto-xref"><span>Kapitel 6.7</span></a>).</p>
+<p>Ausreißer lassen sich wiederum mit Boxplots gut visualisieren. Ein Boxplot zeigt gleichzeitig Median und den Interquartilsabstand zwischen 1. und 3. Quartil (Box). Die Antennen (Whiskers) sind maximal beschränkt auf das 1.5-fache des IQRs, während Ausreißer als einzelne Punkte dargestellte werden (für weitere Details, siehe den <a href="https://de.wikipedia.org/wiki/Box-Plot">Wikipedia-Artikel zu Boxplots</a>). In <code>ggplot</code> werden Boxplots mit <code>geom_box()</code> erstellt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">flipper_len</span>, x <span class="op">=</span> <span class="va">species</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="kombination-mehrerer-geoms" class="level3" data-number="6.5.5"><h3 data-number="6.5.5" class="anchored" data-anchor-id="kombination-mehrerer-geoms">
+<span class="header-section-number">6.5.5</span> Kombination mehrerer Geoms</h3>
+<p>Um unterschiedliche Aspekte von Daten in einem Plot darzustellen, können wir mehrere Geoms miteinander kombinieren. Wollen wir etwa in unser Streudiagramm zum Zusammenhang von Flügel- und Schnabellänge nach Spezies zusätzlich noch eine OLS-Regressionsgerade hinzufügen, können wir <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> und <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code> kombinieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Unterschiedliches Ästhetik-Mapping pro Geom
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Oft wollen wir nur auf ein spezifisches Geom ein Ästhetik-Mapping anwenden. Um dies zu erreichen, definieren wir dieses Argument nicht in der <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>-Funktion innerhalb von <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, sondern als Argument in <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> innerhalb des gewünschten Geoms.</p>
+<p>Möchten wir etwa die Form der einzelnen Punkte im Streudiagramm abhängig vom Geschlecht machen, jedoch nicht die Regressionsgeraden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">penguins</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">bill_len</span>, y <span class="op">=</span> <span class="va">flipper_len</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="va">sex</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="sec-stat-layer" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="sec-stat-layer">
+<span class="header-section-number">6.6</span> Statistics-Layer</h2>
+<p>Der Statistics-Layer dient dazu, Daten vor der grafischen Darstellung statistisch zu transformieren. <code>stat_*</code>-Funktionen berechnen zusätzliche Informationen wie Häufigkeiten, Dichten, Regressionslinien oder Zusammenfassungen, die anschließend visualisiert werden. Dadurch lassen sich komplexe Muster und Strukturen in den Daten effizient und automatisch darstellen, ohne dass die Berechnungen separat durchgeführt werden müssen. <code>ggplot</code> inkludiert mehr als 20 unterschiedliche Statistik-Funktionen.</p>
+<p>Vielfach geschieht dies bereits im Hintergrund im Geom-Layer, da gewisse statistische Transformationen Default-Optionen einer <code>geom_*()</code>-Funktion sind. So ist etwa <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">stat_count()</a></code> die Default-Option in <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar()</a></code>. Mit unseren Skills aus <a href="daten_transform.html" class="quarto-xref"><span>Kapitel 3</span></a> können wir außerdem Daten oft einfach vor einem <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>-Befehl selbst transformieren. Aus diesem Grund wird der Statistics-Layer in dieser R-Einführung nicht im Detail behandelt.</p>
+<p>Um ein Beispiel für eine <code>stat_*</code>-Funktion zu geben, replizieren wir das Liniendiagramm aus <a href="#sec-geom-layer" class="quarto-xref"><span>Kapitel 6.5</span></a> mit <code><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary()</a></code>. Dabei definieren wir über die Argumente <code>fun = ...</code> die Transformationsfunktion sowie über <code>geom = ...</code> die Art der Visualisierung:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">body_mass</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html">stat_summary</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">mean</span>, geom <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="visualisierung_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="sec-scales-layer" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="sec-scales-layer">
+<span class="header-section-number">6.7</span> Scales-Layer</h2>
+</section><section id="sec-coord-layer" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="sec-coord-layer">
+<span class="header-section-number">6.8</span> Coordinates-Layer</h2>
+</section><section id="sec-facet-layer" class="level2" data-number="6.9"><h2 data-number="6.9" class="anchored" data-anchor-id="sec-facet-layer">
+<span class="header-section-number">6.9</span> Facets-Layer</h2>
+</section><section id="sec-theme-layer" class="level2" data-number="6.10"><h2 data-number="6.10" class="anchored" data-anchor-id="sec-theme-layer">
+<span class="header-section-number">6.10</span> Theme-Layer</h2>
+</section><section id="weitere-themen" class="level2" data-number="6.11"><h2 data-number="6.11" class="anchored" data-anchor-id="weitere-themen">
+<span class="header-section-number">6.11</span> Weitere Themen</h2>
+<section id="ggplot-mit-esquisse" class="level3" data-number="6.11.1"><h3 data-number="6.11.1" class="anchored" data-anchor-id="ggplot-mit-esquisse">
+<span class="header-section-number">6.11.1</span> ggplot mit <code>esquisse</code>
+</h3>
+</section><section id="karten-in-ggplot" class="level3" data-number="6.11.2"><h3 data-number="6.11.2" class="anchored" data-anchor-id="karten-in-ggplot">
+<span class="header-section-number">6.11.2</span> Karten in ggplot</h3>
+</section><section id="annotationen-in-ggplot" class="level3" data-number="6.11.3"><h3 data-number="6.11.3" class="anchored" data-anchor-id="annotationen-in-ggplot">
+<span class="header-section-number">6.11.3</span> Annotationen in ggplot</h3>
+</section><section id="interaktive-grafiken" class="level3" data-number="6.11.4"><h3 data-number="6.11.4" class="anchored" data-anchor-id="interaktive-grafiken">
+<span class="header-section-number">6.11.4</span> Interaktive Grafiken</h3>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();

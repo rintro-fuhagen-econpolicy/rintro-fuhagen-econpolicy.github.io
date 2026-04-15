@@ -2,11 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Andreas Fischeneder">
 <title>5&nbsp; Daten exportieren – Einführung in R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -17,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -31,15 +69,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./daten_import.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e7b690381a3be0915745ffc2579c22f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-d15ad9bf924aa68bd7a4b2fe52bfdd29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -261,8 +298,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#datens%C3%A4tze-exportieren" id="toc-datensätze-exportieren" class="nav-link active" data-scroll-target="#datens%C3%A4tze-exportieren"><span class="header-section-number">5.1</span> Datensätze exportieren</a>
+  <ul class="collapse">
+<li><a href="#csv-dateien" id="toc-csv-dateien" class="nav-link" data-scroll-target="#csv-dateien"><span class="header-section-number">5.1.1</span> CSV-Dateien</a></li>
+  <li><a href="#rds-dateien" id="toc-rds-dateien" class="nav-link" data-scroll-target="#rds-dateien"><span class="header-section-number">5.1.2</span> RDS-Dateien</a></li>
+  <li><a href="#excel-spreadsheets" id="toc-excel-spreadsheets" class="nav-link" data-scroll-target="#excel-spreadsheets"><span class="header-section-number">5.1.3</span> Excel-Spreadsheets</a></li>
+  <li><a href="#stata-datens%C3%A4tze" id="toc-stata-datensätze" class="nav-link" data-scroll-target="#stata-datens%C3%A4tze"><span class="header-section-number">5.1.4</span> Stata-Datensätze</a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./daten_transform.html">Datenaufbereitung</a></li><li class="breadcrumb-item"><a href="./daten_export.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Daten exportieren</span></a></li></ol></nav><div class="quarto-title">
@@ -280,10 +329,96 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Nachdem Daten bereinigt und transformiert wurden, möchten wir diese häufig exportieren – etwa zur Weitergabe, Dokumentation oder Weiterverarbeitung in anderer Software wie Excel oder Statistikprogrammen. In R können Datensätze verschiedenen Formaten (beispielsweise als CSV-, Excel- oder RDS-Dateien) gespeichert werden, sodass sie reproduzierbar gesichert und flexibel weiterverwendet werden können.</p>
+<p>Wie in <a href="daten_import.html" class="quarto-xref"><span>Kapitel 4</span></a> werden wir auch beim Exportieren von Datensätzen auf Funktionen von <code>tidyverse</code>/<code>readr</code> und <code>haven</code>. Für den Export von Excel-Dateien benötigen wir das Package <code>writexl</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://haven.tidyverse.org">haven</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropensci.r-universe.dev/writexl">writexl</a></span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="datensätze-exportieren" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="datensätze-exportieren">
+<span class="header-section-number">5.1</span> Datensätze exportieren</h2>
+<p>Wir üben in diesem Kapitel den Export von Datensätzen anhand der aufbereiteten <code>earnings</code> Daten aus <a href="daten_import.html" class="quarto-xref"><span>Kapitel 4</span></a>. Solltest du den zugrundeliegenden Datensatz noch nicht von Github heruntergeladen haben, folge den Schritten im vorherigen Kapitel. Dort haben wir diese Daten auch eingelesen und aufbereitet:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/raw/earnings_data/earnings.csv"</span>,</span>
+<span>                     na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"N/A"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="va">Names</span>,</span>
+<span>    age <span class="op">=</span> <span class="va">age.in.years</span>,</span>
+<span>    nationality <span class="op">=</span> <span class="va">Nationalität</span>,</span>
+<span>    income <span class="op">=</span> <span class="va">`inc in Eur`</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_number.html">parse_number</a></span><span class="op">(</span><span class="va">income</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Diesen Datensatz werden wir nun in mehreren Versionen in unserem Subordner für aufbereite Daten abspeichern (<code>r_intro/data/processed</code>).</p>
+<p>Der Export von Daten folgt in R immer dem Schema <code>write_filetype(object_name, "file_name")</code>.</p>
+<section id="csv-dateien" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="csv-dateien">
+<span class="header-section-number">5.1.1</span> CSV-Dateien</h3>
+<p>Möchten wir, dass die Daten später möglichst flexibel - also auch in anderen Programmen - einlesbar sind, bietet sich das <code>.csv</code>-Format an. Der Export einer <code>.csv</code>-Datei erfolgt dabei über die Funktion <code><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv()</a></code> aus dem <code>tidyverse</code>/<code>readr</code> Package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">earnings</span>, <span class="st">"data/processed/earnings.csv"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Da unser <em>R-Project</em> als Working Directory automatisch den Ordner <code>r_intro</code> wählt, müssen wir nicht den gesamten Dateipfad angeben, sondern nur relativ zum Working Directory (in diesem Fall <code>data</code> → <code>processed</code>).</p>
+<p>Damit die <code>.csv</code>-Datei mit der im deutschen Sprachraum üblichen Spaltentrennung <code>;</code> anstelle des Kommas gespeichert wird, verwenden wir <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv2</a></span><span class="op">(</span><span class="va">earnings</span>, <span class="st">"data/processed/earnings_de.csv"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="rds-dateien" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="rds-dateien">
+<span class="header-section-number">5.1.2</span> RDS-Dateien</h3>
+<p>Der Nachteil an <code>.csv</code> Dateien ist, dass sie nicht alle in R definierten Merkmale des Datensatzes erhalten. Insbesondere <code>factor</code>-Variablen werden im <code>.csv</code>-Format nicht übernommen, sondern als <code>character</code> abgespeichert. Möchten als in R beim späteren Einlesen eine solche Variable wieder als <code>factor</code> verwenden, müssen wir den Datentyp erneut anpassen.</p>
+<p>Arbeitet man exklusiv in R empfiehlt sich daher das Exportiern von Daten in R-spezifischen Dateiformaten. Mit <code><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds()</a></code> können wir ein Objekt als <code>.rds</code>-Datei exportieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">earnings</span>, <span class="st">"data/processed/earnings.rds"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Bei sehr großen Datensätzen kann über das Argument <code>compress = ...</code> der Datensatz im komprimierter Form gespeichert werden (siehe <code><a href="https://readr.tidyverse.org/reference/read_rds.html">help(write_rds)</a></code>).</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>RData-Format
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Möchten wir mehrere Objekte in einer Datei abspeichern, können wir diese in R als <code>RData</code>-Datei mit <code><a href="https://rdrr.io/r/base/save.html">save()</a></code> exportieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fl">6</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Ben"</span>, <span class="st">"Clara"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">numbers</span>, <span class="va">names</span>, file <span class="op">=</span> <span class="st">"data/processed/multidata.RData"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Beim späterem Importieren dieser Datei lädt R dann jedes der darin enthaltenen Objekte ins Environment. Dies ist etwa von Vorteil, wenn wir viele kleine Objekte (zum Beispiel Ergebnisse unterschiedlicher Regressionsmodelle) haben, die wir später immer nur in gesammelter Form verwenden möchten. Durch das Speichern mehrerer Objekte in einer Datei bleibt der Output-Ordner übersichtlich.</p>
+</div>
+</div>
+</section><section id="excel-spreadsheets" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="excel-spreadsheets">
+<span class="header-section-number">5.1.3</span> Excel-Spreadsheets</h3>
+<p>Datensätze können auch mit <code><a href="https://docs.ropensci.org/writexl//reference/write_xlsx.html">write_xlsx()</a></code> (<code>writexl</code> Package) als Excel-Spreadsheet abgespeichtert werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://docs.ropensci.org/writexl//reference/write_xlsx.html">write_xlsx</a></span><span class="op">(</span><span class="va">earnings</span>, <span class="st">"data/processed/earnings.xlsx"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Alternativ können wir auch auf das Package <code>openxlsx</code> zurückgreifen, welches zusätzliche Optionen zum Formatieren des Excel-Spreadsheets (etwa Hintergrundfarben bestimmter Zellen) bietet. Für mehr Informationen, siehe <a href="https://r4ds.hadley.nz/spreadsheets.html#sec-writing-to-excel">R for Data Sciene</a> sowie die <a href="https://ycphs.github.io/openxlsx/articles/Formatting.html">Unterlagen der Package-Autoren</a>.</p>
+</section><section id="stata-datensätze" class="level3" data-number="5.1.4"><h3 data-number="5.1.4" class="anchored" data-anchor-id="stata-datensätze">
+<span class="header-section-number">5.1.4</span> Stata-Datensätze</h3>
+<p>Um einen Datensatz später in Stata verarbeiten zu können, speichern wir diesen im <code>.dta</code>-Format ab. Dafür benötigen wir das Package <code>haven</code> und die darin enthaltene Funktion <code><a href="https://haven.tidyverse.org/reference/read_dta.html">write_dta()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://haven.tidyverse.org/reference/read_dta.html">write_dta</a></span><span class="op">(</span><span class="va">earnings</span>, <span class="st">"data/processed/earnings.dta"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Stata-Labels
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Stata behandelt manche Datentypen wie etwa <code>factor</code> anders als R, in dem es den einzelnen kategorischen Ausprägungen numerische Werte zuordnet und diese mit Labels versieht. Um solche Variablen korrekt zu labeln können wir auf das Package <code>labelled</code> zurückgreifen. Dieses bietet auch weitere Optionen für das Abspeichern von <code>.dta</code>-Dateien (siehe <a href="https://cran.r-project.org/web/packages/labelled/index.html">Package-Dokumentation</a>).</p>
+</div>
+</div>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
