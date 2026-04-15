@@ -32,7 +32,7 @@ Dieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen 
 
 ## Weitere Literatur {.unlisted}
 
--   [R for Data Science (2e)](https://r4ds.hadley.nz/) von Hadley Wickham et al.
--   ggplot
--   Statistik
--   Causal Inf
+-   Datenarbeit mit R: [R for Data Science (2e)](https://r4ds.hadley.nz/) (Hadley Wickham et al.)
+-   Datenvisualierung mit R: [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/) (Hadley Wickham et al.)
+-   Ökonometrie mit R: [Introduction to Econometrics with R](https://www.econometrics-with-r.org/) (Christoph Hanck et al.)
+-   Kausalinferenz mit R: [Causal Inference: The Mixtape](https://mixtape.scunning.com/) (Scott Cunningham)
