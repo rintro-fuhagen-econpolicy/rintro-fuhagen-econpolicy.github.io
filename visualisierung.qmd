@@ -1152,7 +1152,3 @@ ggplotly(gg_static, tooltip = "text")
 Für mehr Details zur Arbeit mit `ggplotly()` und der Erstellung von nativen Plotly-Plots mit `plot_ly()` (ohne den ggplot-Zwischenschritt) siehe die weiterführenden Informationen in [R Graph Gallery](https://r-graph-gallery.com/plotly.html)
 Für komplexere interaktive Visualisierungen, etwa Dashboards oder reaktive Grafiken, bietet sich das Package `shiny` an. Eine Einführung in `shiny` im [Mastering Shiny-Buch](https://mastering-shiny.org/).
 
-
-
-
-
