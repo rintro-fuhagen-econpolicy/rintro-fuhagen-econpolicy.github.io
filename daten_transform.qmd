@@ -94,7 +94,7 @@ In unserem Übungsdatensatz `penguins` ist jede Zeile ein einzelner Pinguin und 
 
 Bevor wir mit Analysen beginnen, müssen wir häufig relevanten Daten auswählen und sortieren, um den Datensatz übersichtlich zu halten. Mit `dplyr` erledigen wir dies z.B. mit `select()` zum Auswählen von Variablen, `filter()` oder `slice()` zum Filtern von Zeilen, `distinct()` und `drop_na()` zum Bereinigen von Duplikaten und fehlenden Werten sowie `arrange()` zum Sortieren. So können wir gezielt nur die Informationen betrachten, die für die Analyse wichtig sind.
 
-### select()
+### `select()`
 
 `select()` ermöglicht es uns, nur die gewünschten Spalten eines Datensatzes zu behalten. Benötigen wir etwa nur Informationen zur Spezies, Insel und der Flügellänge können wir diese Variablen auswählen mit:
 
@@ -140,7 +140,7 @@ penguins <- penguins |>
 ```
 :::
 
-### filter()
+### `filter()`
 
 Mit filter() können wir bestimmte Zeilen eines Datensatzes auswählen, die bestimmte Bedingungen erfüllen. So lassen sich gezielt Beobachtungen extrahieren, etwa alle Pinguine der Art Adelie oder alle Pinguine mit einer Schnabellänge von mindestens 40 Milimetern:
 
@@ -236,7 +236,7 @@ penguins |>
 Der Datensatz enthält jetzt keine weiblichen Pinguine mehr, aber jene mit fehlenden Werten sind weiterhin enthalten.
 :::
 
-### slice()
+### `slice()`
 
 Manchmal möchten wir nur einen Teil des Datensatzes auswählen, ohne explizit nach bestimmten Werten zu filtern. Das ist besonders praktisch bei großen Datensätzen, wenn wir zunächst nur mit einem Sample arbeiten wollen, um Rechenressourcen zu schonen. Dafür nutzen wir `slice()`, zum Beispiel um die Zeilen 1, 3 und 6–8 aus dem `penguins`-Datensatz auszuwählen:
 
@@ -252,7 +252,7 @@ Für `slice()` steht eine Reihe hilfreicher Varianten zur Verfügung:
 -   `slice_sample()`: Zieht zufällig N Beobachtungen aus dem gesamten Datensatz (`penguins |> slice_sample(n = 5)`). Für Reproduzierbarkeit sollte zuerst mit `set.seed()` ein Seed gesetzt werden.
 
 ::: callout-note
-#### slice() mit gruppierten Daten
+#### `slice()` mit gruppierten Daten
 
 Haben wir den Datensatz mit `group_by()` in Gruppen klassifiziert, so wird die jeweilige slice-Operation auf jede Gruppe separat angewandt:
 
@@ -263,7 +263,7 @@ penguins |>
 ```
 :::
 
-### distinct()
+### `distinct()`
 
 Oft enthält ein Datensatz doppelte Zeilen, die für die Analyse nicht relevant sind. Mit `distinct()` können wir gezielt nur die einzigartigen Beobachtungen behalten und so Redundanzen entfernen. Zum Beispiel lassen sich im penguins-Datensatz alle verschiedenen Kombinationen aus Spezies und Insel extrahieren:
 
@@ -279,7 +279,7 @@ penguins |>
   distinct(species, island, .keep_all = TRUE)
 ```
 
-### drop_na()
+### `drop_na()`
 
 Oft enthalten Datensätze fehlende Werte (`NA`), die bestimmte Analysen oder Berechnungen stören können. Mit `drop_na()` können wir gezielt alle Zeilen entfernen, die in ausgewählten Variablen fehlende Werte enthalten, und so einen sauberen Datensatz erhalten. Zum Beispiel lässt sich im `penguins`-Datensatz nur jene Beobachtungen behalten, bei denen die Schnabeltiefe nicht fehlt:
 
@@ -296,7 +296,7 @@ Spezifizieren wir keine Variable innerhalb von `drop_na()`, so werden sämtliche
 Man sollte mit `drop_na()` vorsichtig sein, weil beim Entfernen von Zeilen mit fehlenden Werten unter Umständen wichtige Daten verloren gehen. Gerade wenn viele Variablen NA-Werte enthalten, kann das zu einer stark verkleinerten Stichprobe führen und die Analyse verzerren. Deshalb sollte man vorher prüfen, wie viele Werte betroffen sind und überlegen, ob alternative Strategien wie Imputation oder gezieltes Entfernen nur einzelner Spalten sinnvoller sind.
 :::
 
-### arrange()
+### `arrange()`
 
 Mit `arrange()` können wir die Zeilen eines Datensatzes nach einer oder mehreren Variablen sortieren. So lassen sich Daten übersichtlicher darstellen, Extremwerte leicht erkennen oder vorbereitend für weitere Analysen ordnen, ohne den Datensatz inhaltlich zu verändern.
 
@@ -316,7 +316,7 @@ penguins |>
 
 Neben dem Auswählen und Sortieren ist es für viele Analysen notwendig, Variablen zu verändern oder neue zu erstellen. Mit `dplyr` nutzen wir dafür insbesondere `mutate()` zur Berechnung oder Transformation von Variablen. Außerdem lernen wir in diesem Abschnitt, wie wir diese Umwandlungen auf Basis bedingter Fallunterscheidungen treffen (`if_else()`, `case_when()`, `replace_when()`) und wie wir einzelne Ausprägungen von Variabeln gezielt umcodieren (`recode_values()`, `replace_values()`). Auf diese Weise lassen sich Variablen anpassen, neu strukturieren und in eine Form bringen, die für statistische Auswertungen geeignet ist.
 
-### mutate()
+### `mutate()`
 
 Mit `mutate()` erstellen wir neue Spalten (Variablen), häufig auf Basis bereits existierender Spalten. Wir können damit etwa jeder Beobachtung in `penguins` eine Beobachtungs-ID hinzufügen:
 
@@ -352,7 +352,7 @@ penguins |>
 ```
 
 ::: callout-tip
-#### Relevante Funktionen für mutate()
+#### Relevante Funktionen für `mutate()`
 
 @tbl-mutate-functions zeigt wichtige Funktionen, die wir oft mit mutate() verwenden, um neue Variablen zu erstellen oder bestehende zu verändern:
 
@@ -405,7 +405,7 @@ dplyr::tibble(
 *Hinweis*: Bei manchen Funktionen müssen wir auf den Umgang mit `NA` Werten achten! Wenn du bei diesen `na.rm = TRUE` angibst, ignoriert die Funktion alle fehlenden Werte und berechnet das Ergebnis nur mit den vorhandenen, gültigen Werten.
 :::
 
-### if_else(), case_when() & replace_when()
+### `if_else()`, `case_when()` & `replace_when()`
 
 Oft wollen wir eine Variable basierend auf Konditionen transformieren. Für konditionelle Transformationen greifen wir auf `if_else()` zurück. Diese Funktion folgt immer dem Schema `if_else(condition, output_true, output_false)`. Um Schnabellängen in große Schnäbel (\>=40mm) und kleine Schnäbel (\<40mm) zu unterteilen:
 
@@ -463,7 +463,7 @@ penguins |>
 ```
 
 ::: callout-warning
-#### Fehlerquellen bei case_when()
+#### Fehlerquellen bei `case_when()`
 
 Beim konditionellen Transformieren mit `case_when()` sind zwei Punkte zu beachten. Erstens werden die Konditionen der Reihe nach durchgegangen und spätere Konditionen nur dann evaluiert, wenn für den jeweiligen Wert die vorherigen Konditionen alle nicht zutreffen. Fehler bei der Reihenfolge führen also zu Fehlern in der Transformation:
 
@@ -509,7 +509,7 @@ penguins |>
 
 Im Vergleich zu `case_when()` hat diese Funktion den Vorteil, dass die ursprünglichen Werte von `variable` bei Nicht-Zutreffen der Kondition übernommen werden, und nicht als `.default = variable` spezifiziert werden müssen. Außerdem erhält `replace_when()` den ursprünglichen Datentyp der Ausgangsvariable.
 
-### recode_values() & replace_values()
+### `recode_values()` & `replace_values()`
 
 Mit `if_else()`, `case_when()` und `recode_when()` haben wir Variablen auf Basis konditioneller Logik transformiert. Wollen wir die alten Werte von `sex` in neue Werte übersetzen, können wir `recode_values()` verwenden:
 
@@ -586,7 +586,7 @@ dplyr::tibble(
 
 Die Stärken von `dplyr` liegen vor allem in der Datenaufbereitung innerhalb bestimmter Subgruppen. Häufig wollen wir unsere Daten in Gruppen strukturieren und uns Kennzahlen innerhalb dieser Gruppen berechnen. In `dpylr` nutzen wir dafür insbesondere `group_by()`, um Beobachtungen nach bestimmten Kategorien zu gruppieren, und `summarize()` oder `count()`, um Mittelwerte, Summen, Häufigkeiten oder andere aggregierte Werte pro Gruppe zu berechnen. Auf diese Weise lassen sich Daten auf einer höheren Ebene zusammenfassen, vergleichen und in eine Form bringen, die übersichtliche Analysen und Visualisierungen ermöglicht.
 
-### group_by()
+### `group_by()`
 
 Um einen Datensatz in einzelne Gruppen zu unterteilen, nutzen wir `group_by()`. Damit können wir den `penguins`-Datensatz zum Beispiel nach Geschlecht unterteilen:
 
@@ -624,7 +624,7 @@ penguins |>
 ```
 
 :::callout-tip
-#### .by
+#### Zusammenfassen mit `.by = ...`
 
 Möchten wir die Gruppenstruktur nur für eine einzelne Operation verwenden, entsteht durch `group_by()` und `ungroup()` zusätzliche Codezeilen, welche den Code unübersichtlicher machen. Anstelle dessen können wir innerhalb von `mutate()` (und später auch `summarize()`) das Argument `.by = ...` verwenden. Dadurch wird die Gruppierung nur innerhalb der Funktion angewandt, der resultierende Datensatz bleibt jedoch ungruppiert:
 
@@ -648,7 +648,7 @@ penguins |>
 
 Gruppen werden nur für jene Kombinationen gebildet, für die Beobachtungen vorhanden sind. Obwohl es drei Inseln und drei Arten im Datensatz gibt, werden nicht neun sondern nur fünf Gruppen gebildet. Dies liegt daran, dass es nur die Spezies *Adelie* auf allen drei Inseln gibt, während die beiden anderen Arten nur auf jeweils einer Insel beobachtet wurden.
 
-### summarize()
+### `summarize()`
 
 Mit `mutate()` haben wir bisher Werte zeilenweise berechnet. Wollen wir Daten auf einer höheren Ebene zusammenfassen, verwenden wir die `summarize()`. Diese führt eine bestimmte Funktion auf Gruppenebene durch. Um für jede Insel die Anzahl der beobachteten Pinguine und das durchschnittliche Gewicht zu berechnen, schreiben wir:
 
@@ -664,7 +664,7 @@ penguins |>
 Der resultierende Datensatz enthält nun die beiden neu definierten Variablen (`n_penguins`, `avg_body_mass`) auf Ebene der einzelnen Gruppen (`island`).
 
 ::: callout-note
-#### summarize() und summarise()
+#### `summarize()` und `summarise()`
 
 Aufgrund von Unterschieden in der britischen und amerikanischen Rechtschreibung bietet `dplyr()` auch die Funktion `summarise()` an, welche ident zu `summarize()` ist.
 :::
@@ -680,7 +680,7 @@ penguins |>
 ```
 
 ::: callout-tip
-#### Relevante Funktionen für summarize()
+#### Relevante Funktionen für `summarize()`
 
 @tbl-summarize-functions zeigt wichtige Funktionen, die wir oft mit summarize() verwenden, um aggregierte Kennzahlen zu erstellen:
 
@@ -740,7 +740,7 @@ dplyr::tibble(
 :::
 
 ::: callout-tip
-#### Verwendung von across()
+#### Verwendung von `across()`
 
 Möchten wir die selbe Kennzahl für mehrere Variablen berechnen, stellt uns `tidyverse` die Funktion `across(.cols = c(var1, var2), ~ function(.x))` zur Verfügung, wobei `.x` der Placeholder für die jeweiligen Variablen ist. Wollen wir uns etwa den Mittelwert von Schnabellänge, Schnabeltiefe, Flügellänge und Körpergewicht pro Insel berechenen:
 
@@ -753,7 +753,7 @@ penguins |>
 ```
 :::
 
-### count()
+### `count()`
 
 Um Häufigkeiten von Variablenausprägungen zu zählen, ohne vorher `group_by()` und `summarize()` verwenden zu müssen, nutzen wir die Funktion `count()`. Sie ist besonders praktisch, wenn wir schnell überblicken wollen, wie viele Beobachtungen jede Kategorie enthält, z.B. wie viele Pinguine jeder Art auf jeder Insel vertreten sind:
 
@@ -804,7 +804,7 @@ exams2 <- tibble(
 
 Die Datensätze `students1` und `students2` beinhalten Daten zu Namen und Alter der Studierenden, in `students2` haben wir zusätzlich noch die Nationalität. `exams1` und `exams2` beinhalten die Prüfungsergebnisse der Studierenden, welche über ihre ID identifiziert werden.
 
-### bind_rows() & bind_cols()
+### `bind_rows()` & `bind_cols()`
 
 Möchten wir zwei Datensätze zusammenführen, welche die gleichen Informationen (Variablen) für unterschiedliche Beobachtungen beinhalten, verwenden wir `bind_rows()`. Damit werden die Zeilen der Datensätze untereinander zusammengefügt:
 
@@ -832,7 +832,7 @@ bind_cols(students2, exams2)
 #> Run `rlang::last_trace()` to see where the error occurred.
 ```
 
-### inner_join(), left_join(), full_join()
+### `inner_join()`, `left_join()` & `full_join()`
 
 Im Gegensatz zu `bind_cols()` ermöglichen die `join`-Funktionen in `dplyr`, unterschiedlich gereihte Beobachtungen in zwei Datensätzen korrekt über eine Identifikationsvariable zu verbinden. Diese Funktionen folgen alle dem Syntax `..._join(data1, data2, by = "id_var")`. Die wichtigsten `join`- Typen sind `inner_join()`, `left_join()`, `full_join()`.
 
@@ -906,7 +906,7 @@ In diesem Fall gibt uns die Variable `indicator` die Information, auf welche Ken
 
 Anhand dieser beiden Datensätze werden wir nun die `dplyr` Funktionen `pivot_longer()` und `pivot_wider()` kennenlernen. Das Umformen von Datensätzen kann etwas knifflig sein, hier werden wir nur die Basics besprechen. Für mehr Details, siehe [Kapitel 5 in R for Data Science](https://r4ds.hadley.nz/data-tidy.html).
 
-### pivot_longer()
+### `pivot_longer()`
 
 Um einen Datensatz vom *wide-Format* ins *tidy-Format* zu bekommen (oder auch um einen *tidy* Datensatz in *long-Format* umzuwandeln), verwenden wir `pivot_longer()`. Dieser Befehl folgt dem Syntax `dataset |> pivot_longer(cols = ..., names_to = ..., values_to = ...)`.
 
@@ -936,7 +936,7 @@ educ_wide |>
 
 Nun haben einen Datensatz, bei dem jede Reihe mit einer Beobachtung (Land-Jahr-Kombination) korrespondiert. Der Datensatz ist somit im *tidy-Format*.
 
-### pivot_wider()
+### `pivot_wider()`
 
 Um einen Datensatz vom *long-Format* ins *tidy-Format* zu bekommen (oder auch um einen *tidy* Datensatz in *wide-Format* umzuwandeln), verwenden wir `pivot_wider()`. Dieser Befehl folgt dem Syntax `dataset |> pivot_wider(id_cols = ..., names_from = ..., values_from = ...)`.
 

@@ -162,7 +162,7 @@ Um diese Probleme zu vermeiden, empfiehlt es sich, die automatische Workspace-Sp
 ```{r}
 #| label: fig-rsettings-workspace
 #| echo: false
-#| out-width: ~
+#| out-width: 70%
 #| fig-cap: |
 #|   Abstellen der automatischen Workspace-Speicherung.
 #| fig-alt: |

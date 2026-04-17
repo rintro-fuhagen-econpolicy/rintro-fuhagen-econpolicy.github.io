@@ -36,7 +36,7 @@ library(tidyverse)
 ```{r}
 #| label: fig-ggplot-grammar
 #| echo: false
-#| out-width: ~
+#| out-width: 70%
 #| fig-cap: |
 #|   Grammatik-Fundament von ggplot2.
 #| fig-alt: |
@@ -44,36 +44,61 @@ library(tidyverse)
 knitr::include_graphics("images/ggplot_grammar.png", dpi = 270)
 ```
 
-@fig-ggplot-grammar fasst das Fundament der Grammatik in ggplot2 zusammen. Die wichtigsten Layers sind dabei die drei untersten:
+@fig-ggplot-grammar fasst das Fundament der Grammatik in `ggplot2` zusammen. Die wichtigsten Layers sind dabei die drei untersten:
 
-- *Data*: Legt den Datensatz fest, der für die Visualisierung verwendet wird (`data = ...`).
-- *Mapping*: Bestimmt, wie die Daten in ästhetische Charakteristiken übersetzt werden. Hier werden etwa x- und y-Achse definiert, aber wenn gewünscht auch Farbe, Größe, etc. (`mapping = aes(...)`).
-- *Geometries*: Definieren die geometrischen Objekte (z. B. Punkte, Linien, Balken), mit denen die Daten dargestellt werden (`geom_*(...)`).
+- **Data**: Legt den Datensatz fest, der für die Visualisierung verwendet wird (`data = ...`).
+- **Mapping**: Bestimmt, wie die Daten in ästhetische Charakteristiken übersetzt werden. Hier werden etwa x- und y-Achse definiert, aber wenn gewünscht auch Farbe, Größe, etc. (`mapping = aes(...)`).
+- **Geometries**: Definieren die geometrischen Objekte (z. B. Punkte, Linien, Balken), mit denen die Daten dargestellt werden (`geom_*(...)`).
 
 Abhängig von der gewünschten Visualisierung kann man folgende Aspekte über die weiteren Layers definieren:
 
-- **Statistics**: Führen statistische Transformationen durch, z. B. das Berechnen von Mittelwerten oder Dichten, bevor die Daten geplottet werden (`stat_*()`). Oft werden die zugrundeliegenden Transformationen aber bereits indirekt im **Geometries**-Element durchgeführt.
-- **Scales**: Steuern, wie Datenwerte visuell umgesetzt werden, etwa durch Achsenskalierung, Farben oder Legenden (`scale_*()`).
-- **Coordinates**: Bestimmen das Koordinatensystem des Plots, z. B. kartesisch oder polar (`coord_*()`).
-- **Facets**: Teilen den Datensatz in Teilmengen auf und erstellen für jede davon einen eigenen Plot innerhalb einer Grafik (`facet_*()`).
-- **Theme**: Kontrolliert das Aussehen der Grafik, etwa Schriftarten, Hintergrund, Gitterlinien und Layout (`theme()`).
+- *Statistics*: Führen statistische Transformationen durch, z. B. das Berechnen von Mittelwerten oder Dichten, bevor die Daten geplottet werden (`stat_*()`). Oft werden die zugrundeliegenden Transformationen aber bereits indirekt im **Geometries**-Element durchgeführt.
+- *Scales*: Steuern, wie Datenwerte visuell umgesetzt werden, etwa durch Achsenskalierung, Farben oder Legenden (`scale_*()`).
+- *Coordinates*: Bestimmen das Koordinatensystem des Plots, z. B. kartesisch oder polar (`coord_*()`).
+- *Facets*: Teilen den Datensatz in Teilmengen auf und erstellen für jede davon einen eigenen Plot innerhalb einer Grafik (`facet_*()`).
+- *Theme*: Kontrolliert das Aussehen der Grafik, etwa Schriftarten, Hintergrund, Gitterlinien und Layout (`theme()`).
+
+Die Grammatik von ggplot folgt dabei folgendem Aufbau:
+
+```         
+ggplot(
+  data = <DATA>,                  # Data-Layer
+  mapping = aes(<MAPPINGS>)       # Mapping-Layer für alle Geom-Elemente
+  ) +
+  <GEOM_FUNCTION>(                # Geom-Layer
+     mapping = aes(<MAPPINGS>),   # Mapping-Layer für spezifisches Geom-Element
+     stat = <STAT>,               # auch separat im Stat-Layer möglich
+     position = <POSITION>
+  ) +
+  <SCALES_FUNCTION> +             # Scales-Layer
+  <COORDINATE_FUNCTION> +         # Coord-Layer
+  <FACET_FUNCTION> +              # Facet-Layer
+  <THEME_FUNCTION>                # Theme-Layer
+```
+
+In den folgenden Abschnitten werden wir die einzelnen Layer im Detail kennenlernen.
 
 ## Data-Layer {#sec-data-layer}
 
 Um eine ggplot-Grafik (Plot) zu erstellen, verwenden wir die Funktion `ggplot()`. Mit dem Argument `data = ...` spezifizieren wir den Datensatz, den wir verwenden:
 
 ```{r}
+#| label: fig-data-layer
+#| fig-cap: |
+#|   ggplot: Data Layer.
+#| fig-alt: |
+#|  ggplot-Grafik nur mit Data-Layer (data = penguins).
 ggplot(data = penguins)
 ```
 
-Da `ggplot()` nur durch die Nennung des Datensatzes nicht weiß, welche Variablen aus dem `penguins`-Dataset wie visualisiert werden, resultiert dies in einem leeren Plot.
+Da `ggplot()` nur durch die Nennung des Datensatzes nicht weiß, welche Variablen aus dem `penguins`-Dataset wie visualisiert werden, ist @fig-data-layer ein leerer Plot.
 
 ## Mapping-Layer {#sec-mapping-layer}
 
 Ebenfalls innerhalb von `ggplot()` geben wir über das Argument `mapping = aes(...)` an, wie die Daten in ästhetische Charakteristiken übersetzt werden. Vor allem können wir hier festlegen, welche Daten auf die x- oder y-Achse gemappt werden. Wollen wir uns etwa den Zusammenhang von Schnabellänge (`bill_len`) und Flügellänge (`flipper_len`) ansehen:
 
 ```{r}
-#| results: hide
+#| eval: false
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len)
@@ -82,14 +107,19 @@ ggplot(
 
 Sollten andere ästhetische Merkmale ebenfalls von einer bestimmten Variable abhängen, können wir dies ebenfalls in `aes()` spezifizieren. Diese werden dann vor allem auf den im nächsten Punkt behandelten Geometries-Layer (Geom) übertragen. Wesentliche Optionen sind hierbei:
 
-- **Farbe**: Wollen wir etwa die abgebildeten Daten in Abhängigkeit einer Variable einfärben, verwenden wir die Argumente `color = ...` (für Punkte/Linien) und/oder `fill = ...` (für Flächen).
-- **Größe**: Um die Größe des Geoms (etwa eines Punkts in einem Scatterplot) relativ zu einer bestimmten Variable zu machen, verwenden wir `size = ...`.
-- **Form**: Die Form des Geoms kann über das Argument `shape = ...` (für Punkte) oder `linetype = ...` (für Linien) relativ zu einer bestimmten Variable dargestellt werden.
-- **Gruppierung**: Bestimmte Geoms können mittels `group = ...` in Abhängigkeit einer Variable separat dargestellt werden, ohne die Geoms gesondert einzufärben oder mit einer anderen Form zu versehen. So können wir etwa Zeitreihen von Wirtschaftskennzahlen für unterschiedliche Länder mit separaten Trendlinien abbilden.
+- *Farbe*: Wollen wir etwa die abgebildeten Daten in Abhängigkeit einer Variable einfärben, verwenden wir die Argumente `color = ...` (für Punkte/Linien) und/oder `fill = ...` (für Flächen).
+- *Größe*: Um die Größe des Geoms (etwa eines Punkts in einem Scatterplot) relativ zu einer bestimmten Variable zu machen, verwenden wir `size = ...`.
+- *Form*: Die Form des Geoms kann über das Argument `shape = ...` (für Punkte) oder `linetype = ...` (für Linien) relativ zu einer bestimmten Variable dargestellt werden.
+- *Gruppierung*: Bestimmte Geoms können mittels `group = ...` in Abhängigkeit einer Variable separat dargestellt werden, ohne die Geoms gesondert einzufärben oder mit einer anderen Form zu versehen. So können wir etwa Zeitreihen von Wirtschaftskennzahlen für unterschiedliche Länder mit separaten Trendlinien abbilden.
 
 Möchten wir also den Zusammenhang von Schnabel- und Flügellänge von Penguinen so darstellen, dass die Geoms in Abhängigkeit der Spezies (`species`) des Pinguins eine andere Farbe haben:
 
 ```{r}
+#| label: fig-mapping-layer
+#| fig-cap: |
+#|   ggplot: Mapping Layer.
+#| fig-alt: |
+#|  ggplot-Grafik nur mit Data- (data = penguins) und Mapping-Layer (x = bill_len, y = flipper_len, color = species).
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len, color = species)
@@ -115,13 +145,18 @@ Bei der Verwendung von weiteren Ästhetik-Argumenten innerhalb von `aes()` müss
 
 Im Gegensatz zum Data- und Mapping-Layer definieren wir das Geom nicht mehr innerhalb von `ggplot()`, sondern als neue Funktion in Verbindung mit `ggplot()`. Die Verbindung folgt über das `+`-Zeichen (`ggplot(...) + geom_*(...)`).
 
-### Streudiagramme: geom_point
+### Streudiagramme: `geom_point()`
 
 Streudiagramme werden verwendet, um den Zusammenhang zwischen zwei metrischen Variablen sichtbar zu machen. Sie eignen sich besonders gut, um Muster, Korrelationen oder Ausreißer in den Daten zu erkennen.
 
 Möchten wir den Zusammenhang von Schnabel- und Flügellänge als Streudiagramm darstellen, und dabei die einzelnen Punkte abhängig der Pinguin-Spezies einfärben, so kombinieren wir unseren `ggplot()`-Befehl aus @sec-mapping-layer mit `geom_point()`:
 
 ```{r}
+#| label: fig-geom-point
+#| fig-cap: |
+#|   ggplot: Streudiagramm.
+#| fig-alt: |
+#|  ggplot-Streudiagramm mit bill_len auf x-Achse und flipper_len auf y-Achse. Beobachtungen sind eingefärbt relativ zur Pinguin-Spezies.
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len, color = species)
@@ -129,26 +164,31 @@ ggplot(
   geom_point()
 ```
 
-Wir haben nun unsere erste aussagekräftige Grafik dargestellt. Diese zeigt einen positiven Zusammenhang von Schnabel- und Flügellänge bei Pinguinen, wobei deutliche Unterschiede zwischen den Spezien bestehen.
+Wir haben nun unsere erste aussagekräftige Grafik dargestellt. @fig-geom-point zeigt einen positiven Zusammenhang von Schnabel- und Flügellänge bei Pinguinen, wobei deutliche Unterschiede zwischen den Spezien bestehen.
 
 :::callout-warning
 #### Ästhetische Argumente inner- und außerhalb von `aes()`
 
-Die Einfärbung der Punkte haben wir im Streudiagramm nach Geschlecht vorgenommen. Möchten wir die Punkte einfach nur z.B. blau einfärben, können wir dies ebenfalls über das Argument `color = ...` definieren. Diese definieren wir dann aber nicht innerhalb von `aes()`, da dies zu folgendem Problem führt:
+Die Einfärbung der Punkte haben wir im Streudiagramm nach Geschlecht vorgenommen. Möchten wir die Punkte einfach nur z.B. blau einfärben, können wir dies ebenfalls über das Argument `color = ...` definieren. Diese definieren wir dann aber nicht innerhalb von `aes()`, da dies zum folgendem Problem in @fig-wrong-aes-1 führt. Da `ggplot` alles innerhalb von `aes()` als eine Abbildung von Daten auf Ästhetiken interpretiert, liest die Funktion unseren Code als Kategorie mit dem Namen „blue“. Dadurch wird automatisch eine Standard-Farbpalette verwendet, und die Punkte werden (je nach Palette) z. B. rot eingefärbt. Korrekt spezifizieren wir die Farboption stattdessen außerhalb von `aes()` und innerhalb des Geoms (@fig-wrong-aes-2):
 
 ```{r}
+#| label: fig-wrong-aes
+#| fig-cap: |
+#|   ggplot: Allgemeine Farbe inner- oder außerhalb von aes()?
+#| fig-subcap:
+#|   - "Falsch: In aes()"
+#|   - "Richtig: Außerhalb von aes()"
+#| fig-alt: |
+#|  Abbildung zeigt den Unterschied im Output auf, wenn allgemeine Farbe inner- (falsch) oder außerhalb (richtig) von aes() definiert wird.
+#| layout-ncol: 2
+# Links (falsch)
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len, color = "blue")
 ) +
   geom_point()
-```
 
-Da `ggplot` alles innerhalb von `aes()` als eine Abbildung von Daten auf Ästhetiken interpretiert, liest die Funktion unseren Code als Kategorie mit dem Namen „blue“. Dadurch wird automatisch eine Standard-Farbpalette verwendet, und die Punkte werden (je nach Palette) z. B. rot eingefärbt.
-
-Korrekt spezifizieren wir die Farboption stattdessen außerhalb von `aes()` und innerhalb des Geoms:
-
-```{r}
+# Rechts (richtig)
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len)
@@ -157,23 +197,30 @@ ggplot(
 ```
 :::
 
-### Liniendiagramme und Trends: geom_line, geom_smooth
+### Liniendiagramme und Trends: `geom_line()`, `geom_smooth()`
 
 Liniendiagramme werden verwendet, um Verläufe und Entwicklungen über eine geordnete Dimension hinweg darzustellen, beispielsweise über Zeit. Sie eignen sich besonders gut, um Trends und Veränderungen in metrischen Variablen sichtbar zu machen und mehrere Beobachtungen miteinander zu verbinden.
 
-Um das durchschnittliche Körpergewicht (`body_mass`) im Zeitverlauf `year` darzustellen, abhängig von der Spezies der Pinguine, können wir folgenden Code versuchen:
+Um das durchschnittliche Körpergewicht (`body_mass`) im Zeitverlauf `year` darzustellen, abhängig von der Spezies der Pinguine, müssen wir zuerst die Durchschnitte berechnen, da ansonsten `geom_line()` alle Beobachtungspunkte im Datensatz verbindet (siehe Problem in @fig-geom-line-1). 
 
 ```{r}
+#| label: fig-geom-line
+#| fig-cap: |
+#|   ggplot: Liniendiagramm mit und ohne Datenaufbereitung.
+#| fig-subcap:
+#|   - "Falsch"
+#|   - "Richtig"
+#| fig-alt: |
+#|  ggplot-Liniendiagramm mit Zeitverlauf des durchschnittlichen Körpergewichts. Werden die Daten nicht aufbereitet (etwa zuvor oder innerhalb von ggplot über den Stat-Layer), werden alle einzelnen Beobachtungspunkte innerhalb einer Spezies miteinander verbunden und nicht der Durchschnitt gezeigt (rechte Abbildung). Damit die Durchschnitte korrekt eingezeichnet werden, müssen diese zuvor berrechnet werden (linke Abbildung).
+#| layout-ncol: 2
+# Links (falsch)
 ggplot(
   data = penguins,
   mapping = aes(x=year, y = body_mass, color = species)
 ) +
   geom_line()
-```
 
-Dies führt jedoch nicht zum gewünschten Resultat, da `geom_line()` alle Beobachtungspunkte im Datensatz verbindet. Wir müssen also die Daten zuerst so aufbereiten, dass wir die Durschnitte bereits in `ggplot()` einlesen:
-
-```{r}
+# Rechts (richtig)
 penguins |>
   summarize(body_mass = mean(body_mass, na.rm=T), .by = c(year, species)) |>
   ggplot(
@@ -189,6 +236,11 @@ Um Trendlinien durch Beobachtungspunkte zulegen, verwenden wir `geom_smooth()`. 
 Möchten wir etwa die Trends auf Basis eines OLS-Modells berechnen und Konfidenzintervalle inkludieren:
 
 ```{r}
+#| label: fig-geom-smooth
+#| fig-cap: |
+#|   ggplot: Trends
+#| fig-alt: |
+#|  Zeitliche Trends (lineare Regressionsgeraden) im Körpergewicht pro Penguin-Spezies mit geom_smooth.
 ggplot(
   data = penguins,
   mapping = aes(x=year, y = body_mass, color = species)
@@ -196,25 +248,41 @@ ggplot(
   geom_smooth(method = lm, se = TRUE)
 ```
 
-### Balkendiagramme: geom_bar, geom_col
+### Balkendiagramme: `geom_bar()`, `geom_col()`
 
 Balkendiagramme werden verwendet, um kategoriale Daten zu vergleichen, indem Häufigkeiten oder aggregierte Werte für verschiedene Gruppen dargestellt werden. Sie eignen sich besonders, um Unterschiede zwischen Kategorien übersichtlich sichtbar zu machen.
 
-Um auf Basis unserer Individualdaten die Anzahl der Pinguine pro Spezies in einem Balkendiagramm darzustellen, verwenden wir `geom_bar()`:
+Um auf Basis unserer Individualdaten die Anzahl der Pinguine pro Spezies in einem Balkendiagramm darzustellen, verwenden wir `geom_bar()`. Um die Balken horizontal auszurichten, müssen wir im Mapping-Layer die Spezies als Variable für die y-Achse anstelle der x-Achse definieren (`y = species` anstatt `x = species`).
 
 ```{r}
+#| label: fig-geom-bar
+#| fig-cap: |
+#|   ggplot: Balkendiagramm
+#| fig-subcap:
+#|   - "Vertikale Ausrichtung"
+#|   - "Horizontale Ausrichtung"
+#| fig-alt: |
+#|  Verteilung der Pinguine auf die unterschiedlichen Pinguin-Spezien visualisiert in einem Balkendiagramm. Die linke Abbildung stellt die Verteilung mit vertikalen, die rechte mit horizontalen Balken dar.
+#| layout-ncol: 2
+# Links
 ggplot(
   data = penguins,
   mapping = aes(x = species)
 ) +
   geom_bar()
-```
 
-Um die Balken horizontal auszurichten, müssen wir im Mapping-Layer die Spezies als Variable für die y-Achse anstelle der x-Achse definieren (`y = species` anstatt `x = species`).
+# Rechts
+ggplot(
+  data = penguins,
+  mapping = aes(y = species)
+) +
+  geom_bar()
+```
 
 Manchmal sind unsere zugrunde liegenden Daten bereits aggregiert. Um Balkendiagramme auf Basis von aggregierten Daten zu erstellen, verwenden wir `geom_col()`:
 
 ```{r}
+#| eval: false
 penguins |>
   count(species) |>
   ggplot(
@@ -231,6 +299,15 @@ In einem Balkendiagramm können wir die Balken weiter unterteilen, um mehr Infor
 Das Argument `position = ...` in geom_bar() bestimmt, wie Balken bei gruppierten Daten angeordnet werden, etwa gestapelt (`stack`, Default), nebeneinander (`dodge`) oder normiert um prozentuale Anteile darzustellen (`fill`):
 
 ```{r}
+#| label: fig-geom-bar-position
+#| fig-cap: |
+#|   ggplot: Balkendiagramm mit position-Optionen
+#| fig-subcap:
+#|   - "stack"
+#|   - "dodge"
+#|   - "fill"
+#| fig-alt: |
+#|  Übersicht über unterschiedliche position-Optionen bei Balkendiagrammen mit gruppierten Daten in ggplot. Links ist die Default-Version mit position = stacked, die mittlere Abbidlung zeigt position = dodge, rechts mit position = fill.
 #| layout-ncol: 3
 # Links
 ggplot(
@@ -255,25 +332,32 @@ ggplot(
 ```
 :::
 
-### Verteilungen: geom_histogram, geom_density, geom_boxplot
+### Verteilungen: `geom_histogram()`, `geom_density()`, `geom_boxplot()`
 
 Während Balkendiagramme sich gut dazu eigenen, um die Verteilung einer kategorialen Variable darzustellen, bietet `ggplot` eine Vielzahl an weiteren Geoms zur Visualierung der Verteilung metrischer Variablen, etwa Histogramme, Density-Plots oder Boxplots.
 
-Möchten wir die Verteilung der Flügellänge im `penguins`-Datensatz als Histogramm darstellen, verwenden wir `geom_histogram()`:
+Möchten wir die Verteilung der Flügellänge im `penguins`-Datensatz als Histogramm darstellen, verwenden wir `geom_histogram()`. Die Intervallgröße (Bin-Größe) wird von `geom_histogram()` automatisch gewählt (@fig-geom-hist-1). Diese kann jedoch über Argumente spezifisch gesetzt werden. Über `bins = ...` können wir eine bestimmte Anzahl an Bins festsetzen (@fig-geom-hist-2), während über `binwidth = ...` die Größe spezifiziert wird (@fig-geom-hist-3):
 
 ```{r}
+#| label: fig-geom-hist
+#| fig-cap: "ggplot: Histogramme mit unterschiedlichen Bin-Optionen."
+#| fig-subcap:
+#|   - "Automatische Bin-Wahl"
+#|   - "10 Bins"
+#|   - "Bin-Größe: 1mm"
+#| fig-alt:
+#|   - "Histogramm der Flügellänge mit automatisch gewählter Bin-Größe."
+#|   - "Histogramm der Flügellänge mit 10 Bins."
+#|   - "Histogramm der Flügellänge mit Binbreite von 1 mm."
+#| layout-ncol: 3
+# Links
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_len)
 ) +
   geom_histogram()
-```
 
-Die Intervallgröße (Bin-Größe) wird von `geom_histogram()` automatisch gewählt. Diese kann jedoch über Argumente spezifisch gesetzt werden. Über `bins = ...` können wir eine bestimmte Anzahl an Bins festsetzen, während über `binwidth = ...` die Größe spezifiziert wird:
-
-```{r}
-#| layout-ncol: 2
-# Links
+# Mitte
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_len)
@@ -292,6 +376,14 @@ ggplot(
 Um Verteilungen zu glätten beziehungsweise keine willkürlichen Entscheidungen bei der Bin-Größe treffen zu müssen, können wir mit `geom_density()` Verteilungskurven darstellen. Dieses Geom eignet sich außerdem dazu, Verteilungsunterschiede zwischen Gruppen darzustellen (etwa Flügellänge nach Spezies):
 
 ```{r}
+#| label: fig-geom-density
+#| fig-cap: "ggplot: Density-Plots"
+#| fig-subcap:
+#|   - "Gesamt"
+#|   - "Nach Spezies"
+#| fig-alt:
+#|  - "Density-Plot der Flügellänge für alle Pinguine."
+#|  - "Überlappende Density-Plots der Flügellänge nach Pinguin-Spezies (Adelie, Chinstrap, Gentoo) mit transparenter Füllung."
 #| layout-ncol: 2
 # Links
 ggplot(
@@ -315,6 +407,9 @@ Damit bei den Verteilungen nach Spezies die einzelnen Kurven gut sichtbar sind, 
 Ausreißer lassen sich wiederum mit Boxplots gut visualisieren. Ein Boxplot zeigt gleichzeitig Median und den Interquartilsabstand zwischen 1. und 3. Quartil (Box). Die Antennen (Whiskers) sind maximal beschränkt auf das 1.5-fache des IQRs, während Ausreißer als einzelne Punkte dargestellte werden (für weitere Details, siehe den [Wikipedia-Artikel zu Boxplots](https://de.wikipedia.org/wiki/Box-Plot)). In `ggplot` werden Boxplots mit `geom_box()` erstellt:
 
 ```{r}
+#| label: fig-geom-boxplot
+#| fig-cap: "ggplot: Boxplot"
+#| fig-alt: "Boxplot der Flügellänge nach Pinguin-Spezies (Adelie, Chinstrap, Gentoo), eingefärbt nach Spezies."
 ggplot(
   data = penguins,
   mapping = aes(y = flipper_len, x = species, color = species)
@@ -327,6 +422,8 @@ ggplot(
 Um unterschiedliche Aspekte von Daten in einem Plot darzustellen, können wir mehrere Geoms miteinander kombinieren. Wollen wir etwa in unser Streudiagramm zum Zusammenhang von Flügel- und Schnabellänge nach Spezies zusätzlich noch eine OLS-Regressionsgerade hinzufügen, können wir `geom_point()` und `geom_smooth()` kombinieren:
 
 ```{r}
+#| fig-cap: "ggplot: Kombination von Geoms"
+#| fig-alt: "Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Spezies. Für jede Spezies ist zusätzlich eine lineare Regressionsgerade mit Konfidenzintervall eingezeichnet."
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len, color = species)
@@ -343,6 +440,9 @@ Oft wollen wir nur auf ein spezifisches Geom ein Ästhetik-Mapping anwenden. Um 
 Möchten wir etwa die Form der einzelnen Punkte im Streudiagramm abhängig vom Geschlecht machen, jedoch nicht die Regressionsgeraden:
 
 ```{r}
+#| label: fig-aes-geom
+#| fig-cap: "ggplot: aes nur für bestimmte Geoms"
+#| fig-alt: "Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse. Punkte sind nach Spezies eingefärbt und nach Geschlecht (sex) in der Form unterschieden. Lineare Regressionsgeraden nach Spezies ohne Geschlechtunterscheidung."
 ggplot(
   data = penguins,
   mapping = aes(x = bill_len, y = flipper_len, color = species)
@@ -361,27 +461,696 @@ Vielfach geschieht dies bereits im Hintergrund im Geom-Layer, da gewisse statist
 Um ein Beispiel für eine `stat_*`-Funktion zu geben, replizieren wir das Liniendiagramm aus @sec-geom-layer mit `stat_summary()`. Dabei definieren wir über die Argumente `fun = ...` die Transformationsfunktion sowie über `geom = ...` die Art der Visualisierung:
 
 ```{r}
+#| label: fig-stat-summary
+#| fig-cap: "ggplot: Zeitlicher Verlauf des mittleren Körpergewichts mit stat_summary"
+#| fig-alt: "Liniendiagramm des durchschnittlichen Körpergewichts (body_mass) pro Jahr, getrennt nach Pinguin-Spezies, erstellt mit stat_summary(fun = mean). Drei farbige Linien repräsentieren Adelie, Chinstrap und Gentoo."
 ggplot(penguins, aes(x = year, y = body_mass, color = species)) +
   stat_summary(fun = mean, geom = "line")
 ```
 
 ## Scales-Layer {#sec-scales-layer}
 
+Der Scales-Layer steuert, wie Datenwerte in visuelle Eigenschaften übersetzt werden. Dazu gehören die Achsenskalierung (z.B. Limits, Breaks, Labels), aber auch die visuelle Umsetzung von Farbe, Größe, Form und anderen Ästhetiken. Kurz gesagt: Was im Mapping- und Geom-Layer festgelegt wird (`aes(...)`), wird im Scales-Layer präzisiert und angepasst.
+
+Die `scale_*`-Funktionen folgen einem einheitlichen Namensschema: `scale_<ästhetik>_<typ>()`. Dabei steht `<ästhetik>` für die zu steuernde Ästhetik (z.B. `x`, `y`, `color`, `fill`, `size`, `shape`) und `<typ>` für den Datentyp bzw. die Art der Skala, etwa:
+
+- `continuous`: für metrische (kontinuierliche) Variablen
+- `discrete`: für kategoriale Variablen
+- `date`, `time`, `datetime`: für Datum- und Zeitangaben
+- `manual`: für manuell definierte Werte
+- `log10`, `sqrt`, `reverse`: für transformierte Achsen
+
+In diesem Abschnitt werden wir die wichtigsten Optionen im Scales-Layer für kontinuierliche und kategoriale Variablen kennenlernen. Für Informationen zu anderen Datentypen und Ästhetiken siehe Kapitel 10-12 in [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/).
+
+### Achsen
+
+Um die Achsen einer Abbildung zu bearbeiten, verwenden wir die Funktionen `scale_x_*()` bzw. `scale_y_*()`. Die wichtigsten Argumente sind dabei:
+
+- `name = ...`: Beschriftung der Achse (alternativ über `labs()`, siehe @sec-theme-layer).
+- `breaks = c(...)`: Definiert, wo Hauptmarkierungen inkl. Beschriftungen gesetzt werden.
+- `minor_breaks = ...`: Definiert, wo Zwischenmarkierungen (ohne Beschriftungen) gesetzt werden.
+- `labels = ...`: Überschreibt die automatischen Achsenlabels.
+- `limits = ...`: Setzt die Achsenlimits (Werte außerhalb werden als `NA` behandelt).
+- `expand = ...`: Steuert den Abstand zwischen Daten und Achsenrand.
+- `position = ...`: Definiert, wo Achsen eingezeichnet werden (oben/unten für x-Achse, links/rechts für y-Achse)
+
+:::callout-warning
+#### Entfernte Beobachtungen mit `limits = ...`
+
+Durch das `limits`-Argument entfernt ggplot alle Datenpunkte außerhalb der Limits. Das kann statistische Geoms wie `geom_smooth()` beeinflussen. Soll nur die Darstellung zugeschnitten werden, ohne Daten zu entfernen, ist `coord_cartesian(xlim = ..., ylim = ...)` die bessere Wahl (siehe @sec-coord-layer).
+:::
+
+Mit `scale_x_continous()` und `scale_y_continuous()` können wir die Achsen in unserem Streudiagramm von Schnabel- und Flügellänge eingefärbt nach Spezies adaptieren:
+
+```{r}
+#| label: fig-axis-cont
+#| fig-cap: "ggplot: Angepasste kontinuierliche Achsen."
+#| fig-subcap: 
+#|   - "Original"
+#|   - "Adaptierte Achsen"
+#| fig-alt:
+#|   - "Nicht-adaptiertes Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Spezies."
+#|   - "Adaptiertes Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Spezies. Die x-Achse ist mit 'Schnabellänge (mm)' beschriftet, auf den Bereich 35 bis 65 mm beschränkt, zeigt Breaks bei 35, 45, 55 und 65 mm, und wird oben angezeigt. Die y-Achse ist mit 'Flügellänge (mm)' beschriftet und enthält keine Zwischenmarkierungen."
+#| layout-ncol: 2
+# Links (original)
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point()
+
+# Rechts (adaptiert)
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point() +
+  scale_x_continuous(
+    name = "Schnabellänge (mm)",
+    limits = c(35, 65),
+    breaks = c(35, 45, 55, 65),
+    position = "top"
+  ) +
+  scale_y_continuous(
+    name = "Flügellänge (mm)",
+    minor_breaks = NULL
+  )
+```
+
+Dabei haben wir in @fig-axis-cont-2 folgende Änderungen vorgenommen:
+
+- Neue Achsenbeschriftungen: `name = "Schnabellänge (mm)"` (x-Achse) und `name = "Flügellänge (mm)"` (y-Achse)
+- Limits der x-Achse auf den Bereich von 35 bis 65mm gesetzt: `limits = c(35, 65)`
+- Hauptmarkierungen der x-Achse neu definiert: `breaks = c(35, 45, 55, 65)`
+- x-Achse auf Oberseite der Grafik verschoben: `position = "top"`
+- Zwischenmarkierungen auf y-Achse entfernt: `minor_breaks = NULL`
+
+Mit `scale_x_discrete()` können wir die kategoriale (diskrete) x-Achse in unserem Säulendiagramm der Anzahl der Pinguine pro Spezies adaptieren. Da in diesem Plot die y-Achse metrisch ist (Anzahl der Pinguine), verwenden wir hierfür wieder `scale_y_continous()`:
+
+```{r}
+#| label: fig-axis-disc
+#| fig-cap: "ggplot: Angepasste diskrete und kontinuierliche Achsen"
+#| fig-subcap: 
+#|   - "Original"
+#|   - "Adaptierte Achsen"
+#| fig-alt:
+#|   - "Nicht-adaptiertes Säulendiagramm der Verteilung der Pinguine pro Spezies."
+#|   - "Adaptiertes Säulendiagramm der Verteilung der Pinguine pro Spezies. Die x-Achse ist mit 'Pinguin-Spezies' beschriftet, die Achsenlabels wurden auf A, C, G abgeändert. Die y-Achse hat keine Beschriftung und veränderte Abstände der Daten zur Achse."
+#| layout-ncol: 2
+# Links (original)
+ggplot(
+  data = penguins,
+  mapping = aes(x = species)
+) +
+  geom_bar()
+
+# Rechts (adaptiert)
+ggplot(
+  data = penguins,
+  mapping = aes(x = species)
+) +
+  geom_bar() +
+  scale_x_discrete(
+    name = "Pinguin-Spezies",
+    labels = c("A", "C", "G")
+  ) + 
+  scale_y_continuous(
+    name = NULL,
+    expand = expansion(add = c(0, 20))
+  )
+```
+
+Dabei haben wir in @fig-axis-disc-2 folgende Änderungen vorgenommen:
+
+- Neue Achsenbeschriftung der x-Achse: `name = "Pinguin-Spezies"`
+- Neue Achsenlabels der x-Achse: `labels = c("A", "C", "G")`
+- Keine Achsenbeschriftung der y-Achse: `name = NULL`
+- Abstand der Daten zur y-Achse neu definiert (0 um unteren Ende, +20 am oberen Ende): `expand = expansion(add = c(0, 20))`
+
+:::callout-tip
+#### Achsenlimits mit `xlim()`, `ylim()` und `lims()`
+
+Als Kurzform zu `scale_x_*(limits = ...)` und `scale_y_*(limits = ...)` können wir die Hilfsfunktionen `xlim()` und `ylim()` verwenden:
+
+```{r}
+#| eval: false
+# Äquivalente Schreibweisen
+ggplot(...) + scale_x_continuous(limits = c(35, 60))
+ggplot(...) + xlim(35, 60)
+
+# Für beide Achsen gleichzeitig
+ggplot(...) + lims(x = c(35, 60), y = c(170, 235))
+```
+:::
+
+### Farben
+
+Um die Farb- und Füllskalen einer Abbildung zu bearbeiten, verwenden wir die Funktionen `scale_color_*()` bzw. `scale_fill_*()`. Die wichtigsten Argumente sind dabei:
+
+* `palette = ...`: Definiert die Farb- und Füllskala. Akzeptiert werden Vektoren aus Farben (entweder als Hex-Code oder als R-Farbe) oder eine String-Variable einer Farbpalette. Für Informationen zu Farbnamen in R siehe [hier](https://r-graph-gallery.com/42-colors-names.html) oder `colors()`. Farbpaletten können in R über Packages installiert werden. In ggplot kann ohne Installation weitere Packages auf die Paletten von [RColorBrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html) und [viridis](https://r-graph-gallery.com/package/viridis.html).
+  - Kontinuierliche Farb-/Füllskala: Bei einem Farbvektor müssen wir zwei oder mehr Farben angeben, auf Basis deren Reihenfolge ggplot eine Farbskala erstellt.
+  - Diskrete Farb-/Füllskala: Bei Angabe eines Farbvektors muss dieser die gleiche Länge haben wie die zugrundeliegende kategoriale Variable Ausprägungen hat (ohne fehlende Werte).
+* `name = ...`: Titel der Farb-/Füllskala in Legende.
+* `breaks = c(...)`: Definiert, welche Breaks in der Legende zur Farbskala gesetzt werden (nur bei kontinuierlichen Skalen).
+* `labels = ...`: Überschreibt die automatische Labels in Legende. Bei kontinuierliche Farbskala muss dieser Vektor mit `breaks = ...` korrespondieren. Bei einer diskreten Farbskala muss dieser Vektor die gleiche Länge haben wie die zugrundeliegende kategoriale Variable Ausprägungen hat (mit oder ohne Label für `NA`).
+* `navalue = ...`: Optionale Farbeinstellung für fehlende Werte.
+
+Mit `scale_color_continous()` können wir die Farbskala einer kontinuierlichen Variable adaptieren. Bei einem Streudiagramm von Schnabel- und Flügellänge, eingefärbt nach Körpergewicht der Pinguine (metrisch) etwa:
+
+```{r}
+#| label: fig-color-cont
+#| fig-cap: "ggplot: Angepasste kontinuierliche Farbskalen"
+#| fig-subcap: 
+#|   - "Original"
+#|   - "Adaptiert (Version 1)"
+#|   - "Adaptiert (Version 2)"
+#| fig-alt:
+#|   - "Nicht-adaptiertes Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Körpergewicht."
+#|   - "Adaptiertes Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Körpergewicht. Angepasst wurde der Name in der Legende sowie die Farbpalette mit einem Vektor aus Farben."
+#|   - "Adaptiertes Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Körpergewicht. Angepasst wurden die Breaks und Labels in der Legende, für die Farbskala wurde die Palette viridis verwendet."
+#| layout-ncol: 3
+# Links (original)
+ggplot(
+  data = penguins,
+  aes(x = bill_len, y = flipper_len, color = body_mass)
+) + 
+  geom_point()
+
+# Mitte (Adaptiert, V1)
+ggplot(
+  data = penguins,
+  aes(x = bill_len, y = flipper_len, color = body_mass)
+) + 
+  geom_point() +
+  scale_color_continuous(
+    name = "Gewicht",
+    palette = c("#FFD138", "red3")
+  )
+
+# Rechts (Adaptiert, V2)
+ggplot(
+  data = penguins,
+  aes(x = bill_len, y = flipper_len, color = body_mass)
+) + 
+  geom_point() +
+  scale_color_continuous(
+    breaks = c(3000, 4500, 6000),
+    labels = c("3kg", "4,5kg", "6kg"),
+    palette = "viridis"
+  )
+```
+
+In @fig-color-cont-2 haben wir folgende Aspekte verändert:
+
+* Name der Farbskala in Legende: `name = "Gewicht"`
+* Farbskala mit Farbverlauf von Gelb zu Rot: `palette = c("#FFD138", "red3")`. Dabei haben wir für das untere Ende der Farbskala einen Hex-Code angegeben, für das obere Ende eine R-Farbnamen.
+
+In @fig-color-cont-3 haben wir wiederum folgende Aspekte adaptiert:
+
+* Breaks in Farbskala-Legende manuell gesetzt:  `breaks = c(3000, 4500, 6000)`
+* Zugehörige Labels selbst definiert: `labels = c("3kg", "4,5kg", "6kg")`
+* Farbskala auf Basis einer vordefinierten Palette: `palette = "viridis"` 
+
+Mit `scale_fill_discrete()` können wir wiederum die Füllskala einer diskreten Variable verändern. Beim Säulendiagramm der Pinguinarten unterteilt nach Geschlecht etwa:
+
+```{r}
+#| label: fig-fill-disc
+#| fig-cap: "ggplot: Angepasste diskrete Füllskalen"
+#| fig-subcap: 
+#|   - "Original"
+#|   - "Adaptiert (Version 1)"
+#|   - "Adaptiert (Version 2)"
+#| fig-alt:
+#|   - "Nicht-adaptiertes Säulendiagramm der Verteilung der Pinguine pro Spezies, aufgeteilt nach Geschlecht."
+#|   - "Adaptiertes Säulendiagramm der Verteilung der Pinguine pro Spezies, aufgeteilt nach Geschlecht. Angepasst wurde der Name in der Legende sowie die Farbpalette mit einem Vektor aus Farben."
+#|   - "Adaptiertes Säulendiagramm der Verteilung der Pinguine pro Spezies, aufgeteilt nach Geschlecht. Angepasst wurden die Breaks und Labels in der Legende, für die Farbskala wurde die Palette viridis verwendet."
+#| layout-ncol: 3
+# Links (original)
+ggplot(
+  data = penguins,
+  mapping = aes(x = species, fill = sex)
+) +
+  geom_bar(position = "dodge")
+
+# Mitte (Adaptiert, V1)
+ggplot(
+  data = penguins,
+  mapping = aes(x = species, fill = sex)
+) +
+  geom_bar(position = "dodge") +
+  scale_fill_discrete(
+    name = NULL,
+    palette = c("cadetblue", "orange"),
+    na.value = "#000"
+  )
+
+# Links (Adaptiert, V2)
+ggplot(
+  data = penguins,
+  mapping = aes(x = species, fill = sex)
+) +
+  geom_bar(position = "dodge") +
+  scale_fill_discrete(
+    labels = c("weiblich", "männlich", "-"),
+    palette = "Dark2"
+  )
+```
+
+In @fig-fill-disc-2 haben wir folgende Aspekte verändert:
+
+* Kein Legendenname: `name = NULL`
+* Füllskala mit zwei Farben für Geschlechtausprägung (ohne `NA`): `palette = c("cadetblue", "orange")`
+* Füllfarbe für `NA` definiert: `na.value = "#000"`
+
+In @fig-fill-disc-3 haben wir wiederum folgende Aspekte adaptiert:
+
+* Labels für Geschlechtausprägung und `NA` definiert: `labels = c("weiblich", "männlich", "-")`
+* Füllpalette gewählt: `palette = "Dark2"`
+
+### Weitere Skalenoptionen
+
+Im Scales-Layer können wir auch weitere ästhetische Aspekte genauer spezifizieren, welche wir innerhalb von `aes()` relativ zu einer Variable gesetzt haben:
+
+* Größe: `scale_size_*()`
+* Transparenz: `scale_alpha_*()`
+* Linienbreite: `scale_linewidth_*()`
+* Form: `scale_shape_*()`
+
+Siehe dazu die [ggplot-Dokumentation](https://ggplot2.tidyverse.org/index.html), Help-Seiten zu den Befehlen in R oder [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/).
+
 ## Coordinates-Layer {#sec-coord-layer}
+
+Der Coordinates-Layer bestimmt das Koordinatensystem, in dem die Grafik dargestellt wird. In den meisten Fällen ist das Standard-Koordinatensystem (kartesisch) ausreichend, und der Coordinates-Layer muss nicht explizit angegeben werden. Die wichtigsten Funktionen sind:
+
+- `coord_cartesian()`: Das Standard-Koordinatensystem. Im Unterschied zu `xlim()`/`ylim()` werden bei `coord_cartesian(xlim = ..., ylim = ...)` die Achsenlimits nur optisch zugeschnitten, ohne Datenpunkte zu entfernen. Das ist wichtig, wenn statistische Geoms wie `geom_smooth()` auf den vollständigen Daten basieren sollen.
+- `coord_flip()`: Tauscht x- und y-Achse. Oft einfacher als das Mapping-Argument `y = species` in Balkendiagrammen umzuschreiben – insbesondere wenn ein bestehender Plot rotiert werden soll.
+- `coord_fixed()`: Setzt ein festes Seitenverhältnis zwischen x- und y-Achse (Default: 1:1). Nützlich etwa bei geografischen Karten oder wenn beide Achsen dieselbe Einheit haben.
+- `coord_polar()`: Wandelt kartesische in polare Koordinaten um – die Basis für Kreisdiagramme (Pie Charts) in `ggplot`.
+- `coord_map()`, `coord_quickmap()`, `coord_sf()`: Für Kartenprojektionen in `ggplot`.
+
+Für mehr Informationen, siehe Kapitel 15 in [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/).
+
+:::callout-note
+#### Zoomen in ggplot
+
+Wie in @sec-scales-layer angemerkt, werden durch das Setzen von Limits in ggplot die außerhalb der Limits liegenden Beobachtungen in `NAs` umgewandelt. Dies kann in manchen Fällen den resultierenden Plot beeinflussen, etwa wenn Trendlinien durch Beobachtungspunkte gelegt werden. Soll nur die Darstellung zugeschnitten werden, ohne Daten zu entfernen, ist `coord_cartesian(xlim = ..., ylim = ...)` die bessere Wahl. @fig-coord-zoom veranschaulicht dieses Problem.
+
+@fig-coord-zoom-1 zeigt den Zusammenhang von Schnabel- und Flügellänge inklusive einer Trendlinie für den gesamten Datensatz. In @fig-coord-zoom-2 wird der Achsenausschnitt von 40 bis 50mm Schnabellänge mittels `xlim()` gewählt. Durch die Entfernung aller Datenpunkte außerhalb dieser Limits bei der Berechnung des Trends verändert sich der Trend in diesem Abschnitt. In @fig-coord-zoom-3 wiederum wird in den ursprünglichen Plot reingezoomt, ohne Beobachtungen auf `NA` zusetzen, wodurch die Trendlinie in diesem Intervall ident zu jener in @fig-coord-zoom-1 ist.
+
+```{r}
+#| label: fig-coord-zoom
+#| fig-cap: "ggplot: Angepasste diskrete Füllskalen"
+#| fig-subcap: 
+#|   - "Alle Beobachtungen"
+#|   - "Ausschnitt mit xlim()"
+#|   - "Ausschnitt mit coord_cartesian()"
+#| fig-alt:
+#|   - "Streudiagramm mit Zusammenhang von Schnabel- und Flügellänge inklusive Trendlinie für gesamten Datensatz."
+#|   - "Streudiagramm mit Zusammenhang von Schnabel- und Flügellänge inklusive Trendlinie. Durch die Beschränkung der x-Achse auf Schnabellängen zwischen 40 und 50mm über xlim() verändert sich die Trendlinie."
+#|   - "Streudiagramm mit Zusammenhang von Schnabel- und Flügellänge inklusive Trendlinie. Durch die Beschränkung der x-Achse auf Schnabellängen zwischen 40 und 50mm über coord_cartesian() verändert sich die Trendlinie nicht."
+#| layout-ncol: 3
+# Links (gesamter Ausschnitt)
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len)
+) +
+  geom_point() +
+  geom_smooth()
+
+# Mitte (xlim)
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len)
+) +
+  geom_point() +
+  geom_smooth() +
+  xlim(40, 50)
+
+# Links (coord_cartesian)
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len)
+) +
+  geom_point() +
+  geom_smooth() +
+  coord_cartesian(xlim = c(40, 50))
+```
+:::
 
 ## Facets-Layer {#sec-facet-layer}
 
+Der Facets-Layer ermöglicht es, einen Datensatz anhand einer oder mehrerer kategorialer Variablen in Teilmengen aufzuteilen und für jede Teilmenge eine eigene Grafik (Facet) zu erstellen. Auf diese Weise können wir Gruppen einfach vergleichen, ohne den Plot mit Farben oder Formen überladen zu müssen.
+
+### `facet_wrap()`
+
+`facet_wrap()` erstellt eine Reihe von Grafiken für jede Ausprägung einer kategorialen Variable. Dabei werden die Grafiken zeilenweise angeordnet. Die Syntax folgt dem Schema `facet_wrap(~ variable)`. Die wichtigsten Argumente von `facet_wrap()` sind:
+
+- `nrow = ...` / `ncol = ...`: Anzahl der Zeilen bzw. Spalten im Facetten-Raster.
+- `scales = ...`: Ob Achsen über Facetten hinweg fest (`"fixed"`, Default) oder frei (`"free"`, `"free_x"`, `"free_y"`) skaliert werden sollen. Freie Skalen sind nützlich, wenn Gruppen sehr unterschiedliche Wertebereiche haben, erschweren aber den direkten Vergleich.
+- `labeller = ...`: Steuert die Beschriftung der Facetten-Titel. Mit `labeller = label_both` wird z.B. sowohl Variablenname als auch Wert angezeigt.
+
+Möchten wir den Zusammenhang von Schnabel- und Flügellänge separat für jede Spezies darstellen:
+
+```{r}
+#| label: fig-facet-wrap
+#| fig-cap: "ggplot: Streudiagramm mit facet_wrap nach Spezies."
+#| fig-subcap:
+#|   - "Default"
+#|   - "Adaptiert"
+#| fig-alt:
+#|   - "Drei nebeneinander angeordnete Streudiagramme mit bill_len auf der x-Achse und flipper_len auf der y-Achse – jeweils eines für Adelie, Chinstrap und Gentoo. Jede Facette zeigt denselben positiven Zusammenhang, ermöglicht aber einen direkten speziesspezifischen Vergleich."
+#|   - "Streudiagramme der Pinguin-Daten aufgeteilt nach Spezies in zwei Zeilen. Die y-Achse (Flügellänge) ist für jede Facette frei skaliert, sodass Unterschiede innerhalb einer Spezies besser sichtbar sind. Facettentitel zeigen Variablenname und Wert (species: Adelie etc.)."
+#| layout-ncol: 2
+# Links
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point(alpha = 0.6) +
+  facet_wrap(~ species)
+
+# Rechts
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point(alpha = 0.6) +
+  facet_wrap(
+    ~ species,
+    nrow     = 2,
+    scales   = "free_y",
+    labeller = label_both
+  )
+```
+
+### `facet_grid()`
+
+Während `facet_wrap()` eine einzelne Variable für die Aufteilung nutzt, erlaubt `facet_grid()` die gleichzeitige Aufteilung nach zwei Variablen – eine für die Zeilen, eine für die Spalten. Die Syntax lautet `facet_grid(zeilen_variable ~ spalten_variable)`. Möchten wir etwa die Verteilung der Flügellänge nach Spezies (Zeilen) und Geschlecht (Spalten) aufteilen:
+
+```{r}
+#| label: fig-facet-grid
+#| fig-cap: "ggplot: Boxplots mit facet_grid nach Spezies und Geschlecht."
+#| fig-alt: "Raster aus Boxplots der Flügellänge. Die Zeilen entsprechen den drei Pinguin-Spezies (Adelie, Chinstrap, Gentoo), die Spalten dem Geschlecht (female, male). In jeder Zelle ist ein Boxplot der Flügellänge für die jeweilige Kombination aus Spezies und Geschlecht dargestellt."
+ggplot(
+  data = penguins |> filter(!is.na(sex)),
+  mapping = aes(x = flipper_len, fill = species)
+) +
+  geom_boxplot() +
+  facet_grid(species ~ sex)
+```
+
 ## Theme-Layer {#sec-theme-layer}
+
+Der Theme-Layer steuert das gesamte visuelle Erscheinungsbild einer Grafik: Beschriftungen, Schriftarten, Hintergrundfarben, Gitterlinien, Legenden-Position und vieles mehr. Hier nehmen wir die letzten Anpassungen vor, um unsere Grafik für Präsentationen, Abschlussarbeiten oder Berichte aufzubereiten. In diesem Abschnitt gehen wir nur auf die wichtigsten Optionen ein. Für weitere Informationen siehe [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) oder die [ggplot-Dokumentation](https://ggplot2.tidyverse.org/index.html). Änderungen im Theme-Layer können in der Funktion `theme(...)` vorgenommen werden, wobei für manchen Optionen (etwa Beschriftungen) eigene Funktionen bestehen.
+
+### Beschriftungen und Titel
+
+Die einfachste Möglichkeit, sämtliche Beschriftungen und Titel können in ggplot gesammelt vorzunehmen, bietet jedoch die Funktion `labs()`. Neben `x`, `y`, `title`, `subtitle` und `caption` können auch Legenden-Titel für weitere Ästhetiken direkt übergeben werden – z. B. `fill = "Geschlecht"`, `size = "Körpergewicht"`. Das ist meistens einfacher und übersichtlicher als die `name = ...`-Argumente in den einzelnen `scale_*`-Funktionen zu setzen.
+
+Wir können etwa unser Streudiagramm zum Zusammenhang von Schnabel- und Flügellänge eingefärbt nach Spezies einen Titel und Untertitel verpassen, die Achsen und Legenden beschriften und in der Caption auf die Datenquelle verweisen:
+
+```{r}
+#| label: fig-labs
+#| fig-cap: "ggplot: Anpassung der Beschriftungen via labs()"
+#| fig-alt: "Streudiagramm mit bill_len auf der x-Achse und flipper_len auf der y-Achse, eingefärbt nach Spezies. Der Plot hat den Titel 'Zusammenhang von Schnabel- und Flügellänge', den Untertitel 'Palmer Penguins Datensatz', die Legende ist mit 'Spezies' beschriftet, und die Achsen tragen die Labels 'Schnabellänge (mm)' und 'Flügellänge (mm)'. Eine Caption verweist auf die Datenquelle."
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point() +
+  labs(
+    title    = "Zusammenhang von Schnabel- und Flügellänge",
+    subtitle = "Palmer Penguins Datensatz",
+    caption  = "Daten: Horst, Hill & Gorman (2020)",
+    x        = "Schnabellänge (mm)",
+    y        = "Flügellänge (mm)",
+    color    = "Spezies"
+  )
+```
+
+Zusätzlich zum Beschriftungstext können wir in `theme()` auch das Aussehen der Beschriftungen verändern. Dies läuft immer nach dem Code-Schema `theme(<BESCHRIFTUNGSTYP> = element_text(...))` ab. Für die einzelnen Bezeichnungen der jeweiligen Beschrifungstypen (Titel, Caption, Achsentitel, Achsenlabels, etc.) siehe die R-Dokumentation zu `theme()`.
+
+Die wichtigsten Argumente innerhalb von `element_text()` sind dabei:
+
+- `size = ...`: Definiert die Schriftgröße (in pt).
+- `face = ...`: Definiert den Schriftstil. Mögliche Optionen sind `plain`, `bold`, `italic` und `bold.italic`.
+- `family = ...`: Definiert die Schriftart (`sans`, `serif`, `mono`). Zusätzliche Schriftarten können über Packages installiert werden (siehe [systemfonts-Dokumentation](https://systemfonts.r-lib.org/articles/systemfonts.html) für mehr Informationen).
+- `color = ...`: Ändert Textfarbe. Akzeptiert werden Hex-Codes und R-Farbnamen.
+- `hjust = ...` und `vjust = ...`: Ändert horizontale/vertikale Ausrichtung des Textankers. Aktzeptieren Zahlenwerte zwischen 0 und 1.
+- `angle = ...`: Ändert Winkel der Beschriftung relativ zum Textanker. Akzeptiert Zahlenwerte zwischen 0 und 360.
+
+Um etwa in @fig-labs den Titel fett und kursiv zu schreiben, den Untertitel zu verkleinern, die Caption nach links zu verschieben, die Schrifart der Beschriftung der y-Achse zu ändern und die x-Achsen-Break-Labels zu rotieren:  
+
+```{r}
+#| label: fig-theme-text
+#| fig-cap: "ggplot: Anpassung der Text-Ästhetik"
+#| fig-alt: "Streudiagramm mit Schnabellänge auf der x-Achse und Flügellänge auf der y-Achse, eingefärbt nach Pinguin-Spezies. Der Titel ist fett und kursiv formatiert, der Untertitel verkleinert. Die Caption ist linksbündig ausgerichtet. Die Beschriftung der y-Achse verwendet die Schriftart Serif. Die x-Achsen-Tick-Labels sind um 45 Grad rotiert."
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point() +
+  labs(
+    title    = "Zusammenhang von Schnabel- und Flügellänge",
+    subtitle = "Palmer Penguins Datensatz",
+    caption  = "Daten: Horst, Hill & Gorman (2020)",
+    x        = "Schnabellänge (mm)",
+    y        = "Flügellänge (mm)",
+    color    = "Spezies"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold.italic"),
+    plot.subtitle = element_text(size = 7),
+    plot.caption = element_text(hjust = 0),
+    axis.title.y = element_text(family = "serif"),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+### Legenden
+
+Die Legende wird in ggplot standardmäßig automatisch generiert. In @sec-scales-layer haben wir bereits gelernt, wie wir den Legendentitel und die Legendenlabels anpassen können. Die `theme()`-Funktion bietet noch weitere Möglichkeiten zur Adaption, die auch noch weitere Argumente zur Adaptierung der Legende beinhaltet. Die relevantesten sind dabei:
+
+- Positon der Legende: `legend.position = ...` legt fest, wo die Legende angezeigt wird. Mögliche Optionen sind `left`, `right`, `bottom`, `top`, `inside` und `none`. Die Feinadjustierung ist über das Argument `legend.justification = ...` möglich (siehe [ggplot-Dokumentation](https://ggplot2.tidyverse.org/index.html)).
+- Text-Position: Mit `legend.title.position = ...` legen wir die Position des Legendentitels relativ zum Rest der Legende fest. Die Position der Labels relativ zum Legendenschlüssel kann mit `legend.text.position = ...` definiert werden.
+- Text-Ästhetik: Mit `legend.title = element_text(...)` und `legend.text = element_text(...)` können wir das Aussehen des Legendentitels und der -labels bearbeiten.
+
+```{r}
+#| label: fig-legend
+#| fig-cap: "ggplot: Legendenoptionen"
+#| fig-alt: "Streudiagramm der Pinguin-Daten mit Schnabellänge auf der x-Achse und Flügellänge auf der y-Achse, eingefärbt nach Spezies. Die Legende wird unterhalb des Plots angezeigt, Schriftgröße, -typ und -orientierung des Legendtitel verändert, der Titel wird oberhalb der Legende angezeigt, die Legendenlabels links neben den Legendenschlüsseln."
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point() +
+  scale_color_discrete(palette = "Dark2", labels = c("A", "C", "G")) +
+  labs(
+    x = "Schnabellänge (mm)",
+    y = "Flügellänge (mm)",
+    color = "Spezies"
+  ) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(
+      size = 12,
+      face = "bold.italic",
+      hjust = 0.5
+    ),
+    legend.title.position = "top",
+    legend.text.position = "left"
+  )
+```
+
+Für Informationen zu weiteren Legenden-Argumenten in `theme()` siehe [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/), die [ggplot-Dokumentation](https://ggplot2.tidyverse.org/index.html), oder die Help-Seite in R.
+
+:::callout-note
+#### Adaption des Legendenschlüssels mit `guides()`
+
+Das Key-Symbol in der Legende spiegelt immer das verwendete Geom wider - geom_point() zeigt einen Punkt, geom_line() eine Linie, etc. Aus ästhetischen Gründen können jedoch einheitliche Legendenschlüssel wünschenswert sein. Die Legendenschlüssel können wir in ggplot mit `guides(<aes_typ> = guide_legend(override.aes = list(...)))` anpassen. Möchten wir etwa in allen Legenden als Symbol bei Farben immer ein ausgefülltes Rechteck (`shape = 15`) der Größe 5 (`size = 5`) haben:
+
+```{r}
+#| label: fig-guides
+#| fig-cap: "ggplot: Angepasster Legenden-Key"
+#| fig-alt: "Streudiagramm mit Schnabellänge auf der x-Achse und Flügellänge auf der y-Achse, eingefärbt nach Pinguin-Spezies. In der Legende werden die Spezies anstelle der Standard-Punkte durch größere ausgefüllte Rechtecke repräsentiert."
+ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point() +
+  guides(
+    color = guide_legend(
+      override.aes = list(shape = 15, size = 5)
+    )
+  )
+```
+:::
+
+### Vordefinierte Themes
+
+In ggplot stehen mehrere vordefinierte Themes zur Verfügung, die das Gesamterscheinungsbild der Grafik mit einem Funktionsaufruf verändern. Diese sind:
+
+- `theme_gray()`: Das Standard-Theme mit grauem Hintergrund und weißen Gitterlinien.
+- `theme_bw()`: Weißer Hintergrund mit schwarzem Rahmen und grauen Gitterlinien – gut für Druckerzeugnisse.
+- `theme_linedraw()`: Weißer Hintergrund mit schwarzen Rahmenlinien und Gitterlinien – ähnlich wie `theme_bw()`, aber mit durchgehend schwarzen, dünneren Linien.
+- `theme_minimal()`: Sehr aufgeräumtes Theme ohne Rahmen, nur graue Gitterlinien.
+- `theme_classic()`: Klassisches Aussehen ohne Gitterlinien, mit x- und y-Achsenlinien.
+- `theme_void()`: Völlig leeres Theme, nur die Geoms werden angezeigt. Nützlich z. B. für Karten.
+- `theme_light()`: Heller Hintergrund mit feinen grauen Linien.
+- `theme_dark()`: Dunkle Version von `theme_light()`
+
+
+```{r}
+#| label: fig-themes
+#| fig-cap: "ggplot: Vergleich vorinstallierter Themes."
+#| fig-subcap:
+#|   - "theme_gray()"
+#|   - "theme_bw()"
+#|   - "theme_linedraw()"
+#|   - "theme_minimal()"
+#|   - "theme_classic()"
+#|   - "theme_void()"
+#|   - "theme_light()"
+#|   - "theme_dark()"
+#| fig-alt:
+#|  - "Streudiagramm der Pinguin-Daten mit theme_gray: grauer Hintergrund und weiße Gitterlinien (Default)."
+#|  - "Streudiagramm der Pinguin-Daten mit theme_bw: weißer Hintergrund, schwarzer Rahmen, und graue Gitterlinien."
+#|  - "Streudiagramm der Pinguin-Daten mit theme_linedraw: weißer Hintergrund, schwarzer Rahmen, und schwarze Gitterlinien."
+#|  - "Streudiagramm der Pinguin-Daten mit theme_minimal: weißer Hintergrund, kein Rahmen, graue Gitterlinien"
+#|  - "Streudiagramm der Pinguin-Daten mit theme_classic: weißer Hintergrund ohne Gitterlinien, nur x- und y-Achsenlinie."
+#|  - "Streudiagramm der Pinguin-Daten mit theme_void: leeres Theme (ohne Rahmen, Gitterlinien, Achsenbeschriftungen)."
+#|  - "Streudiagramm der Pinguin-Daten mit theme_light: weißer Hintergrund mit feinen grauen Gitterlinien und Rahmen."
+#|  - "Streudiagramm der Pinguin-Daten mit theme_dark: dunkler Hintergrund mit feinen grauen Gitterlinien und Rahmen."
+#| layout-ncol: 4
+p <- ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len)
+) +
+  geom_point()
+
+p + theme_gray()
+p + theme_bw()
+p + theme_linedraw()
+p + theme_minimal()
+p + theme_classic()
+p + theme_void()
+p + theme_light()
+p + theme_dark()
+```
 
 ## Weitere Themen
 
 ### ggplot mit `esquisse`
 
+Für Anfänger:innen kann das Erstellen von Grafiken in R fordernd sein. Tools wie `esquisse` können den Einstieg in `ggplot2` erleichtern, indem sie eine interaktive Oberfläche zur Erstellung von Grafiken bieten. Statt Code direkt zu schreiben, lassen sich Variablen per Drag-and-Drop zuordnen und Visualisierungen intuitiv zusammenstellen, während der entsprechende `ggplot2`-Code automatisch generiert wird. Das ist besonders hilfreich, um schnell erste Plots zu erstellen oder ein besseres Verständnis für die Struktur von `ggplot2` zu entwickeln. Nach Installation des `esquisse` Packages kann über die Addins in RStudio auf dieses Tool zugegriffen werden. Mehr Informationen zu `esquisse` bietet die [Online-Dokumentation](https://dreamrs.github.io/esquisse/index.html)
+
 ### Karten in ggplot
+
+Mit ggplot können wir auch Karten visualisieren. Dafür benötigen wir passende Geo-Daten, die wir dann mit weiteren Informationen verknüpfen können. Für eine ausführliche Einführung mit Geo-Daten in R sowie die Erstellung von Karten mit ggplot, siehe [Geocomputation with R](https://r.geocompx.org/) und Kapitel 6 in [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/).
+
+Um die wesentlichen Aspekte der Kartengestaltung in ggplot kurz zu skizzieren, erstellen wir eine Karte mit dem BIP/Kopf in den deutschen Bundesländern. Dafür benötigen wir zuerst Geo-Daten zu Deutschland. Geo-Daten können aus unterschiedlichsten Packages oder Open-Data-Resourcen importiert werden. Für unser Beispiel greifen wir auf das `giscoR`-Package zurück. Mit der Funktion `gisco_get_nuts()` laden wir Geo-Daten auf Bundesland-Ebene (NUTS1) für Deutschland herunter. Das Ergebnis ist ein `sf`-Objekt (Simple Features), das neben den üblichen Datenspalten eine `geometry`-Spalte mit den geografischen Polygonen der Bundesländer enthält:
+
+```{r}
+library(giscoR)
+de_geo <- gisco_get_nuts(
+  country = "Germany",
+  nuts_level = 1
+) |>
+  janitor::clean_names() |>
+  select(nuts_id, nuts_name, geometry)
+de_geo
+```
+
+Im zweiten Schritt laden wir mit Hilfe des Packages `eurostat` das BIP pro Kopf (in Euro) für das Jahr 2024 aus der Eurostat-Datenbank und filtern auf die NUTS-1-Regionen der deutschen Bundesländer. Anschließend fügen wir die Wirtschaftsdaten über `left_join()` mit den Geodaten zusammen — analog zu den Joins aus @sec-daten-transform:
+
+```{r}
+library(eurostat)
+de_income <- get_eurostat("nama_10r_3gdp", time_format = "num") |>
+  janitor::clean_names() |>
+  filter(
+    geo %in% de_geo$nuts_id,
+    time_period == 2024,
+    unit == "EUR_HAB"
+  ) |>
+  select(geo, values) |>
+  rename(nuts_id = geo, bip_pro_kopf = values)
+de_geo <- left_join(de_geo, de_income)
+```
+
+Den zusammengeführten Datensatz können wir nun visualisieren. `geom_sf()` erkennt die `geometry`-Spalte automatisch und zeichnet die Bundesländer als Polygone. Die Einfärbung nach `bip_pro_kopf` erfolgt über eine kontinuierliche Farbskala, die wir mit `scale_fill_continuous()` anpassen. Da bei Karten Achsen und Hintergrund störend wirken, verwenden wir `theme_void()`:
+
+```{r}
+#| label: fig-geom-sf
+#| fig-cap: "ggplot: Karte des BIPs/Kopf in Deutschland"
+#| fig-alt: "Karte der deutschen Bundesländer eingefärbt nach BIP/Kopf im Jahr 2024."
+library(sf)
+ggplot(data = de_geo,
+       aes(fill = bip_pro_kopf)) +
+  geom_sf(color = "black") +
+  scale_fill_continuous(
+    name = NULL,
+    breaks = c(40000, 60000, 80000),
+    labels = c("40.000€", "60.000€", "80.000€"),
+    palette = "YlGn",
+  ) +
+  labs(
+    title = "BIP/Kopf nach Bundesland",
+    subtitle = "Eurostat-Daten, 2024"
+  ) +
+  theme_void() +
+  theme(legend.position = "bottom") +
+  guides(
+    fill = guide_colorbar(barwidth = unit(10, "lines"))
+  )
+```
 
 ### Annotationen in ggplot
 
+Annotationen ermöglichen es, Grafiken mit zusätzlichen Texten, Linien oder Hervorhebungen zu versehen, um wichtige Punkte oder Bereiche direkt in der Grafik zu kommentieren. Die wichtigsten Funktionen sind:
+
+- `annotate()`: Fügt einzelne Texte, Pfeile, Rechtecke oder andere Geoms an einer fixen Position hinzu, ohne auf den zugrundeliegenden Datensatz zurückzugreifen.
+- `geom_text()` und `geom_label()`: Beschriften Datenpunkte direkt auf Basis einer Textvariable im Datensatz. Das Package `ggrepel` erweitert dies um eine automatische Kollisionsvermeidung der Labels mit den Funktionen `geom_text_repel()` und `geom_label_repel()`.
+
+Für eine ausführliche Behandlung von Annotationen in ggplot siehe Kapitel 8 in [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org). @fig-annotation-ggrepel zeigt ein Beispiel für die Verwendung von Labels mit `ggrepel` in ggplot:
+
+```{r}
+#| label: fig-annotation-ggrepel
+#| fig-cap: "Streudiagramm mit Punktbeschriftungen via ggrepel."
+#| fig-alt: "Streudiagramm mit Schnabellänge auf der x-Achse und Flügellänge auf der y-Achse, eingefärbt nach Spezies. Ausreißer – definiert als Pinguine mit besonders kleinen Flügeln (unter 185 mm) und langen Schnäbel (über 55mm) – sind beschriftet. Die Labels werden durch ggrepel kollisionsfrei platziert."
+library(ggrepel)
+
+penguins |>
+  mutate(
+    label = case_when(
+      bill_len > 55 & flipper_len < 185 ~ "Ausreißer",
+    )
+  ) |>
+  ggplot(aes(x = bill_len, y = flipper_len)) +
+  geom_point(aes(color = species), alpha = 0.6) +
+  geom_label_repel(
+    aes(label = label)
+  )
+```
+
 ### Interaktive Grafiken
+
+ggplot-Grafiken können mit dem Package `plotly` einfach in interaktive Grafiken umgewandelt werden. Die Funktion `ggplotly()` nimmt dabei ein bestehendes `ggplot`-Objekt entgegen und erzeugt daraus eine interaktive HTML-Grafik mit Zoom, Pan und Tooltip-Funktionalität:
+
+```{r}
+#| label: fig-ggploty
+#| fig-cap: "ggplotly: Interaktiver ggplot"
+#| fig-alt: "Interaktives Streudiagramm von bill_len und flipper_len, eingefärbt nach Spezies. Beim Hovern über die Datenpunkte werden genaue Informationen zu Flügel- und Schnabellänge des jeweiligen Pinguins angeführt."
+library(plotly)
+gg_static <- ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point(aes(text = paste0("Schnabellänge: ", bill_dep, "mm \n", "Flügellänge: ", flipper_len, "mm")))
+ggplotly(gg_static, tooltip = "text")
+```
+
+Für mehr Details zur Arbeit mit `ggplotly()` und der Erstellung von nativen Plotly-Plots mit `plot_ly()` (ohne den ggplot-Zwischenschritt) siehe die weiterführenden Informationen in [R Graph Gallery](https://r-graph-gallery.com/plotly.html)
+Für komplexere interaktive Visualisierungen, etwa Dashboards oder reaktive Grafiken, bietet sich das Package `shiny` an. Eine Einführung in `shiny` im [Mastering Shiny-Buch](https://mastering-shiny.org/).
 
 
 
