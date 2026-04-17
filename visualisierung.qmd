@@ -1136,4 +1136,20 @@ penguins |>
 
 ### Interaktive Grafiken
 
-ggplot-Grafiken können mit dem Package `plotly` einfach in interaktive Grafiken umgewandelt werden. Die Funktion `ggplotly()` nimmt dabei ein bestehendes `ggplot`-Objekt entgegen und erzeugt daraus eine interaktive HTML-Grafik mit Zoom, Pan und Tooltip-Funktionalität. Für mehr Details zur Arbeit mit `ggplotly()` und der Erstellung von nativen Plotly-Plots mit `plot_ly()` (ohne den ggplot-Zwischenschritt) siehe die weiterführenden Informationen in [R Graph Gallery](https://r-graph-gallery.com/plotly.html) Für komplexere interaktive Visualisierungen, etwa Dashboards oder reaktive Grafiken, bietet sich das Package `shiny` an. Eine Einführung in `shiny` im [Mastering Shiny-Buch](https://mastering-shiny.org/).
+ggplot-Grafiken können mit dem Package `plotly` einfach in interaktive Grafiken umgewandelt werden. Die Funktion `ggplotly()` nimmt dabei ein bestehendes `ggplot`-Objekt entgegen und erzeugt daraus eine interaktive HTML-Grafik mit Zoom, Pan und Tooltip-Funktionalität:
+
+```{r}
+#| label: fig-ggploty
+#| fig-cap: "ggplotly: Interaktiver ggplot"
+#| fig-alt: "Interaktives Streudiagramm von bill_len und flipper_len, eingefärbt nach Spezies. Beim Hovern über die Datenpunkte werden genaue Informationen zu Flügel- und Schnabellänge des jeweiligen Pinguins angeführt."
+library(plotly)
+gg_static <- ggplot(
+  data = penguins,
+  mapping = aes(x = bill_len, y = flipper_len, color = species)
+) +
+  geom_point(aes(text = paste0("Schnabellänge: ", bill_dep, "mm \n", "Flügellänge: ", flipper_len, "mm")))
+ggplotly(gg_static, tooltip = "text")
+```
+
+Für mehr Details zur Arbeit mit `ggplotly()` und der Erstellung von nativen Plotly-Plots mit `plot_ly()` (ohne den ggplot-Zwischenschritt) siehe die weiterführenden Informationen in [R Graph Gallery](https://r-graph-gallery.com/plotly.html)
+Für komplexere interaktive Visualisierungen, etwa Dashboards oder reaktive Grafiken, bietet sich das Package `shiny` an. Eine Einführung in `shiny` findest sich im [Mastering Shiny-Buch](https://mastering-shiny.org/).
