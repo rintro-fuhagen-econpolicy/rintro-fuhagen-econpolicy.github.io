@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./kausalinferenz.html" rel="next">
+<link href="./tab_export.html" rel="next">
 <link href="./deskript_statistik.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -193,12 +228,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressionen</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./kausalinferenz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kausalinferenz</span></span></a>
-  </div>
-</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -213,19 +242,19 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tab_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fig_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Grafiken exportieren</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Grafiken exportieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -242,13 +271,13 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ki.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,8 +292,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#ols-regressionsmodell" id="toc-ols-regressionsmodell" class="nav-link active" data-scroll-target="#ols-regressionsmodell"><span class="header-section-number">8.1</span> OLS-Regressionsmodell</a>
+  <ul class="collapse">
+<li><a href="#ols-basics" id="toc-ols-basics" class="nav-link" data-scroll-target="#ols-basics"><span class="header-section-number">8.1.1</span> OLS-Basics</a></li>
+  <li><a href="#tranformierte-variablen" id="toc-tranformierte-variablen" class="nav-link" data-scroll-target="#tranformierte-variablen"><span class="header-section-number">8.1.2</span> Tranformierte Variablen</a></li>
+  <li><a href="#interaktionseffekte" id="toc-interaktionseffekte" class="nav-link" data-scroll-target="#interaktionseffekte"><span class="header-section-number">8.1.3</span> Interaktionseffekte</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-logit-probit" id="toc-sec-logit-probit" class="nav-link" data-scroll-target="#sec-logit-probit"><span class="header-section-number">8.2</span> Logit- und Probit-Modelle</a></li>
+  <li><a href="#sec-fe" id="toc-sec-fe" class="nav-link" data-scroll-target="#sec-fe"><span class="header-section-number">8.3</span> Fixed-Effects-Modelle</a></li>
+  <li><a href="#sec-se" id="toc-sec-se" class="nav-link" data-scroll-target="#sec-se"><span class="header-section-number">8.4</span> Standardfehler</a></li>
+  <li><a href="#sec-kausalinferenz" id="toc-sec-kausalinferenz" class="nav-link" data-scroll-target="#sec-kausalinferenz"><span class="header-section-number">8.5</span> Kausalinferenz</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./deskript_statistik.html">Statistik in R</a></li><li class="breadcrumb-item"><a href="./regressionen.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressionen</span></a></li></ol></nav><div class="quarto-title">
@@ -282,10 +326,352 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>In diesem Kapitel lernen wir, wie man Regressionsmodelle in R berechnet. Wie in <a href="deskript_statistik.html" class="quarto-xref"><span>Kapitel 7</span></a> greifen wir auf den <code>wage1</code>-Datensatz aus dem Package <code>wooldridge</code> zurück:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://justinmshea.github.io/wooldridge/">wooldridge</a></span><span class="op">)</span></span>
+<span><span class="va">wage1</span> <span class="op">&lt;-</span> <span class="va">wage1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wage</span>, <span class="va">educ</span>, <span class="va">exper</span>, <span class="va">female</span>, <span class="va">married</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Für Fixed-Effects-Modelle in <span class="quarto-unresolved-ref">?sec-fe-modelle</span> verwenden wir außerdem den Datensatz <code>wagepan</code> aus dem selben Package, da hierfür Paneldaten benötigt werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wagepan</span> <span class="op">&lt;-</span> <span class="va">wagepan</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">nr</span>, <span class="va">year</span>, <span class="va">lwage</span>, <span class="va">educ</span>, <span class="va">exper</span>, <span class="va">married</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">wagepan</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 4,360</span></span>
+<span><span class="co">#&gt; Columns: 6</span></span>
+<span><span class="co">#&gt; $ nr      &lt;int&gt; 13, 13, 13, 13, 13, 13, 13, 13, 17, 17, 17, 17, 17, 17, 17,…</span></span>
+<span><span class="co">#&gt; $ year    &lt;int&gt; 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1980, 1981,…</span></span>
+<span><span class="co">#&gt; $ lwage   &lt;dbl&gt; 1.1975402, 1.8530600, 1.3444617, 1.4332134, 1.5681251, 1.69…</span></span>
+<span><span class="co">#&gt; $ educ    &lt;int&gt; 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13,…</span></span>
+<span><span class="co">#&gt; $ exper   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 4, 5, 6, 7, 8, 9, 10, 11, 4, 5, 6, …</span></span>
+<span><span class="co">#&gt; $ married &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,…</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die wesentlichen Variablen sind der logarithmierte Stundenlohn (<code>lwage</code>), Bildungsjahre (<code>educ</code>), Berufserfahrung (<code>exper</code>) in Jahren sowie einen binären Indikator für Familienstand (<code>married</code>)). Da wir hier eine Gruppe von Personen über mehrere Jahre hinweg beobachten haben wir außerdem noch einen Indikator für die Personen-ID (<code>nr</code>) sowie das Beobachtungsjahr (<code>year</code>).</p>
+<section id="ols-regressionsmodell" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="ols-regressionsmodell">
+<span class="header-section-number">8.1</span> OLS-Regressionsmodell</h2>
+<section id="ols-basics" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="ols-basics">
+<span class="header-section-number">8.1.1</span> OLS-Basics</h3>
+<p>Lineare Regressionsmodelle (OLS) werden in R mit der Funktion <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> geschätzt. Der Syntax folgt der Formelschreibweise <code>y ~ x1 + x2 + ...</code>, wobei <code>y</code> die abhängige Variable und <code>x1, x2, ...</code> die unabhängigen Variablen sind. Mit dem Argument <code>data = ...</code> wird der Datensatz angegeben.</p>
+<p>In einem OLS-Modell können wir zum Beispiel den Stundenlohn durch Bildung, Erfahrung und Geschlecht erklären:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ols1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">wage</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">female</span>, data <span class="op">=</span> <span class="va">wage1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = wage ~ educ + exper + female, data = wage1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">#&gt; -6.3856 -1.9652 -0.4931  1.1199 14.8217 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1.73448    0.75362  -2.302   0.0218 *  </span></span>
+<span><span class="co">#&gt; educ         0.60258    0.05112  11.788  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; exper        0.06424    0.01040   6.177 1.32e-09 ***</span></span>
+<span><span class="co">#&gt; female      -2.15552    0.27031  -7.974 9.74e-15 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 3.078 on 522 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.3093, Adjusted R-squared:  0.3053 </span></span>
+<span><span class="co">#&gt; F-statistic: 77.92 on 3 and 522 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Das Modellobjekt in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> und andere Modellierungsfunktionen geben ein Modellobjekt zurück. Mit <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> können wir die wesentlichen Elemente zusammenfassen. Mit gezielten Extraktionsfunktionen lässt sich aber auf die einzelnen Bestandteile zugreifen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>          <span class="co"># Koeffizientenvektor</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>     <span class="co"># Residuen (ein Wert pro Beobachtung)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>        <span class="co"># Angepasste Werte (ŷ)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html">vcov</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>          <span class="co"># Varianz-Kovarianz-Matrix der Koeffizienten</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>  <span class="co"># Design-Matrix X</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/nobs.html">nobs</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>          <span class="co"># Anzahl der Beobachtungen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Das Modellobjekt ist außerdem die Grundlage für weiterführende Funktionen wie <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> (Vorhersagen für neue Daten) oder <code><a href="https://rdrr.io/r/stats/confint.html">confint()</a></code> (Konfidenzintervalle der Koeffizienten). Viele Packages wie <code>broom</code> oder <code>modelsummary</code> greifen ebenfalls auf dieses Objekt zurück, um Ergebnisse aufzubereiten.</p>
+<p>Mehrere für die Inferenz relevante Parameter (Standardfehler, t-Statistik, p-Wert) werden jedoch nicht direkt im Modellobjekt abgespeichert, sondern von <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> berechnet. Um auf diese Parameter explizit zugreifen zu können, verwenden wir:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                Estimate Std. Error   t value     Pr(&gt;|t|)</span></span>
+<span><span class="co">#&gt; (Intercept) -1.73448100 0.75362027 -2.301532 2.175453e-02</span></span>
+<span><span class="co">#&gt; educ         0.60258016 0.05111738 11.788166 1.332335e-28</span></span>
+<span><span class="co">#&gt; exper        0.06424172 0.01040033  6.176894 1.316295e-09</span></span>
+<span><span class="co">#&gt; female      -2.15551716 0.27030549 -7.974374 9.735838e-15</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um z.B. nur die Standardfehler zu extrahieren, müssen wir die relevante Spalte dieser Matrix ansprechen: <code>coef(summary(ols1))[,"Std. Error"]</code> oder <code>coef(summary(ols1))[,2]</code>.</p>
+</div>
+</div>
+</section><section id="tranformierte-variablen" class="level3" data-number="8.1.2"><h3 data-number="8.1.2" class="anchored" data-anchor-id="tranformierte-variablen">
+<span class="header-section-number">8.1.2</span> Tranformierte Variablen</h3>
+<p>Oft möchten wir in unseren Modellen mit transformierten Variablen arbeiten. BDiese Transformationen müssen wir nicht zwingend vor der Modellberechnung durchführen und als eigene Variablen abspeichern, sondern können diese auch direkt innerhalb der Regressionsfunktion angeben. Möchten wir unser Ausgangsmodell so adaptieren, dass wir als abhängige Variable den logarithmierten Stundenlohn verwenden und zusätzlich einen quadratischen Erfahrungseffekt als Prädiktor inkludieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ols2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">wage</span><span class="op">)</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">exper</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">female</span>, data <span class="op">=</span> <span class="va">wage1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ols2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = log(wage) ~ educ + exper + I(exper^2) + female, </span></span>
+<span><span class="co">#&gt;     data = wage1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span><span class="co">#&gt; -1.80836 -0.27728 -0.01813  0.25637  1.23896 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)  0.3904831  0.1022096   3.820 0.000149 ***</span></span>
+<span><span class="co">#&gt; educ         0.0841361  0.0069568  12.094  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; exper        0.0389100  0.0048235   8.067 5.00e-15 ***</span></span>
+<span><span class="co">#&gt; I(exper^2)  -0.0006860  0.0001074  -6.389 3.71e-10 ***</span></span>
+<span><span class="co">#&gt; female      -0.3371868  0.0363214  -9.283  &lt; 2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 0.4134 on 521 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.3996, Adjusted R-squared:  0.395 </span></span>
+<span><span class="co">#&gt; F-statistic: 86.69 on 4 and 521 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span><code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code>-Funktion in Formeln
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Das erste Argument in <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> ist eine Formel. Da R bestimmte mathematische Operatoren (<code>+</code>, <code>-</code>, <code>*</code>, <code>^</code>) als Formeloperatoren interpretiert, muss eine Variablentransformation dieser Art innerhalb der Funktion <code><a href="https://rdrr.io/r/base/AsIs.html">I()</a></code> angegeben werden, damit R diese korrekt interpretiert.</p>
+</div>
+</div>
+</section><section id="interaktionseffekte" class="level3" data-number="8.1.3"><h3 data-number="8.1.3" class="anchored" data-anchor-id="interaktionseffekte">
+<span class="header-section-number">8.1.3</span> Interaktionseffekte</h3>
+<p>Interaktionseffekte erlauben es, zu prüfen, ob der Effekt einer Variable von einer anderen Variable abhängt. In <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> werden Interaktionen mit dem <code>*</code>-Operator spezifiziert. <code>a * b</code> ist dabei eine Kurzform für <code>a + b + a:b</code> und schließt beide Haupteffekte sowie den Interaktionsterm automatisch ein:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ols3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">wage</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">*</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">female</span>, data <span class="op">=</span> <span class="va">wage1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ols3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = wage ~ educ * exper + female, data = wage1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">#&gt; -6.6786 -1.8886 -0.5291  1.1104 14.7342 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -0.489972   1.152289  -0.425    0.671    </span></span>
+<span><span class="co">#&gt; educ         0.504442   0.085672   5.888 7.01e-09 ***</span></span>
+<span><span class="co">#&gt; exper        0.008438   0.040471   0.208    0.835    </span></span>
+<span><span class="co">#&gt; female      -2.194000   0.271382  -8.085 4.39e-15 ***</span></span>
+<span><span class="co">#&gt; educ:exper   0.004722   0.003310   1.427    0.154    </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 3.075 on 521 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.312,  Adjusted R-squared:  0.3067 </span></span>
+<span><span class="co">#&gt; F-statistic: 59.06 on 4 and 521 DF,  p-value: &lt; 2.2e-16</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Auch Mehrfachinteraktionen können inkludiert werden, etwa eine Dreifachinteraktion mit <code>a * b * c</code>. Auch hier werden alle Haupteffekte sowie alle möglichen Interaktionen zwischen den einzelnen Variablen (in diesem Beispiel Zweifach- und Dreifachinteraktionen) automatisch eingeschlossen. In den seltenen Fällen, in denen man nur einen spezifischen Interaktionseffekt, aber keine anderen in das Modell aufnehmen möchte, kann man dies mit <code>a:b</code> anstelle von <code>a * b</code> spezifizieren.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Visualisierung von Regressionsergebnissen in ggplot
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Ergebnisse eines oder mehrere Regressionsmodelle lassen sich auch in Plots darstellen. Mehrere R-Packages wie etwa <code>sjPlot</code> (siehe <a href="https://strengejacke.github.io/sjPlot/index.html">Online-Dokumentation</a>) bieten dafür fertige Funktionen. Die Visualisierung von Regressionsresultaten ist jedoch auch einfach in <code>ggplot2</code> möglich. Dazu müssen wir uns die abzubildenden Effekte zuerst aus den Modellobjekten extrahieren. Möchten wir etwa die Effekte in unserem ersten OLS-Modell inklusive einem 95% Konfidenzintervall visualisieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  coef <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">ols1</span><span class="op">)</span>,</span>
+<span>  low95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">ols1</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>,</span>
+<span>  high95 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">ols1</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op">!=</span> <span class="st">"(Intercept)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">plot.data</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">name</span>, color <span class="op">=</span> <span class="va">name</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">coef</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_errorbarh</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xmin <span class="op">=</span> <span class="va">low95</span>, xmax <span class="op">=</span> <span class="va">high95</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Regressionseffekte: ols1"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">""</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Effekt"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="regressionen_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="sec-logit-probit" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="sec-logit-probit">
+<span class="header-section-number">8.2</span> Logit- und Probit-Modelle</h2>
+<p>Das OLS-Regressionsmodell ist das gängigste Schätzverfahren bei der Regressionsanalyse. Abhängig von der Datenlage können jedoch auch (lineare) Regressionsmodelle angebracht sein. Ist die abhängige Variable etwa binär, so werden in den Wirtschaftswissenschaften auch häufig Logit- oder Probit-Modelle verwendet. Diese werden in R über die Funktion <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> (<em>Generalized Linear Model</em>) geschätzt. Mit dem Argument <code>family = binomial(link = ...)</code> wird das Modell spezifiziert:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">logit</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">married</span> <span class="op">~</span> <span class="va">wage</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">female</span>,</span>
+<span>                  data   <span class="op">=</span> <span class="va">wage1</span>,</span>
+<span>                  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">logit</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm(formula = married ~ wage + educ + exper + female, family = binomial(link = "logit"), </span></span>
+<span><span class="co">#&gt;     data = wage1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1.937774   0.560845  -3.455  0.00055 ***</span></span>
+<span><span class="co">#&gt; wage         0.090371   0.038689   2.336  0.01950 *  </span></span>
+<span><span class="co">#&gt; educ         0.093590   0.042565   2.199  0.02790 *  </span></span>
+<span><span class="co">#&gt; exper        0.059285   0.008757   6.770 1.29e-11 ***</span></span>
+<span><span class="co">#&gt; female      -0.472187   0.205032  -2.303  0.02128 *  </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 704.29  on 525  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 613.48  on 521  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 623.48</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 4</span></span>
+<span></span>
+<span><span class="va">probit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">married</span> <span class="op">~</span> <span class="va">wage</span> <span class="op">+</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">female</span>,</span>
+<span>                  data   <span class="op">=</span> <span class="va">wage1</span>,</span>
+<span>                  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"probit"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">probit</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; glm(formula = married ~ wage + educ + exper + female, family = binomial(link = "probit"), </span></span>
+<span><span class="co">#&gt;     data = wage1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;              Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1.132838   0.333757  -3.394 0.000688 ***</span></span>
+<span><span class="co">#&gt; wage         0.052593   0.021958   2.395 0.016613 *  </span></span>
+<span><span class="co">#&gt; educ         0.055671   0.025379   2.194 0.028268 *  </span></span>
+<span><span class="co">#&gt; exper        0.034478   0.005014   6.876 6.16e-12 ***</span></span>
+<span><span class="co">#&gt; female      -0.300126   0.123519  -2.430 0.015108 *  </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Null deviance: 704.29  on 525  degrees of freedom</span></span>
+<span><span class="co">#&gt; Residual deviance: 615.07  on 521  degrees of freedom</span></span>
+<span><span class="co">#&gt; AIC: 625.07</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Number of Fisher Scoring iterations: 4</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Interpretation von Logit/Probit-Koeffizienten
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Koeffizienten eines Logit- oder Probit-Modells sind nicht direkt als Effekte auf die Wahrscheinlichkeit interpretierbar, sondern als Effekte auf den Log-Odds (Logit) bzw. den latenten Index (Probit). Für eine inhaltliche Interpretation werden daher oft durchschnittliche marginale Effekte (Average Marginal Effects, AME) berechnet. Das Package <code>marginaleffects</code> bietet hierfür eine passende Funktion:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://marginaleffects.com/">marginaleffects</a></span><span class="op">)</span></span>
+<span><span class="fu">avg_slopes</span><span class="op">(</span><span class="va">logit</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section><section id="sec-fe" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="sec-fe">
+<span class="header-section-number">8.3</span> Fixed-Effects-Modelle</h2>
+<p><strong>Fixed-Effects-Modelle</strong> (FE) kontrollieren für alle zeitkonstanten, unbeobachteten Eigenschaften der Einheiten (Personen, Unternehmen, Länder) und werden typischerweise für Paneldaten verwendet. In R kann das FE-Modell mit dem Package <code>fixest</code> mit der Funktion <code><a href="https://lrberge.github.io/fixest/reference/feols.html">feols()</a></code> geschätzt werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lrberge.github.io/fixest/">fixest</a></span><span class="op">)</span></span>
+<span><span class="va">fe_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">lwage</span> <span class="op">~</span> <span class="va">exper</span> <span class="op">|</span> <span class="va">nr</span>,</span>
+<span>                data <span class="op">=</span> <span class="va">wagepan</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fe_mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt; OLS estimation, Dep. Var.: lwage</span></span>
+<span><span class="co">#&gt; Observations: 4,360</span></span>
+<span><span class="co">#&gt; Fixed-effects: nr: 545</span></span>
+<span><span class="co">#&gt; Standard-errors: IID </span></span>
+<span><span class="co">#&gt;       Estimate Std. Error t value  Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; exper 0.063328   0.002345 27.0005 &lt; 2.2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; RMSE: 0.331889     Adj. R2: 0.556112</span></span>
+<span><span class="co">#&gt;                  Within R2: 0.160472</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Der Ausdruck nach <code>|</code> in der Formel gibt die Fixed-Effects-Variablen an. <code>fixest</code> unterstützt mehrere Fixed Effects (z.B. <code>| nr + year</code>), geclusterte Standardfehler sowie eine Vielzahl weiterer Modellspezifikationen. Eine ausführliche Einführung findet sich in der <a href="https://lrberge.github.io/fixest/">fixest-Dokumentation</a>.</p>
+</section><section id="sec-se" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="sec-se">
+<span class="header-section-number">8.4</span> Standardfehler</h2>
+<p>Die Standardfehler der Regressionskoeffizienten bestimmen, wie präzise unsere Schätzungen sind, und bilden die Grundlage für t-Statistiken, p-Werte und Konfidenzintervalle. <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> berechnet per Default klassische OLS-Standardfehler, die unter der Annahme homoskedastischer und unkorrelierter Fehlerterme effizient sind. In der empirischen Wirtschaftsforschung sind diese Annahmen jedoch häufig verletzt, weshalb robuste oder geclusterte Standardfehler verwendet werden.</p>
+<p>Für die Berechnung alternativer Standardfehler müssen wir in R auf Packages zurückgreifen. Das in <a href="#sec-fe" class="quarto-xref"><span>Kapitel 8.3</span></a> eingeführte Package <code>fixest</code> unterstützt robuste und geclusterte Standardfehler direkt in der Schätzfunktion, ohne zusätzliche Packages. Das Argument <code>vcov = ...</code> kann direkt in <code><a href="https://lrberge.github.io/fixest/reference/feols.html">feols()</a></code> oder nachträglich mit <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> gesetzt werden. Für robuste Standardfehler verwenden wir <code>vcov = "hc3"</code> (alternativ <code>"hc1"</code>/<code>"hc2"</code>, abhängig vom gewünschten Standardfehlertyp):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">wage</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">female</span>,</span>
+<span>      data <span class="op">=</span> <span class="va">wage1</span>,</span>
+<span>      vcov <span class="op">=</span> <span class="st">"hc3"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; OLS estimation, Dep. Var.: wage</span></span>
+<span><span class="co">#&gt; Observations: 526</span></span>
+<span><span class="co">#&gt; Standard-errors: HC3 </span></span>
+<span><span class="co">#&gt;              Estimate Std. Error  t value   Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept) -1.734481   0.868647 -1.99676 4.6370e-02 *  </span></span>
+<span><span class="co">#&gt; educ         0.602580   0.065005  9.26970  &lt; 2.2e-16 ***</span></span>
+<span><span class="co">#&gt; exper        0.064242   0.010113  6.35214 4.6257e-10 ***</span></span>
+<span><span class="co">#&gt; female      -2.155517   0.260249 -8.28250 1.0203e-15 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; RMSE: 3.06634   Adj. R2: 0.305334</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Geclusterte Standardfehler sind die Erweiterung robuster Standardfehler auf Situationen, in denen Beobachtungen innerhalb von Gruppen (Clustern) korreliert sind — etwa Personen innerhalb von Unternehmen, Schüler innerhalb von Schulen oder Beobachtungen innerhalb von Ländern. Klassische und HC-robuste Standardfehler unterschätzen in solchen Fällen die wahre Unsicherheit der Schätzungen.</p>
+<p>Mit <code>vcov = ~...</code> oder <code>cluster = ~...</code> geben wir in <code><a href="https://lrberge.github.io/fixest/reference/feols.html">feols()</a></code> die Cluster-Variable an:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">lwage</span> <span class="op">~</span> <span class="va">exper</span> <span class="op">|</span> <span class="va">nr</span>,</span>
+<span>      vcov <span class="op">=</span> <span class="op">~</span><span class="va">nr</span>,</span>
+<span>      data <span class="op">=</span> <span class="va">wagepan</span><span class="op">)</span></span>
+<span><span class="co">#&gt; OLS estimation, Dep. Var.: lwage</span></span>
+<span><span class="co">#&gt; Observations: 4,360</span></span>
+<span><span class="co">#&gt; Fixed-effects: nr: 545</span></span>
+<span><span class="co">#&gt; Standard-errors: Clustered (nr) </span></span>
+<span><span class="co">#&gt;       Estimate Std. Error t value  Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; exper 0.063328    0.00325 19.4871 &lt; 2.2e-16 ***</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; RMSE: 0.331889     Adj. R2: 0.556112</span></span>
+<span><span class="co">#&gt;                  Within R2: 0.160472</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um die Standardfehler in Logit- oder Probit-Modellen zu adaptieren, können wir die Modelle mit der Funktion <code><a href="https://lrberge.github.io/fixest/reference/feglm.html">feglm()</a></code> aus <code>fixest</code> schätzen und dabei die gewünschte Art der Standardfehlerberechnung spezifizieren. Alternativen zu Kalkulation von robusten oder geclusterten Standardfehler in Regressionsmodellen finden sich in den Packages <code>sandwich</code> und <code>lmtest</code>.</p>
+</section><section id="sec-kausalinferenz" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="sec-kausalinferenz">
+<span class="header-section-number">8.5</span> Kausalinferenz</h2>
+<p>Die hier behandelten Regressionsmodelle erlauben grundsätzlich nur die Schätzung von Zusammenhängen, nicht von kausalen Effekten. Die Kausalinferenz befasst sich mit der Frage, unter welchen Bedingungen und mit welchen Methoden aus Beobachtungsdaten dennoch kausale Schlüsse gezogen werden können. Dabei ist die Wahl des richtigen Forschungsdesigns von essenzieller Bedeutung.</p>
+<p>Ein umfassender Überblick über moderne Kausalinferenz-Methoden und ihre Umsetzung in R findet sich in folgenden Lehrbüchern:</p>
+<ul>
+<li>
+<strong>Causal Inference: The Mixtape</strong> von Scott Cunningham (<a href="https://mixtape.scunning.com/">Link</a>)</li>
+<li>
+<strong>The Effect</strong> von Nick Huntington-Klein (<a href="https://theeffectbook.net/">Link</a>)</li>
+</ul>
+<p>Für viele dieser Forschungsdesigns gibt es Packages zur Umsetzung in R. Ein Überblick über die relevanten R-Packages nach Methode findet sich auf <a href="https://cran.r-project.org/view=CausalInference">CRAN</a>.</p>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -690,8 +1076,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./kausalinferenz.html" class="pagination-link" aria-label="Kausalinferenz">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kausalinferenz</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tab_export.html" class="pagination-link" aria-label="Tabellen exportieren">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
