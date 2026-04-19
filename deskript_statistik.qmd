@@ -7,3 +7,138 @@ source("Rsettings.R")
 library(tidyverse)
 library(kableExtra)
 ```
+
+Die nächsten drei Kapitel geben eine kurze Einführung in ausgewählte statistische Funktionen in R, die für empirische Analysen in den Wirtschaftswissenschaften zentral sind. Im Fokus steht dabei ausschließlich die praktische Anwendung in R. Der Umfang der behandelten Funktionen und Verfahren ist jedoch sehr beschränkt. Für eine tiefergehendere Auseinandersetzung mit Ökonometrie in R siehe [Introduction to Econometrics with R](https://www.econometrics-with-r.org/) von Hanck et al.
+
+Die theoretischen Grundlagen der Verfahren sowie die inhaltliche Interpretation der Ergebnisse werden in dieser R-Einführung nicht behandelt. Hier stehen jedoch viele Lehrbücher über die Fernuni-Bibliothek oder auch online zur Verfügung. Einen guten Überblick bietet hier [](https://fub-hagen.digibib.net/search/katalog/record/(DE-605)HT020833827?be-katalog-fq=introx.access%3Aonline&be-katalog-sort=date_desc&q-al=wooldridge+econometrics&start=1&count=20&hitcount=1&pos=1) von Jeffrey Wooldridge. Im Bereich der Kausalinferenz-Methoden beinhaltet das frei verfügbare Lehrbuch [Causal Inference: The Mixtape](https://mixtape.scunning.com/) von Scott Cunningham neben theoretischen Einblicken in die unterschiedlichen Ansätze auch Anwendungsbeispiele in R.
+
+Um die statistischen Methoden in R besser kennenzulernen, verwenden wir in den meisten Fällen den Datensatz `wage1` aus dem `wooldridge`-Package. Dieser enthält Querschnittsdaten zu Löhnen, Bildung und weiteren sozioökonomischen Merkmalen von 526 Erwerbstätigen aus dem US Current Population Survey (1976):
+
+```{r}
+library(tidyverse)
+library(wooldridge)
+wage1 <- wage1 |>
+  as_tibble() |>
+  select(wage, educ, exper, female, married)
+glimpse(wage1)
+```
+
+Die wesentlichen Variablen sind der Stundenlohn (`wage` in USD), Bildungsjahre (`educ`), Berufserfahrung (`exper`) in Jahren sowie die binären Indikatoren für Geschlecht (`female`) und Familienstand (`married`).
+
+## Statistische Kennzahlen {#sec-kennzahlen}
+
+Die Funktionen für viele der wesentlichen statistischen Kennzahlen (etwa Mittelwert oder Varianz) haben wir bereits in @sec-daten-transform kennengelernt. Diese werden hier nochmal kurz wiederholt
+
+### Lagemaße
+
+Das arithmetische **Mittel** und der **Median** beschreiben die zentrale Tendenz einer Verteilung:
+
+```{r}
+mean(wage1$wage)    # Arithmetisches Mittel
+median(wage1$wage)  # Median (50. Perzentil)
+```
+
+Der Mittelwert des Stundenlohns liegt bei ca. 5,90 USD, der Median bei 4,65 USD — die rechtsschiefe Lohnverteilung lässt sich daran bereits erkennen. Quantile ermöglichen eine genauere Betrachtung der Verteilung. Mit `quantile()` können wir beliebige Perzentile berechnen:
+
+```{r}
+quantile(wage1$wage, probs = c(0.25, 0.5, 0.75))  # Quartile
+quantile(wage1$wage, probs = c(0.1, 0.9, 0.99))   # weitere Perzentile
+```
+
+### Streuungsmaße
+
+Varianz und Standardabweichung messen, wie stark die Beobachtungen um den Mittelwert streuen:
+
+```{r}
+var(wage1$wage)   # Varianz
+sd(wage1$wage)    # Standardabweichung
+```
+
+Minimum und Maximum geben den Wertebereich einer Variable an:
+
+```{r}
+min(wage1$wage)
+max(wage1$wage)
+range(wage1$wage) # Minimum und Maximum gleichzeitig
+```
+
+### Überblick mit `summary()` und `summarize()`
+
+Für einen schnellen Überblick über alle Kennzahlen bietet sich `summary()` an, das Minimum, Maximum, Quartile und Mittelwert auf einmal ausgibt:
+
+```{r}
+summary(wage1$wage)
+```
+
+Um deskriptive Statistiken für mehrere Variablen gleichzeitig und nach Gruppen getrennt zu berechnen, können wir die aus @sec-daten-transform bekannte `summarize()`-Funktion nutzen. Möchten wir etwa Mittelwert und Standardabweichung des Lohns nach Geschlecht vergleichen:
+
+```{r}
+wage1 |>
+  summarize(
+    mean_wage = mean(wage),
+    sd_wage = sd(wage),
+    n = n(),
+    .by = female
+  )
+```
+
+## Der t-Test {#sec-ttest}
+
+t-Tests prüfen, ob der Mittelwert signifikant von einem bestimmten Wert abweicht (Einstichproben-t-Test) oder ob sich zwei Gruppen in ihrem Mittelwert signifikant unterscheiden (Zweistichproben- und gepaarter t-Test). In R werden alle drei Varianten mit `t.test()` durchgeführt.
+
+### Einstichproben t-Test
+
+Mit einem Einstichproben t-Test testen wir, ob der Mitterlwert einer Variable signifikant von einem bestimmten Wert abweicht. Der mittlere Stundenlohn weicht zum Beispiel signifikant von 5 USD:
+
+```{r}
+t.test(wage1$wage, mu = 5)
+```
+### Zweistichproben t-Test
+
+Zweistichproben t-Tests untersuchen Unterschiede in den Mittelwerten zwischen Gruppen. So kann man testen, ob sich die mittleren Stundenlöhne von Frauen und Männern signifikant unterscheiden. Mit `y ~ gruppe` können wir direkt auf Variablen im Datensatz zugreifen:
+
+```{r}
+t.test(wage ~ female, data = wage1)
+```
+
+Die t-Statistik und der p-Wert deuten darauf hin, dass Frauen (`female = 1`) im Datensatz einen signifikant niedrigeren Stundenlohn erhalten als Männer.
+
+### Gepaarter t-Test
+
+Gepaarte t-Tests kommen zum Einsatz, wenn zwei Messungen an denselben Einheiten vorliegen (z.B. Vor- und Nachmessungen). Da der `wage1`-Datensatz keine solchen Paare enthält, zeigen wir die Syntax exemplarisch:
+
+```{r}
+#| eval: false
+t.test(vorher, nachher, paired = TRUE)
+```
+
+:::callout-note
+#### Einseitige vs. zweiseitige Tests
+
+Per Default führt `t.test()` einen zweiseitigen Test durch (`alternative = "two.sided"`). Mit `alternative = "greater"` bzw. `alternative = "less"` können einseitige Tests spezifiziert werden.
+:::
+
+## Korrelationen
+
+Korrelationskoeffizienten messen die Stärke und Richtung des linearen Zusammenhangs zwischen zwei metrischen Variablen. In R wird die Korrelation mit `cor()` berechnet, statistische Signifikanztests liefert `cor.test()`:
+
+```{r}
+cor(wage1$wage, wage1$educ)
+cor.test(wage1$wage, wage1$educ, method = "pearson")
+```
+
+Der Spearman-Rangkorrelationskoeffizient ist eine robuste Alternative, die keine Normalverteilung voraussetzt und auch für ordinale Variablen geeignet ist:
+
+```{r}
+cor.test(wage1$wage, wage1$educ, method = "spearman")
+```
+
+Werden mehr als zwei Variablen angegeben, ergibt sich eine Korrelationsmatrix:
+
+```{r}
+wage1 |>
+  select(wage, educ, exper) |>
+  cor()
+```
+
+

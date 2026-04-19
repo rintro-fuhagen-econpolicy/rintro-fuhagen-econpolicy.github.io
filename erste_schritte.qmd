@@ -413,7 +413,8 @@ install.packages(
     "readxl", "writexl", # Import/Export von Excel-Spreadsheets
     "haven", "labelled", # Import/Export von dta-Dateien
     "janitor", # Data Cleaning
-    "palmerpenguins" # für penguins Datensatz
+    "palmerpenguins", "wooldridge", # für penguins und wage Datensätze
+    "fixest" # Für FE-Regressionsmodelle und Standardfehlerberechnung
     )
 )
 ```

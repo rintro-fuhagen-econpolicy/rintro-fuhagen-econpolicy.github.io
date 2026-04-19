@@ -29,7 +29,6 @@ book:
       chapters:
         - deskript_statistik.qmd
         - regressionen.qmd
-        - kausalinferenz.qmd
     
     - part: "Export von Ergebnissen"
       chapters:

@@ -23,7 +23,7 @@ Der Kurs ist in folgende Teile gegliedert:
 ::: callout-note
 ## Wichtig
 
-Dieser Kurs ist derzeit noch Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.
+Dieser Kurs ist Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werden erst in naher Zukunft hinzugefügt.
 :::
 
 ## Kontakt und Feedback {.unlisted}

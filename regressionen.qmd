@@ -7,3 +7,199 @@ source("Rsettings.R")
 library(tidyverse)
 library(kableExtra)
 ```
+
+In diesem Kapitel lernen wir, wie man Regressionsmodelle in R berechnet. Wie in @sec-deskript-statistik greifen wir auf den `wage1`-Datensatz aus dem Package `wooldridge` zurück:
+
+```{r}
+library(tidyverse)
+library(wooldridge)
+wage1 <- wage1 |>
+  as_tibble() |>
+  select(wage, educ, exper, female, married)
+```
+
+Für Fixed-Effects-Modelle in @sec-fe-modelle verwenden wir außerdem den Datensatz `wagepan` aus dem selben Package, da hierfür Paneldaten benötigt werden:
+
+```{r}
+wagepan <- wagepan |>
+  as_tibble() |>
+  select(nr, year, lwage, educ, exper, married)
+glimpse(wagepan)
+```
+
+Die wesentlichen Variablen sind der logarithmierte Stundenlohn (`lwage`), Bildungsjahre (`educ`), Berufserfahrung (`exper`) in Jahren sowie einen binären Indikator für Familienstand (`married`)). Da wir hier eine Gruppe von Personen über mehrere Jahre hinweg beobachten haben wir außerdem noch einen Indikator für die Personen-ID (`nr`) sowie das Beobachtungsjahr (`year`).
+
+## OLS-Regressionsmodell
+
+### OLS-Basics
+
+Lineare Regressionsmodelle (OLS) werden in R mit der Funktion `lm()` geschätzt. Der Syntax folgt der Formelschreibweise `y ~ x1 + x2 + ...`, wobei `y` die abhängige Variable und `x1, x2, ...` die unabhängigen Variablen sind. Mit dem Argument `data = ...` wird der Datensatz angegeben.
+
+In einem OLS-Modell können wir zum Beispiel den Stundenlohn durch Bildung, Erfahrung und Geschlecht erklären:
+
+```{r}
+ols1 <- lm(wage ~ educ + exper + female, data = wage1)
+summary(ols1)
+```
+
+:::callout-note
+#### Das Modellobjekt in R
+
+`lm()` und andere Modellierungsfunktionen geben ein Modellobjekt zurück. Mit `summary()` können wir die wesentlichen Elemente zusammenfassen. Mit gezielten Extraktionsfunktionen lässt sich aber auf die einzelnen Bestandteile zugreifen:
+
+```{r}
+#| eval: false
+coef(ols1)          # Koeffizientenvektor
+residuals(ols1)     # Residuen (ein Wert pro Beobachtung)
+fitted(ols1)        # Angepasste Werte (ŷ)
+vcov(ols1)          # Varianz-Kovarianz-Matrix der Koeffizienten
+model.matrix(ols1)  # Design-Matrix X
+nobs(ols1)          # Anzahl der Beobachtungen
+```
+
+Das Modellobjekt ist außerdem die Grundlage für weiterführende Funktionen wie `predict()` (Vorhersagen für neue Daten) oder `confint()` (Konfidenzintervalle der Koeffizienten). Viele Packages wie `broom` oder `modelsummary` greifen ebenfalls auf dieses Objekt zurück, um Ergebnisse aufzubereiten.
+
+Mehrere für die Inferenz relevante Parameter (Standardfehler, t-Statistik, p-Wert) werden jedoch nicht direkt im Modellobjekt abgespeichert, sondern von `summary()` berechnet. Um auf diese Parameter explizit zugreifen zu können, verwenden wir:
+
+```{r}
+coef(summary(ols1))
+```
+
+Um z.B. nur die Standardfehler zu extrahieren, müssen wir die relevante Spalte dieser Matrix ansprechen: `coef(summary(ols1))[,"Std. Error"]` oder `coef(summary(ols1))[,2]`.
+:::
+
+### Tranformierte Variablen
+
+Oft möchten wir in unseren Modellen mit transformierten Variablen arbeiten. BDiese Transformationen müssen wir nicht zwingend vor der Modellberechnung durchführen und als eigene Variablen abspeichern, sondern können diese auch direkt innerhalb der Regressionsfunktion angeben. Möchten wir unser Ausgangsmodell so adaptieren, dass wir als abhängige Variable den logarithmierten Stundenlohn verwenden und zusätzlich einen quadratischen Erfahrungseffekt als Prädiktor inkludieren:
+
+```{r}
+ols2 <- lm(log(wage) ~ educ + exper + I(exper^2) + female, data = wage1)
+summary(ols2)
+```
+
+
+:::callout-warning
+#### `I()`-Funktion in Formeln
+
+Das erste Argument in `lm()` ist eine Formel. Da R bestimmte mathematische Operatoren (`+`, `-`, `*`, `^`) als Formeloperatoren interpretiert, muss eine Variablentransformation dieser Art innerhalb der Funktion `I()` angegeben werden, damit R diese korrekt interpretiert.
+:::
+
+### Interaktionseffekte
+
+Interaktionseffekte erlauben es, zu prüfen, ob der Effekt einer Variable von einer anderen Variable abhängt. In `lm()` werden Interaktionen mit dem `*`-Operator spezifiziert. `a * b` ist dabei eine Kurzform für `a + b + a:b` und schließt beide Haupteffekte sowie den Interaktionsterm automatisch ein:
+
+```{r}
+ols3 <- lm(wage ~ educ * exper + female, data = wage1)
+summary(ols3)
+```
+
+Auch Mehrfachinteraktionen können inkludiert werden, etwa eine Dreifachinteraktion mit `a * b * c`. Auch hier werden alle Haupteffekte sowie alle möglichen Interaktionen zwischen den einzelnen Variablen (in diesem Beispiel Zweifach- und Dreifachinteraktionen) automatisch eingeschlossen. In den seltenen Fällen, in denen man nur einen spezifischen Interaktionseffekt, aber keine anderen in das Modell aufnehmen möchte, kann man dies mit `a:b` anstelle von `a * b` spezifizieren.
+
+:::callout-tip
+#### Visualisierung von Regressionsergebnissen in ggplot
+
+Die Ergebnisse eines oder mehrere Regressionsmodelle lassen sich auch in Plots darstellen. Mehrere R-Packages wie etwa `sjPlot` (siehe [Online-Dokumentation](https://strengejacke.github.io/sjPlot/index.html)) bieten dafür fertige Funktionen. Die Visualisierung von Regressionsresultaten ist jedoch auch einfach in `ggplot2` möglich. Dazu müssen wir uns die abzubildenden Effekte zuerst aus den Modellobjekten extrahieren. Möchten wir etwa die Effekte in unserem ersten OLS-Modell inklusive einem 95% Konfidenzintervall visualisieren:
+
+```{r}
+plot.data <- tibble(
+  name = names(coef(ols1)),
+  coef = coef(ols1),
+  low95 = confint(ols1, level = 0.95)[,1],
+  high95 = confint(ols1, level = 0.95)[,2]
+) |>
+  filter(name != "(Intercept)")
+ggplot(
+  data = plot.data,
+  aes(y = name, color = name)
+) +
+  geom_point(aes(x = coef), size = 2) +
+  geom_errorbarh(aes(xmin = low95, xmax = high95), width = .2) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme_bw() + 
+  theme(legend.position = "none") +
+  labs(
+    title = "Regressionseffekte: ols1",
+    y = "",
+    x = "Effekt"
+  )
+```
+:::
+
+## Logit- und Probit-Modelle {#sec-logit-probit}
+
+Das OLS-Regressionsmodell ist das gängigste Schätzverfahren bei der Regressionsanalyse. Abhängig von der Datenlage können jedoch auch (lineare) Regressionsmodelle angebracht sein. Ist die abhängige Variable etwa binär, so werden in den Wirtschaftswissenschaften auch häufig Logit- oder Probit-Modelle verwendet. Diese werden in R über die Funktion `glm()` (*Generalized Linear Model*) geschätzt. Mit dem Argument `family = binomial(link = ...)` wird das Modell spezifiziert:
+
+```{r}
+logit  <- glm(married ~ wage + educ + exper + female,
+                  data   = wage1,
+                  family = binomial(link = "logit"))
+summary(logit)
+
+probit <- glm(married ~ wage + educ + exper + female,
+                  data   = wage1,
+                  family = binomial(link = "probit"))
+summary(probit)
+```
+
+:::callout-note
+#### Interpretation von Logit/Probit-Koeffizienten
+
+Die Koeffizienten eines Logit- oder Probit-Modells sind nicht direkt als Effekte auf die Wahrscheinlichkeit interpretierbar, sondern als Effekte auf den Log-Odds (Logit) bzw. den latenten Index (Probit). Für eine inhaltliche Interpretation werden daher oft durchschnittliche marginale Effekte (Average Marginal Effects, AME) berechnet. Das Package `marginaleffects` bietet hierfür eine passende Funktion:
+
+```{r}
+#| eval: false
+library(marginaleffects)
+avg_slopes(logit)
+```
+:::
+
+## Fixed-Effects-Modelle {#sec-fe}
+
+**Fixed-Effects-Modelle** (FE) kontrollieren für alle zeitkonstanten, unbeobachteten Eigenschaften der Einheiten (Personen, Unternehmen, Länder) und werden typischerweise für Paneldaten verwendet. In R kann das FE-Modell mit dem Package `fixest` mit der Funktion `feols()` geschätzt werden:
+
+```{r}
+library(fixest)
+fe_mod <- feols(lwage ~ exper | nr,
+                data = wagepan)
+summary(fe_mod)
+```
+
+Der Ausdruck nach `|` in der Formel gibt die Fixed-Effects-Variablen an. `fixest` unterstützt mehrere Fixed Effects (z.B. `| nr + year`), geclusterte Standardfehler sowie eine Vielzahl weiterer Modellspezifikationen. Eine ausführliche Einführung findet sich in der [fixest-Dokumentation](https://lrberge.github.io/fixest/).
+
+
+## Standardfehler {#sec-se}
+
+Die Standardfehler der Regressionskoeffizienten bestimmen, wie präzise unsere Schätzungen sind, und bilden die Grundlage für t-Statistiken, p-Werte und Konfidenzintervalle. `lm()` berechnet per Default klassische OLS-Standardfehler, die unter der Annahme homoskedastischer und unkorrelierter Fehlerterme effizient sind. In der empirischen Wirtschaftsforschung sind diese Annahmen jedoch häufig verletzt, weshalb robuste oder geclusterte Standardfehler verwendet werden.
+
+Für die Berechnung alternativer Standardfehler müssen wir in R auf Packages zurückgreifen. Das in @sec-fe eingeführte Package `fixest` unterstützt robuste und geclusterte Standardfehler direkt in der Schätzfunktion, ohne zusätzliche Packages. Das Argument `vcov = ...` kann direkt in `feols()` oder nachträglich mit `summary()` gesetzt werden. Für robuste Standardfehler verwenden wir `vcov = "hc3"` (alternativ `"hc1"`/`"hc2"`, abhängig vom gewünschten Standardfehlertyp):
+
+```{r}
+feols(wage ~ educ + exper + female,
+      data = wage1,
+      vcov = "hc3")
+```
+
+Geclusterte Standardfehler sind die Erweiterung robuster Standardfehler auf Situationen, in denen Beobachtungen innerhalb von Gruppen (Clustern) korreliert sind — etwa Personen innerhalb von Unternehmen, Schüler innerhalb von Schulen oder Beobachtungen innerhalb von Ländern. Klassische und HC-robuste Standardfehler unterschätzen in solchen Fällen die wahre Unsicherheit der Schätzungen.
+
+Mit `vcov = ~...` oder `cluster = ~...` geben wir in `feols()` die Cluster-Variable an:
+
+```{r}
+feols(lwage ~ exper | nr,
+      vcov = ~nr,
+      data = wagepan)
+```
+
+Um die Standardfehler in Logit- oder Probit-Modellen zu adaptieren, können wir die Modelle mit der Funktion `feglm()` aus `fixest` schätzen und dabei die gewünschte Art der Standardfehlerberechnung spezifizieren. Alternativen zu Kalkulation von robusten oder geclusterten Standardfehler in Regressionsmodellen finden sich in den Packages `sandwich` und `lmtest`.
+
+## Kausalinferenz {#sec-kausalinferenz}
+
+Die hier behandelten Regressionsmodelle erlauben grundsätzlich nur die Schätzung von Zusammenhängen, nicht von kausalen Effekten. Die Kausalinferenz befasst sich mit der Frage, unter welchen Bedingungen und mit welchen Methoden aus Beobachtungsdaten dennoch kausale Schlüsse gezogen werden können. Dabei ist die Wahl des richtigen Forschungsdesigns von essenzieller Bedeutung.
+
+Ein umfassender Überblick über moderne Kausalinferenz-Methoden und ihre Umsetzung in R findet sich in folgenden Lehrbüchern:
+
+- **Causal Inference: The Mixtape** von Scott Cunningham ([Link](https://mixtape.scunning.com/))
+- **The Effect** von Nick Huntington-Klein ([Link](https://theeffectbook.net/))
+
+Für viele dieser Forschungsdesigns gibt es Packages zur Umsetzung in R. Ein Überblick über die relevanten R-Packages nach Methode findet sich auf [CRAN](https://cran.r-project.org/view=CausalInference).
+
+
