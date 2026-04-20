@@ -414,7 +414,8 @@ install.packages(
     "haven", "labelled", # Import/Export von dta-Dateien
     "janitor", # Data Cleaning
     "palmerpenguins", "wooldridge", # für penguins und wage Datensätze
-    "fixest" # Für FE-Regressionsmodelle und Standardfehlerberechnung
+    "fixest", # für FE-Regressionsmodelle und Standardfehlerberechnung
+    "kableExtra", "flextable", "modelsummary" # für Export von Tabellen
     )
 )
 ```

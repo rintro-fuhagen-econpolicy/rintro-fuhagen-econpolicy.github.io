@@ -29,7 +29,7 @@ glimpse(wagepan)
 
 Die wesentlichen Variablen sind der logarithmierte Stundenlohn (`lwage`), Bildungsjahre (`educ`), Berufserfahrung (`exper`) in Jahren sowie einen binären Indikator für Familienstand (`married`)). Da wir hier eine Gruppe von Personen über mehrere Jahre hinweg beobachten haben wir außerdem noch einen Indikator für die Personen-ID (`nr`) sowie das Beobachtungsjahr (`year`).
 
-## OLS-Regressionsmodell
+## OLS-Regressionsmodell {#sec-ols-reg}
 
 ### OLS-Basics
 
@@ -101,6 +101,9 @@ Auch Mehrfachinteraktionen können inkludiert werden, etwa eine Dreifachinterakt
 Die Ergebnisse eines oder mehrere Regressionsmodelle lassen sich auch in Plots darstellen. Mehrere R-Packages wie etwa `sjPlot` (siehe [Online-Dokumentation](https://strengejacke.github.io/sjPlot/index.html)) bieten dafür fertige Funktionen. Die Visualisierung von Regressionsresultaten ist jedoch auch einfach in `ggplot2` möglich. Dazu müssen wir uns die abzubildenden Effekte zuerst aus den Modellobjekten extrahieren. Möchten wir etwa die Effekte in unserem ersten OLS-Modell inklusive einem 95% Konfidenzintervall visualisieren:
 
 ```{r}
+#| label: fig-ggplot-regresults
+#| fig-cap: "Regressionsergebnisse in ggplot"
+#| fig-alt: "Mit ggplot erzeugte Visualisierung der Effekte aus dem Modell ols1 (ohne Intercept). Zusätzlich zum Effekt wird auch noch das 95%-Konfidenzintervall angezeigt."
 plot.data <- tibble(
   name = names(coef(ols1)),
   coef = coef(ols1),
@@ -175,8 +178,8 @@ Für die Berechnung alternativer Standardfehler müssen wir in R auf Packages zu
 
 ```{r}
 feols(wage ~ educ + exper + female,
-      data = wage1,
-      vcov = "hc3")
+      vcov = "hc3",
+      data = wage1)
 ```
 
 Geclusterte Standardfehler sind die Erweiterung robuster Standardfehler auf Situationen, in denen Beobachtungen innerhalb von Gruppen (Clustern) korreliert sind — etwa Personen innerhalb von Unternehmen, Schüler innerhalb von Schulen oder Beobachtungen innerhalb von Ländern. Klassische und HC-robuste Standardfehler unterschätzen in solchen Fällen die wahre Unsicherheit der Schätzungen.

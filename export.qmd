@@ -1,0 +1,326 @@
+# Ergebnisse exportieren {#sec-export}
+
+```{r}
+#| echo: false
+source("Rsettings.R")
+
+library(tidyverse)
+library(kableExtra)
+```
+
+Der Export von Tabellen und Grafiken ist ein zentraler Schritt im Forschungsprozess. Ergebnisse müssen nicht nur korrekt berechnet, sondern auch ansprechend und reproduzierbar aufbereitet werden — sei es für eine Abschlussarbeit oder eine Präsentation. Anstatt Ergebnisse manuell zu kopieren und in Textverarbeitungsprogramme einzufügen, bietet R zahlreiche Funktionen und Pakete, um Outputs direkt in gängigen Formaten zu speichern. Dieser automatisierte Ansatz ist nicht nur zeitsparend, sondern vor allem entscheidend für die Reproduzierbarkeit wissenschaftlicher Analysen: Jeder Schritt bleibt im Code dokumentiert und kann jederzeit nachvollzogen oder mit neuen Daten rasch erneut ausgeführt werden. Manuelles Kopieren hingegen ist fehleranfällig, schwer überprüfbar und erschwert die transparente Weitergabe von Ergebnissen.
+
+In diesem Kapitel lernen wir, wie wir Tabellen und `ggplot`-Grafiken aus R in unterschiedliche Formate exportieren können. Für die Beispiele verwenden wir erneut den `wage1`-Datensatz aus dem `wooldridge`-Package:
+
+```{r}
+library(tidyverse)
+library(wooldridge)
+wage1 <- wage1 |>
+  as_tibble() |>
+  select(wage, educ, exper, female)
+```
+
+## Tabellen exportieren {#sec-tab-export}
+
+Tabellen lassen sich in R auf verschiedene Arten exportieren, wobei die Wahl des Packages vor allem vom gewünschten Output-Format abhängt. In vielen Fällen müssen wir uns die gewünschten Informationen zuerst selbst in R aufbereiten und als `data.frame` oder `tibble` Objekt speichern. Als Beispiel erstellen wir eine deskriptive Tabelle, in der wir Mittelwert und Standardabweichung von Lohn und Bildung sowohl für den ganzen Datensatz als auch nach Geschlecht darstellen:
+
+```{r}
+overall <- wage1 |>
+  select(wage, educ) |>
+  pivot_longer(cols = everything(), names_to = "variable") |>
+  summarise(
+    mean.insg = mean(value, na.rm = T),
+    sd.insg = sd(value, na.rm = T),
+    .by = variable
+  )
+
+bysex <- wage1 |>
+  select(wage, educ, female) |>
+  pivot_longer(cols = -female, names_to = "variable") |>
+  summarise(
+    mean = mean(value, na.rm = T),
+    sd = sd(value, na.rm = T),
+    .by = c(variable, female)
+  ) |>
+  pivot_wider(values_from = c(mean, sd), names_from = female) |>
+  select(variable, ends_with("_1"), ends_with("_0"))
+
+tbl <- left_join(overall, bysex)
+rm(overall, bysex)
+tbl
+```
+
+Das Objekt `tbl` enthält alle notwendigen Informationen, ist jedoch nicht ansprechend formatiert. Auf dieser Basis werden wir nun die folgende Tabelle exportieren:
+
+```{r}
+tbl |>
+  mutate(variable = c("Stundenlohn (USD)", "Bildungsjahre")) |>
+  kable(
+    col.names = c(" ", rep(c("MW", "SD"), 3)),
+    digits = 2,
+    caption = "Lohn und Bildung im wage1-Datensatz",
+    label = "tbl-desc-wage1",
+    align = c("l", rep("c", 6))
+  ) |>
+  add_header_above(
+    c(" ", "Insgesamt" = 2, "Frauen" = 2, "Männer" = 2),
+    bold = T
+  ) |>
+  row_spec(0, italic = T) |>
+  kable_classic() |>
+  footnote(
+    general = "MW = Mittelwert, SD = Standardabweichung.",
+    general_title = "Anm.:",
+    footnote_as_chunk = T
+  )
+```
+
+### Tabellen nach LaTeX
+
+Für den Export nach LaTeX nutzen wir das Package `kableExtra`, welches eine Vielzahl an Formatierungsoptionen bietet. Dazu zählen die Unterstützung für `booktabs`-Linien, die in wissenschaftlichen Papers übliche und typografisch empfohlene Tabellenformatierung, sowie für mehrspaltige Zellen, Fußnoten und Landscape-Tabellen. `kableExtra` ermöglicht außerdem den Export nach HTML. Für einen Überblick siehe [hier](https://haozhu233.github.io/kableExtra/).
+
+Um unser `tbl`-Objekt wie in @tab-desc-wage1 zu exportieren, verwenden wir die Funktion `kbl()` um eine Tabelle zu erstellen. Die wichtigsten Argument in `kbl()` sind in @tbl-kbl-args angeführt:
+
+```{r}
+#| label: tbl-kbl-args
+#| tbl-cap: "Übersicht: Relevante Argumente in kbl()"
+#| echo: false
+
+tibble(
+  Argument     = c("caption", "label", "col.names", "row.names", "align",
+                   "digits", "format", "booktabs", "escape", "longtable"),
+  Beschreibung = c(
+    "Tabellenüberschrift",
+    "LaTeX-Label für Querverweise",
+    "Spaltenbezeichnungen",
+    "Zeilennamen anzeigen",
+    "Spaltenausrichtung (l, c, r)",
+    "Nachkommastellen",
+    "Output-Format erzwingen",
+    "Booktabs-Linien für LaTeX",
+    "LaTeX-Sonderzeichen escapen",
+    "Mehrseitige Tabellen in LaTeX"
+  ),
+  Beispiel     = c(
+    'caption = "Deskriptive Statistiken"',
+    'label = "desc:wage1"',
+    'col.names = c("Variable", "Mean")',
+    'row.names = FALSE',
+    'align = c("l", "c", "r")',
+    'digits = 2',
+    'format = "latex"',
+    'booktabs = TRUE',
+    'escape = FALSE',
+    'longtable = TRUE'
+  )
+) |>
+  kbl(
+    col.names = c("Argument", "Bedeutung", "Beispiel"),
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
+
+Um die gewünschten Formatierungen zu erreichen, wenden wir noch andere Funktionen aus dem `kableExtra` Package an: Mit `add_header_above()` fügen wir gruppierte Spalten hinzu, `row_spec()` adaptiert die Formatierung einer Zeile und `footnote()` spezifiziert die Fußnote der Tabelle. Für Erklärungen zu diesen und vielen weiteren Optionen bei der Erstellung von LaTeX-Tabellen mit `kableExtra` siehe die [Online-Dokumentation](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf) des Packages. Mit `save_kable("<DATEIPFAD>")` speichern wir schlussendlich die Tabelle ab. LaTeX-Tabellen werden als `.tex`-Dateien gespeichert.
+
+```{r}
+#| eval: false
+library("kableExtra")
+tbl |>
+  mutate(variable = c("Stundenlohn (USD)", "Bildungsjahre")) |>
+  kbl(
+    caption = "Lohn und Bildung im wage1-Datensatz",
+    label = "desc:wage1",
+    col.names = c(" ", rep(c("MW", "SD"), 3)),
+    align = c("l", rep("c", 6)),
+    digits = 2,
+    format = "latex",
+    booktabs = T
+  ) |>
+  add_header_above(
+    c(" ", "Insgesamt" = 2, "Frauen" = 2, "Männer" = 2),
+    bold = T
+  ) |>
+  row_spec(0, italic = T) |>
+  footnote(
+    general = "MW = Mittelwert, SD = Standardabweichung.",
+    general_title = "Anm.:",
+    footnote_as_chunk = T
+  ) |>
+  save_kable("Tabellen/desc_wage1.tex")
+```
+
+### Tabellen nach Word
+
+Während `kableExtra` sehr gute Unterstützung bei der Erstellung von LaTeX- und HTML-Tabellen bietet, ist die Nutzung dieses Packages für Word-Tabellen umständlich. Tabellen müssen hier zuerst als HTML formatiert werden und können dann nach Word kopiert werden (siehe [hier](https://haozhu233.github.io/kableExtra/kableExtra_and_word.html)). Stattdessen verwenden wir das Package `flextable`. `flextable` folgt einer ähnlichen Pipe-basierten Logik wie `kableExtra` und lässt sich daher gut in bestehende `tidyverse`-Workflows integrieren.
+
+Mit der Funktion `flextable()` erstellen wir eine Tabelle aus unserem `tibble` Objekt. Anschließend wenden wir verschiedene Funktionen aus dem `flextable` Package an, um die gewünschte Formatierung zu erhalten. Für Details siehe die die [Online-Dokumentation](https://ardata-fr.github.io/flextable-book/index.html) des Packages. Anschließend exportieren wir die Tabelle mit `save_as_docx(path = <DATEIPFAD>)`:
+
+```{r}
+#| eval: false
+
+library(flextable)
+
+tbl |>
+  mutate(variable = c("Stundenlohn (USD)", "Bildungsjahre")) |>
+  flextable() |>
+  # Spaltenbezeichnungen
+  set_header_labels(
+    variable   = " ",
+    mean.insg  = "MW",
+    sd.insg    = "SD",
+    mean_1     = "MW",
+    sd_1       = "SD",
+    mean_0     = "MW",
+    sd_0       = "SD"
+  ) |>
+  # Gruppierende Kopfzeile
+  add_header_row(
+    values  = c(" ", "Insgesamt", "Frauen", "Männer"),
+    colwidths = c(1, 2, 2, 2)
+  ) |>
+  # Kopfzeile formatieren
+  bold(part = "header", i = 1) |>
+  italic(part = "header", i = 2) |>
+  # Zahlen runden
+  colformat_double(digits = 2) |>
+  # Spaltenausrichtung
+  align(j = 1, align = "left", part = "all") |>
+  align(j = 2:7, align = "center", part = "all") |>
+  # Fußnote
+  add_footer_lines("Anm.: MW = Mittelwert, SD = Standardabweichung.") |>
+  italic(part = "footer") |>
+  # Caption
+  set_caption("Lohn und Bildung im wage1-Datensatz") |>
+  autofit() |>
+  # Export
+  save_as_docx(path = "Tabellen/desc_wage1.docx")
+```
+
+Neben dem Export von Tabellen als Word-Datei unterstützt `flextable` außerdem den Export als RTF-Datei (`save_as_rtf()`) oder Powerpoint-Datei (`save_as_pptx()`).
+
+### Regressionstabellen
+
+Um Ergebnisse von Regressionen nicht mühsam selbst als Tabelle formatieren zu müssen, stehen in R mehrere Packages zur Verfügung, die die Aufbereitung der Ergebnisse für uns vornehmen. In dieser Einführung verwenden wir das Package `modelsummary`, welches eine Vielzahl von Modellen unterstützt. Die mit `modelsummary` erstellten Tabellen sind außerdem mit den Funktionen von `kableExtra` und `flextable` adaptierbar.
+
+Um die Verwendung von `modelsummary` zu illustrieren, verwenden wir die Regressionsmodelle aus @sec-ols-reg:
+
+```{r}
+ols1 <- lm(wage ~ educ + exper + female, data = wage1)
+ols2 <- lm(log(wage) ~ educ + exper + I(exper^2) + female, data = wage1)
+ols3 <- lm(wage ~ educ * exper + female, data = wage1)
+```
+
+Mit `modelsummary()` können wir die Ergebnisse aller drei OLS-Modelle in einer Tabelle zusammenfassen:
+
+```{r}
+#| label: tbl-reg-ols
+#| caption: "OLS-Regressionstabelle mit modelsummary()"
+
+library(modelsummary)
+
+modelsummary(
+  models = list(
+    "Modell 1" = ols1,
+    "Modell 2" = ols2,
+    "Modell 3" = ols3
+  ),
+  estimate = "{estimate} {stars}",
+  statistic = "({std.error})",
+  stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  vcov = "HC3",
+  coef_map = c(
+    "educ" = "Bildungsjahre",
+    "exper" = "Berufserfahrung",
+    "tenure" = "Betriebszugehörigkeit",
+    "female" = "Weiblich",
+    "I(exper^2)" = "Berufserfahrung (quadr.)",
+    "educ:exper" = "Bildung × Berufserfahrung"
+  ),
+  gof_map = tibble(
+    raw = c("nobs", "r.squared", "adj.r.squared"),
+    clean = c("Beobachtungen", "R²", "Adj. R²"),
+    fmt = c(0, 3, 3)
+  ),
+  notes = "Robuste Standardfehler in Klammern. * p < 0.1, ** p < 0.05, *** p < 0.01"
+)
+```
+
+Mit dem Argument `output = "<DATEIPFAD>"` in `modelsummary()` können wir diese Tabelle etwa als Word- oder LaTeX-Datei abspeichern. Für mehr Informationen, siehe die [Online-Dokumentation](https://modelsummary.com/) des Packages oder `?modelsummary`.
+
+:::callout-tip
+#### Weitere Möglichkeiten im `modelsummary` Package
+
+Zusätzlich zur Erstellung von Regressionstabellen beinhaltet `modelsummary` auch Funktionen zum Erstellen von Tabellen mit deskriptiven Statistiken (`datasummary()`) sowie von Modellplots (`modelplot()`). Für weitere Informationen, siehe die [Online-Dokumentation](https://modelsummary.com/).
+:::
+
+## Grafiken exportieren {#sec-fig-export}
+
+Das Exportieren von Grafiken ist in `ggplot2` denkbar einfach: Die Funktion `ggsave()` speichert einen Plot direkt aus R in eine Datei, ohne dass das Grafik-Fenster in RStudio verwendet werden muss. Das hat den entscheidenden Vorteil, dass Größe, Auflösung und Format vollständig im Code festgelegt werden und der Export damit reproduzierbar ist — ein manuelles Speichern über das RStudio-Interface würde bei jedem Export potenziell zu leicht abweichenden Ergebnissen führen. `ggsave()` speichert per Default den zuletzt erstellten Plot. Über das Argument `plot = ...` kann aber auch ein gespeichertes Plot-Objekt übergeben werden, was bei der Arbeit mit mehreren Grafiken empfehlenswert ist:
+
+```{r}
+#| eval: false
+
+p <- ggplot(
+  data = wage1,
+  aes(x = educ, y = wage, color = factor(female, labels = c("Männer", "Frauen")))
+) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm") +
+  labs(
+    x     = "Bildungsjahre",
+    y     = "Stundenlohn (USD)",
+    color = NULL
+  ) +
+  theme_bw()
+
+ggsave(
+  filename = "grafik_lohn_bildung.png",
+  plot = p,
+  width = 18,
+  height = 12,
+  units = "cm",
+  dpi = 300
+)
+```
+
+@tbl-ggsave-args gibt einen Überblick über die wichtigsten Argumente in `ggsave()`:
+
+```{r}
+#| echo: false
+
+tibble(
+  Argument = c("filename", "plot", "width, height", "units", "dpi", "scale", "bg"
+  ),
+  Beschreibung = c(
+    "Dateipfad inkl. Endung — bestimmt das Format",
+    "Das zu speichernde Plot-Objekt (Default: letzter Plot)",
+    "Breite und Höhe der Grafik",
+    'Einheit: "cm", "mm", "in", "px"',
+    "Auflösung (relevant für PNG/JPEG, nicht für PDF/SVG)",
+    "Skalierungsfaktor für Grafik inkl. Text und Elemente",
+    'Hintergrundfarbe (Default: "white")'
+  )
+) |>
+  kbl(
+    col.names = c("Argument", "Bedeutung"),
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
+
+:::callout-tip
+#### Wahl des Dateityps in `ggsave()`
+
+Die Wahl des Dateiformats hängt vom Verwendungszweck ab. Grundsätzlich unterscheiden wir zwischen *Vektorgrafiken*, die verlustfrei skalierbar sind und deren Dateiendung im `filename`-Argument automatisch das Format bestimmt, und *Rastergrafiken*, die aus einer fixen Pixelmatrix bestehen:
+
+- *PDF*: Vektorgrafik — die erste Wahl für LaTeX-Dokumente und wissenschaftliche Paper, da sie in beliebiger Größe scharf bleibt und von den meisten LaTeX-Distributionen direkt eingebunden werden kann.
+- *SVG*: Vektorgrafik für Webseiten sowie zur Weiterbearbeitung in Vektorgrafik-Programmen wie Inkscape oder Adobe Illustrator.
+- *PNG*: Rastergrafik mit Transparenz-Unterstützung — gut geeignet für Word-Dokumente, Präsentationen und Webseiten. Mit `dpi = 300` für Druckqualität.
+- *JPEG*: Rastergrafik ohne Transparenz — für Datenvisualisierungen wegen der verlustbehafteten Komprimierung meist weniger empfehlenswert.
+:::
+

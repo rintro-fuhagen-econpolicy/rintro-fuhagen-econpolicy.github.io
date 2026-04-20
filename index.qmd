@@ -17,7 +17,7 @@ Der Kurs ist in folgende Teile gegliedert:
 -  **Datenaufbereitung**: Daten importieren, aufbereiten und exportieren
 -  **Visualisierung**: Grafiken erstellen
 -  **Statistik in R**: Deskriptive Statistiken und Regressionsmodelle
--  **Export von Ergebnissen**: Export von Grafiken und Tabellen
+-  **Ergebnisexport und Berichte**: Export von Tabellen und Grafiken, Berichte mit *quarto* und *RMarkdown*
 -  **Weitere Themen**: Loops, Funktionen und KI-Unterstützung
 
 ::: callout-note

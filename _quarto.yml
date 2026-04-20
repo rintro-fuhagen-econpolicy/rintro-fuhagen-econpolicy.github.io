@@ -30,10 +30,9 @@ book:
         - deskript_statistik.qmd
         - regressionen.qmd
     
-    - part: "Export von Ergebnissen"
+    - part: "Ergebnisexportierung und Berichte"
       chapters:
-        - tab_export.qmd
-        - fig_export.qmd
+        - export.qmd
         - reports.qmd
     
     - part: "Weitere Themen"
