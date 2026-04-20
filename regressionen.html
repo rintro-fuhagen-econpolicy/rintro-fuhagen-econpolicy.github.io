@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tab_export.html" rel="next">
+<link href="./export.html" rel="next">
 <link href="./deskript_statistik.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Export von Ergebnissen</span></a>
+ <span class="menu-text">Ergebnisexportierung und Berichte</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -241,20 +241,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tab_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fig_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Grafiken exportieren</span></span></a>
+  <a href="./export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -271,13 +265,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ki.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#ols-regressionsmodell" id="toc-ols-regressionsmodell" class="nav-link active" data-scroll-target="#ols-regressionsmodell"><span class="header-section-number">8.1</span> OLS-Regressionsmodell</a>
+<a href="#sec-ols-reg" id="toc-sec-ols-reg" class="nav-link active" data-scroll-target="#sec-ols-reg"><span class="header-section-number">8.1</span> OLS-Regressionsmodell</a>
   <ul class="collapse">
 <li><a href="#ols-basics" id="toc-ols-basics" class="nav-link" data-scroll-target="#ols-basics"><span class="header-section-number">8.1.1</span> OLS-Basics</a></li>
   <li><a href="#tranformierte-variablen" id="toc-tranformierte-variablen" class="nav-link" data-scroll-target="#tranformierte-variablen"><span class="header-section-number">8.1.2</span> Tranformierte Variablen</a></li>
@@ -350,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">#&gt; $ married &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,…</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die wesentlichen Variablen sind der logarithmierte Stundenlohn (<code>lwage</code>), Bildungsjahre (<code>educ</code>), Berufserfahrung (<code>exper</code>) in Jahren sowie einen binären Indikator für Familienstand (<code>married</code>)). Da wir hier eine Gruppe von Personen über mehrere Jahre hinweg beobachten haben wir außerdem noch einen Indikator für die Personen-ID (<code>nr</code>) sowie das Beobachtungsjahr (<code>year</code>).</p>
-<section id="ols-regressionsmodell" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="ols-regressionsmodell">
+<section id="sec-ols-reg" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="sec-ols-reg">
 <span class="header-section-number">8.1</span> OLS-Regressionsmodell</h2>
 <section id="ols-basics" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="ols-basics">
 <span class="header-section-number">8.1.1</span> OLS-Basics</h3>
@@ -517,9 +511,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    x <span class="op">=</span> <span class="st">"Effekt"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="regressionen_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div id="fig-ggplot-regresults" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Mit ggplot erzeugte Visualisierung der Effekte aus dem Modell ols1 (ohne Intercept). Zusätzlich zum Effekt wird auch noch das 95%-Konfidenzintervall angezeigt.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot-regresults-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="regressionen_files/figure-html/fig-ggplot-regresults-1.png" class="img-fluid figure-img" alt="Mit ggplot erzeugte Visualisierung der Effekte aus dem Modell ols1 (ohne Intercept). Zusätzlich zum Effekt wird auch noch das 95%-Konfidenzintervall angezeigt." width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot-regresults-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;8.1: Regressionsergebnisse in ggplot
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -626,8 +624,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Für die Berechnung alternativer Standardfehler müssen wir in R auf Packages zurückgreifen. Das in <a href="#sec-fe" class="quarto-xref"><span>Kapitel 8.3</span></a> eingeführte Package <code>fixest</code> unterstützt robuste und geclusterte Standardfehler direkt in der Schätzfunktion, ohne zusätzliche Packages. Das Argument <code>vcov = ...</code> kann direkt in <code><a href="https://lrberge.github.io/fixest/reference/feols.html">feols()</a></code> oder nachträglich mit <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> gesetzt werden. Für robuste Standardfehler verwenden wir <code>vcov = "hc3"</code> (alternativ <code>"hc1"</code>/<code>"hc2"</code>, abhängig vom gewünschten Standardfehlertyp):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">wage</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">female</span>,</span>
-<span>      data <span class="op">=</span> <span class="va">wage1</span>,</span>
-<span>      vcov <span class="op">=</span> <span class="st">"hc3"</span><span class="op">)</span></span>
+<span>      vcov <span class="op">=</span> <span class="st">"hc3"</span>,</span>
+<span>      data <span class="op">=</span> <span class="va">wage1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; OLS estimation, Dep. Var.: wage</span></span>
 <span><span class="co">#&gt; Observations: 526</span></span>
 <span><span class="co">#&gt; Standard-errors: HC3 </span></span>
@@ -1076,8 +1074,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./tab_export.html" class="pagination-link" aria-label="Tabellen exportieren">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./export.html" class="pagination-link" aria-label="Ergebnisse exportieren">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
