@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -230,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -251,8 +286,15 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li><a href="#sec-ki-datenschutz" id="toc-sec-ki-datenschutz" class="nav-link active" data-scroll-target="#sec-ki-datenschutz"><span class="header-section-number">12.1</span> Datenschutz und verantwortungsvoller Umgang</a></li>
+  <li><a href="#sec-ki-chat" id="toc-sec-ki-chat" class="nav-link" data-scroll-target="#sec-ki-chat"><span class="header-section-number">12.2</span> Chat-basierte KI-Assistenten</a></li>
+  <li><a href="#sec-copilot" id="toc-sec-copilot" class="nav-link" data-scroll-target="#sec-copilot"><span class="header-section-number">12.3</span> GitHub Copilot in RStudio</a></li>
+  <li><a href="#sec-chattr" id="toc-sec-chattr" class="nav-link" data-scroll-target="#sec-chattr"><span class="header-section-number">12.4</span> Das <code>chattr</code>-Package</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_funktionen.html">Weitere Themen</a></li><li class="breadcrumb-item"><a href="./ki.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></a></li></ol></nav><div class="quarto-title">
@@ -270,10 +312,97 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Die rapide Entwicklung von KI-Assistenten hat die Art und Weise, wie Code geschrieben wird, grundlegend verändert. Große Sprachmodelle wie ChatGPT oder Claude können R-Code generieren, erklären und debuggen - und das oft mit beeindruckender Qualität. Es stellt sich daher die berechtigte Frage, warum es überhaupt noch notwendig ist, R selbst zu erlernen.</p>
+<p>Die Antwort liegt in der Natur von KI-generierten Lösungen: KI-Assistenten produzieren plausibler klingenden Code, der jedoch nicht immer korrekt ist. Ohne ein grundlegendes Verständnis von R-Syntax, Datenstrukturen und den verwendeten Packages ist es schwer möglich, Fehler im generierten Code zu erkennen, Ergebnisse kritisch zu hinterfragen oder KI-Vorschläge sinnvoll an die eigene Problemstellung anzupassen. KI ist daher am nützlichsten als Werkzeug für jene, die bereits über solide Grundkenntnisse verfügen - sie beschleunigt und unterstützt die Arbeit, ersetzt aber kein eigenes Verständnis. Die in diesem Kurs erlernten Grundlagen sind damit nicht weniger relevant geworden, sondern die Voraussetzung dafür, KI-Assistenten effektiv und kritisch einzusetzen.</p>
+<section id="sec-ki-datenschutz" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="sec-ki-datenschutz">
+<span class="header-section-number">12.1</span> Datenschutz und verantwortungsvoller Umgang</h2>
+<p>Der Einsatz von KI-Assistenten in der Datenanalyse wirft wichtige Datenschutzfragen auf, die vor allem im wissenschaftlichen und professionellen Kontext nicht ignoriert werden dürfen. Bei der Nutzung von chat-basierten Assistenten wie ChatGPT oder Claude über den Browser werden alle eingegebenen Inhalte — also auch Code und Daten — an die Server der jeweiligen Anbieter übertragen und dort verarbeitet. Je nach Anbieter und gewähltem Tarif können diese Eingaben zudem für das weitere Training der Modelle verwendet werden.</p>
+<p>Das bedeutet konkret: <strong>Datensätze mit personenbezogenen oder anderweitig sensiblen Daten sollten niemals direkt in einen chat-basierten KI-Assistenten eingefügt werden.</strong> Das betrifft etwa Umfragedaten mit identifizierbaren Personen, Unternehmensdaten unter Geheimhaltungspflicht, Gesundheits- oder Einkommensdaten sowie alle Daten, die unter die DSGVO oder andere Datenschutzregelungen fallen. Ein versehentliches Einfügen von Rohdaten in ein Chat-Fenster kann dabei nicht rückgängig gemacht werden.</p>
+<p>Für die praktische Arbeit empfehlen sich folgende Vorsichtsmaßnahmen:</p>
+<ul>
+<li><p><em>Nur Struktur, keine Daten teilen</em>: Statt echte Daten einzufügen, reicht es in den meisten Fällen, die Struktur des Datensatzes zu beschreiben (Variablen und Variablentyp).</p></li>
+<li><p><em>Synthetische Beispieldaten verwenden</em>: Für Code-Fragen können Beispieldaten erstellt werden, die dieselbe Struktur wie die echten Daten haben, aber keine realen Werte enthalten:</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Synthetischer Beispieldatensatz mit gleicher Struktur</span></span>
+<span><span class="va">beispiel</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="op">(</span></span>
+<span>  id     <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span>
+<span>  alter  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">45</span>, <span class="fl">28</span>, <span class="fl">52</span>, <span class="fl">39</span><span class="op">)</span>,</span>
+<span>  gruppe <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>
+<em>Unternehmens- und Hochschulrichtlinien beachten</em>: Viele Unternehmen und Forschungseinrichtungen haben eigene Richtlinien zum Einsatz von KI-Tools. Im Zweifel immer vorab klären, welche Tools für welche Daten zugelassen sind.</li>
+<li>
+<em>API-Nutzung und Datenschutzeinstellungen prüfen</em>: Bei der Nutzung über die API (etwa über das <code>chattr</code>-Package) gelten gesonderte Datenschutzbestimmungen, die sich von den Browser-Versionen unterscheiden können. Anthropic und OpenAI bieten etwa für API-Nutzer standardmäßig an, Eingaben nicht für das Modelltraining zu verwenden — die genauen Bedingungen sollten jedoch immer in den aktuellen Nutzungsbedingungen nachgelesen werden.</li>
+</ul>
+<div class="callout callout-style-simple callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warnung</span>Sensible Daten und KI-Tools
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Nutzung von KI-Assistenten mit sensiblen Daten kann nicht nur datenschutzrechtliche Konsequenzen haben, sondern auch gegen Forschungsethik-Richtlinien oder Vertraulichkeitsvereinbarungen verstoßen.</p>
+</div>
+</div>
+</section><section id="sec-ki-chat" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="sec-ki-chat">
+<span class="header-section-number">12.2</span> Chat-basierte KI-Assistenten</h2>
+<p>Die einfachste Möglichkeit, KI für die R-Programmierung zu nutzen, sind chat-basierte Assistenten, die über den Browser zugänglich sind. Die bekanntesten sind <em>ChatGPT</em> (OpenAI, <a href="https://chatgpt.com">chatgpt.com</a>) und <em>Claude</em> (Anthropic, <a href="https://claude.ai">claude.ai</a>). Für Coding-Aufgaben ist <em>Claude</em> derzeit die empfehlenswertere Wahl: Das Modell produziert in der Regel saubereren, besser kommentierten Code, hält sich enger an tidyverse-Konventionen und gibt häufiger explizite Hinweise, wenn eine Anfrage zu unspezifisch ist oder mehrere Lösungsansätze möglich sind. Beide Assistenten sind in einer kostenlosen Basisversion verfügbar, die für vielen Coding-Aufgaben ausreichend ist.</p>
+<p>Zu den US-amerikanischen KI-Unternehmen kann <em>Mistral</em> (<a href="https://mistral.ai">mistral.ai</a>) eine interessante Alternative sein. Mistral ist ein französisches KI-Unternehmen, dessen Modelle auf europäischen Servern betrieben werden und damit der DSGVO unterliegen — ein relevanter Vorteil gegenüber US-amerikanischen Anbietern, wenn datenschutzrechtliche Anforderungen eine Rolle spielen. Über <a href="https://chat.mistral.ai">le Chat</a> steht eine kostenlose Chat-Oberfläche zur Verfügung. Die Coding-Qualität von Mistral ist kompetitiv mit ChatGPT und Claude.</p>
+<p>Für Fernuni-Studierende haben über <a href="https://chat.kiconnect.nrw/app">KI:connect.nrw</a> Zugang zu fortgeschritteneren Modellen von OpenAI, Llama und Mistral. Der Log-In läuft dabei über die Single-Sign-On-Seite der Fernuni. Für mehr Informationen, siehe <a href="https://www.fernuni-hagen.de/zli/produkte/weitere-tools/ki-connect-nrw.shtml">hier</a>.</p>
+<p>Ein paar Hinweise für die effektive Nutzung von Chat-Assistenten für R:</p>
+<ul>
+<li>
+<em>Kontext mitliefern</em>: Je mehr Informationen über den Datensatz, die verwendeten Packages und das gewünschte Ergebnis angegeben werden, desto präziser ist die Antwort. Fehlermeldungen immer vollständig kopieren.</li>
+<li>
+<em>Iterativ arbeiten</em>: KI-Assistenten liefern selten auf Anhieb die perfekte Lösung. Nachfragen, Korrekturen einfordern und Lösungen schrittweise verfeinern ist normal und oft effizienter als eine sehr lange initiale Anfrage.</li>
+<li>
+<em>Code verstehen, nicht nur kopieren</em>: Generierten Code immer verstehen, bevor er verwendet wird — insbesondere bei Datenaufbereitungen und statistischen Analysen, wo stille Fehler schwer zu erkennen sind.</li>
+<li>
+<em>Auf Halluzinationen achten</em>: KI-Assistenten erfinden gelegentlich Funktionen oder Argumente, die nicht existieren. Im Zweifel die Dokumentation (<code>?funktion</code>) oder CRAN konsultieren.</li>
+</ul>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>KI effektiv prompten für R-Aufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Qualität von KI-generierten R-Code hängt stark von der Qualität der Anfrage ab. Ein guter Prompt für R-Coding-Aufgaben enthält typischerweise: das Ziel in einem Satz, eine kurze Beschreibung des Datensatzes (Variablennamen, Typen), die verwendeten Packages (z.B. tidyverse), und — bei Fehlern — die vollständige Fehlermeldung. Beispiel:</p>
+<blockquote class="blockquote">
+<p>“Ich verwende tidyverse in R. Mein Datensatz <code>wage1</code> hat die Variablen <code>wage</code> (numerisch) und <code>female</code> (0/1). Ich möchte einen Boxplot von <code>wage</code> nach <code>female</code> erstellen und die x-Achse mit ‘Männer’/‘Frauen’ beschriften. Hier ist mein bisheriger Code: [Code einfügen]”</p>
+</blockquote>
+</div>
+</div>
+</section><section id="sec-copilot" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="sec-copilot">
+<span class="header-section-number">12.3</span> GitHub Copilot in RStudio</h2>
+<p><em>GitHub Copilot</em> ist ein KI-Assistent, der direkt in die Entwicklungsumgebung integriert ist und Code-Vorschläge in Echtzeit macht — während des Tippens, nicht erst nach einer expliziten Anfrage. Copilot analysiert den bereits geschriebenen Code und Kommentare und schlägt automatisch sinnvolle Fortsetzungen vor, die mit der <code>Tab</code>-Taste übernommen werden können.</p>
+<p>Seit RStudio Version 2023.09 ist GitHub Copilot direkt in RStudio integriert und kann über <em>Tools → Global Options → Copilot</em> aktiviert werden. Voraussetzung ist ein GitHub-Account mit aktiviertem Copilot-Abonnement (kostenpflichtig, mit kostenlosem Kontingent für Studierende über <a href="https://education.github.com/">GitHub Education</a>). Für weitere Informationen, siehe den <a href="https://docs.posit.co/ide/user/ide/guide/tools/copilot.html">RStudio User Guide</a>.</p>
+</section><section id="sec-chattr" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="sec-chattr">
+<span class="header-section-number">12.4</span> Das <code>chattr</code>-Package</h2>
+<p>Das Package <code>chattr</code> ermöglicht die direkte Integration von KI-Assistenten in RStudio, ohne den Browser öffnen zu müssen. Es unterstützt verschiedene Modelle, darunter OpenAI (ChatGPT) und Anthropic (Claude), und kann sowohl als RStudio-Addin als auch direkt in der Konsole verwendet werden:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"chattr"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mlverse/chattr">chattr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Interaktive Chat-Oberfläche in RStudio öffnen</span></span>
+<span><span class="fu">chattr_app</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Direkte Anfrage in der Konsole</span></span>
+<span><span class="fu">chattr</span><span class="op">(</span><span class="st">"Schreib mir einen ggplot-Code für ein Histogramm der Variable wage"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Vor der ersten Verwendung muss ein API-Key für das gewünschte Modell hinterlegt werden. Eine Schritt-für-Schritt-Anleitung dazu findet sich in der <a href="https://mlverse.github.io/chattr/">chattr-Dokumentation</a>.</p>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -673,8 +802,8 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./loops_funktionen.html" class="pagination-link" aria-label="Loops und eigene Funktionen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span>
+      <a href="./loops_funktionen.html" class="pagination-link" aria-label="Funktionen, Loops, Apply">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Andreas Fischeneder">
-<title>11&nbsp; Loops und eigene Funktionen – Einführung in R</title>
+<title>11&nbsp; Funktionen, Loops, Apply – Einführung in R</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,7 +102,32 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Abschicken",
     "search-label": "Suchen"
   }
-}</script>
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body class="nav-sidebar docked quarto-light">
 
@@ -76,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_funktionen.html">Weitere Themen</a></li><li class="breadcrumb-item"><a href="./loops_funktionen.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_funktionen.html">Weitere Themen</a></li><li class="breadcrumb-item"><a href="./loops_funktionen.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -230,7 +290,7 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -251,12 +311,29 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li><a href="#sec-funktionen" id="toc-sec-funktionen" class="nav-link active" data-scroll-target="#sec-funktionen"><span class="header-section-number">11.1</span> Funktionen</a></li>
+  <li>
+<a href="#sec-loops" id="toc-sec-loops" class="nav-link" data-scroll-target="#sec-loops"><span class="header-section-number">11.2</span> Loops</a>
+  <ul class="collapse">
+<li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">11.2.1</span> <code>for</code>-Loops</a></li>
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops"><span class="header-section-number">11.2.2</span> <code>while</code>-Loops</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-apply" id="toc-sec-apply" class="nav-link" data-scroll-target="#sec-apply"><span class="header-section-number">11.3</span> <code>apply</code>-Funktionen</a>
+  <ul class="collapse">
+<li><a href="#map-funktionen-aus-purrr" id="toc-map-funktionen-aus-purrr" class="nav-link" data-scroll-target="#map-funktionen-aus-purrr"><span class="header-section-number">11.3.1</span> <code>map</code>-Funktionen aus <code>purrr</code></a></li>
+  </ul>
+</li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_funktionen.html">Weitere Themen</a></li><li class="breadcrumb-item"><a href="./loops_funktionen.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-loops-funktionen" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./loops_funktionen.html">Weitere Themen</a></li><li class="breadcrumb-item"><a href="./loops_funktionen.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-loops-funktionen" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></span></h1>
 </div>
 
 
@@ -270,10 +347,197 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Dieses Kapitel gibt eine kurze Einführung in drei fortgeschrittene Konzepte der R-Programmierung: Das Schreiben eigener Funktionen sowie die Anwendung Loops (Schleifen) und Apply-Funktionen. Diese Konzepte sind nicht zwingend notwendig, um grundlegende Datenanalysen in R durchzuführen — die in den vorherigen Kapiteln behandelten <code>tidyverse</code>-Funktionen decken den Großteil typischer Anwendungsfälle bereits ab. Sie werden jedoch relevant, sobald Analysen wiederholt auf unterschiedliche Datensätze, Variablen oder Modelle angewendet werden sollen, oder wenn bestehende Funktionen für spezifische Anforderungen angepasst werden müssen. Für eine vertiefte Auseinandersetzung mit diesen Themen empfehlen wir das frei zugängliche Lehrbuch <a href="https://adv-r.hadley.nz/">Advanced R</a> von Hadley Wickham.</p>
+<p>Wie zuvor greifen wir auch hier auf Funktionen aus dem <code>tidyverse</code> Package zurück:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="sec-funktionen" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="sec-funktionen">
+<span class="header-section-number">11.1</span> Funktionen</h2>
+<p>Funktionen sind das grundlegende Bauprinzip von R — alle Befehle, die wir bisher verwendet haben, sind im Kern Funktionen. Eigene Funktionen zu schreiben lohnt sich immer dann, wenn dieselbe Operation mehrmals im Code vorkommt und kein dezidiertes Package zur Verfügung steht. Anstatt denselben Code-Block zu wiederholen, kapseln wir ihn in einer Funktion, vergeben einen sprechenden Namen und können ihn fortan mit einem einzigen Aufruf ausführen. Das macht den Code kürzer, lesbarer und weniger fehleranfällig — Korrekturen müssen nur an einer einzigen Stelle vorgenommen werden.</p>
+<p>Eine Funktion wird in R mit <code>function()</code> definiert und einer Variable zugewiesen. Die Argumente der Funktion werden in den runden Klammern angegeben, der Funktionskörper in geschweiften Klammern. Der Rückgabewert ist per Default das Ergebnis des letzten Ausdrucks im Funktionskörper — alternativ kann er mit <code><a href="https://rdrr.io/r/base/function.html">return()</a></code> explizit angegeben werden.</p>
+<p>Wir können uns etwa eine Funktion schreiben, welche Fahrenheit-Temperaturen in Grad Celcius umrechnet:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fht_zu_cel</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">fht</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="op">(</span><span class="va">fht</span> <span class="op">-</span> <span class="fl">32</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5</span><span class="op">/</span><span class="fl">9</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">fht_zu_cel</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">72</span>, <span class="fl">98.6</span>, <span class="fl">212</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]   0.00000  22.22222  37.00000 100.00000</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Funktionen können mehrere Argumente entgegennehmen, für die auch Standardwerte (<code>default values</code>) definiert werden können. Wird ein Argument beim Aufruf nicht angegeben, wird der Standardwert verwendet:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fht_zu_cel</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">fht</span>, <span class="va">digits</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">cel</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fht</span> <span class="op">-</span> <span class="fl">32</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5</span><span class="op">/</span><span class="fl">9</span></span>
+<span>  <span class="va">cel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">cel</span>, digits <span class="op">=</span> <span class="va">digits</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">cel</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">fht_zu_cel</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">72</span>, <span class="fl">98.6</span>, <span class="fl">212</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]   0.00  22.22  37.00 100.00</span></span>
+<span><span class="fu">fht_zu_cel</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">72</span>, <span class="fl">98.6</span>, <span class="fl">212</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]   0  22  37 100</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="sec-loops" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="sec-loops">
+<span class="header-section-number">11.2</span> Loops</h2>
+<p>Loops (Schleifen) ermöglichen es, einen Code-Block wiederholt auszuführen — etwa für jedes Element eines Vektors, jede Spalte eines Datensatzes oder jede Datei in einem Ordner. Der in R am häufigsten verwendete Loop-Typ ist der <code>for</code>-Loop, der eine Sequenz von Werten durchläuft und für jeden Wert den Code-Block im Schleifenkörper ausführt.</p>
+<section id="for-loops" class="level3" data-number="11.2.1"><h3 data-number="11.2.1" class="anchored" data-anchor-id="for-loops">
+<span class="header-section-number">11.2.1</span> <code>for</code>-Loops</h3>
+<p>Die Syntax eines <code>for</code>-Loops lautet <code>for (variable in sequenz) { ... }</code>. Die <code>variable</code> nimmt dabei nacheinander jeden Wert der <code>sequenz</code> an. So können wir uns etwa das Gesetz der Großen Zahlen für einen Münzwurf illustrieren, in dem wir uns das Outcome von 5000 Münzwürfen ausgeben und auf Basis dessen den Kopf-Anteil über die vergangenen n Würfe berechnen. Die Ergebnisse des Loops können wir dabei in einem vorab erstellten Objekte abspeichern:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wurf_max</span> <span class="op">&lt;-</span> <span class="fl">5000</span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  wurf_n <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">wurf_max</span>,</span>
+<span>  kopf <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  anteil <span class="op">=</span> <span class="cn">NA</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> <span class="co"># damit Sample-Ziehen replizierbar ist</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">wurf</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">wurf_max</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">out</span><span class="op">$</span><span class="va">kopf</span><span class="op">[</span><span class="va">wurf</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">out</span><span class="op">$</span><span class="va">anteil</span><span class="op">[</span><span class="va">wurf</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">kopf</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">wurf</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="va">wurf</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">out</span></span>
+<span><span class="co">#&gt; # A tibble: 5,000 × 3</span></span>
+<span><span class="co">#&gt;   wurf_n  kopf anteil</span></span>
+<span><span class="co">#&gt;    &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1      1     0  0    </span></span>
+<span><span class="co">#&gt; 2      2     0  0    </span></span>
+<span><span class="co">#&gt; 3      3     0  0    </span></span>
+<span><span class="co">#&gt; 4      4     1  0.25 </span></span>
+<span><span class="co">#&gt; 5      5     0  0.2  </span></span>
+<span><span class="co">#&gt; 6      6     1  0.333</span></span>
+<span><span class="co">#&gt; # ℹ 4,994 more rows</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Mit ggplot können wir unsere Simulation visualisieren:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">out</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wurf_n</span>, y <span class="op">=</span> <span class="va">anteil</span><span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Anzahl Würfe"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Anteil Kopf"</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Gesetz der Großen Zahlen"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Münzwürfe"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">.25</span>, <span class="fl">0.5</span>, <span class="fl">.75</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-sim-lln" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Abbildung visualisiert das Gesetz der Großen Zahlen für den Münzwurf auf Basis der im for-loop simulierten Würfe.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-sim-lln-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="loops_funktionen_files/figure-html/fig-sim-lln-1.png" class="img-fluid figure-img" alt="Abbildung visualisiert das Gesetz der Großen Zahlen für den Münzwurf auf Basis der im for-loop simulierten Würfe." width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sim-lln-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;11.1: Gesetz der Großen Zahlen beim Münzwurf
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="while-loops" class="level3" data-number="11.2.2"><h3 data-number="11.2.2" class="anchored" data-anchor-id="while-loops">
+<span class="header-section-number">11.2.2</span> <code>while</code>-Loops</h3>
+<p>Der <code>while</code>-Loop führt einen Code-Block so lange aus, wie eine Bedingung erfüllt ist. Er wird seltener verwendet als <code>for</code>-Loops, eignet sich aber für Situationen, in denen die Anzahl der Iterationen vorab nicht bekannt ist. Möchten wir uns etwa berechnen, nach wievielen Termen der Folge <span class="math inline">\(1 + \frac{1}{2} +  + \frac{1}{3} + ... &gt; 3\)</span> ist:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">summe</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">summe</span> <span class="op">&lt;=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="va">n</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  <span class="va">summe</span> <span class="op">&lt;-</span> <span class="va">summe</span> <span class="op">+</span> <span class="fl">1</span> <span class="op">/</span> <span class="va">n</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Nach"</span>, <span class="va">n</span>, <span class="st">"Termen wird 3 überschritten, Summe ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">summe</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Nach 11 Termen wird 3 überschritten, Summe = 3.0199</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section><section id="sec-apply" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="sec-apply">
+<span class="header-section-number">11.3</span> <code>apply</code>-Funktionen</h2>
+<p>Eine in R häufig bevorzugte Alternative zu <code>for</code>-Loops sind die <code>apply</code>-Funktionen aus Base R sowie die <code>map</code>-Funktionen aus dem <code>purrr</code>-Package (Teil von <code>tidyverse</code>). Sie wenden eine Funktion auf alle Elemente eines Vektors, einer Liste oder eines Datensatzes an und sind oft kompakter und lesbarer als ein äquivalenter <code>for</code>-Loop. Außerdem sind <code>apply</code>-Funktionen in manchen Situationen schneller als <code>for</code>-Loops, da sie intern optimiert sind — bei modernen R-Versionen und typischen Datenmengen ist dieser Unterschied in der Praxis aber meist vernachlässigbar.</p>
+<p>Die wichtigsten <code>apply</code>-Funktionen aus Base R:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>: Wendet eine Funktion auf jedes Element eines Vektors oder einer Liste an und gibt — wenn möglich — einen vereinfachten Vektor oder eine Matrix zurück.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>: Wie <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, gibt aber immer eine Liste zurück — nützlich, wenn die Ergebnisse unterschiedliche Längen oder Typen haben.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>: Wendet eine Funktion auf Zeilen (<code>MARGIN = 1</code>) oder Spalten (<code>MARGIN = 2</code>) einer Matrix oder eines Datensatzes an.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># sapply: Spaltensummen einer Matrix</span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span>, \<span class="op">(</span><span class="va">j</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">m</span><span class="op">[</span>, <span class="va">j</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  6 15 24 33</span></span>
+<span></span>
+<span><span class="co"># lapply: Quadratwurzel für mehrere Vektoren, Ergebnis als Liste</span></span>
+<span><span class="va">vektoren</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">9</span>, <span class="fl">16</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">36</span><span class="op">)</span>, c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">49</span>, <span class="fl">81</span>, <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">vektoren</span>, <span class="va">sqrt</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $a</span></span>
+<span><span class="co">#&gt; [1] 2 3 4</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $b</span></span>
+<span><span class="co">#&gt; [1] 5 6</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $c</span></span>
+<span><span class="co">#&gt; [1]  1  7  9 10</span></span>
+<span></span>
+<span><span class="co"># apply: Zeilenmittelwerte einer Matrix</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">m</span>, MARGIN <span class="op">=</span> <span class="fl">1</span>, FUN <span class="op">=</span> <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 5.5 6.5 7.5</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="map-funktionen-aus-purrr" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="map-funktionen-aus-purrr">
+<span class="header-section-number">11.3.1</span> <code>map</code>-Funktionen aus <code>purrr</code>
+</h3>
+<p>Das in <code>tidyverse</code> enthaltene <code>purrr</code>-Package bietet mit den <code>map</code>-Funktionen eine <code>tidyverse</code>-konforme Alternative zu <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> und <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, die sich besser in Pipe-basierte Workflows integriert und konsistentere Rückgabetypen liefert. <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> gibt immer eine Liste zurück, während <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/map.html">map_chr()</a></code> und <code><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df()</a></code> direkt einen Vektor des jeweiligen Typs bzw. einen Datensatz zurückgeben:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">verteilungen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  gleichverteilt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">1000</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  normalverteilt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">1000</span>, mean <span class="op">=</span> <span class="fl">5</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  rechtsschief   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span><span class="op">(</span><span class="fl">1000</span>, rate <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># map_dbl: Mittelwert für jede Verteilung</span></span>
+<span><span class="va">verteilungen</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></span>
+<span><span class="co">#&gt; gleichverteilt normalverteilt   rechtsschief </span></span>
+<span><span class="co">#&gt;       4.972778       5.011933       2.006794</span></span>
+<span></span>
+<span><span class="co"># map_df: Quantile aller Verteilungen als Datensatz</span></span>
+<span><span class="va">verteilungen</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_df</a></span><span class="op">(</span></span>
+<span>    \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>      q25    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
+<span>      median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,</span>
+<span>      q75    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">0.75</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    .id <span class="op">=</span> <span class="st">"verteilung"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span><span class="co">#&gt;   verteilung       q25 median   q75</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 gleichverteilt 2.54    4.90  7.47</span></span>
+<span><span class="co">#&gt; 2 normalverteilt 4.31    5.03  5.66</span></span>
+<span><span class="co">#&gt; 3 rechtsschief   0.549   1.35  2.76</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Wann Loop, wann <code>apply</code>/<code>map</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Für einfache Iterationen über Vektoren oder Listen sind <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>/<code>map_*()</code> meist nicht nur die kompaktere und lesbarere Wahl, sondern oft auch effizienter. <code>for</code>-Loops sind hingegen besser geeignet, wenn die Iterationen voneinander abhängen (etwa wenn das Ergebnis einer Iteration als Input der nächsten dient), oder wenn komplexere Ablaufsteuerung mit <code><a href="https://rdrr.io/r/base/Control.html">break</a></code> oder <code><a href="https://rdrr.io/r/base/Control.html">next</a></code> benötigt wird. In der Praxis ist die Wahl oft auch eine Frage des persönlichen Stils — wichtiger als die Wahl zwischen Loop und <code>apply</code> ist, dass der Code klar und nachvollziehbar bleibt.</p>
+</div>
+</div>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
