@@ -158,7 +158,7 @@ avg_slopes(logit)
 
 ## Fixed-Effects-Modelle {#sec-fe}
 
-**Fixed-Effects-Modelle** (FE) kontrollieren für alle zeitkonstanten, unbeobachteten Eigenschaften der Einheiten (Personen, Unternehmen, Länder) und werden typischerweise für Paneldaten verwendet. In R kann das FE-Modell mit dem Package `fixest` mit der Funktion `feols()` geschätzt werden:
+Fixed-Effects-Modelle (FE) kontrollieren für alle zeitkonstanten, unbeobachteten Eigenschaften der Einheiten (Personen, Unternehmen, Länder) und werden typischerweise für Paneldaten verwendet. In R kann das FE-Modell mit dem Package `fixest` mit der Funktion `feols()` geschätzt werden:
 
 ```{r}
 library(fixest)

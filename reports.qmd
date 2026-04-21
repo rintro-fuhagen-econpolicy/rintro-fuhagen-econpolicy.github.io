@@ -7,3 +7,185 @@ source("Rsettings.R")
 library(tidyverse)
 library(kableExtra)
 ```
+
+Bisher haben wir R primär als Werkzeug für Datenanalyse und Visualisierung kennengelernt. Ein zentraler weiterer Vorteil von R ist jedoch die Möglichkeit, Berichte zu diesen Analysen direkt in R zu erstellen — ohne Ergebnisse manuell in ein separates Dokument übertragen zu müssen. *Quarto* (und sein Vorgänger *RMarkdown*) ermöglichen es, R-Code, Ausgaben und erläuternden Text in einem einzigen Dokument zu kombinieren und dieses in verschiedene Formate wie HTML, PDF oder Word zu exportieren. Das hat mehrere wesentliche Vorteile:
+
+- *Reproduzierbarkeit*: Analysen und Ergebnisse sind vollständig nachvollziehbar, da Code und Text gemeinsam gespeichert werden. Änderungen an den Daten oder der Analyse werden automatisch im gesamten Dokument übernommen — ein manuelles Aktualisieren von Tabellen oder Grafiken entfällt.
+- *Flexibilität*: Dasselbe Dokument kann als HTML-Seite, PDF-Bericht oder Word-Dokument gerendert werden, ohne den Inhalt anpassen zu müssen.
+- *Integration*: Ergebnisse aus R — etwa Koeffizienten, p-Werte oder Grafiken — können direkt im Fließtext referenziert werden und aktualisieren sich automatisch bei einer neuen Analyse.
+
+Eine ausführliche Einführung in Quarto und R Markdown findet sich in folgenden frei zugänglichen Ressourcen:
+
+- [R for Data Science](https://r4ds.hadley.nz/) (Wickham et al.), Kapitel 28 und 29
+- Offizielle Dokumentation unter [quarto.org](https://quarto.org/docs/guide/)
+- [R Markdown: The Definitive Guide](https://yihui.org/rmarkdown/) (Xie et al.)
+
+## Erstellen eines Quarto-Dokuments
+
+Ein Quarto-Dokument können wir ähnlich wie ein R-Skript (siehe @sec-best-practices) über das R-Studio-Interface erstellen. Dabei klicken wir auf den in @fig-quarto-setup rot markierten Button (*New File*) und die Option für das Quarto-Dokument im Drop-Down-Menü. Anschließend öffnet sich ein Fenster (Schritt 2 in @fig-quarto-setup), in dem wir die Dokumentenart (*Document* für Bericht, *Presentation* für Präsentation oder *Interactive * für Shiny-Bericht) wählen (gelb markiert). Außerdem können wir hier bereits Titel und Autor:in (grün markiert) sowie Output-Typ (HTML, PDF, MS Word) (blau markiert) definieren. Beide Optionen können aber später auch noch angepasst werden. Mit dem Klick auf *Create* (violett markiert) erstellen wir anschließend unser Quarto-Dokument. Dieses können wir dann als `.qmd`-Datei speichern.
+
+```{r}
+#| label: fig-quarto-setup
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   Erstellen eines neuen Quarto-Dokuments.
+#| fig-alt: |
+#|  Schritt-für-Schritt-Erklärung für die Erstellung eines neuen Quarto-Dokuments. In Schritt 1 ist der Button und die Option für einen neues Quarto-Dokument hervorgehoben. In Schritt 2 sind die Auswahl der Dokumentart, die Textfelder für Titel und Autor:in, die  unterschiedlichen Output-Optionen, sowie der Dokument-Erstellungsbutton markiert.
+knitr::include_graphics("images/quarto_erstellen.png", dpi = 270)
+```
+
+## Aufbau eines Quarto-Dokuments
+
+Nach dem Erstellen des Quarto-Dokuments öffnet sich ein neues Panel im RStudio-Interface. Hier können wir nun ähnlich zum Code in einem R-Skript unseren Bericht schreiben. Die wesentlichen Bausteine eines Quarto-Dokuments sind in einem Beispiel in @fig-quarto-panel markiert. Diese sind der YAML-Header (orange), Markdown-Text (gelb) und Code-Chuncks (blau).
+
+```{r}
+#| label: fig-quarto-panel
+#| echo: false
+#| out-width: ~
+#| fig-cap: |
+#|   Aufbau eines Quarto-Dokuments.
+#| fig-alt: |
+#|  Beispiel für ein Quarto-Dokument. Hervorgehoben sind die wesentlichen Bausteine (YAML-Header, Markdown-Text, Code-Chunks), sowie die Buttons zur Ausführung eines Code-Chunks, der Erstellung des Berichts (Rendering) und der Swichting-Option zwischen Source-Code und visuellem Editor.
+knitr::include_graphics("images/quarto_panel.png", dpi = 270)
+```
+
+:::callout-tip
+#### Visual Editor und Source Editor
+
+Quarto-Dokumente können in RStudio in zwei Modi bearbeitet werden, zwischen denen oben links im Editor-Fenster umgeschaltet werden kann (grün markiert in @fig-quarto-panel). Im *Source Editor* wird das Dokument direkt in Markdown-Syntax geschrieben - das ist der Modus, den wir in diesem Kapitel verwenden. Der *Visual Editor* bietet hingegen eine Word-ähnliche Oberfläche, in der Text formatiert, Tabellen eingefügt und Bilder eingebettet werden können, ohne Markdown-Syntax kennen zu müssen. Im Hintergrund erzeugt der Visual Editor dabei dieselbe Markdown-Syntax wie der Source Editor — beide Modi sind also vollständig kompatibel und können jederzeit gewechselt werden.
+
+Für Einsteiger:innen ist der Visual Editor oft der einfachere Einstieg, während der Source Editor mehr Kontrolle über das genaue Markdown-Markup bietet. Für die Arbeit mit Code-Chunks, YAML-Optionen und komplexeren Formatierungen empfiehlt sich langfristig die Vertrautheit mit dem Source Editor.
+:::
+
+
+### YAML-Header
+
+Der YAML-Header (orange markiert in @fig-quarto-panel) steht am Anfang des Dokuments und wird durch `---` eingeschlossen. Er legt die grundlegenden Eigenschaften des Dokuments fest, etwa Titel, Autor, Datum und Output-Format:
+
+```yaml
+---
+title: "R Intro Bericht"
+author: "Max Mustermann"
+date: today
+format:
+  html:
+    toc: true           # Inhaltsverzeichnis
+    number-sections: true
+lang: de                # Sprache (beeinflusst Silbentrennung etc.)
+---
+```
+
+### Markdown-Text
+
+Der Fließtext wird in Markdown geschrieben (gelb markiert in @fig-quarto-panel), einer einfachen Auszeichnungssprache. Die wichtigsten Formatierungsoptionen:
+
+```markdown
+# Überschrift Level 1
+## Überschrift Level 2
+
+**fett**, *kursiv*, `Code`
+
+- Aufzählungspunkt
+- Aufzählungspunkt
+
+1. Nummerierte Liste
+2. Nummerierte Liste
+
+[Linktext](https://www.example.com)
+```
+
+Über Inline-Code nach dem folgenden Schema können Ergebniswerte direkt im Fließtext eingefügt werden und aktualisieren sich automatisch bei einer neuen Analyse:
+
+```{r}
+#| echo: false
+#| comment: ""
+cat("Dieser enthält Lohndaten für `r nrow(wage1)` Beobachtungen.")
+```
+
+### Code-Chunks
+
+R-Code wird in Code-Chunks (blau markiert in @fig-quarto-panel) eingebettet, die mit ` ```{r} ` geöffnet und ` ``` ` geschlossen werden. Diese können auch über den Shortcut `Strg`+`Alt`+`I` eingefügt werden. Um den Code auszuführen, können wir für eine einzelne Zeile wie in einem R-Skript (siehe @sec-best-practices) die Tastenkombination `Strg`+`Enter` drücken. Der gesamte Code-Chunk wird mit einem Klick auf das Run-Icon (violett markiert in @fig-quarto-panel) ausgeführt.
+
+Über Chunk-Optionen (eingeleitet mit `#|`) wird gesteuert, wie der Chunk im Output erscheint:
+
+```{r}
+#| echo: false
+#| comment: ""
+
+cat(paste0(c(
+  " ```{r}", "\n",
+  "#| echo: false", "\n",
+  "#| label: fig-educ-wage", "\n",
+  "#| fig-cap: \"Zusammenhang von Bildung und Lohn\"", "\n\n",
+  "ggplot(wage1, aes(x = educ, y = wage)) +", "\n",
+  "  geom_point()", "\n",
+  "```"
+)))
+```
+
+@tbl-chunck-options gibt einen Überblick über die wichtigsten Code-Chunck-Optionen. Eine Auflistung aller Optionen inklusive Erläuterungen findet sich [hier](https://yihui.org/knitr/options/).
+
+```{r}
+#| label: tbl-chunck-options
+#| tbl-cap: "Übersicht: Relevante Code-Chunck-Optionen"
+#| echo: false
+#| 
+tibble(
+  Option = c(
+    "eval",
+    "echo",
+    "include",
+    "results",
+    "warning",
+    "message",
+    "label",
+    "fig-cap / tbl-cap",
+    "fig-alt",
+    "fig-width / fig-height"
+  ),
+  Beschreibung = c(
+    "Code ausführen (<code>true</code>/<code>false</code>)",
+    "Code im Output anzeigen (<code>true</code>/<code>false</code>)",
+    "Output im Dokument anzeigen — bei <code>false</code> wird der Chunk ausgeführt, aber weder Code noch Output erscheinen (<code>true</code>/<code>false</code>)",
+    "Darstellung des Outputs: <code>markup</code>, <code>asis</code>, <code>hold</code>, <code>hide</code>",
+    "Warnungen anzeigen (<code>true</code>/<code>false</code>)",
+    "Meldungen anzeigen (<code>true</code>/<code>false</code>)",
+    "Label des Chunks — notwendig für Querverweise mit <code>@fig-*</code> / <code>@tbl-*</code>",
+    "Abbildungs- bzw. Tabellencaption",
+    "Alt-Text der Abbildung",
+    "Grafikgröße"
+  )
+) |>
+  mutate(Option = fmt_kbl_code(Option)) |>
+  kbl(
+    col.names = c("Chunck-Option", "Bedeutung"),
+    escape = F
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
+
+Chunks mit der Option `label: fig-*` oder `label: tbl-*` können im Text mit `@fig-*` bzw. `@tbl-*` referenziert werden - Quarto nummeriert Abbildungen und Tabellen dann automatisch.
+
+:::callout-tip
+#### Globale Chunk-Optionen
+
+Statt Optionen wie `warning: false` und `message: false` in jeden Chunk einzeln zu schreiben, können diese global für das gesamte Dokument im YAML-Header gesetzt werden:
+
+```yaml
+execute:
+  echo: true
+  warning: false
+  message: false
+```
+
+Individuelle Chunk-Optionen überschreiben dabei die globalen Einstellungen.
+:::
+
+## Rendering eines Quarto Dokuments
+
+Um den Bericht in dem im YAML-Header definierten Output-Format zu expotieren, müssen wir das Quarto-Dokument rendern. Dies ist durch Klick auf den Render-Button (rot markiert in @fig-quarto-panel) möglich. Das dadurch entstehende Dokument wird per Default im selben Ordner wie das Quarto-Dokument abgespeichert.
+

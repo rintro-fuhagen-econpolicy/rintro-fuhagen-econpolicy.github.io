@@ -45,8 +45,10 @@ dplyr::tibble(
   pck = c("readr (tidyverse)", "readr (tidyverse)", "readr (tidyverse)", "readxl", "haven"),
   fun = c("read_csv()", "read_rds()", "read_delim()", "read_excel()", "read_dta()")
 ) |>
+  mutate(format = fmt_kbl_code(format), pck = fmt_kbl_code(pck), fun = fmt_kbl_code(fun)) |>
   kbl(
-    col.names = c("Dateiformat", "Typisch für", "Package", "Lesefunktion")
+    col.names = c("Dateiformat", "Typisch für", "Package", "Lesefunktion"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,

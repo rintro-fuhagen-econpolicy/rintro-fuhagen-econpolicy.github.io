@@ -21,3 +21,7 @@ options(
   pillar.bold = TRUE,
   width = 77 # 80 - 3 for #> comment
 )
+
+fmt_kbl_code <- function(x){
+  paste0("<code>", x, "</code>")
+}

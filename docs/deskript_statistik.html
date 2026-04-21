@@ -18,6 +18,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -193,18 +228,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressionen</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./kausalinferenz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kausalinferenz</span></span></a>
-  </div>
-</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Export von Ergebnissen</span></a>
+ <span class="menu-text">Ergebnisexportierung und Berichte</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,20 +241,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tab_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fig_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Grafiken exportieren</span></span></a>
+  <a href="./export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -242,13 +265,13 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ki.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,8 +286,28 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#sec-kennzahlen" id="toc-sec-kennzahlen" class="nav-link active" data-scroll-target="#sec-kennzahlen"><span class="header-section-number">7.1</span> Statistische Kennzahlen</a>
+  <ul class="collapse">
+<li><a href="#lagema%C3%9Fe" id="toc-lagemaße" class="nav-link" data-scroll-target="#lagema%C3%9Fe"><span class="header-section-number">7.1.1</span> Lagemaße</a></li>
+  <li><a href="#streuungsma%C3%9Fe" id="toc-streuungsmaße" class="nav-link" data-scroll-target="#streuungsma%C3%9Fe"><span class="header-section-number">7.1.2</span> Streuungsmaße</a></li>
+  <li><a href="#%C3%BCberblick-mit-summary-und-summarize" id="toc-überblick-mit-summary-und-summarize" class="nav-link" data-scroll-target="#%C3%BCberblick-mit-summary-und-summarize"><span class="header-section-number">7.1.3</span> Überblick mit <code>summary()</code> und <code>summarize()</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-ttest" id="toc-sec-ttest" class="nav-link" data-scroll-target="#sec-ttest"><span class="header-section-number">7.2</span> Der t-Test</a>
+  <ul class="collapse">
+<li><a href="#einstichproben-t-test" id="toc-einstichproben-t-test" class="nav-link" data-scroll-target="#einstichproben-t-test"><span class="header-section-number">7.2.1</span> Einstichproben t-Test</a></li>
+  <li><a href="#zweistichproben-t-test" id="toc-zweistichproben-t-test" class="nav-link" data-scroll-target="#zweistichproben-t-test"><span class="header-section-number">7.2.2</span> Zweistichproben t-Test</a></li>
+  <li><a href="#gepaarter-t-test" id="toc-gepaarter-t-test" class="nav-link" data-scroll-target="#gepaarter-t-test"><span class="header-section-number">7.2.3</span> Gepaarter t-Test</a></li>
+  </ul>
+</li>
+  <li><a href="#korrelationen" id="toc-korrelationen" class="nav-link" data-scroll-target="#korrelationen"><span class="header-section-number">7.3</span> Korrelationen</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./deskript_statistik.html">Statistik in R</a></li><li class="breadcrumb-item"><a href="./deskript_statistik.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deskriptive Statistiken</span></a></li></ol></nav><div class="quarto-title">
@@ -282,10 +325,190 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Die nächsten drei Kapitel geben eine kurze Einführung in ausgewählte statistische Funktionen in R, die für empirische Analysen in den Wirtschaftswissenschaften zentral sind. Im Fokus steht dabei ausschließlich die praktische Anwendung in R. Der Umfang der behandelten Funktionen und Verfahren ist jedoch sehr beschränkt. Für eine tiefergehendere Auseinandersetzung mit Ökonometrie in R siehe <a href="https://www.econometrics-with-r.org/">Introduction to Econometrics with R</a> von Hanck et al.</p>
+<p>Die theoretischen Grundlagen der Verfahren sowie die inhaltliche Interpretation der Ergebnisse werden in dieser R-Einführung nicht behandelt. Hier stehen jedoch viele Lehrbücher über die Fernuni-Bibliothek oder auch online zur Verfügung. Einen guten Überblick bietet hier <a href="https://fub-hagen.digibib.net/search/katalog/record/(DE-605)HT020833827?be-katalog-fq=introx.access%3Aonline&amp;be-katalog-sort=date_desc&amp;q-al=wooldridge+econometrics&amp;start=1&amp;count=20&amp;hitcount=1&amp;pos=1"></a> von Jeffrey Wooldridge. Im Bereich der Kausalinferenz-Methoden beinhaltet das frei verfügbare Lehrbuch <a href="https://mixtape.scunning.com/">Causal Inference: The Mixtape</a> von Scott Cunningham neben theoretischen Einblicken in die unterschiedlichen Ansätze auch Anwendungsbeispiele in R.</p>
+<p>Um die statistischen Methoden in R besser kennenzulernen, verwenden wir in den meisten Fällen den Datensatz <code>wage1</code> aus dem <code>wooldridge</code>-Package. Dieser enthält Querschnittsdaten zu Löhnen, Bildung und weiteren sozioökonomischen Merkmalen von 526 Erwerbstätigen aus dem US Current Population Survey (1976):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://justinmshea.github.io/wooldridge/">wooldridge</a></span><span class="op">)</span></span>
+<span><span class="va">wage1</span> <span class="op">&lt;-</span> <span class="va">wage1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wage</span>, <span class="va">educ</span>, <span class="va">exper</span>, <span class="va">female</span>, <span class="va">married</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 526</span></span>
+<span><span class="co">#&gt; Columns: 5</span></span>
+<span><span class="co">#&gt; $ wage    &lt;dbl&gt; 3.10, 3.24, 3.00, 6.00, 5.30, 8.75, 11.25, 5.00, 3.60, 18.1…</span></span>
+<span><span class="co">#&gt; $ educ    &lt;int&gt; 11, 12, 11, 8, 12, 16, 18, 12, 12, 17, 16, 13, 12, 12, 12, …</span></span>
+<span><span class="co">#&gt; $ exper   &lt;int&gt; 2, 22, 2, 44, 7, 9, 15, 5, 26, 22, 8, 3, 15, 18, 31, 14, 10…</span></span>
+<span><span class="co">#&gt; $ female  &lt;int&gt; 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1,…</span></span>
+<span><span class="co">#&gt; $ married &lt;int&gt; 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1,…</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die wesentlichen Variablen sind der Stundenlohn (<code>wage</code> in USD), Bildungsjahre (<code>educ</code>), Berufserfahrung (<code>exper</code>) in Jahren sowie die binären Indikatoren für Geschlecht (<code>female</code>) und Familienstand (<code>married</code>).</p>
+<section id="sec-kennzahlen" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="sec-kennzahlen">
+<span class="header-section-number">7.1</span> Statistische Kennzahlen</h2>
+<p>Die Funktionen für viele der wesentlichen statistischen Kennzahlen (etwa Mittelwert oder Varianz) haben wir bereits in <a href="daten_transform.html" class="quarto-xref"><span>Kapitel 3</span></a> kennengelernt. Diese werden hier nochmal kurz wiederholt</p>
+<section id="lagemaße" class="level3" data-number="7.1.1"><h3 data-number="7.1.1" class="anchored" data-anchor-id="lagemaße">
+<span class="header-section-number">7.1.1</span> Lagemaße</h3>
+<p>Das arithmetische <strong>Mittel</strong> und der <strong>Median</strong> beschreiben die zentrale Tendenz einer Verteilung:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span>    <span class="co"># Arithmetisches Mittel</span></span>
+<span><span class="co">#&gt; [1] 5.896103</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span>  <span class="co"># Median (50. Perzentil)</span></span>
+<span><span class="co">#&gt; [1] 4.65</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Der Mittelwert des Stundenlohns liegt bei ca. 5,90 USD, der Median bei 4,65 USD — die rechtsschiefe Lohnverteilung lässt sich daran bereits erkennen. Quantile ermöglichen eine genauere Betrachtung der Verteilung. Mit <code><a href="https://rdrr.io/r/stats/quantile.html">quantile()</a></code> können wir beliebige Perzentile berechnen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Quartile</span></span>
+<span><span class="co">#&gt;  25%  50%  75% </span></span>
+<span><span class="co">#&gt; 3.33 4.65 6.88</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span>, probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.99</span><span class="op">)</span><span class="op">)</span>   <span class="co"># weitere Perzentile</span></span>
+<span><span class="co">#&gt;    10%    90%    99% </span></span>
+<span><span class="co">#&gt;  2.920 10.000 19.995</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="streuungsmaße" class="level3" data-number="7.1.2"><h3 data-number="7.1.2" class="anchored" data-anchor-id="streuungsmaße">
+<span class="header-section-number">7.1.2</span> Streuungsmaße</h3>
+<p>Varianz und Standardabweichung messen, wie stark die Beobachtungen um den Mittelwert streuen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">var</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span>   <span class="co"># Varianz</span></span>
+<span><span class="co">#&gt; [1] 13.63888</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span>    <span class="co"># Standardabweichung</span></span>
+<span><span class="co">#&gt; [1] 3.693086</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Minimum und Maximum geben den Wertebereich einer Variable an:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.53</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 24.98</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span> <span class="co"># Minimum und Maximum gleichzeitig</span></span>
+<span><span class="co">#&gt; [1]  0.53 24.98</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="überblick-mit-summary-und-summarize" class="level3" data-number="7.1.3"><h3 data-number="7.1.3" class="anchored" data-anchor-id="überblick-mit-summary-und-summarize">
+<span class="header-section-number">7.1.3</span> Überblick mit <code>summary()</code> und <code>summarize()</code>
+</h3>
+<p>Für einen schnellen Überblick über alle Kennzahlen bietet sich <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> an, das Minimum, Maximum, Quartile und Mittelwert auf einmal ausgibt:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span><span class="co">#&gt;   0.530   3.330   4.650   5.896   6.880  24.980</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Um deskriptive Statistiken für mehrere Variablen gleichzeitig und nach Gruppen getrennt zu berechnen, können wir die aus <a href="daten_transform.html" class="quarto-xref"><span>Kapitel 3</span></a> bekannte <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>-Funktion nutzen. Möchten wir etwa Mittelwert und Standardabweichung des Lohns nach Geschlecht vergleichen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wage1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    mean_wage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">wage</span><span class="op">)</span>,</span>
+<span>    sd_wage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">wage</span><span class="op">)</span>,</span>
+<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    .by <span class="op">=</span> <span class="va">female</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span><span class="co">#&gt;   female mean_wage sd_wage     n</span></span>
+<span><span class="co">#&gt;    &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1      1      4.59    2.53   252</span></span>
+<span><span class="co">#&gt; 2      0      7.10    4.16   274</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section></section><section id="sec-ttest" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="sec-ttest">
+<span class="header-section-number">7.2</span> Der t-Test</h2>
+<p>t-Tests prüfen, ob der Mittelwert signifikant von einem bestimmten Wert abweicht (Einstichproben-t-Test) oder ob sich zwei Gruppen in ihrem Mittelwert signifikant unterscheiden (Zweistichproben- und gepaarter t-Test). In R werden alle drei Varianten mit <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> durchgeführt.</p>
+<section id="einstichproben-t-test" class="level3" data-number="7.2.1"><h3 data-number="7.2.1" class="anchored" data-anchor-id="einstichproben-t-test">
+<span class="header-section-number">7.2.1</span> Einstichproben t-Test</h3>
+<p>Mit einem Einstichproben t-Test testen wir, ob der Mitterlwert einer Variable signifikant von einem bestimmten Wert abweicht. Der mittlere Stundenlohn weicht zum Beispiel signifikant von 5 USD:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span>, mu <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  One Sample t-test</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  wage1$wage</span></span>
+<span><span class="co">#&gt; t = 5.5649, df = 525, p-value = 4.186e-08</span></span>
+<span><span class="co">#&gt; alternative hypothesis: true mean is not equal to 5</span></span>
+<span><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span><span class="co">#&gt;  5.579768 6.212437</span></span>
+<span><span class="co">#&gt; sample estimates:</span></span>
+<span><span class="co">#&gt; mean of x </span></span>
+<span><span class="co">#&gt;  5.896103</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="zweistichproben-t-test" class="level3" data-number="7.2.2"><h3 data-number="7.2.2" class="anchored" data-anchor-id="zweistichproben-t-test">
+<span class="header-section-number">7.2.2</span> Zweistichproben t-Test</h3>
+<p>Zweistichproben t-Tests untersuchen Unterschiede in den Mittelwerten zwischen Gruppen. So kann man testen, ob sich die mittleren Stundenlöhne von Frauen und Männern signifikant unterscheiden. Mit <code>y ~ gruppe</code> können wir direkt auf Variablen im Datensatz zugreifen:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">wage</span> <span class="op">~</span> <span class="va">female</span>, data <span class="op">=</span> <span class="va">wage1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  wage by female</span></span>
+<span><span class="co">#&gt; t = 8.44, df = 456.33, p-value = 4.243e-16</span></span>
+<span><span class="co">#&gt; alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0</span></span>
+<span><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span><span class="co">#&gt;  1.926971 3.096690</span></span>
+<span><span class="co">#&gt; sample estimates:</span></span>
+<span><span class="co">#&gt; mean in group 0 mean in group 1 </span></span>
+<span><span class="co">#&gt;        7.099489        4.587659</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die t-Statistik und der p-Wert deuten darauf hin, dass Frauen (<code>female = 1</code>) im Datensatz einen signifikant niedrigeren Stundenlohn erhalten als Männer.</p>
+</section><section id="gepaarter-t-test" class="level3" data-number="7.2.3"><h3 data-number="7.2.3" class="anchored" data-anchor-id="gepaarter-t-test">
+<span class="header-section-number">7.2.3</span> Gepaarter t-Test</h3>
+<p>Gepaarte t-Tests kommen zum Einsatz, wenn zwei Messungen an denselben Einheiten vorliegen (z.B. Vor- und Nachmessungen). Da der <code>wage1</code>-Datensatz keine solchen Paare enthält, zeigen wir die Syntax exemplarisch:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">vorher</span>, <span class="va">nachher</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Einseitige vs.&nbsp;zweiseitige Tests
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per Default führt <code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code> einen zweiseitigen Test durch (<code>alternative = "two.sided"</code>). Mit <code>alternative = "greater"</code> bzw. <code>alternative = "less"</code> können einseitige Tests spezifiziert werden.</p>
+</div>
+</div>
+</section></section><section id="korrelationen" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="korrelationen">
+<span class="header-section-number">7.3</span> Korrelationen</h2>
+<p>Korrelationskoeffizienten messen die Stärke und Richtung des linearen Zusammenhangs zwischen zwei metrischen Variablen. In R wird die Korrelation mit <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> berechnet, statistische Signifikanztests liefert <code><a href="https://rdrr.io/r/stats/cor.test.html">cor.test()</a></code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span>, <span class="va">wage1</span><span class="op">$</span><span class="va">educ</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.4059033</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span>, <span class="va">wage1</span><span class="op">$</span><span class="va">educ</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Pearson's product-moment correlation</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  wage1$wage and wage1$educ</span></span>
+<span><span class="co">#&gt; t = 10.167, df = 524, p-value &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; alternative hypothesis: true correlation is not equal to 0</span></span>
+<span><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span><span class="co">#&gt;  0.3319280 0.4749166</span></span>
+<span><span class="co">#&gt; sample estimates:</span></span>
+<span><span class="co">#&gt;       cor </span></span>
+<span><span class="co">#&gt; 0.4059033</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Der Spearman-Rangkorrelationskoeffizient ist eine robuste Alternative, die keine Normalverteilung voraussetzt und auch für ordinale Variablen geeignet ist:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">wage1</span><span class="op">$</span><span class="va">wage</span>, <span class="va">wage1</span><span class="op">$</span><span class="va">educ</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Spearman's rank correlation rho</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; data:  wage1$wage and wage1$educ</span></span>
+<span><span class="co">#&gt; S = 13151898, p-value &lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; alternative hypothesis: true rho is not equal to 0</span></span>
+<span><span class="co">#&gt; sample estimates:</span></span>
+<span><span class="co">#&gt;       rho </span></span>
+<span><span class="co">#&gt; 0.4577694</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Werden mehr als zwei Variablen angegeben, ergibt sich eine Korrelationsmatrix:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wage1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">wage</span>, <span class="va">educ</span>, <span class="va">exper</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            wage       educ      exper</span></span>
+<span><span class="co">#&gt; wage  1.0000000  0.4059033  0.1129034</span></span>
+<span><span class="co">#&gt; educ  0.4059033  1.0000000 -0.2995418</span></span>
+<span><span class="co">#&gt; exper 0.1129034 -0.2995418  1.0000000</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();

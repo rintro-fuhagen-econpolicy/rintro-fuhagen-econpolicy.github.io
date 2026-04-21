@@ -12,7 +12,7 @@ library(kableExtra)
 
 Bisher haben wir unseren Code immer direkt in der Konsole geschrieben und dort ausgeführt. Das ist für erste Schritte praktisch, aber der Code geht leicht verloren und lässt sich nur schwer nachvollziehen oder erneut verwenden. Die Verwendung eines *R-Scripts* erlaubt uns, Code dauerhaft zu speichern, zu dokumentieren und später reproduzierbar erneut auszuführen. Außerdem lassen sich Scripts strukturieren, kommentieren und leichter mit anderen teilen. Dadurch wird die Arbeit nachvollziehbarer, effizienter und weniger fehleranfällig.
 
-Um ein R-Script zu öffnen, klicke auf den *New File Button* oben links in RStudio (rot hervorgehoben in @fig-rscript-interface). Dadurch öffnet sich ein zusätzliches Panel im Interface (gelb markiert). Wir können nun unseren Code in diesem Text-Editor schreiben, kommentieren und ausführen. Nachdem wir das R-Script speichern, können wir zu einem späteren Zeitpunkt unseren Code leicht reproduzieren und fortsetzen.
+Um ein R-Script zu öffnen, klicke auf den *New File Button* oben links in RStudio (rot hervorgehoben in @fig-rscript-interface) und wähle die Option *R Script* aus. Dadurch öffnet sich ein zusätzliches Panel im Interface (gelb markiert). Wir können nun unseren Code in diesem Text-Editor schreiben, kommentieren und ausführen. Nachdem wir das R-Script speichern, können wir zu einem späteren Zeitpunkt unseren Code leicht reproduzieren und fortsetzen.
 
 ```{r}
 #| label: fig-rscript-interface

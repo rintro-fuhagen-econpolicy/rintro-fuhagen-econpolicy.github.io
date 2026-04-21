@@ -188,8 +188,10 @@ dplyr::tibble(
     "bill_len >= 45 | bill_len <= 35"
   )
 ) |>
+  dplyr::mutate(var = fmt_kbl_code(var), exp = fmt_kbl_code(exp)) |>
   kbl(
-    col.names = c("Operator", "Bedeutung", "Beispiel")
+    col.names = c("Operator", "Bedeutung", "Beispiel"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,
@@ -393,8 +395,10 @@ dplyr::tibble(
     "bill_len_group = cut(bill_len, breaks = 3))"
   )
 ) |>
+  mutate(fun = fmt_kbl_code(fun), exp = fmt_kbl_code(exp)) |>
   kbl(
-    col.names = c("Funktion", "Bedeutung", "Beispiel")
+    col.names = c("Funktion", "Bedeutung", "Beispiel"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,
@@ -572,8 +576,10 @@ dplyr::tibble(
     "Mapping bestimmter alter Werte zu neuen Werten"
   )
 ) |>
+  mutate(fun = fmt_kbl_code(fun)) |>
   kbl(
-    col.names = c("Funktion", "Use Case")
+    col.names = c("Funktion", "Use Case"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,
@@ -727,8 +733,10 @@ dplyr::tibble(
     "all_na_sex = all(is.na(sex))"
   )
 ) |>
+  mutate(Funktion = fmt_kbl_code(Funktion), Beispiel = fmt_kbl_code(Beispiel)) |>
   kbl(
-    col.names = c("Funktion", "Bedeutung", "Beispiel")
+    col.names = c("Funktion", "Bedeutung", "Beispiel"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,

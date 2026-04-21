@@ -47,39 +47,60 @@ bysex <- wage1 |>
 
 tbl <- left_join(overall, bysex)
 rm(overall, bysex)
+
 tbl
 ```
 
 Das Objekt `tbl` enthält alle notwendigen Informationen, ist jedoch nicht ansprechend formatiert. Auf dieser Basis werden wir nun die folgende Tabelle exportieren:
 
 ```{r}
+#| echo: false
+#| results: asis
+#| caption: "Zielformatierung der Tabelle"
+#| label: tbl-desc-wage1
+
 tbl |>
   mutate(variable = c("Stundenlohn (USD)", "Bildungsjahre")) |>
-  kable(
-    col.names = c(" ", rep(c("MW", "SD"), 3)),
-    digits = 2,
-    caption = "Lohn und Bildung im wage1-Datensatz",
-    label = "tbl-desc-wage1",
-    align = c("l", rep("c", 6))
+  gt::gt() |>
+  gt::tab_spanner(label = "Insgesamt", columns = 2:3) |>
+  gt::tab_spanner(label = "Frauen",    columns = 4:5) |>
+  gt::tab_spanner(label = "Männer",    columns = 6:7) |>
+  gt::cols_label(
+    variable = " ",
+    mean.insg = "MW", sd.insg = "SD",
+    mean_1 = "MW", sd_1 = "SD",
+    mean_0 = "MW", sd_0 = "SD"
   ) |>
-  add_header_above(
-    c(" ", "Insgesamt" = 2, "Frauen" = 2, "Männer" = 2),
-    bold = T
+  gt::fmt_number(decimals = 2) |>
+  gt::tab_source_note("Anm.: MW = Mittelwert, SD = Standardabweichung.") |>
+  gt::tab_style(
+    style = gt::cell_text(weight = "bold"),
+    locations = gt::cells_column_spanners()
   ) |>
-  row_spec(0, italic = T) |>
-  kable_classic() |>
-  footnote(
-    general = "MW = Mittelwert, SD = Standardabweichung.",
-    general_title = "Anm.:",
-    footnote_as_chunk = T
-  )
+  gt::tab_style(
+    style = gt::cell_text(style = "italic"),
+    locations = gt::cells_column_labels(columns = everything())
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(align = "center"),
+    locations = gt::cells_column_labels(columns = 2:7)
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(align = "center"),
+    locations = gt::cells_body(columns = 2:7)
+  ) |>
+  gt::tab_style(
+    style = gt::cell_text(align = "left"),
+    locations = gt::cells_source_notes()
+  ) |>
+  gt::tab_caption("Lohn und Bildung im wage1-Datensatz")
 ```
 
 ### Tabellen nach LaTeX
 
 Für den Export nach LaTeX nutzen wir das Package `kableExtra`, welches eine Vielzahl an Formatierungsoptionen bietet. Dazu zählen die Unterstützung für `booktabs`-Linien, die in wissenschaftlichen Papers übliche und typografisch empfohlene Tabellenformatierung, sowie für mehrspaltige Zellen, Fußnoten und Landscape-Tabellen. `kableExtra` ermöglicht außerdem den Export nach HTML. Für einen Überblick siehe [hier](https://haozhu233.github.io/kableExtra/).
 
-Um unser `tbl`-Objekt wie in @tab-desc-wage1 zu exportieren, verwenden wir die Funktion `kbl()` um eine Tabelle zu erstellen. Die wichtigsten Argument in `kbl()` sind in @tbl-kbl-args angeführt:
+Um unser `tbl`-Objekt wie in @tbl-desc-wage1 zu exportieren, verwenden wir die Funktion `kbl()` um eine Tabelle zu erstellen. Die wichtigsten Argument in `kbl()` sind in @tbl-kbl-args angeführt:
 
 ```{r}
 #| label: tbl-kbl-args
@@ -87,8 +108,7 @@ Um unser `tbl`-Objekt wie in @tab-desc-wage1 zu exportieren, verwenden wir die F
 #| echo: false
 
 tibble(
-  Argument     = c("caption", "label", "col.names", "row.names", "align",
-                   "digits", "format", "booktabs", "escape", "longtable"),
+  Argument = c("caption", "label", "col.names", "row.names", "align","digits", "format", "booktabs", "escape", "longtable"),
   Beschreibung = c(
     "Tabellenüberschrift",
     "LaTeX-Label für Querverweise",
@@ -101,7 +121,7 @@ tibble(
     "LaTeX-Sonderzeichen escapen",
     "Mehrseitige Tabellen in LaTeX"
   ),
-  Beispiel     = c(
+  Beispiel = c(
     'caption = "Deskriptive Statistiken"',
     'label = "desc:wage1"',
     'col.names = c("Variable", "Mean")',
@@ -114,8 +134,10 @@ tibble(
     'longtable = TRUE'
   )
 ) |>
+  mutate(Argument = fmt_kbl_code(Argument), Beispiel = fmt_kbl_code(Beispiel)) |>
   kbl(
     col.names = c("Argument", "Bedeutung", "Beispiel"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,
@@ -131,24 +153,34 @@ library("kableExtra")
 tbl |>
   mutate(variable = c("Stundenlohn (USD)", "Bildungsjahre")) |>
   kbl(
+    # Caption
     caption = "Lohn und Bildung im wage1-Datensatz",
+    # Tabellenlabel
     label = "desc:wage1",
+    # Spaltenbezeichnungen
     col.names = c(" ", rep(c("MW", "SD"), 3)),
+    # Spaltenausrichtung
     align = c("l", rep("c", 6)),
+    # Zahlen runden
     digits = 2,
+    # Exportformat
     format = "latex",
     booktabs = T
   ) |>
+  # Gruppierende Kopfzeile
   add_header_above(
     c(" ", "Insgesamt" = 2, "Frauen" = 2, "Männer" = 2),
     bold = T
   ) |>
+  # Kopfzeile formatieren
   row_spec(0, italic = T) |>
+  # Fußnote
   footnote(
     general = "MW = Mittelwert, SD = Standardabweichung.",
     general_title = "Anm.:",
     footnote_as_chunk = T
   ) |>
+  # Export
   save_kable("Tabellen/desc_wage1.tex")
 ```
 
@@ -168,20 +200,20 @@ tbl |>
   flextable() |>
   # Spaltenbezeichnungen
   set_header_labels(
-    variable   = " ",
-    mean.insg  = "MW",
-    sd.insg    = "SD",
-    mean_1     = "MW",
-    sd_1       = "SD",
-    mean_0     = "MW",
-    sd_0       = "SD"
+    variable = " ",
+    mean.insg = "MW",
+    sd.insg = "SD",
+    mean_1 = "MW",
+    sd_1 = "SD",
+    mean_0 = "MW",
+    sd_0 = "SD"
   ) |>
   # Gruppierende Kopfzeile
   add_header_row(
     values  = c(" ", "Insgesamt", "Frauen", "Männer"),
     colwidths = c(1, 2, 2, 2)
   ) |>
-  # Kopfzeile formatieren
+  # Kopfzeilen formatieren
   bold(part = "header", i = 1) |>
   italic(part = "header", i = 2) |>
   # Zahlen runden
@@ -191,9 +223,9 @@ tbl |>
   align(j = 2:7, align = "center", part = "all") |>
   # Fußnote
   add_footer_lines("Anm.: MW = Mittelwert, SD = Standardabweichung.") |>
-  italic(part = "footer") |>
   # Caption
   set_caption("Lohn und Bildung im wage1-Datensatz") |>
+  # Spaltenbreite automatisch anpassen
   autofit() |>
   # Export
   save_as_docx(path = "Tabellen/desc_wage1.docx")
@@ -222,15 +254,21 @@ Mit `modelsummary()` können wir die Ergebnisse aller drei OLS-Modelle in einer 
 library(modelsummary)
 
 modelsummary(
+  # Auflistung der Modelle
   models = list(
     "Modell 1" = ols1,
     "Modell 2" = ols2,
     "Modell 3" = ols3
   ),
+  # Estimate-Zeile (Koeffizient + Sig.-Sterne)
   estimate = "{estimate} {stars}",
+  # Statistikzeile (SE in Klammern)
   statistic = "({std.error})",
+  # Signifikanzlevels
   stars = c("*" = 0.1, "**" = 0.05, "***" = 0.01),
+  # Standardfehler-Typ
   vcov = "HC3",
+  # Variablen + Labels
   coef_map = c(
     "educ" = "Bildungsjahre",
     "exper" = "Berufserfahrung",
@@ -239,18 +277,20 @@ modelsummary(
     "I(exper^2)" = "Berufserfahrung (quadr.)",
     "educ:exper" = "Bildung × Berufserfahrung"
   ),
+  # Modellstatistiken + Labels
   gof_map = tibble(
     raw = c("nobs", "r.squared", "adj.r.squared"),
     clean = c("Beobachtungen", "R²", "Adj. R²"),
     fmt = c(0, 3, 3)
   ),
+  # Fußnote
   notes = "Robuste Standardfehler in Klammern. * p < 0.1, ** p < 0.05, *** p < 0.01"
 )
 ```
 
 Mit dem Argument `output = "<DATEIPFAD>"` in `modelsummary()` können wir diese Tabelle etwa als Word- oder LaTeX-Datei abspeichern. Für mehr Informationen, siehe die [Online-Dokumentation](https://modelsummary.com/) des Packages oder `?modelsummary`.
 
-:::callout-tip
+::: callout-tip
 #### Weitere Möglichkeiten im `modelsummary` Package
 
 Zusätzlich zur Erstellung von Regressionstabellen beinhaltet `modelsummary` auch Funktionen zum Erstellen von Tabellen mit deskriptiven Statistiken (`datasummary()`) sowie von Modellplots (`modelplot()`). Für weitere Informationen, siehe die [Online-Dokumentation](https://modelsummary.com/).
@@ -289,6 +329,8 @@ ggsave(
 @tbl-ggsave-args gibt einen Überblick über die wichtigsten Argumente in `ggsave()`:
 
 ```{r}
+#| label: tbl-ggsave-args
+#| tbl-cap: "Übersicht: Relevante Argumente in ggsave()"
 #| echo: false
 
 tibble(
@@ -304,8 +346,10 @@ tibble(
     'Hintergrundfarbe (Default: "white")'
   )
 ) |>
+  mutate(Argument = fmt_kbl_code(Argument)) |>
   kbl(
     col.names = c("Argument", "Bedeutung"),
+    escape = F
   ) |>
   kable_styling(
     full_width = F,
@@ -313,14 +357,13 @@ tibble(
   )
 ```
 
-:::callout-tip
+::: callout-tip
 #### Wahl des Dateityps in `ggsave()`
 
 Die Wahl des Dateiformats hängt vom Verwendungszweck ab. Grundsätzlich unterscheiden wir zwischen *Vektorgrafiken*, die verlustfrei skalierbar sind und deren Dateiendung im `filename`-Argument automatisch das Format bestimmt, und *Rastergrafiken*, die aus einer fixen Pixelmatrix bestehen:
 
-- *PDF*: Vektorgrafik — die erste Wahl für LaTeX-Dokumente und wissenschaftliche Paper, da sie in beliebiger Größe scharf bleibt und von den meisten LaTeX-Distributionen direkt eingebunden werden kann.
-- *SVG*: Vektorgrafik für Webseiten sowie zur Weiterbearbeitung in Vektorgrafik-Programmen wie Inkscape oder Adobe Illustrator.
-- *PNG*: Rastergrafik mit Transparenz-Unterstützung — gut geeignet für Word-Dokumente, Präsentationen und Webseiten. Mit `dpi = 300` für Druckqualität.
-- *JPEG*: Rastergrafik ohne Transparenz — für Datenvisualisierungen wegen der verlustbehafteten Komprimierung meist weniger empfehlenswert.
+-   *PDF*: Vektorgrafik — die erste Wahl für LaTeX-Dokumente und wissenschaftliche Paper, da sie in beliebiger Größe scharf bleibt und von den meisten LaTeX-Distributionen direkt eingebunden werden kann.
+-   *SVG*: Vektorgrafik für Webseiten sowie zur Weiterbearbeitung in Vektorgrafik-Programmen wie Inkscape oder Adobe Illustrator.
+-   *PNG*: Rastergrafik mit Transparenz-Unterstützung — gut geeignet für Word-Dokumente, Präsentationen und Webseiten. Mit `dpi = 300` für Druckqualität.
+-   *JPEG*: Rastergrafik ohne Transparenz — für Datenvisualisierungen wegen der verlustbehafteten Komprimierung meist weniger empfehlenswert.
 :::
-
