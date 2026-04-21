@@ -265,7 +265,7 @@
     "href": "index.html#weitere-literatur",
     "title": "Einführung in R",
     "section": "Weitere Literatur",
-    "text": "Weitere Literatur\nDieser Kurs bietet eine kurze Einführung in R. Die folgenden Lehrbücher gehen zu den einzelnen Themen mehr ins Detail:\n\nDatenarbeit mit R: R for Data Science (2e) (Hadley Wickham et al.)\nDatenvisualierung mit R: ggplot2: Elegant Graphics for Data Analysis (3e) (Hadley Wickham et al.)\nÖkonometrie mit R: Introduction to Econometrics with R (Christoph Hanck et al.)\nKausalinferenz mit R: Causal Inference: The Mixtape (Scott Cunningham)\n\nIn ?sec-references sind weitere Lehrbücher und Ressourcen angeführt.",
+    "text": "Weitere Literatur\nDieser Kurs bietet eine kurze Einführung in R. Die folgenden Lehrbücher gehen zu den einzelnen Themen mehr ins Detail:\n\nDatenarbeit mit R: R for Data Science (2e) (Hadley Wickham et al.)\nDatenvisualierung mit R: ggplot2: Elegant Graphics for Data Analysis (3e) (Hadley Wickham et al.)\nÖkonometrie mit R: Introduction to Econometrics with R (Christoph Hanck et al.)\nKausalinferenz mit R: Causal Inference: The Mixtape (Scott Cunningham)\n\nIn 13  Literatur & Ressourcen sind weitere Lehrbücher und Ressourcen angeführt.",
     "crumbs": [
       "Willkommen"
     ]
@@ -449,11 +449,11 @@
   {
     "objectID": "referenzen.html",
     "href": "referenzen.html",
-    "title": "Literatur & Ressourcen",
+    "title": "13  Literatur & Ressourcen",
     "section": "",
-    "text": "Lehrbücher\nDieses Kapitel gibt einen Überblick über empfehlenswerte Ressourcen, die über die Inhalte dieses Kurses hinausgehen. Der Fokus liegt auf frei zugänglichen Materialien. Die meisten der genannten Bücher sind vollständig frei online verfügbar, alternativ sind diese über die Fernuni-Bibliothek oder die Fernleihe zu erhalten.",
+    "text": "13.1 Lehrbücher\nDieses Kapitel gibt einen Überblick über empfehlenswerte Ressourcen, die über die Inhalte dieses Kurses hinausgehen. Der Fokus liegt auf frei zugänglichen Materialien. Die meisten der genannten Bücher sind vollständig frei online verfügbar, alternativ sind diese über die Fernuni-Bibliothek oder die Fernleihe zu erhalten.",
     "crumbs": [
-      "Literatur & Ressourcen"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Literatur & Ressourcen</span>"
     ]
   },
   {
@@ -469,31 +469,31 @@
   {
     "objectID": "referenzen.html#online-kurse",
     "href": "referenzen.html#online-kurse",
-    "title": "Literatur & Ressourcen",
-    "section": "Online-Kurse",
-    "text": "Online-Kurse\n\n\nPosit Cloud Primers (posit.cloud/learn/primers) bieten interaktive Einführungen in die wichtigsten tidyverse-Packages direkt im Browser — ohne Installation. Besonders geeignet für den Einstieg und zum Auffrischen einzelner Themen.\n\nDataCamp (datacamp.com) bietet umfangreiche R-Kurse zu Datenanalyse, Statistik, maschinellem Lernen und mehr. Viele Hochschulen bieten kostenlosen Zugang über DataCamp for Classrooms an — es lohnt sich, beim Studierendenservice nachzufragen. - Coursera: Data Science Specialization (Johns Hopkins University, coursera.org) ist eine neunteilige Kursreihe zu Datenwissenschaft mit R, die von grundlegenden R-Kenntnissen bis zu Regressionsmodellen und reproduzierbarer Forschung reicht. Kostenlos auditierbar.\n\nSwirl (swirlstats.com) ist ein R-Package, das interaktive R-Kurse direkt in der R-Konsole anbietet — eine ungewöhnliche, aber effektive Lernmethode, da man direkt in der gewohnten Arbeitsumgebung übt",
+    "title": "13  Literatur & Ressourcen",
+    "section": "\n13.4 Online-Kurse",
+    "text": "13.4 Online-Kurse\n\n\nPosit Cloud Primers (posit.cloud/learn/primers) bieten interaktive Einführungen in die wichtigsten tidyverse-Packages direkt im Browser — ohne Installation. Besonders geeignet für den Einstieg und zum Auffrischen einzelner Themen.\n\nDataCamp (datacamp.com) bietet umfangreiche R-Kurse zu Datenanalyse, Statistik, maschinellem Lernen und mehr. Viele Hochschulen bieten kostenlosen Zugang über DataCamp for Classrooms an — es lohnt sich, beim Studierendenservice nachzufragen. - Coursera: Data Science Specialization (Johns Hopkins University, coursera.org) ist eine neunteilige Kursreihe zu Datenwissenschaft mit R, die von grundlegenden R-Kenntnissen bis zu Regressionsmodellen und reproduzierbarer Forschung reicht. Kostenlos auditierbar.\n\nSwirl (swirlstats.com) ist ein R-Package, das interaktive R-Kurse direkt in der R-Konsole anbietet — eine ungewöhnliche, aber effektive Lernmethode, da man direkt in der gewohnten Arbeitsumgebung übt",
     "crumbs": [
-      "Literatur & Ressourcen"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Literatur & Ressourcen</span>"
     ]
   },
   {
     "objectID": "referenzen.html#cheat-sheets",
     "href": "referenzen.html#cheat-sheets",
-    "title": "Literatur & Ressourcen",
-    "section": "Cheat Sheets",
-    "text": "Cheat Sheets\nPosit (ehemals RStudio) stellt eine Sammlung offizieller Cheat Sheets bereit, die jeweils die wichtigsten Funktionen eines Packages auf einer oder zwei Seiten zusammenfassen. Alle Cheat Sheets sind unter posit.co/resources/cheatsheets frei verfügbar. Die für diesen Kurs relevantesten sind:\n\n\n\nTabelle 1: Posit Cheat Sheets\n\n\n\n\nCheat Sheet\nInhalt\nLink\n\n\n\nBase R\nGrundlegende R-Syntax, Datentypen, Operatoren\nDownload\n\n\nRStudio IDE\nTastaturkürzel und Features von RStudio\nDownload\n\n\ndplyr\nDatentransformation mit dem tidyverse\nDownload\n\n\ntidyr\nDaten in Tidy-Format bringen\nDownload\n\n\nggplot2\nDatenvisualisierung mit ggplot2\nDownload\n\n\nreadr / readxl\nDatenimport aus CSV, Excel und weiteren Formaten\nDownload\n\n\npurrr\nFunktionale Programmierung mit map-Funktionen\nDownload\n\n\nstringr\nArbeiten mit Zeichenketten\nDownload\n\n\nlubridate\nArbeiten mit Datums- und Zeitangaben\nDownload\n\n\nQuarto\nQuarto-Dokumente, Chunk-Optionen, Output-Formate\nDownload",
+    "title": "13  Literatur & Ressourcen",
+    "section": "\n13.3 Cheat Sheets",
+    "text": "13.3 Cheat Sheets\nPosit (ehemals RStudio) stellt eine Sammlung offizieller Cheat Sheets bereit, die jeweils die wichtigsten Funktionen eines Packages auf einer oder zwei Seiten zusammenfassen. Alle Cheat Sheets sind unter posit.co/resources/cheatsheets frei verfügbar. Die für diesen Kurs relevantesten sind:\n\n\n\nTabelle 13.1: Posit Cheat Sheets\n\n\n\n\nCheat Sheet\nInhalt\nLink\n\n\n\nBase R\nGrundlegende R-Syntax, Datentypen, Operatoren\nDownload\n\n\nRStudio IDE\nTastaturkürzel und Features von RStudio\nDownload\n\n\ndplyr\nDatentransformation mit dem tidyverse\nDownload\n\n\ntidyr\nDaten in Tidy-Format bringen\nDownload\n\n\nggplot2\nDatenvisualisierung mit ggplot2\nDownload\n\n\nreadr / readxl\nDatenimport aus CSV, Excel und weiteren Formaten\nDownload\n\n\npurrr\nFunktionale Programmierung mit map-Funktionen\nDownload\n\n\nstringr\nArbeiten mit Zeichenketten\nDownload\n\n\nlubridate\nArbeiten mit Datums- und Zeitangaben\nDownload\n\n\nQuarto\nQuarto-Dokumente, Chunk-Optionen, Output-Formate\nDownload",
     "crumbs": [
-      "Literatur & Ressourcen"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Literatur & Ressourcen</span>"
     ]
   },
   {
     "objectID": "referenzen.html#hilfreiche-websites",
     "href": "referenzen.html#hilfreiche-websites",
-    "title": "Literatur & Ressourcen",
-    "section": "Hilfreiche Websites",
-    "text": "Hilfreiche Websites\n\n\nCRAN Task Views (cran.r-project.org/web/views) bieten kuratierte Übersichten über alle relevanten R-Packages nach Themenbereich — etwa Econometrics, CausalInference, TimeSeries oder Spatial. Ein unverzichtbarer Ausgangspunkt bei der Suche nach dem richtigen Package für eine spezifische Aufgabe.\n\nStack Overflow (stackoverflow.com/questions/tagged/r) ist die wichtigste Community für R-Fragen. Die meisten Fehlermeldungen und Probleme, auf die man beim Programmieren stößt, wurden dort bereits diskutiert und gelöst.\n\nPosit Community (community.rstudio.com) ist das offizielle Forum für Fragen rund um RStudio, tidyverse und Quarto — besonders hilfreich für spezifische Package-Fragen, die auf Stack Overflow weniger gut abgedeckt sind.\n\nR-bloggers (r-bloggers.com) aggregiert Blogposts aus der R-Community zu allen möglichen Themen — von neuen Packages bis zu Anwendungsbeispielen in unterschiedlichen Feldern. Gut geeignet, um neue Entwicklungen im R-Ökosystem zu verfolgen.\n\nThe R Graph Gallery (r-graph-gallery.com) bietet eine umfangreiche Sammlung von ggplot2-Beispielen mit reproduzierbarem Code, geordnet nach Diagrammtyp. Besonders nützlich als Inspirationsquelle und Ausgangspunkt für spezifische Visualisierungen.\n\nData-to-Viz (data-to-viz.com) hilft bei der Wahl des richtigen Diagrammtyps: Ausgehend von der Datenstruktur (eine metrische Variable, zwei kategoriale Variablen etc.) werden passende Visualisierungsoptionen mit Vor- und Nachteilen vorgestellt und direkt mit R-Code verknüpft.",
+    "title": "13  Literatur & Ressourcen",
+    "section": "\n13.2 Hilfreiche Websites",
+    "text": "13.2 Hilfreiche Websites\n\n\nCRAN Task Views (cran.r-project.org/web/views) bieten kuratierte Übersichten über alle relevanten R-Packages nach Themenbereich — etwa Econometrics, CausalInference, TimeSeries oder Spatial. Ein unverzichtbarer Ausgangspunkt bei der Suche nach dem richtigen Package für eine spezifische Aufgabe.\n\nStack Overflow (stackoverflow.com/questions/tagged/r) ist die wichtigste Community für R-Fragen. Die meisten Fehlermeldungen und Probleme, auf die man beim Programmieren stößt, wurden dort bereits diskutiert und gelöst.\n\nPosit Community (community.rstudio.com) ist das offizielle Forum für Fragen rund um RStudio, tidyverse und Quarto — besonders hilfreich für spezifische Package-Fragen, die auf Stack Overflow weniger gut abgedeckt sind.\n\nR-bloggers (r-bloggers.com) aggregiert Blogposts aus der R-Community zu allen möglichen Themen — von neuen Packages bis zu Anwendungsbeispielen in unterschiedlichen Feldern. Gut geeignet, um neue Entwicklungen im R-Ökosystem zu verfolgen.\n\nThe R Graph Gallery (r-graph-gallery.com) bietet eine umfangreiche Sammlung von ggplot2-Beispielen mit reproduzierbarem Code, geordnet nach Diagrammtyp. Besonders nützlich als Inspirationsquelle und Ausgangspunkt für spezifische Visualisierungen.\n\nData-to-Viz (data-to-viz.com) hilft bei der Wahl des richtigen Diagrammtyps: Ausgehend von der Datenstruktur (eine metrische Variable, zwei kategoriale Variablen etc.) werden passende Visualisierungsoptionen mit Vor- und Nachteilen vorgestellt und direkt mit R-Code verknüpft.",
     "crumbs": [
-      "Literatur & Ressourcen"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Literatur & Ressourcen</span>"
     ]
   },
   {
@@ -783,11 +783,11 @@
   {
     "objectID": "referenzen.html#lehrbücher",
     "href": "referenzen.html#lehrbücher",
-    "title": "Literatur & Ressourcen",
+    "title": "13  Literatur & Ressourcen",
     "section": "",
-    "text": "R Basics und Data Science\nR for Data Science (2e) von Hadley Wickham et al.\nHands-On Programming with R von Garrett Grolemund\nAdvanced R von Hadley Wickham\nGrafiken in R\nggplot2: Elegant Graphics for Data Analysis (3e) von Hadley Wickham\nÖkonometrie in R\nFür Anfänger:innen\nIntroduction to Econometrics with R von Christoph Hanck et al.\nIntroductory Econometrics: A Modern Approach (7e) von Jeffrey Wooldridge (2020)\nUsing R for Introductory Econometrics von Florian Heiss (2020)\nQuantitative Social Science: An Introduction von Kosuke Imai (2017)\nFür Fortgeschrittene\nMostly Harmless Econometrics: An Empiricist’s Companion von Joshua Angrist & Jörn-Steffen Pischke (2009)\nApplied Econometrics with R von Christian Kleiber & Achim Zeileis (2008)\nKausalinferenz\nCausal Inference: The Mixtape von Scott Cunningham\nThe Effect: An Introduction to Research Design and Causality von Nick Huntington-Klein\nWeitere Themen\nGeocomputation with R von Robin Lovelace et al.\nMastering Shiny von Hadley Wickham\nAn Introduction to Statistical Learning with Applications in R von Gareth James et al.\nStatistical Rethinking: A Bayesian Course with Examples in R and Stan (2e) von McElreath, R. (2020)\nR Packages (2e) von Hadley Wickham & Jennifer Bryan\nR Markdown: The Definitive Guide von Yihui Xie",
+    "text": "13.1.1 R Basics und Data Science\nR for Data Science (2e) von Hadley Wickham et al.\nHands-On Programming with R von Garrett Grolemund\nAdvanced R von Hadley Wickham\n\n13.1.2 Grafiken in R\nggplot2: Elegant Graphics for Data Analysis (3e) von Hadley Wickham\n\n13.1.3 Ökonometrie in R\n\n13.1.3.1 Für Anfänger:innen\nIntroduction to Econometrics with R von Christoph Hanck et al.\nIntroductory Econometrics: A Modern Approach (7e) von Jeffrey Wooldridge (2020)\nUsing R for Introductory Econometrics von Florian Heiss (2020)\nQuantitative Social Science: An Introduction von Kosuke Imai (2017)\n\n13.1.3.2 Für Fortgeschrittene\nMostly Harmless Econometrics: An Empiricist’s Companion von Joshua Angrist & Jörn-Steffen Pischke (2009)\nApplied Econometrics with R von Christian Kleiber & Achim Zeileis (2008)\n\n13.1.3.3 Kausalinferenz\nCausal Inference: The Mixtape von Scott Cunningham\nThe Effect: An Introduction to Research Design and Causality von Nick Huntington-Klein\n\n13.1.4 Weitere Themen\nGeocomputation with R von Robin Lovelace et al.\nMastering Shiny von Hadley Wickham\nAn Introduction to Statistical Learning with Applications in R von Gareth James et al.\nStatistical Rethinking: A Bayesian Course with Examples in R and Stan (2e) von McElreath, R. (2020)\nR Packages (2e) von Hadley Wickham & Jennifer Bryan\nR Markdown: The Definitive Guide von Yihui Xie",
     "crumbs": [
-      "Literatur & Ressourcen"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Literatur & Ressourcen</span>"
     ]
   },
   {

@@ -38,4 +38,4 @@ Dieser Kurs bietet eine kurze Einführung in R. Die folgenden Lehrbücher gehen 
 -   Ökonometrie mit R: [Introduction to Econometrics with R](https://www.econometrics-with-r.org/) (Christoph Hanck et al.)
 -   Kausalinferenz mit R: [Causal Inference: The Mixtape](https://mixtape.scunning.com/) (Scott Cunningham)
 
-In @sec-literatur sind weitere Lehrbücher und Ressourcen angeführt.
+In @sec-weitere-ressourcen sind weitere Lehrbücher und Ressourcen angeführt.

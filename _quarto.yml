@@ -47,7 +47,7 @@ book:
       chapters:
         - loops_funktionen.qmd
         - ki.qmd
-        
+  
     - referenzen.qmd
 
   sidebar:

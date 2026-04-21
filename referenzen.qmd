@@ -1,4 +1,4 @@
-# Literatur & Ressourcen {#sec-literatur .unnumbered}
+# Literatur & Ressourcen {#sec-weitere-ressourcen}
 
 ```{r}
 #| echo: false
