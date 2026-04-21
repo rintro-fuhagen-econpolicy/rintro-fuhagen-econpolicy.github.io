@@ -1,4 +1,4 @@
-# Loops und eigene Funktionen {#sec-loops-funktionen}
+# Funktionen, Loops, Apply {#sec-loops-funktionen}
 
 ```{r}
 #| echo: false
@@ -7,3 +7,163 @@ source("Rsettings.R")
 library(tidyverse)
 library(kableExtra)
 ```
+
+Dieses Kapitel gibt eine kurze Einführung in drei fortgeschrittene Konzepte der R-Programmierung: Das Schreiben eigener Funktionen sowie die Anwendung Loops (Schleifen) und Apply-Funktionen. Diese Konzepte sind nicht zwingend notwendig, um grundlegende Datenanalysen in R durchzuführen — die in den vorherigen Kapiteln behandelten `tidyverse`-Funktionen decken den Großteil typischer Anwendungsfälle bereits ab. Sie werden jedoch relevant, sobald Analysen wiederholt auf unterschiedliche Datensätze, Variablen oder Modelle angewendet werden sollen, oder wenn bestehende Funktionen für spezifische Anforderungen angepasst werden müssen. Für eine vertiefte Auseinandersetzung mit diesen Themen empfehlen wir das frei zugängliche Lehrbuch [Advanced R](https://adv-r.hadley.nz/) von Hadley Wickham.
+
+Wie zuvor greifen wir auch hier auf Funktionen aus dem `tidyverse` Package zurück:
+
+```{r}
+library(tidyverse)
+```
+
+
+## Funktionen {#sec-funktionen}
+
+Funktionen sind das grundlegende Bauprinzip von R — alle Befehle, die wir bisher verwendet haben, sind im Kern Funktionen. Eigene Funktionen zu schreiben lohnt sich immer dann, wenn dieselbe Operation mehrmals im Code vorkommt und kein dezidiertes Package zur Verfügung steht. Anstatt denselben Code-Block zu wiederholen, kapseln wir ihn in einer Funktion, vergeben einen sprechenden Namen und können ihn fortan mit einem einzigen Aufruf ausführen. Das macht den Code kürzer, lesbarer und weniger fehleranfällig — Korrekturen müssen nur an einer einzigen Stelle vorgenommen werden.
+
+Eine Funktion wird in R mit `function()` definiert und einer Variable zugewiesen. Die Argumente der Funktion werden in den runden Klammern angegeben, der Funktionskörper in geschweiften Klammern. Der Rückgabewert ist per Default das Ergebnis des letzten Ausdrucks im Funktionskörper — alternativ kann er mit `return()` explizit angegeben werden.
+
+Wir können uns etwa eine Funktion schreiben, welche Fahrenheit-Temperaturen in Grad Celcius umrechnet:
+
+```{r}
+fht_zu_cel <- function(fht) {
+  (fht - 32) * 5/9
+}
+
+fht_zu_cel(c(32, 72, 98.6, 212))
+```
+
+Funktionen können mehrere Argumente entgegennehmen, für die auch Standardwerte (`default values`) definiert werden können. Wird ein Argument beim Aufruf nicht angegeben, wird der Standardwert verwendet:
+
+```{r}
+fht_zu_cel <- function(fht, digits = 2) {
+  cel <- (fht - 32) * 5/9
+  cel <- round(cel, digits = digits)
+  return(cel)
+}
+
+fht_zu_cel(c(32, 72, 98.6, 212))
+fht_zu_cel(c(32, 72, 98.6, 212), digits = 0)
+```
+
+## Loops {#sec-loops}
+
+Loops (Schleifen) ermöglichen es, einen Code-Block wiederholt auszuführen — etwa für jedes Element eines Vektors, jede Spalte eines Datensatzes oder jede Datei in einem Ordner. Der in R am häufigsten verwendete Loop-Typ ist der `for`-Loop, der eine Sequenz von Werten durchläuft und für jeden Wert den Code-Block im Schleifenkörper ausführt.
+
+### `for`-Loops
+
+Die Syntax eines `for`-Loops lautet `for (variable in sequenz) { ... }`. Die `variable` nimmt dabei nacheinander jeden Wert der `sequenz` an. So können wir uns etwa das Gesetz der Großen Zahlen für einen Münzwurf illustrieren, in dem wir uns das Outcome von 5000 Münzwürfen ausgeben und auf Basis dessen den Kopf-Anteil über die vergangenen n Würfe berechnen. Die Ergebnisse des Loops können wir dabei in einem vorab erstellten Objekte abspeichern:
+
+```{r}
+wurf_max <- 5000
+out <- tibble(
+  wurf_n = 1:wurf_max,
+  kopf = NA,
+  anteil = NA
+)
+
+set.seed(123) # damit Sample-Ziehen replizierbar ist
+
+for (wurf in 1:wurf_max) {
+  out$kopf[wurf] <- sample(0:1, size = 1)
+  out$anteil[wurf] <- sum(out$kopf[1:wurf]) / wurf
+}
+
+out
+```
+
+Mit ggplot können wir unsere Simulation visualisieren:
+
+```{r}
+#| label: fig-sim-lln
+#| fig-cap: "Gesetz der Großen Zahlen beim Münzwurf"
+#| fig-alt: "Abbildung visualisiert das Gesetz der Großen Zahlen für den Münzwurf auf Basis der im for-loop simulierten Würfe."
+
+ggplot(
+  data = out,
+  mapping = aes(x = wurf_n, y = anteil)
+) +
+  geom_line() +
+  geom_hline(yintercept = 0.5, color = "red", linetype = "dashed") +
+  labs(
+    x = "Anzahl Würfe",
+    y = "Anteil Kopf",
+    title = "Gesetz der Großen Zahlen",
+    subtitle = "Münzwürfe"
+  ) +
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, .25, 0.5, .75, 1)) +
+  theme_bw()
+```
+
+### `while`-Loops
+
+Der `while`-Loop führt einen Code-Block so lange aus, wie eine Bedingung erfüllt ist. Er wird seltener verwendet als `for`-Loops, eignet sich aber für Situationen, in denen die Anzahl der Iterationen vorab nicht bekannt ist. Möchten wir uns etwa berechnen, nach wievielen Termen der Folge $1 + \frac{1}{2} +  + \frac{1}{3} + ... > 3$ ist:
+
+```{r}
+summe <- 0
+n <- 0
+
+while (summe <= 3) {
+  n <- n + 1
+  summe <- summe + 1 / n
+}
+
+cat("Nach", n, "Termen wird 3 überschritten, Summe =", round(summe, 4))
+```
+
+## `apply`-Funktionen {#sec-apply}
+
+Eine in R häufig bevorzugte Alternative zu `for`-Loops sind die `apply`-Funktionen aus Base R sowie die `map`-Funktionen aus dem `purrr`-Package (Teil von `tidyverse`). Sie wenden eine Funktion auf alle Elemente eines Vektors, einer Liste oder eines Datensatzes an und sind oft kompakter und lesbarer als ein äquivalenter `for`-Loop. Außerdem sind `apply`-Funktionen in manchen Situationen schneller als `for`-Loops, da sie intern optimiert sind — bei modernen R-Versionen und typischen Datenmengen ist dieser Unterschied in der Praxis aber meist vernachlässigbar.
+
+Die wichtigsten `apply`-Funktionen aus Base R:
+
+- `sapply()`: Wendet eine Funktion auf jedes Element eines Vektors oder einer Liste an und gibt — wenn möglich — einen vereinfachten Vektor oder eine Matrix zurück.
+- `lapply()`: Wie `sapply()`, gibt aber immer eine Liste zurück — nützlich, wenn die Ergebnisse unterschiedliche Längen oder Typen haben.
+- `apply()`: Wendet eine Funktion auf Zeilen (`MARGIN = 1`) oder Spalten (`MARGIN = 2`) einer Matrix oder eines Datensatzes an.
+
+```{r}
+# sapply: Spaltensummen einer Matrix
+m <- matrix(1:12, nrow = 3)
+sapply(1:ncol(m), \(j) sum(m[, j]))
+
+# lapply: Quadratwurzel für mehrere Vektoren, Ergebnis als Liste
+vektoren <- list(a = c(4, 9, 16), b = c(25, 36), c = c(1, 49, 81, 100))
+lapply(vektoren, sqrt)
+
+# apply: Zeilenmittelwerte einer Matrix
+apply(m, MARGIN = 1, FUN = mean)
+```
+
+### `map`-Funktionen aus `purrr`
+
+Das in `tidyverse` enthaltene `purrr`-Package bietet mit den `map`-Funktionen eine `tidyverse`-konforme Alternative zu `lapply()` und `sapply()`, die sich besser in Pipe-basierte Workflows integriert und konsistentere Rückgabetypen liefert. `map()` gibt immer eine Liste zurück, während `map_dbl()`, `map_chr()` und `map_df()` direkt einen Vektor des jeweiligen Typs bzw. einen Datensatz zurückgeben:
+
+```{r}
+set.seed(123)
+verteilungen <- list(
+  gleichverteilt = runif(1000, min = 0, max = 10),
+  normalverteilt = rnorm(1000, mean = 5, sd = 1),
+  rechtsschief   = rexp(1000, rate = 0.5)
+)
+
+# map_dbl: Mittelwert für jede Verteilung
+verteilungen |>
+  map_dbl(mean)
+
+# map_df: Quantile aller Verteilungen als Datensatz
+verteilungen |>
+  map_df(
+    \(x) tibble(
+      q25    = quantile(x, 0.25),
+      median = median(x),
+      q75    = quantile(x, 0.75)
+    ),
+    .id = "verteilung"
+  )
+```
+
+:::callout-tip
+#### Wann Loop, wann `apply`/`map`?
+
+Für einfache Iterationen über Vektoren oder Listen sind `sapply()`/`map_*()` meist nicht nur die kompaktere und lesbarere Wahl, sondern oft auch effizienter. `for`-Loops sind hingegen besser geeignet, wenn die Iterationen voneinander abhängen (etwa wenn das Ergebnis einer Iteration als Input der nächsten dient), oder wenn komplexere Ablaufsteuerung mit `break` oder `next` benötigt wird. In der Praxis ist die Wahl oft auch eine Frage des persönlichen Stils — wichtiger als die Wahl zwischen Loop und `apply` ist, dass der Code klar und nachvollziehbar bleibt.
+:::

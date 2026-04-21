@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -892,54 +892,54 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">caption</td>
+<td style="text-align: left;"><code>caption</code></td>
 <td style="text-align: left;">Tabellenüberschrift</td>
-<td style="text-align: left;">caption = "Deskriptive Statistiken"</td>
+<td style="text-align: left;"><code>caption = "Deskriptive Statistiken"</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">label</td>
+<td style="text-align: left;"><code>label</code></td>
 <td style="text-align: left;">LaTeX-Label für Querverweise</td>
-<td style="text-align: left;">label = "desc:wage1"</td>
+<td style="text-align: left;"><code>label = "desc:wage1"</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">col.names</td>
+<td style="text-align: left;"><code>col.names</code></td>
 <td style="text-align: left;">Spaltenbezeichnungen</td>
-<td style="text-align: left;">col.names = c("Variable", "Mean")</td>
+<td style="text-align: left;"><code>col.names = c("Variable", "Mean")</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">row.names</td>
+<td style="text-align: left;"><code>row.names</code></td>
 <td style="text-align: left;">Zeilennamen anzeigen</td>
-<td style="text-align: left;">row.names = FALSE</td>
+<td style="text-align: left;"><code>row.names = FALSE</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">align</td>
+<td style="text-align: left;"><code>align</code></td>
 <td style="text-align: left;">Spaltenausrichtung (l, c, r)</td>
-<td style="text-align: left;">align = c("l", "c", "r")</td>
+<td style="text-align: left;"><code>align = c("l", "c", "r")</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">digits</td>
+<td style="text-align: left;"><code>digits</code></td>
 <td style="text-align: left;">Nachkommastellen</td>
-<td style="text-align: left;">digits = 2</td>
+<td style="text-align: left;"><code>digits = 2</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">format</td>
+<td style="text-align: left;"><code>format</code></td>
 <td style="text-align: left;">Output-Format erzwingen</td>
-<td style="text-align: left;">format = "latex"</td>
+<td style="text-align: left;"><code>format = "latex"</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">booktabs</td>
+<td style="text-align: left;"><code>booktabs</code></td>
 <td style="text-align: left;">Booktabs-Linien für LaTeX</td>
-<td style="text-align: left;">booktabs = TRUE</td>
+<td style="text-align: left;"><code>booktabs = TRUE</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">escape</td>
+<td style="text-align: left;"><code>escape</code></td>
 <td style="text-align: left;">LaTeX-Sonderzeichen escapen</td>
-<td style="text-align: left;">escape = FALSE</td>
+<td style="text-align: left;"><code>escape = FALSE</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">longtable</td>
+<td style="text-align: left;"><code>longtable</code></td>
 <td style="text-align: left;">Mehrseitige Tabellen in LaTeX</td>
-<td style="text-align: left;">longtable = TRUE</td>
+<td style="text-align: left;"><code>longtable = TRUE</code></td>
 </tr>
 </tbody>
 </table>
@@ -954,24 +954,34 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span><span class="va">tbl</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stundenlohn (USD)"</span>, <span class="st">"Bildungsjahre"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span></span>
+<span>    <span class="co"># Caption</span></span>
 <span>    caption <span class="op">=</span> <span class="st">"Lohn und Bildung im wage1-Datensatz"</span>,</span>
+<span>    <span class="co"># Tabellenlabel</span></span>
 <span>    label <span class="op">=</span> <span class="st">"desc:wage1"</span>,</span>
+<span>    <span class="co"># Spaltenbezeichnungen</span></span>
 <span>    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MW"</span>, <span class="st">"SD"</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="co"># Spaltenausrichtung</span></span>
 <span>    align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="co"># Zahlen runden</span></span>
 <span>    digits <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    <span class="co"># Exportformat</span></span>
 <span>    format <span class="op">=</span> <span class="st">"latex"</span>,</span>
 <span>    booktabs <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Gruppierende Kopfzeile</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html">add_header_above</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"Insgesamt"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"Frauen"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"Männer"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
 <span>    bold <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Kopfzeile formatieren</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Fußnote</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html">footnote</a></span><span class="op">(</span></span>
 <span>    general <span class="op">=</span> <span class="st">"MW = Mittelwert, SD = Standardabweichung."</span>,</span>
 <span>    general_title <span class="op">=</span> <span class="st">"Anm.:"</span>,</span>
 <span>    footnote_as_chunk <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Export</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/save_kable.html">save_kable</a></span><span class="op">(</span><span class="st">"Tabellen/desc_wage1.tex"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="tabellen-nach-word" class="level3" data-number="9.1.2"><h3 data-number="9.1.2" class="anchored" data-anchor-id="tabellen-nach-word">
@@ -986,20 +996,20 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html">flextable</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Spaltenbezeichnungen</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/set_header_labels.html">set_header_labels</a></span><span class="op">(</span></span>
-<span>    variable   <span class="op">=</span> <span class="st">" "</span>,</span>
-<span>    mean.insg  <span class="op">=</span> <span class="st">"MW"</span>,</span>
-<span>    sd.insg    <span class="op">=</span> <span class="st">"SD"</span>,</span>
-<span>    mean_1     <span class="op">=</span> <span class="st">"MW"</span>,</span>
-<span>    sd_1       <span class="op">=</span> <span class="st">"SD"</span>,</span>
-<span>    mean_0     <span class="op">=</span> <span class="st">"MW"</span>,</span>
-<span>    sd_0       <span class="op">=</span> <span class="st">"SD"</span></span>
+<span>    variable <span class="op">=</span> <span class="st">" "</span>,</span>
+<span>    mean.insg <span class="op">=</span> <span class="st">"MW"</span>,</span>
+<span>    sd.insg <span class="op">=</span> <span class="st">"SD"</span>,</span>
+<span>    mean_1 <span class="op">=</span> <span class="st">"MW"</span>,</span>
+<span>    sd_1 <span class="op">=</span> <span class="st">"SD"</span>,</span>
+<span>    mean_0 <span class="op">=</span> <span class="st">"MW"</span>,</span>
+<span>    sd_0 <span class="op">=</span> <span class="st">"SD"</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Gruppierende Kopfzeile</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/add_header_row.html">add_header_row</a></span><span class="op">(</span></span>
 <span>    values  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"Insgesamt"</span>, <span class="st">"Frauen"</span>, <span class="st">"Männer"</span><span class="op">)</span>,</span>
 <span>    colwidths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Kopfzeile formatieren</span></span>
+<span>  <span class="co"># Kopfzeilen formatieren</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/bold.html">bold</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"header"</span>, i <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/italic.html">italic</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"header"</span>, i <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Zahlen runden</span></span>
@@ -1009,9 +1019,9 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/align.html">align</a></span><span class="op">(</span>j <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">7</span>, align <span class="op">=</span> <span class="st">"center"</span>, part <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Fußnote</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/add_footer_lines.html">add_footer_lines</a></span><span class="op">(</span><span class="st">"Anm.: MW = Mittelwert, SD = Standardabweichung."</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/italic.html">italic</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"footer"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Caption</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/set_caption.html">set_caption</a></span><span class="op">(</span><span class="st">"Lohn und Bildung im wage1-Datensatz"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Spaltenbreite automatisch anpassen</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/autofit.html">autofit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Export</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/save_as_docx.html">save_as_docx</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"Tabellen/desc_wage1.docx"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1031,15 +1041,21 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://modelsummary.com">modelsummary</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/modelsummary/man/modelsummary.html">modelsummary</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Auflistung der Modelle</span></span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Modell 1"</span> <span class="op">=</span> <span class="va">ols1</span>,</span>
 <span>    <span class="st">"Modell 2"</span> <span class="op">=</span> <span class="va">ols2</span>,</span>
 <span>    <span class="st">"Modell 3"</span> <span class="op">=</span> <span class="va">ols3</span></span>
 <span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># Estimate-Zeile (Koeffizient + Sig.-Sterne)</span></span>
 <span>  estimate <span class="op">=</span> <span class="st">"{estimate} {stars}"</span>,</span>
+<span>  <span class="co"># Statistikzeile (SE in Klammern)</span></span>
 <span>  statistic <span class="op">=</span> <span class="st">"({std.error})"</span>,</span>
+<span>  <span class="co"># Signifikanzlevels</span></span>
 <span>  stars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">=</span> <span class="fl">0.1</span>, <span class="st">"**"</span> <span class="op">=</span> <span class="fl">0.05</span>, <span class="st">"***"</span> <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Standardfehler-Typ</span></span>
 <span>  vcov <span class="op">=</span> <span class="st">"HC3"</span>,</span>
+<span>  <span class="co"># Variablen + Labels</span></span>
 <span>  coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"educ"</span> <span class="op">=</span> <span class="st">"Bildungsjahre"</span>,</span>
 <span>    <span class="st">"exper"</span> <span class="op">=</span> <span class="st">"Berufserfahrung"</span>,</span>
@@ -1048,11 +1064,13 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span>    <span class="st">"I(exper^2)"</span> <span class="op">=</span> <span class="st">"Berufserfahrung (quadr.)"</span>,</span>
 <span>    <span class="st">"educ:exper"</span> <span class="op">=</span> <span class="st">"Bildung × Berufserfahrung"</span></span>
 <span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># Modellstatistiken + Labels</span></span>
 <span>  gof_map <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>    raw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nobs"</span>, <span class="st">"r.squared"</span>, <span class="st">"adj.r.squared"</span><span class="op">)</span>,</span>
 <span>    clean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Beobachtungen"</span>, <span class="st">"R²"</span>, <span class="st">"Adj. R²"</span><span class="op">)</span>,</span>
 <span>    fmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># Fußnote</span></span>
 <span>  notes <span class="op">=</span> <span class="st">"Robuste Standardfehler in Klammern. * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="tbl-reg-ols" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-caption="OLS-Regressionstabelle mit modelsummary()">
@@ -1249,31 +1267,31 @@ Tabelle&nbsp;9.4: Übersicht: Relevante Argumente in ggsave()
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">filename</td>
+<td style="text-align: left;"><code>filename</code></td>
 <td style="text-align: left;">Dateipfad inkl. Endung — bestimmt das Format</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">plot</td>
+<td style="text-align: left;"><code>plot</code></td>
 <td style="text-align: left;">Das zu speichernde Plot-Objekt (Default: letzter Plot)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">width, height</td>
+<td style="text-align: left;"><code>width, height</code></td>
 <td style="text-align: left;">Breite und Höhe der Grafik</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">units</td>
+<td style="text-align: left;"><code>units</code></td>
 <td style="text-align: left;">Einheit: "cm", "mm", "in", "px"</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">dpi</td>
+<td style="text-align: left;"><code>dpi</code></td>
 <td style="text-align: left;">Auflösung (relevant für PNG/JPEG, nicht für PDF/SVG)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">scale</td>
+<td style="text-align: left;"><code>scale</code></td>
 <td style="text-align: left;">Skalierungsfaktor für Grafik inkl. Text und Elemente</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">bg</td>
+<td style="text-align: left;"><code>bg</code></td>
 <td style="text-align: left;">Hintergrundfarbe (Default: "white")</td>
 </tr>
 </tbody>

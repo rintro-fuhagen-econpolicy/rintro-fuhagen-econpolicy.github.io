@@ -6,8 +6,7 @@ Willkommen zum Kurs **Einführung in R**! Dieser Kurs bietet eine praxisorientie
 -   Daten lädt, bereinigt und aufbereitet
 -   Daten visualisiert und zusammenfasst
 -   Statistische Analysen durchführt
--   Ergebnisse exportiert
--   Eigene Funktionen schreibt und Workflows automatisiert
+-   Ergebnisse aufbereitet und exportiert
 
 ## Aufbau des Kurses {.unlisted}
 
@@ -17,7 +16,7 @@ Der Kurs ist in folgende Teile gegliedert:
 -  **Datenaufbereitung**: Daten importieren, aufbereiten und exportieren
 -  **Visualisierung**: Grafiken erstellen
 -  **Statistik in R**: Deskriptive Statistiken und Regressionsmodelle
--  **Ergebnisexport und Berichte**: Export von Tabellen und Grafiken, Berichte mit *quarto* und *RMarkdown*
+-  **Ergebnisexport und Berichte**: Export von Tabellen und Grafiken, Berichte mit *quarto*
 -  **Weitere Themen**: Loops, Funktionen und KI-Unterstützung
 
 ::: callout-note
@@ -28,11 +27,15 @@ Dieser Kurs ist Work-in-Progress. Übungsaufgaben zu den einzelnen Kapiteln werd
 
 ## Kontakt und Feedback {.unlisted}
 
-\[Hier könnte dein Kontakt oder Feedback-Link stehen\]
+Dieses Skript wird kontinuierlich weiterentwickelt. Bei Fragen, Anmerkungen und Verbesserungsvorschläge — sei es zu inhaltlichen Fehlern, unklaren Erklärungen oder fehlenden Themen — wenden Sie sich bitte per E-Mail an [andreas.fischeneder@fernuni-hagen.de](mailto:andreas.fischeneder@fernuni-hagen.de). Feedback ist ausdrücklich willkommen und hilft, den Kurs für zukünftige Studierende zu verbessern.
 
 ## Weitere Literatur {.unlisted}
+
+Dieser Kurs bietet eine kurze Einführung in R. Die folgenden Lehrbücher gehen zu den einzelnen Themen mehr ins Detail:
 
 -   Datenarbeit mit R: [R for Data Science (2e)](https://r4ds.hadley.nz/) (Hadley Wickham et al.)
 -   Datenvisualierung mit R: [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/) (Hadley Wickham et al.)
 -   Ökonometrie mit R: [Introduction to Econometrics with R](https://www.econometrics-with-r.org/) (Christoph Hanck et al.)
 -   Kausalinferenz mit R: [Causal Inference: The Mixtape](https://mixtape.scunning.com/) (Scott Cunningham)
+
+In @sec-literatur sind weitere Lehrbücher und Ressourcen angeführt.

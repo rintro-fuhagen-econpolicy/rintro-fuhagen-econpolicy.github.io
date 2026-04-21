@@ -1,88 +1,134 @@
-# Literatur & Ressourcen {#sec-references .unnumbered}
+# Literatur & Ressourcen {#sec-literatur .unnumbered}
 
-## Bücher
+```{r}
+#| echo: false
+source("Rsettings.R")
 
-### R for Data Science (2e)
-Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for Data Science* (2nd ed.). O'Reilly Media.  
-[https://r4ds.hadley.nz/](https://r4ds.hadley.nz/)
+library(tidyverse)
+library(kableExtra)
+```
 
-Das Standardwerk für Data Science mit R. Kostenlos online verfügbar.
+Dieses Kapitel gibt einen Überblick über empfehlenswerte Ressourcen, die über die Inhalte dieses Kurses hinausgehen. Der Fokus liegt auf frei zugänglichen Materialien. Die meisten der genannten Bücher sind vollständig frei online verfügbar, alternativ sind diese über die Fernuni-Bibliothek oder die Fernleihe zu erhalten.
 
-### ggplot2: Elegant Graphics for Data Analysis
-Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis* (3rd ed.). Springer.  
-[https://ggplot2-book.org/](https://ggplot2-book.org/)
+## Lehrbücher
 
-### Advanced R
-Wickham, H. (2019). *Advanced R* (2nd ed.). Chapman and Hall/CRC.  
-[https://adv-r.hadley.nz/](https://adv-r.hadley.nz/)
+### R Basics und Data Science
 
-## Online-Kurse
+[R for Data Science (2e)](https://r4ds.hadley.nz/) von Hadley Wickham et al.
 
-### RStudio Education
-[https://education.rstudio.com/](https://education.rstudio.com/)
+[Hands-On Programming with R](https://rstudio-education.github.io/hopr/) von Garrett Grolemund
 
-Kostenlose Tutorials und Kurse von RStudio.
+[Advanced R](https://adv-r.hadley.nz/) von Hadley Wickham
 
-### DataCamp
-[https://www.datacamp.com/](https://www.datacamp.com/)
+### Grafiken in R
 
-Interaktive R-Kurse (teilweise kostenpflichtig).
+[ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/) von Hadley Wickham
 
-### Coursera: R Programming
-[https://www.coursera.org/](https://www.coursera.org/)
+### Ökonometrie in R
 
-Verschiedene R-Kurse von Universitäten.
+#### Für Anfänger:innen
 
-## Cheat Sheets
+[Introduction to Econometrics with R](https://www.econometrics-with-r.org/) von Christoph Hanck et al.
 
-- [RStudio Cheat Sheets](https://posit.co/resources/cheatsheets/)
-  - dplyr
-  - ggplot2
-  - tidyr
-  - R Markdown
-  - und viele mehr
+[Introductory Econometrics: A Modern Approach (7e)](https://fub-hagen.digibib.net/search/katalog/record/%28DE-605%29HT020833827?be-katalog-sort=date_desc&q-al=wooldridge+econometrics&count=20&hitcount=8&pos=1) von Jeffrey Wooldridge (2020)
+
+[Using R for Introductory Econometrics](https://www.urfie.net/) von Florian Heiss (2020)
+
+[Quantitative Social Science: An Introduction](https://fub-hagen.digibib.net/search/eds/record/eoh:1676943?be-eds-sort=relevance&q-al=quantitative+social&q-au=%22Imai%2C+Kosuke%22&start=1&count=20&hitcount=85&pos=3) von Kosuke Imai (2017)
+
+#### Für Fortgeschrittene
+
+[Mostly Harmless Econometrics: An Empiricist’s Companion](https://fub-hagen.digibib.net/search/eds/record/edsebk:329761?be-eds-sort=relevance&q-al=mostly+harmless+econometrics&start=1&count=20&hitcount=274&pos=3) von Joshua Angrist & Jörn-Steffen Pischke (2009)
+
+[Applied Econometrics with R](https://fub-hagen.digibib.net/search/eds/record/edsebk:275761?be-eds-sort=relevance&q-al=applied+econometrics+with+r&start=1&count=20&hitcount=12522&pos=4) von Christian Kleiber & Achim Zeileis (2008)
+
+#### Kausalinferenz
+
+[Causal Inference: The Mixtape](https://mixtape.scunning.com/) von Scott Cunningham
+
+[The Effect: An Introduction to Research Design and Causality](https://theeffectbook.net/) von Nick Huntington-Klein
+
+### Weitere Themen
+
+[Geocomputation with R](https://r.geocompx.org/) von Robin Lovelace et al.
+
+[Mastering Shiny](https://mastering-shiny.org/) von Hadley Wickham
+
+[An Introduction to Statistical Learning with Applications in R](https://www.statlearning.com) von Gareth James et al.
+
+[Statistical Rethinking: A Bayesian Course with Examples in R and Stan (2e)](https://fub-hagen.digibib.net/search/katalog/record/%28DE-605%29HT020343720?be-katalog-sort=date_desc&parent_request_id=00gbjqpctt01ualfph20&parent_request_id_hmac=56487367a797ed8fd85b34ab7f0019bbeb0e7707&q-al=Statistical+Rethinking%3A+A+Bayesian+Course+with+Examples+in+R+and+Stan&start=1&count=20&hitcount=2&pos=1) von McElreath, R. (2020)
+
+[R Packages (2e)](https://r-pkgs.org/) von Hadley Wickham & Jennifer Bryan
+
+[R Markdown: The Definitive Guide](https://yihui.org/rmarkdown/) von Yihui Xie
 
 ## Hilfreiche Websites
 
-### Dokumentation
-- [R Documentation](https://www.r-project.org/)
-- [tidyverse](https://www.tidyverse.org/)
-- [ggplot2 Reference](https://ggplot2.tidyverse.org/reference/)
+- *CRAN Task Views* ([cran.r-project.org/web/views](https://cran.r-project.org/web/views/)) bieten kuratierte Übersichten über alle relevanten R-Packages nach Themenbereich — etwa Econometrics, CausalInference, TimeSeries oder Spatial. Ein unverzichtbarer Ausgangspunkt bei der Suche nach dem richtigen Package für eine spezifische Aufgabe.
+- *Stack Overflow* ([stackoverflow.com/questions/tagged/r](https://stackoverflow.com/questions/tagged/r)) ist die wichtigste Community für R-Fragen. Die meisten Fehlermeldungen und Probleme, auf die man beim Programmieren stößt, wurden dort bereits diskutiert und gelöst.
+- *Posit Community* ([community.rstudio.com](https://community.rstudio.com/)) ist das offizielle Forum für Fragen rund um RStudio, tidyverse und Quarto — besonders hilfreich für spezifische Package-Fragen, die auf Stack Overflow weniger gut abgedeckt sind.
+- *R-bloggers* ([r-bloggers.com](https://www.r-bloggers.com/)) aggregiert Blogposts aus der R-Community zu allen möglichen Themen — von neuen Packages bis zu Anwendungsbeispielen in unterschiedlichen Feldern. Gut geeignet, um neue Entwicklungen im R-Ökosystem zu verfolgen.
+- *The R Graph Gallery* ([r-graph-gallery.com](https://r-graph-gallery.com/)) bietet eine umfangreiche Sammlung von `ggplot2`-Beispielen mit reproduzierbarem Code, geordnet nach Diagrammtyp. Besonders nützlich als Inspirationsquelle und Ausgangspunkt für spezifische Visualisierungen.
+- *Data-to-Viz* ([data-to-viz.com](https://www.data-to-viz.com/)) hilft bei der Wahl des richtigen Diagrammtyps: Ausgehend von der Datenstruktur (eine metrische Variable, zwei kategoriale Variablen etc.) werden passende Visualisierungsoptionen mit Vor- und Nachteilen vorgestellt und direkt mit R-Code verknüpft.
 
-### Community
-- [R-bloggers](https://www.r-bloggers.com/)
-- [Stack Overflow (R Tag)](https://stackoverflow.com/questions/tagged/r)
-- [RStudio Community](https://community.rstudio.com/)
-- [Reddit: r/rstats](https://www.reddit.com/r/rstats/)
 
-### Inspiration
-- [R Graph Gallery](https://r-graph-gallery.com/)
-- [From Data to Viz](https://www.data-to-viz.com/)
+## Cheat Sheets
 
-## Deutsche Ressourcen
+Posit (ehemals RStudio) stellt eine Sammlung offizieller Cheat Sheets bereit, die jeweils die wichtigsten Funktionen eines Packages auf einer oder zwei Seiten zusammenfassen. Alle Cheat Sheets sind unter [posit.co/resources/cheatsheets](https://posit.co/resources/cheatsheets/) frei verfügbar. Die für diesen Kurs relevantesten sind:
 
-- [Statistik und R](https://www.methodenlehre.uni-koeln.de/)
-- [R-Kurs Material (Uni Münster)](https://www.uni-muenster.de/)
-- [Crashkurs Statistik](https://www.crashkurs-statistik.de/)
+```{r}
+#| echo: false
+#| label: tbl-cheatsheets
+#| tbl-cap: "Posit Cheat Sheets"
 
-## Weiterführende Themen
+tibble(
+  Package = c(
+    "Base R", "RStudio IDE", "dplyr", "tidyr", "ggplot2",
+    "readr / readxl", "purrr", "stringr", "lubridate", "Quarto"
+  ),
+  Inhalt = c(
+    "Grundlegende R-Syntax, Datentypen, Operatoren",
+    "Tastaturkürzel und Features von RStudio",
+    "Datentransformation mit dem tidyverse",
+    "Daten in Tidy-Format bringen",
+    "Datenvisualisierung mit ggplot2",
+    "Datenimport aus CSV, Excel und weiteren Formaten",
+    "Funktionale Programmierung mit map-Funktionen",
+    "Arbeiten mit Zeichenketten",
+    "Arbeiten mit Datums- und Zeitangaben",
+    "Quarto-Dokumente, Chunk-Optionen, Output-Formate"
+  ),
+  Link = c(
+    "https://rstudio.github.io/cheatsheets/base-r.pdf",
+    "https://rstudio.github.io/cheatsheets/rstudio-ide.pdf",
+    "https://rstudio.github.io/cheatsheets/data-transformation.pdf",
+    "https://rstudio.github.io/cheatsheets/tidyr.pdf",
+    "https://rstudio.github.io/cheatsheets/data-visualization.pdf",
+    "https://rstudio.github.io/cheatsheets/data-import.pdf",
+    "https://rstudio.github.io/cheatsheets/purrr.pdf",
+    "https://rstudio.github.io/cheatsheets/strings.pdf",
+    "https://rstudio.github.io/cheatsheets/lubridate.pdf",
+    "https://rstudio.github.io/cheatsheets/quarto.pdf"
+  )
+) |>
+  mutate(
+    Package = fmt_kbl_code(Package),
+    Link    = paste0('<a href="', Link, '">Download</a>')
+  ) |>
+  kbl(
+    col.names = c("Cheat Sheet", "Inhalt", "Link"),
+    escape = F
+  ) |>
+  kable_styling(
+    full_width = F,
+    bootstrap_options = "striped"
+  )
+```
 
-### Quarto
-[https://quarto.org/](https://quarto.org/)
+## Online-Kurse
 
-Moderne Alternative zu R Markdown für reproduzierbare Berichte.
+- *Posit Cloud Primers* ([posit.cloud/learn/primers](https://posit.cloud/learn/primers)) bieten interaktive Einführungen in die wichtigsten tidyverse-Packages direkt im Browser — ohne Installation. Besonders geeignet für den Einstieg und zum Auffrischen einzelner Themen.
+- *DataCamp* ([datacamp.com](https://www.datacamp.com/)) bietet umfangreiche R-Kurse zu Datenanalyse, Statistik, maschinellem Lernen und mehr. Viele Hochschulen bieten kostenlosen Zugang über DataCamp for Classrooms an — es lohnt sich, beim Studierendenservice nachzufragen.
+*- Coursera: Data Science Specialization* (Johns Hopkins University, [coursera.org](https://www.coursera.org/specializations/jhu-data-science)) ist eine neunteilige Kursreihe zu Datenwissenschaft mit R, die von grundlegenden R-Kenntnissen bis zu Regressionsmodellen und reproduzierbarer Forschung reicht. Kostenlos auditierbar.
+- *Swirl* ([swirlstats.com](https://swirlstats.com/)) ist ein R-Package, das interaktive R-Kurse direkt in der R-Konsole anbietet — eine ungewöhnliche, aber effektive Lernmethode, da man direkt in der gewohnten Arbeitsumgebung übt
 
-### Shiny
-[https://shiny.rstudio.com/](https://shiny.rstudio.com/)
-
-Interaktive Web-Apps mit R erstellen.
-
-### R Package Development
-[https://r-pkgs.org/](https://r-pkgs.org/)
-
-Eigene R-Pakete entwickeln.
-
-### Statistical Rethinking
-McElreath, R. (2020). *Statistical Rethinking: A Bayesian Course with Examples in R and Stan* (2nd ed.).
-
-Bayes'sche Statistik mit R.

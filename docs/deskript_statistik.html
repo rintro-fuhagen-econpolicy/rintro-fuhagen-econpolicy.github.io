@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export.html" class="sidebar-item-text sidebar-link">
+  <a href="./tab_fig_export.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
@@ -265,7 +265,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Funktionen, Loops, Apply</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </header><p>Die nächsten drei Kapitel geben eine kurze Einführung in ausgewählte statistische Funktionen in R, die für empirische Analysen in den Wirtschaftswissenschaften zentral sind. Im Fokus steht dabei ausschließlich die praktische Anwendung in R. Der Umfang der behandelten Funktionen und Verfahren ist jedoch sehr beschränkt. Für eine tiefergehendere Auseinandersetzung mit Ökonometrie in R siehe <a href="https://www.econometrics-with-r.org/">Introduction to Econometrics with R</a> von Hanck et al.</p>
-<p>Die theoretischen Grundlagen der Verfahren sowie die inhaltliche Interpretation der Ergebnisse werden in dieser R-Einführung nicht behandelt. Hier stehen jedoch viele Lehrbücher über die Fernuni-Bibliothek oder auch online zur Verfügung. Einen guten Überblick bietet hier <a href="https://fub-hagen.digibib.net/search/katalog/record/(DE-605)HT020833827?be-katalog-fq=introx.access%3Aonline&amp;be-katalog-sort=date_desc&amp;q-al=wooldridge+econometrics&amp;start=1&amp;count=20&amp;hitcount=1&amp;pos=1"></a> von Jeffrey Wooldridge. Im Bereich der Kausalinferenz-Methoden beinhaltet das frei verfügbare Lehrbuch <a href="https://mixtape.scunning.com/">Causal Inference: The Mixtape</a> von Scott Cunningham neben theoretischen Einblicken in die unterschiedlichen Ansätze auch Anwendungsbeispiele in R.</p>
+<p>Die theoretischen Grundlagen der Verfahren sowie die inhaltliche Interpretation der Ergebnisse werden in dieser R-Einführung nicht behandelt. Hier stehen jedoch viele Lehrbücher über die Fernuni-Bibliothek oder auch online zur Verfügung. Einen guten Überblick bietet hier <a href="https://fub-hagen.digibib.net/search/katalog/record/%28DE-605%29HT020833827?be-katalog-sort=date_desc&amp;q-al=wooldridge+econometrics&amp;count=20&amp;hitcount=8&amp;pos=1">Introductory Econometrics: A Modern Approach</a> von Jeffrey Wooldridge. Im Bereich der Kausalinferenz-Methoden beinhaltet das frei verfügbare Lehrbuch <a href="https://mixtape.scunning.com/">Causal Inference: The Mixtape</a> von Scott Cunningham neben theoretischen Einblicken in die unterschiedlichen Ansätze auch Anwendungsbeispiele in R.</p>
 <p>Um die statistischen Methoden in R besser kennenzulernen, verwenden wir in den meisten Fällen den Datensatz <code>wage1</code> aus dem <code>wooldridge</code>-Package. Dieser enthält Querschnittsdaten zu Löhnen, Bildung und weiteren sozioökonomischen Merkmalen von 526 Erwerbstätigen aus dem US Current Population Survey (1976):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>

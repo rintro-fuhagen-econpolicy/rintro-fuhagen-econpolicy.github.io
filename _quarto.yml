@@ -3,10 +3,18 @@ project:
   output-dir: docs
 
 lang: de
+language:
+  de:
+    title-block-author-single: "Autor"
+    title-block-author-plural: "Autoren"
 
 book:
   title: "Einführung in R"
   subtitle: "Lehrstuhl für VWL, insb. Wirtschaftspolitik, Fernuniversität in Hagen"
+  author:
+    - name: Andreas Fischeneder
+      email: andreas.fischeneder@fernuni-hagen.de
+  
   chapters:
     - index.qmd
     
