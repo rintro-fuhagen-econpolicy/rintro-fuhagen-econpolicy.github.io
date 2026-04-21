@@ -228,18 +228,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Regressionen</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./kausalinferenz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Kausalinferenz</span></span></a>
-  </div>
-</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Export von Ergebnissen</span></a>
+ <span class="menu-text">Ergebnisexportierung und Berichte</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -247,20 +241,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tab_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tabellen exportieren</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./fig_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Grafiken exportieren</span></span></a>
+  <a href="./tab_fig_export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reports.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -277,13 +265,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./loops_funktionen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loops und eigene Funktionen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ki.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">KI-Unterstützung in R</span></span></a>
   </div>
 </li>
       </ul>
@@ -375,34 +363,34 @@ Tabelle&nbsp;4.1: Datensatzformate in der Praxis (Auswahl)
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">csv</td>
+<td style="text-align: left;"><code>csv</code></td>
 <td style="text-align: left;">Allgemein</td>
-<td style="text-align: left;">readr (tidyverse)</td>
-<td style="text-align: left;">read_csv()</td>
+<td style="text-align: left;"><code>readr (tidyverse)</code></td>
+<td style="text-align: left;"><code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">rds</td>
+<td style="text-align: left;"><code>rds</code></td>
 <td style="text-align: left;">R</td>
-<td style="text-align: left;">readr (tidyverse)</td>
-<td style="text-align: left;">read_rds()</td>
+<td style="text-align: left;"><code>readr (tidyverse)</code></td>
+<td style="text-align: left;"><code><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds()</a></code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">txt</td>
+<td style="text-align: left;"><code>txt</code></td>
 <td style="text-align: left;">Allgemein</td>
-<td style="text-align: left;">readr (tidyverse)</td>
-<td style="text-align: left;">read_delim()</td>
+<td style="text-align: left;"><code>readr (tidyverse)</code></td>
+<td style="text-align: left;"><code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim()</a></code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">xlsx</td>
+<td style="text-align: left;"><code>xlsx</code></td>
 <td style="text-align: left;">MS Office</td>
-<td style="text-align: left;">readxl</td>
-<td style="text-align: left;">read_excel()</td>
+<td style="text-align: left;"><code>readxl</code></td>
+<td style="text-align: left;"><code><a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel()</a></code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">dta</td>
+<td style="text-align: left;"><code>dta</code></td>
 <td style="text-align: left;">Stata</td>
-<td style="text-align: left;">haven</td>
-<td style="text-align: left;">read_dta()</td>
+<td style="text-align: left;"><code>haven</code></td>
+<td style="text-align: left;"><code><a href="https://haven.tidyverse.org/reference/read_dta.html">read_dta()</a></code></td>
 </tr>
 </tbody>
 </table>
