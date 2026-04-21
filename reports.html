@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./loops_funktionen.html" rel="next">
-<link href="./export.html" rel="prev">
+<link href="./tab_fig_export.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -67,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Abschicken",
     "search-label": "Suchen"
   }
-}</script>
+}</script><script src="site_libs/kePrint-0.0.1/kePrint.js"></script><link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="nav-sidebar docked quarto-light">
 
@@ -76,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./reports.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tab_fig_export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./reports.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -206,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export.html" class="sidebar-item-text sidebar-link">
+  <a href="./tab_fig_export.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
@@ -251,11 +286,24 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li><a href="#erstellen-eines-quarto-dokuments" id="toc-erstellen-eines-quarto-dokuments" class="nav-link active" data-scroll-target="#erstellen-eines-quarto-dokuments"><span class="header-section-number">10.1</span> Erstellen eines Quarto-Dokuments</a></li>
+  <li>
+<a href="#aufbau-eines-quarto-dokuments" id="toc-aufbau-eines-quarto-dokuments" class="nav-link" data-scroll-target="#aufbau-eines-quarto-dokuments"><span class="header-section-number">10.2</span> Aufbau eines Quarto-Dokuments</a>
+  <ul class="collapse">
+<li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header"><span class="header-section-number">10.2.1</span> YAML-Header</a></li>
+  <li><a href="#markdown-text" id="toc-markdown-text" class="nav-link" data-scroll-target="#markdown-text"><span class="header-section-number">10.2.2</span> Markdown-Text</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">10.2.3</span> Code-Chunks</a></li>
+  </ul>
+</li>
+  <li><a href="#rendering-eines-quarto-dokuments" id="toc-rendering-eines-quarto-dokuments" class="nav-link" data-scroll-target="#rendering-eines-quarto-dokuments"><span class="header-section-number">10.3</span> Rendering eines Quarto Dokuments</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./reports.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tab_fig_export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./reports.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-reports" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Berichte in R</span></span></h1>
 </div>
 
@@ -270,10 +318,201 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header>
+</header><p>Bisher haben wir R primär als Werkzeug für Datenanalyse und Visualisierung kennengelernt. Ein zentraler weiterer Vorteil von R ist jedoch die Möglichkeit, Berichte zu diesen Analysen direkt in R zu erstellen — ohne Ergebnisse manuell in ein separates Dokument übertragen zu müssen. <em>Quarto</em> (und sein Vorgänger <em>RMarkdown</em>) ermöglichen es, R-Code, Ausgaben und erläuternden Text in einem einzigen Dokument zu kombinieren und dieses in verschiedene Formate wie HTML, PDF oder Word zu exportieren. Das hat mehrere wesentliche Vorteile:</p>
+<ul>
+<li>
+<em>Reproduzierbarkeit</em>: Analysen und Ergebnisse sind vollständig nachvollziehbar, da Code und Text gemeinsam gespeichert werden. Änderungen an den Daten oder der Analyse werden automatisch im gesamten Dokument übernommen — ein manuelles Aktualisieren von Tabellen oder Grafiken entfällt.</li>
+<li>
+<em>Flexibilität</em>: Dasselbe Dokument kann als HTML-Seite, PDF-Bericht oder Word-Dokument gerendert werden, ohne den Inhalt anpassen zu müssen.</li>
+<li>
+<em>Integration</em>: Ergebnisse aus R — etwa Koeffizienten, p-Werte oder Grafiken — können direkt im Fließtext referenziert werden und aktualisieren sich automatisch bei einer neuen Analyse.</li>
+</ul>
+<p>Eine ausführliche Einführung in Quarto und R Markdown findet sich in folgenden frei zugänglichen Ressourcen:</p>
+<ul>
+<li>
+<a href="https://r4ds.hadley.nz/">R for Data Science</a> (Wickham et al.), Kapitel 28 und 29</li>
+<li>Offizielle Dokumentation unter <a href="https://quarto.org/docs/guide/">quarto.org</a>
+</li>
+<li>
+<a href="https://yihui.org/rmarkdown/">R Markdown: The Definitive Guide</a> (Xie et al.)</li>
+</ul>
+<section id="erstellen-eines-quarto-dokuments" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="erstellen-eines-quarto-dokuments">
+<span class="header-section-number">10.1</span> Erstellen eines Quarto-Dokuments</h2>
+<p>Ein Quarto-Dokument können wir ähnlich wie ein R-Skript (siehe <a href="best_practices.html" class="quarto-xref"><span>Kapitel 2</span></a>) über das R-Studio-Interface erstellen. Dabei klicken wir auf den in <a href="#fig-quarto-setup" class="quarto-xref">Abbildung&nbsp;<span>10.1</span></a> rot markierten Button (<em>New File</em>) und die Option für das Quarto-Dokument im Drop-Down-Menü. Anschließend öffnet sich ein Fenster (Schritt 2 in <a href="#fig-quarto-setup" class="quarto-xref">Abbildung&nbsp;<span>10.1</span></a>), in dem wir die Dokumentenart (<em>Document</em> für Bericht, <em>Presentation</em> für Präsentation oder <em>Interactive </em> für Shiny-Bericht) wählen (gelb markiert). Außerdem können wir hier bereits Titel und Autor:in (grün markiert) sowie Output-Typ (HTML, PDF, MS Word) (blau markiert) definieren. Beide Optionen können aber später auch noch angepasst werden. Mit dem Klick auf <em>Create</em> (violett markiert) erstellen wir anschließend unser Quarto-Dokument. Dieses können wir dann als <code>.qmd</code>-Datei speichern.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-quarto-setup" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schritt-für-Schritt-Erklärung für die Erstellung eines neuen Quarto-Dokuments. In Schritt 1 ist der Button und die Option für einen neues Quarto-Dokument hervorgehoben. In Schritt 2 sind die Auswahl der Dokumentart, die Textfelder für Titel und Autor:in, die  unterschiedlichen Output-Optionen, sowie der Dokument-Erstellungsbutton markiert.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/quarto_erstellen.png" class="img-fluid figure-img" alt="Schritt-für-Schritt-Erklärung für die Erstellung eines neuen Quarto-Dokuments. In Schritt 1 ist der Button und die Option für einen neues Quarto-Dokument hervorgehoben. In Schritt 2 sind die Auswahl der Dokumentart, die Textfelder für Titel und Autor:in, die  unterschiedlichen Output-Optionen, sowie der Dokument-Erstellungsbutton markiert.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quarto-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;10.1: Erstellen eines neuen Quarto-Dokuments.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="aufbau-eines-quarto-dokuments" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="aufbau-eines-quarto-dokuments">
+<span class="header-section-number">10.2</span> Aufbau eines Quarto-Dokuments</h2>
+<p>Nach dem Erstellen des Quarto-Dokuments öffnet sich ein neues Panel im RStudio-Interface. Hier können wir nun ähnlich zum Code in einem R-Skript unseren Bericht schreiben. Die wesentlichen Bausteine eines Quarto-Dokuments sind in einem Beispiel in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a> markiert. Diese sind der YAML-Header (orange), Markdown-Text (gelb) und Code-Chuncks (blau).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-quarto-panel" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Beispiel für ein Quarto-Dokument. Hervorgehoben sind die wesentlichen Bausteine (YAML-Header, Markdown-Text, Code-Chunks), sowie die Buttons zur Ausführung eines Code-Chunks, der Erstellung des Berichts (Rendering) und der Swichting-Option zwischen Source-Code und visuellem Editor.">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-quarto-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/quarto_panel.png" class="img-fluid figure-img" alt="Beispiel für ein Quarto-Dokument. Hervorgehoben sind die wesentlichen Bausteine (YAML-Header, Markdown-Text, Code-Chunks), sowie die Buttons zur Ausführung eines Code-Chunks, der Erstellung des Berichts (Rendering) und der Swichting-Option zwischen Source-Code und visuellem Editor.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quarto-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;10.2: Aufbau eines Quarto-Dokuments.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Visual Editor und Source Editor
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto-Dokumente können in RStudio in zwei Modi bearbeitet werden, zwischen denen oben links im Editor-Fenster umgeschaltet werden kann (grün markiert in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a>). Im <em>Source Editor</em> wird das Dokument direkt in Markdown-Syntax geschrieben - das ist der Modus, den wir in diesem Kapitel verwenden. Der <em>Visual Editor</em> bietet hingegen eine Word-ähnliche Oberfläche, in der Text formatiert, Tabellen eingefügt und Bilder eingebettet werden können, ohne Markdown-Syntax kennen zu müssen. Im Hintergrund erzeugt der Visual Editor dabei dieselbe Markdown-Syntax wie der Source Editor — beide Modi sind also vollständig kompatibel und können jederzeit gewechselt werden.</p>
+<p>Für Einsteiger:innen ist der Visual Editor oft der einfachere Einstieg, während der Source Editor mehr Kontrolle über das genaue Markdown-Markup bietet. Für die Arbeit mit Code-Chunks, YAML-Optionen und komplexeren Formatierungen empfiehlt sich langfristig die Vertrautheit mit dem Source Editor.</p>
+</div>
+</div>
+<section id="yaml-header" class="level3" data-number="10.2.1"><h3 data-number="10.2.1" class="anchored" data-anchor-id="yaml-header">
+<span class="header-section-number">10.2.1</span> YAML-Header</h3>
+<p>Der YAML-Header (orange markiert in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a>) steht am Anfang des Dokuments und wird durch <code>---</code> eingeschlossen. Er legt die grundlegenden Eigenschaften des Dokuments fest, etwa Titel, Autor, Datum und Output-Format:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"R Intro Bericht"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Max Mustermann"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">           # Inhaltsverzeichnis</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> de</span><span class="co">                # Sprache (beeinflusst Silbentrennung etc.)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</section><section id="markdown-text" class="level3" data-number="10.2.2"><h3 data-number="10.2.2" class="anchored" data-anchor-id="markdown-text">
+<span class="header-section-number">10.2.2</span> Markdown-Text</h3>
+<p>Der Fließtext wird in Markdown geschrieben (gelb markiert in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a>), einer einfachen Auszeichnungssprache. Die wichtigsten Formatierungsoptionen:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Überschrift Level 1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Überschrift Level 2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>**fett**, *kursiv*, <span class="in">`Code`</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Aufzählungspunkt</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Aufzählungspunkt</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Nummerierte Liste</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Nummerierte Liste</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Linktext</span><span class="co">](https://www.example.com)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Über Inline-Code nach dem folgenden Schema können Ergebniswerte direkt im Fließtext eingefügt werden und aktualisieren sich automatisch bei einer neuen Analyse:</p>
+<div class="cell">
+<pre><code>Dieser enthält Lohndaten für `r nrow(wage1)` Beobachtungen.</code></pre>
+</div>
+</section><section id="code-chunks" class="level3" data-number="10.2.3"><h3 data-number="10.2.3" class="anchored" data-anchor-id="code-chunks">
+<span class="header-section-number">10.2.3</span> Code-Chunks</h3>
+<p>R-Code wird in Code-Chunks (blau markiert in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a>) eingebettet, die mit <code>```{r}</code> geöffnet und <code>```</code> geschlossen werden. Diese können auch über den Shortcut <code>Strg</code>+<code>Alt</code>+<code>I</code> eingefügt werden. Um den Code auszuführen, können wir für eine einzelne Zeile wie in einem R-Skript (siehe <a href="best_practices.html" class="quarto-xref"><span>Kapitel 2</span></a>) die Tastenkombination <code>Strg</code>+<code>Enter</code> drücken. Der gesamte Code-Chunk wird mit einem Klick auf das Run-Icon (violett markiert in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a>) ausgeführt.</p>
+<p>Über Chunk-Optionen (eingeleitet mit <code>#|</code>) wird gesteuert, wie der Chunk im Output erscheint:</p>
+<div class="cell">
+<pre><code> ```{r} 
+ #| echo: false 
+ #| label: fig-educ-wage 
+ #| fig-cap: "Zusammenhang von Bildung und Lohn" 
+
+ ggplot(wage1, aes(x = educ, y = wage)) + 
+   geom_point() 
+ ```</code></pre>
+</div>
+<p><a href="#tbl-chunck-options" class="quarto-xref">Tabelle&nbsp;<span>10.1</span></a> gibt einen Überblick über die wichtigsten Code-Chunck-Optionen. Eine Auflistung aller Optionen inklusive Erläuterungen findet sich <a href="https://yihui.org/knitr/options/">hier</a>.</p>
+<div class="cell">
+<div id="tbl-chunck-options" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chunck-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;10.1: Übersicht: Relevante Code-Chunck-Optionen
+</figcaption><div aria-describedby="tbl-chunck-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped cell caption-top table-sm small">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Chunck-Option</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Bedeutung</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>eval</code></td>
+<td style="text-align: left;">Code ausführen (<code>true</code>/<code>false</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>echo</code></td>
+<td style="text-align: left;">Code im Output anzeigen (<code>true</code>/<code>false</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>include</code></td>
+<td style="text-align: left;">Output im Dokument anzeigen — bei <code>false</code> wird der Chunk ausgeführt, aber weder Code noch Output erscheinen (<code>true</code>/<code>false</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>results</code></td>
+<td style="text-align: left;">Darstellung des Outputs: <code>markup</code>, <code>asis</code>, <code>hold</code>, <code>hide</code>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>warning</code></td>
+<td style="text-align: left;">Warnungen anzeigen (<code>true</code>/<code>false</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>message</code></td>
+<td style="text-align: left;">Meldungen anzeigen (<code>true</code>/<code>false</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>label</code></td>
+<td style="text-align: left;">Label des Chunks — notwendig für Querverweise mit <code>@fig-*</code> / <code>@tbl-*</code>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fig-cap / tbl-cap</code></td>
+<td style="text-align: left;">Abbildungs- bzw. Tabellencaption</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>fig-alt</code></td>
+<td style="text-align: left;">Alt-Text der Abbildung</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fig-width / fig-height</code></td>
+<td style="text-align: left;">Grafikgröße</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Chunks mit der Option <code>label: fig-*</code> oder <code>label: tbl-*</code> können im Text mit <code>@fig-*</code> bzw. <code>@tbl-*</code> referenziert werden - Quarto nummeriert Abbildungen und Tabellen dann automatisch.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Globale Chunk-Optionen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Statt Optionen wie <code>warning: false</code> und <code>message: false</code> in jeden Chunk einzeln zu schreiben, können diese global für das gesamte Dokument im YAML-Header gesetzt werden:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Individuelle Chunk-Optionen überschreiben dabei die globalen Einstellungen.</p>
+</div>
+</div>
+</section></section><section id="rendering-eines-quarto-dokuments" class="level2" data-number="10.3"><h2 data-number="10.3" class="anchored" data-anchor-id="rendering-eines-quarto-dokuments">
+<span class="header-section-number">10.3</span> Rendering eines Quarto Dokuments</h2>
+<p>Um den Bericht in dem im YAML-Header definierten Output-Format zu expotieren, müssen wir das Quarto-Dokument rendern. Dies ist durch Klick auf den Render-Button (rot markiert in <a href="#fig-quarto-panel" class="quarto-xref">Abbildung&nbsp;<span>10.2</span></a>) möglich. Das dadurch entstehende Dokument wird per Default im selben Ordner wie das Quarto-Dokument abgespeichert.</p>
 
 
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -673,7 +912,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./export.html" class="pagination-link" aria-label="Ergebnisse exportieren">
+      <a href="./tab_fig_export.html" class="pagination-link" aria-label="Ergebnisse exportieren">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span>
       </a>          
   </div>

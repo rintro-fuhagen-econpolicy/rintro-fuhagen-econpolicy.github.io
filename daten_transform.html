@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export.html" class="sidebar-item-text sidebar-link">
+  <a href="./tab_fig_export.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
@@ -644,54 +644,54 @@ Tabelle&nbsp;3.2: Übersicht: Logische Operatoren in R
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">==</td>
+<td style="text-align: left;"><code>==</code></td>
 <td style="text-align: left;">gleich</td>
-<td style="text-align: left;">species == "Adelie"</td>
+<td style="text-align: left;"><code>species == "Adelie"</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">!=</td>
+<td style="text-align: left;"><code>!=</code></td>
 <td style="text-align: left;">ungleich</td>
-<td style="text-align: left;">species != "Adelie"</td>
+<td style="text-align: left;"><code>species != "Adelie"</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">&lt;</td>
+<td style="text-align: left;"><code>&lt;</code></td>
 <td style="text-align: left;">kleiner als</td>
-<td style="text-align: left;">bill_len &lt; 40</td>
+<td style="text-align: left;"><code>bill_len &lt; 40</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">&gt;</td>
+<td style="text-align: left;"><code>&gt;</code></td>
 <td style="text-align: left;">größer als</td>
-<td style="text-align: left;">bill_len &gt; 40</td>
+<td style="text-align: left;"><code>bill_len &gt; 40</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">&lt;=</td>
+<td style="text-align: left;"><code>&lt;=</code></td>
 <td style="text-align: left;">kleiner oder gleich</td>
-<td style="text-align: left;">bill_len &lt;= 40</td>
+<td style="text-align: left;"><code>bill_len &lt;= 40</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">&gt;=</td>
+<td style="text-align: left;"><code>&gt;=</code></td>
 <td style="text-align: left;">größer oder gleich</td>
-<td style="text-align: left;">bill_len &gt;= 40</td>
+<td style="text-align: left;"><code>bill_len &gt;= 40</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">%in%</td>
+<td style="text-align: left;"><code>%in%</code></td>
 <td style="text-align: left;">enthalten in</td>
-<td style="text-align: left;">species %in% c("Adelie", "Gentoo")</td>
+<td style="text-align: left;"><code>species %in% c("Adelie", "Gentoo")</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">!%in%</td>
+<td style="text-align: left;"><code>!%in%</code></td>
 <td style="text-align: left;">nicht enthalten in</td>
-<td style="text-align: left;">species !%in% c("Adelie", "Gentoo")</td>
+<td style="text-align: left;"><code>species !%in% c("Adelie", "Gentoo")</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">&amp;</td>
+<td style="text-align: left;"><code>&amp;</code></td>
 <td style="text-align: left;">logisches UND</td>
-<td style="text-align: left;">sex == "female" &amp; island == "Biscoe"</td>
+<td style="text-align: left;"><code>sex == "female" &amp; island == "Biscoe"</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">|</td>
+<td style="text-align: left;"><code>|</code></td>
 <td style="text-align: left;">logisches ODER</td>
-<td style="text-align: left;">bill_len &gt;= 45 | bill_len &lt;= 35</td>
+<td style="text-align: left;"><code>bill_len &gt;= 45 | bill_len &lt;= 35</code></td>
 </tr>
 </tbody>
 </table>
@@ -1024,44 +1024,44 @@ Tabelle&nbsp;3.3: Übersicht: Relevante Funktionen für mutate()
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">row_number()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/row_number.html">row_number()</a></code></td>
 <td style="text-align: left;">Laufende Zeilennummer (ggf. innerhalb von Gruppen)</td>
-<td style="text-align: left;">id = row_number()</td>
+<td style="text-align: left;"><code>id = row_number()</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">lag(), lead()</td>
+<td style="text-align: left;"><code>lag(), lead()</code></td>
 <td style="text-align: left;">Vorheriger/nächster Wert (zeilenweise Verschiebung)</td>
-<td style="text-align: left;">prev_mass = lag(body_mass)</td>
+<td style="text-align: left;"><code>prev_mass = lag(body_mass)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">cumsum()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/cumsum.html">cumsum()</a></code></td>
 <td style="text-align: left;">Kumulierte Summe</td>
-<td style="text-align: left;">cum_mass = cumsum(body_mass, na.rm = T)</td>
+<td style="text-align: left;"><code>cum_mass = cumsum(body_mass, na.rm = T)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">pmin(), pmax()</td>
+<td style="text-align: left;"><code>pmin(), pmax()</code></td>
 <td style="text-align: left;">Elementweises (Zeilenweises) Minimum/Maximum mehrerer Vektoren</td>
-<td style="text-align: left;">max_bill = pmax(bill_len, bill_depth)</td>
+<td style="text-align: left;"><code>max_bill = pmax(bill_len, bill_depth)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">abs()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code></td>
 <td style="text-align: left;">Absolutwert</td>
-<td style="text-align: left;">abs_diff = abs(bill_len - bill_depth)</td>
+<td style="text-align: left;"><code>abs_diff = abs(bill_len - bill_depth)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">round()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></td>
 <td style="text-align: left;">Rundet auf bestimmte Dezimalstellen</td>
-<td style="text-align: left;">body_mass = round(body_mass/1000, digits = 2)</td>
+<td style="text-align: left;"><code>body_mass = round(body_mass/1000, digits = 2)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">floor(), ceiling()</td>
+<td style="text-align: left;"><code>floor(), ceiling()</code></td>
 <td style="text-align: left;">Rundet ab/auf</td>
-<td style="text-align: left;">body_mass = floor(body_mass/1000)</td>
+<td style="text-align: left;"><code>body_mass = floor(body_mass/1000)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">cut()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/cut.html">cut()</a></code></td>
 <td style="text-align: left;">Fasst numerische Variablen in Kategorien zusammen</td>
-<td style="text-align: left;">bill_len_group = cut(bill_len, breaks = 3))</td>
+<td style="text-align: left;"><code>bill_len_group = cut(bill_len, breaks = 3))</code></td>
 </tr>
 </tbody>
 </table>
@@ -1335,23 +1335,23 @@ Tabelle&nbsp;3.4: Übersicht: if_else(), case_when(), replace_when(), recode_val
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">if_else()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else()</a></code></td>
 <td style="text-align: left;">Erstellen einer neuen Variable basierend auf konditioneller Logik (eine Kondition)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">case_when()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when()</a></code></td>
 <td style="text-align: left;">Erstellen einer neuen Variable basierend auf konditioneller Logik (mehrere Konditionen)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">replace_when()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">replace_when()</a></code></td>
 <td style="text-align: left;">Updaten einer existierenden Variable basierend auf konditioneller Logik</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">recode_values()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">recode_values()</a></code></td>
 <td style="text-align: left;">Mapping von allen alten Werten zu neuen Werten</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">replace_values()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/recode-and-replace-values.html">replace_values()</a></code></td>
 <td style="text-align: left;">Mapping bestimmter alter Werte zu neuen Werten</td>
 </tr>
 </tbody>
@@ -1548,54 +1548,54 @@ Tabelle&nbsp;3.5: Übersicht: Relevante Funktionen für summarize()
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">n()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/context.html">n()</a></code></td>
 <td style="text-align: left;">Anzahl Beobachtungen</td>
-<td style="text-align: left;">n = n()</td>
+<td style="text-align: left;"><code>n = n()</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">n_distinct()</td>
+<td style="text-align: left;"><code><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct()</a></code></td>
 <td style="text-align: left;">Anzahl unterschiedlicher Werte</td>
-<td style="text-align: left;">unique_species = n_distinct(species)</td>
+<td style="text-align: left;"><code>unique_species = n_distinct(species)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">mean()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code></td>
 <td style="text-align: left;">Arithmetisches Mittel</td>
-<td style="text-align: left;">avg_mass = mean(body_mass_g, na.rm = TRUE)</td>
+<td style="text-align: left;"><code>avg_mass = mean(body_mass_g, na.rm = TRUE)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">median(), quantile()</td>
+<td style="text-align: left;"><code>median(), quantile()</code></td>
 <td style="text-align: left;">Median oder beliebiges Quantil berechnen</td>
-<td style="text-align: left;">med_mass = median(body_mass_g, na.rm = TRUE)</td>
+<td style="text-align: left;"><code>med_mass = median(body_mass_g, na.rm = TRUE)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">sd(), var()</td>
+<td style="text-align: left;"><code>sd(), var()</code></td>
 <td style="text-align: left;">Standardabweichung oder Varianz</td>
-<td style="text-align: left;">sd_mass = sd(body_mass_g, na.rm = TRUE)</td>
+<td style="text-align: left;"><code>sd_mass = sd(body_mass_g, na.rm = TRUE)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">min(), max()</td>
+<td style="text-align: left;"><code>min(), max()</code></td>
 <td style="text-align: left;">Minimum oder Maximum</td>
-<td style="text-align: left;">min_mass = min(body_mass_g, na.rm = TRUE)</td>
+<td style="text-align: left;"><code>min_mass = min(body_mass_g, na.rm = TRUE)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">sum()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code></td>
 <td style="text-align: left;">Summe</td>
-<td style="text-align: left;">total_mass = sum(body_mass_g, na.rm = TRUE)</td>
+<td style="text-align: left;"><code>total_mass = sum(body_mass_g, na.rm = TRUE)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">first(), last(), nth()</td>
+<td style="text-align: left;"><code>first(), last(), nth()</code></td>
 <td style="text-align: left;">Erster, letzter oder n-ter Wert einer Gruppe</td>
-<td style="text-align: left;">first_mass = first(body_mass_g)</td>
+<td style="text-align: left;"><code>first_mass = first(body_mass_g)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">any()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/any.html">any()</a></code></td>
 <td style="text-align: left;">Mindestens einmal erfüllt</td>
-<td style="text-align: left;">any_na_sex = any(is.na(sex))</td>
+<td style="text-align: left;"><code>any_na_sex = any(is.na(sex))</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">all()</td>
+<td style="text-align: left;"><code><a href="https://rdrr.io/r/base/all.html">all()</a></code></td>
 <td style="text-align: left;">Immer erfüllt</td>
-<td style="text-align: left;">all_na_sex = all(is.na(sex))</td>
+<td style="text-align: left;"><code>all_na_sex = all(is.na(sex))</code></td>
 </tr>
 </tbody>
 </table>

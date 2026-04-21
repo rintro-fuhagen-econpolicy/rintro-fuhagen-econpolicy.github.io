@@ -2,11 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Andreas Fischeneder">
 <title>9&nbsp; Ergebnisse exportieren – Einführung in R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -66,15 +69,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./regressionen.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0c57a5a96bb3d43983d34e8ac53ef0b2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-d15ad9bf924aa68bd7a4b2fe52bfdd29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -109,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./export.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tab_fig_export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./tab_fig_export.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -118,9 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Einführung in R</a> 
     </div>
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./export.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tab_fig_export.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></a>
   </div>
 </li>
@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./export.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tab_fig_export.html">Ergebnisexportierung und Berichte</a></li><li class="breadcrumb-item"><a href="./tab_fig_export.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-export" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ergebnisse exportieren</span></span></h1>
 </div>
 
@@ -365,7 +365,456 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-desc-wage1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabelle&nbsp;9.1: Lohn und Bildung im wage1-Datensatz
 </figcaption><div aria-describedby="tbl-desc-wage1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="lightable-classic cell caption-top table table-sm table-striped small">
+<div id="osncjrvket" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#osncjrvket table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#osncjrvket thead, #osncjrvket tbody, #osncjrvket tfoot, #osncjrvket tr, #osncjrvket td, #osncjrvket th {
+  border-style: none;
+}
+
+#osncjrvket p {
+  margin: 0;
+  padding: 0;
+}
+
+#osncjrvket .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#osncjrvket .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#osncjrvket .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#osncjrvket .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#osncjrvket .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#osncjrvket .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#osncjrvket .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#osncjrvket .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#osncjrvket .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#osncjrvket .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#osncjrvket .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#osncjrvket .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#osncjrvket .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#osncjrvket .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#osncjrvket .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#osncjrvket .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#osncjrvket .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#osncjrvket .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#osncjrvket .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#osncjrvket .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#osncjrvket .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#osncjrvket .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#osncjrvket .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#osncjrvket .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#osncjrvket .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#osncjrvket .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#osncjrvket .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#osncjrvket .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#osncjrvket .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#osncjrvket .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#osncjrvket .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#osncjrvket .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#osncjrvket .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#osncjrvket .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#osncjrvket .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#osncjrvket .gt_left {
+  text-align: left;
+}
+
+#osncjrvket .gt_center {
+  text-align: center;
+}
+
+#osncjrvket .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#osncjrvket .gt_font_normal {
+  font-weight: normal;
+}
+
+#osncjrvket .gt_font_bold {
+  font-weight: bold;
+}
+
+#osncjrvket .gt_font_italic {
+  font-style: italic;
+}
+
+#osncjrvket .gt_super {
+  font-size: 65%;
+}
+
+#osncjrvket .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#osncjrvket .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#osncjrvket .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#osncjrvket .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#osncjrvket .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#osncjrvket .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#osncjrvket .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#osncjrvket .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#osncjrvket div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 14%">
 <col style="width: 14%">
@@ -376,70 +825,52 @@ Tabelle&nbsp;9.1: Lohn und Bildung im wage1-Datensatz
 <col style="width: 14%">
 </colgroup>
 <thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-style: italic" scope="col"></th>
+<th colspan="2" id="Insgesamt" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;" scope="colgroup"><div class="gt_column_spanner">
 Insgesamt
 </div></th>
-<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+<th colspan="2" id="Frauen" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;" scope="colgroup"><div class="gt_column_spanner">
 Frauen
 </div></th>
-<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px; font-weight: bold;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+<th colspan="2" id="Männer" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;" scope="colgroup"><div class="gt_column_spanner">
 Männer
 </div></th>
 </tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-style: italic;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-style: italic;">MW</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-style: italic;">SD</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-style: italic;">MW</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-style: italic;">SD</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-style: italic;">MW</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-style: italic;">SD</th>
+<tr class="gt_col_headings even">
+<th id="mean.insg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; font-style: italic;" scope="col">MW</th>
+<th id="sd.insg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; font-style: italic;" scope="col">SD</th>
+<th id="mean_1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; font-style: italic;" scope="col">MW</th>
+<th id="sd_1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; font-style: italic;" scope="col">SD</th>
+<th id="mean_0" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; font-style: italic;" scope="col">MW</th>
+<th id="sd_0" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; font-style: italic;" scope="col">SD</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: left; width: 1.5cm;">Stundenlohn (USD)</td>
-<td style="text-align: right; width: 0.8cm;">5.90</td>
-<td style="text-align: right; width: 0.8cm;">3.69</td>
-<td style="text-align: right; width: 0.8cm;">4.59</td>
-<td style="text-align: right; width: 0.8cm;">2.53</td>
-<td style="text-align: right; width: 0.8cm;">7.10</td>
-<td style="text-align: right; width: 0.8cm;">4.16</td>
+<td class="gt_row gt_left" headers="variable">Stundenlohn (USD)</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="mean.insg">5.90</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="sd.insg">3.69</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="mean_1">4.59</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="sd_1">2.53</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="mean_0">7.10</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="sd_0">4.16</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 1.5cm;">Bildungsjahre</td>
-<td style="text-align: right; width: 0.8cm;">12.56</td>
-<td style="text-align: right; width: 0.8cm;">2.77</td>
-<td style="text-align: right; width: 0.8cm;">12.32</td>
-<td style="text-align: right; width: 0.8cm;">2.47</td>
-<td style="text-align: right; width: 0.8cm;">12.79</td>
-<td style="text-align: right; width: 0.8cm;">3.00</td>
+<td class="gt_row gt_left" headers="variable">Bildungsjahre</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="mean.insg">12.56</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="sd.insg">2.77</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="mean_1">12.32</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="sd_1">2.47</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="mean_0">12.79</td>
+<td class="gt_row gt_right" style="text-align: center;" headers="sd_0">3.00</td>
 </tr>
 </tbody>
-<tfoot>
-<tr class="odd">
-<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Anm.:</span></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding: 0;">
-<sup></sup> MW = Mittelwert, SD = Standardabweichung.</td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-</tr>
-</tfoot>
+<tfoot><tr class="gt_sourcenotes odd">
+<td colspan="7" class="gt_sourcenote" style="text-align: left;">Anm.: MW = Mittelwert, SD = Standardabweichung.</td>
+</tr></tfoot>
 </table>
+</div>
 </div>
 </figure>
 </div>
@@ -453,7 +884,7 @@ Männer
 Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 </figcaption><div aria-describedby="tbl-kbl-args-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped cell caption-top table-sm small">
 <thead><tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Argument</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Bedeutung</th>
@@ -461,54 +892,54 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">caption</td>
+<td style="text-align: left;"><code>caption</code></td>
 <td style="text-align: left;">Tabellenüberschrift</td>
-<td style="text-align: left;">caption = "Deskriptive Statistiken"</td>
+<td style="text-align: left;"><code>caption = "Deskriptive Statistiken"</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">label</td>
+<td style="text-align: left;"><code>label</code></td>
 <td style="text-align: left;">LaTeX-Label für Querverweise</td>
-<td style="text-align: left;">label = "desc:wage1"</td>
+<td style="text-align: left;"><code>label = "desc:wage1"</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">col.names</td>
+<td style="text-align: left;"><code>col.names</code></td>
 <td style="text-align: left;">Spaltenbezeichnungen</td>
-<td style="text-align: left;">col.names = c("Variable", "Mean")</td>
+<td style="text-align: left;"><code>col.names = c("Variable", "Mean")</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">row.names</td>
+<td style="text-align: left;"><code>row.names</code></td>
 <td style="text-align: left;">Zeilennamen anzeigen</td>
-<td style="text-align: left;">row.names = FALSE</td>
+<td style="text-align: left;"><code>row.names = FALSE</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">align</td>
+<td style="text-align: left;"><code>align</code></td>
 <td style="text-align: left;">Spaltenausrichtung (l, c, r)</td>
-<td style="text-align: left;">align = c("l", "c", "r")</td>
+<td style="text-align: left;"><code>align = c("l", "c", "r")</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">digits</td>
+<td style="text-align: left;"><code>digits</code></td>
 <td style="text-align: left;">Nachkommastellen</td>
-<td style="text-align: left;">digits = 2</td>
+<td style="text-align: left;"><code>digits = 2</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">format</td>
+<td style="text-align: left;"><code>format</code></td>
 <td style="text-align: left;">Output-Format erzwingen</td>
-<td style="text-align: left;">format = "latex"</td>
+<td style="text-align: left;"><code>format = "latex"</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">booktabs</td>
+<td style="text-align: left;"><code>booktabs</code></td>
 <td style="text-align: left;">Booktabs-Linien für LaTeX</td>
-<td style="text-align: left;">booktabs = TRUE</td>
+<td style="text-align: left;"><code>booktabs = TRUE</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">escape</td>
+<td style="text-align: left;"><code>escape</code></td>
 <td style="text-align: left;">LaTeX-Sonderzeichen escapen</td>
-<td style="text-align: left;">escape = FALSE</td>
+<td style="text-align: left;"><code>escape = FALSE</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">longtable</td>
+<td style="text-align: left;"><code>longtable</code></td>
 <td style="text-align: left;">Mehrseitige Tabellen in LaTeX</td>
-<td style="text-align: left;">longtable = TRUE</td>
+<td style="text-align: left;"><code>longtable = TRUE</code></td>
 </tr>
 </tbody>
 </table>
@@ -523,24 +954,34 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span><span class="va">tbl</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stundenlohn (USD)"</span>, <span class="st">"Bildungsjahre"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span></span>
+<span>    <span class="co"># Caption</span></span>
 <span>    caption <span class="op">=</span> <span class="st">"Lohn und Bildung im wage1-Datensatz"</span>,</span>
+<span>    <span class="co"># Tabellenlabel</span></span>
 <span>    label <span class="op">=</span> <span class="st">"desc:wage1"</span>,</span>
+<span>    <span class="co"># Spaltenbezeichnungen</span></span>
 <span>    col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MW"</span>, <span class="st">"SD"</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="co"># Spaltenausrichtung</span></span>
 <span>    align <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="co"># Zahlen runden</span></span>
 <span>    digits <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    <span class="co"># Exportformat</span></span>
 <span>    format <span class="op">=</span> <span class="st">"latex"</span>,</span>
 <span>    booktabs <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Gruppierende Kopfzeile</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html">add_header_above</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"Insgesamt"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"Frauen"</span> <span class="op">=</span> <span class="fl">2</span>, <span class="st">"Männer"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
 <span>    bold <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Kopfzeile formatieren</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/row_spec.html">row_spec</a></span><span class="op">(</span><span class="fl">0</span>, italic <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Fußnote</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/footnote.html">footnote</a></span><span class="op">(</span></span>
 <span>    general <span class="op">=</span> <span class="st">"MW = Mittelwert, SD = Standardabweichung."</span>,</span>
 <span>    general_title <span class="op">=</span> <span class="st">"Anm.:"</span>,</span>
 <span>    footnote_as_chunk <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Export</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/save_kable.html">save_kable</a></span><span class="op">(</span><span class="st">"Tabellen/desc_wage1.tex"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="tabellen-nach-word" class="level3" data-number="9.1.2"><h3 data-number="9.1.2" class="anchored" data-anchor-id="tabellen-nach-word">
@@ -555,20 +996,20 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/flextable.html">flextable</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Spaltenbezeichnungen</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/set_header_labels.html">set_header_labels</a></span><span class="op">(</span></span>
-<span>    variable   <span class="op">=</span> <span class="st">" "</span>,</span>
-<span>    mean.insg  <span class="op">=</span> <span class="st">"MW"</span>,</span>
-<span>    sd.insg    <span class="op">=</span> <span class="st">"SD"</span>,</span>
-<span>    mean_1     <span class="op">=</span> <span class="st">"MW"</span>,</span>
-<span>    sd_1       <span class="op">=</span> <span class="st">"SD"</span>,</span>
-<span>    mean_0     <span class="op">=</span> <span class="st">"MW"</span>,</span>
-<span>    sd_0       <span class="op">=</span> <span class="st">"SD"</span></span>
+<span>    variable <span class="op">=</span> <span class="st">" "</span>,</span>
+<span>    mean.insg <span class="op">=</span> <span class="st">"MW"</span>,</span>
+<span>    sd.insg <span class="op">=</span> <span class="st">"SD"</span>,</span>
+<span>    mean_1 <span class="op">=</span> <span class="st">"MW"</span>,</span>
+<span>    sd_1 <span class="op">=</span> <span class="st">"SD"</span>,</span>
+<span>    mean_0 <span class="op">=</span> <span class="st">"MW"</span>,</span>
+<span>    sd_0 <span class="op">=</span> <span class="st">"SD"</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Gruppierende Kopfzeile</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/add_header_row.html">add_header_row</a></span><span class="op">(</span></span>
 <span>    values  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"Insgesamt"</span>, <span class="st">"Frauen"</span>, <span class="st">"Männer"</span><span class="op">)</span>,</span>
 <span>    colwidths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="co"># Kopfzeile formatieren</span></span>
+<span>  <span class="co"># Kopfzeilen formatieren</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/bold.html">bold</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"header"</span>, i <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/italic.html">italic</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"header"</span>, i <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Zahlen runden</span></span>
@@ -578,9 +1019,9 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/align.html">align</a></span><span class="op">(</span>j <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">7</span>, align <span class="op">=</span> <span class="st">"center"</span>, part <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Fußnote</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/add_footer_lines.html">add_footer_lines</a></span><span class="op">(</span><span class="st">"Anm.: MW = Mittelwert, SD = Standardabweichung."</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/italic.html">italic</a></span><span class="op">(</span>part <span class="op">=</span> <span class="st">"footer"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Caption</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/set_caption.html">set_caption</a></span><span class="op">(</span><span class="st">"Lohn und Bildung im wage1-Datensatz"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="co"># Spaltenbreite automatisch anpassen</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/autofit.html">autofit</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Export</span></span>
 <span>  <span class="fu"><a href="https://davidgohel.github.io/flextable/reference/save_as_docx.html">save_as_docx</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"Tabellen/desc_wage1.docx"</span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -600,15 +1041,21 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://modelsummary.com">modelsummary</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://modelsummary.com/man/modelsummary.html">modelsummary</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Auflistung der Modelle</span></span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
 <span>    <span class="st">"Modell 1"</span> <span class="op">=</span> <span class="va">ols1</span>,</span>
 <span>    <span class="st">"Modell 2"</span> <span class="op">=</span> <span class="va">ols2</span>,</span>
 <span>    <span class="st">"Modell 3"</span> <span class="op">=</span> <span class="va">ols3</span></span>
 <span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># Estimate-Zeile (Koeffizient + Sig.-Sterne)</span></span>
 <span>  estimate <span class="op">=</span> <span class="st">"{estimate} {stars}"</span>,</span>
+<span>  <span class="co"># Statistikzeile (SE in Klammern)</span></span>
 <span>  statistic <span class="op">=</span> <span class="st">"({std.error})"</span>,</span>
+<span>  <span class="co"># Signifikanzlevels</span></span>
 <span>  stars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"*"</span> <span class="op">=</span> <span class="fl">0.1</span>, <span class="st">"**"</span> <span class="op">=</span> <span class="fl">0.05</span>, <span class="st">"***"</span> <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Standardfehler-Typ</span></span>
 <span>  vcov <span class="op">=</span> <span class="st">"HC3"</span>,</span>
+<span>  <span class="co"># Variablen + Labels</span></span>
 <span>  coef_map <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
 <span>    <span class="st">"educ"</span> <span class="op">=</span> <span class="st">"Bildungsjahre"</span>,</span>
 <span>    <span class="st">"exper"</span> <span class="op">=</span> <span class="st">"Berufserfahrung"</span>,</span>
@@ -617,11 +1064,13 @@ Tabelle&nbsp;9.2: Übersicht: Relevante Argumente in kbl()
 <span>    <span class="st">"I(exper^2)"</span> <span class="op">=</span> <span class="st">"Berufserfahrung (quadr.)"</span>,</span>
 <span>    <span class="st">"educ:exper"</span> <span class="op">=</span> <span class="st">"Bildung × Berufserfahrung"</span></span>
 <span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># Modellstatistiken + Labels</span></span>
 <span>  gof_map <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>    raw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"nobs"</span>, <span class="st">"r.squared"</span>, <span class="st">"adj.r.squared"</span><span class="op">)</span>,</span>
 <span>    clean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Beobachtungen"</span>, <span class="st">"R²"</span>, <span class="st">"Adj. R²"</span><span class="op">)</span>,</span>
 <span>    fmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># Fußnote</span></span>
 <span>  notes <span class="op">=</span> <span class="st">"Robuste Standardfehler in Klammern. * p &lt; 0.1, ** p &lt; 0.05, *** p &lt; 0.01"</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="tbl-reg-ols" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-caption="OLS-Regressionstabelle mit modelsummary()">
@@ -633,42 +1082,42 @@ Tabelle&nbsp;9.3
 
     <script src="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.js"></script><script>
       // Create table-specific functions using external factory
-      const tableFns_dgbev689mq6qvoxs47bc = TinyTable.createTableFunctions("tinytable_dgbev689mq6qvoxs47bc");
+      const tableFns_v689mq6qvoxs47bchwqo = TinyTable.createTableFunctions("tinytable_v689mq6qvoxs47bchwqo");
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '13', j: 2 }, { i: '13', j: 3 }, { i: '13', j: 4 } ], css_id: 'tinytable_css_k6pj5tusgjyow139w4o7',}, 
-          { positions: [ { i: '10', j: 2 }, { i: '10', j: 3 }, { i: '10', j: 4 } ], css_id: 'tinytable_css_op6ompvjn8md5q0pgspq',}, 
-          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '9', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '8', j: 3 }, { i: '9', j: 3 }, { i: '11', j: 3 }, { i: '12', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '6', j: 4 }, { i: '7', j: 4 }, { i: '8', j: 4 }, { i: '9', j: 4 }, { i: '11', j: 4 }, { i: '12', j: 4 } ], css_id: 'tinytable_css_dfmw9o7h8669nmpws9ca',}, 
-          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_tofnaj2szlja7k1c57vz',}, 
-          { positions: [ { i: '13', j: 1 } ], css_id: 'tinytable_css_q45fnvkaziop86xci30t',}, 
-          { positions: [ { i: '10', j: 1 } ], css_id: 'tinytable_css_79x9lbjgytenm6sempv6',}, 
-          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 } ], css_id: 'tinytable_css_olovomytbutydsv62mek',}, 
-          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_hwqokepuft57llugx3c4',}, 
+          { positions: [ { i: '13', j: 2 }, { i: '13', j: 3 }, { i: '13', j: 4 } ], css_id: 'tinytable_css_5tusgjyow139w4o7okhu',}, 
+          { positions: [ { i: '10', j: 2 }, { i: '10', j: 3 }, { i: '10', j: 4 } ], css_id: 'tinytable_css_mpvjn8md5q0pgspqk6pj',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '2', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '6', j: 2 }, { i: '7', j: 2 }, { i: '8', j: 2 }, { i: '9', j: 2 }, { i: '11', j: 2 }, { i: '12', j: 2 }, { i: '1', j: 3 }, { i: '2', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '6', j: 3 }, { i: '7', j: 3 }, { i: '8', j: 3 }, { i: '9', j: 3 }, { i: '11', j: 3 }, { i: '12', j: 3 }, { i: '1', j: 4 }, { i: '2', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '6', j: 4 }, { i: '7', j: 4 }, { i: '8', j: 4 }, { i: '9', j: 4 }, { i: '11', j: 4 }, { i: '12', j: 4 } ], css_id: 'tinytable_css_9o7h8669nmpws9caop6o',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 } ], css_id: 'tinytable_css_aj2szlja7k1c57vzdfmw',}, 
+          { positions: [ { i: '13', j: 1 } ], css_id: 'tinytable_css_nvkaziop86xci30ttofn',}, 
+          { positions: [ { i: '10', j: 1 } ], css_id: 'tinytable_css_lbjgytenm6sempv6q45f',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '2', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 }, { i: '6', j: 1 }, { i: '7', j: 1 }, { i: '8', j: 1 }, { i: '9', j: 1 }, { i: '11', j: 1 }, { i: '12', j: 1 } ], css_id: 'tinytable_css_omytbutydsv62mek79x9',}, 
+          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_kepuft57llugx3c4olov',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  tableFns_dgbev689mq6qvoxs47bc.styleCell(cell.i, cell.j, group.css_id);
+                  tableFns_v689mq6qvoxs47bchwqo.styleCell(cell.i, cell.j, group.css_id);
               });
           });
       });
     </script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
 <style>
     /* tinytable css entries after */
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_k6pj5tusgjyow139w4o7, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_k6pj5tusgjyow139w4o7 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_op6ompvjn8md5q0pgspq, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_op6ompvjn8md5q0pgspq {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_dfmw9o7h8669nmpws9ca, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_dfmw9o7h8669nmpws9ca { text-align: center }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_tofnaj2szlja7k1c57vz, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_tofnaj2szlja7k1c57vz {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_q45fnvkaziop86xci30t, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_q45fnvkaziop86xci30t {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_79x9lbjgytenm6sempv6, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_79x9lbjgytenm6sempv6 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_olovomytbutydsv62mek, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_olovomytbutydsv62mek { text-align: left }
-    #tinytable_dgbev689mq6qvoxs47bc td.tinytable_css_hwqokepuft57llugx3c4, #tinytable_dgbev689mq6qvoxs47bc th.tinytable_css_hwqokepuft57llugx3c4 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_5tusgjyow139w4o7okhu, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_5tusgjyow139w4o7okhu {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_mpvjn8md5q0pgspqk6pj, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_mpvjn8md5q0pgspqk6pj {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_9o7h8669nmpws9caop6o, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_9o7h8669nmpws9caop6o { text-align: center }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_aj2szlja7k1c57vzdfmw, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_aj2szlja7k1c57vzdfmw {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_nvkaziop86xci30ttofn, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_nvkaziop86xci30ttofn {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.08em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_lbjgytenm6sempv6q45f, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_lbjgytenm6sempv6q45f {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_omytbutydsv62mek79x9, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_omytbutydsv62mek79x9 { text-align: left }
+    #tinytable_v689mq6qvoxs47bchwqo td.tinytable_css_kepuft57llugx3c4olov, #tinytable_v689mq6qvoxs47bchwqo th.tinytable_css_kepuft57llugx3c4olov {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: var(--tt-line-color); --line-color-left: var(--tt-line-color); --line-color-right: var(--tt-line-color); --line-color-top: var(--tt-line-color); --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.08em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
     </style>
 <div class="container">
-      <table class="tinytable" id="tinytable_dgbev689mq6qvoxs47bc" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_v689mq6qvoxs47bchwqo" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
 <thead><tr>
 <th scope="col" data-row="0" data-col="1"> </th>
                 <th scope="col" data-row="0" data-col="2">Modell 1</th>
@@ -811,38 +1260,38 @@ Tabelle&nbsp;9.3
 Tabelle&nbsp;9.4: Übersicht: Relevante Argumente in ggsave()
 </figcaption><div aria-describedby="tbl-ggsave-args-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped cell caption-top table-sm small">
 <thead><tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Argument</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Bedeutung</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">filename</td>
+<td style="text-align: left;"><code>filename</code></td>
 <td style="text-align: left;">Dateipfad inkl. Endung — bestimmt das Format</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">plot</td>
+<td style="text-align: left;"><code>plot</code></td>
 <td style="text-align: left;">Das zu speichernde Plot-Objekt (Default: letzter Plot)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">width, height</td>
+<td style="text-align: left;"><code>width, height</code></td>
 <td style="text-align: left;">Breite und Höhe der Grafik</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">units</td>
+<td style="text-align: left;"><code>units</code></td>
 <td style="text-align: left;">Einheit: "cm", "mm", "in", "px"</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">dpi</td>
+<td style="text-align: left;"><code>dpi</code></td>
 <td style="text-align: left;">Auflösung (relevant für PNG/JPEG, nicht für PDF/SVG)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">scale</td>
+<td style="text-align: left;"><code>scale</code></td>
 <td style="text-align: left;">Skalierungsfaktor für Grafik inkl. Text und Elemente</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">bg</td>
+<td style="text-align: left;"><code>bg</code></td>
 <td style="text-align: left;">Hintergrundfarbe (Default: "white")</td>
 </tr>
 </tbody>
